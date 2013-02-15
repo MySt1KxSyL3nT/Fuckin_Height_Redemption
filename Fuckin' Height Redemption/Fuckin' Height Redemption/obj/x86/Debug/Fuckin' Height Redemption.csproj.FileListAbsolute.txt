@@ -1,0 +1,2 @@
+C:\Users\Mystik\Desktop\Fuckin' Height Redemption\soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Mystik\Desktop\Fuckin' Height Redemption\soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
