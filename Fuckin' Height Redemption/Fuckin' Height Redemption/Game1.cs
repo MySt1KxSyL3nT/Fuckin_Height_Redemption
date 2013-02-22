@@ -25,6 +25,7 @@ namespace Fuckin__Height_Redemption
      * class: GamePadEvent, Zombie
      * methods: GamePadMove (joueur)
      * colision jouer/zombie
+     * bite
      * 
 
     */
