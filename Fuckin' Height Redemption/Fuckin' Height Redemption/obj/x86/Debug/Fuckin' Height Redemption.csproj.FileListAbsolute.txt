@@ -178,3 +178,93 @@ D:\Bureau\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Rede
 D:\Bureau\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\obj\x86\Debug\Fuckin' Height Redemption.application
 D:\Bureau\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\obj\x86\Debug\Fuckin' Height Redemption.exe
 D:\Bureau\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\obj\x86\Debug\Fuckin' Height Redemption.pdb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\audio.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\back.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\backtogame.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\checked.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\commandes.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\continue.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\continuer.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\controller.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\controls.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\create.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\créer.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\exit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\fenetre.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\fullscreen.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\join.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\jouer.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\languages.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\langues.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\manette.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\menupause.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\menuprincipal.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\multijoueur.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\multiplayer.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\newgame.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\nouveaujeu.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\options.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\pause.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\pausemenu.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\play.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Player 0.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Player 135.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Player 180.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Player 225.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Player 270.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Player 315.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Player 45.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Player 90.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\pleinecran.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\quitter.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\recommencer.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\rejoindre.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\reprendre.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\restart.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\retour.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\unchecked.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\video.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\vidéo.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\windowed.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Zombie 0.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Zombie 135.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Zombie 180.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Zombie 225.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Zombie 270.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Zombie 315.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Zombie 45.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Zombie 90.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\anglais.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\french.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\anglaisit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\background.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\commandesit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\continuerit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\creerit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\fenetreit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\francaisit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\italian.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\italien.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\jouerit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\languesit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\manetteit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\multijoueurit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\nouveaujeuit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\optionsit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\pleinecranit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\quitterit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\recommencerit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\rejoindreit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\reprendreit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\retourit.xnb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Fuckin' Height Redemption.exe.manifest
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Fuckin' Height Redemption.application
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Fuckin' Height Redemption.exe
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Fuckin' Height Redemption.pdb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\obj\x86\Debug\Fuckin' Height Redemption.exe.manifest
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\obj\x86\Debug\Fuckin' Height Redemption.application
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\obj\x86\Debug\Fuckin' Height Redemption.exe
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\obj\x86\Debug\Fuckin' Height Redemption.pdb
+D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\menupausa.xnb

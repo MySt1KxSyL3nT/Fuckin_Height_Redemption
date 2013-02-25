@@ -77,3 +77,4 @@ Content\recommencerit.xnb
 Content\rejoindreit.xnb
 Content\reprendreit.xnb
 Content\retourit.xnb
+Content\menupausa.xnb

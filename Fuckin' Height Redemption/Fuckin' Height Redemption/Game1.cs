@@ -85,6 +85,7 @@ namespace Fuckin__Height_Redemption
         Texture2D backgroundmenu;
         Texture2D pausemenu;
         Texture2D menupause;
+        Texture2D menupausa;
 
         MenuButton Bjouer;
         MenuButton Bmulti;
@@ -137,7 +138,7 @@ namespace Fuckin__Height_Redemption
             joueur = new Joueur(Vector2.One, Content.Load<Texture2D>("Player 0"), Content.Load<Texture2D>("Player 45"), Content.Load<Texture2D>("Player 90"), Content.Load<Texture2D>("Player 135"), Content.Load<Texture2D>("Player 180"), Content.Load<Texture2D>("Player 225"), Content.Load<Texture2D>("Player 270"), Content.Load<Texture2D>("Player 315"));
             zombie = new Zombie[10];
 
-            nombre_zombie = 0;
+            nombre_zombie = 0; 
 
             elapsedtime = 1;
             entiermanette = 1;
@@ -154,6 +155,7 @@ namespace Fuckin__Height_Redemption
 
             menupause = Content.Load<Texture2D>("menupause");
             pausemenu = Content.Load<Texture2D>("pausemenu");
+            menupausa = Content.Load<Texture2D>("menupausa");
 
 
             // principal
@@ -585,7 +587,7 @@ namespace Fuckin__Height_Redemption
                     if (lang == 2)
                         spriteBatch.Draw(pausemenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                     else
-                        spriteBatch.Draw(pausemenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        spriteBatch.Draw(menupausa, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                 }
 
                 Bcontinuer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()));

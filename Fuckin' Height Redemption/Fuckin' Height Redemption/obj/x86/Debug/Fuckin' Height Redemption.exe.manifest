@@ -100,7 +100,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>RTlveWdJnKgkbFT33Uwy6WKvfSg=</dsig:DigestValue>
+        <dsig:DigestValue>RocYkRudmpfJ8RxgdWnrTuk4kd8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -399,6 +399,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>j47kXBPNv9xlYacHBbWQw+bZGiA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\menupausa.xnb" size="1927987">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>53lhq3LQSdFFvsoYMuyl40d0Gn8=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\menupause.xnb" size="1927987">
