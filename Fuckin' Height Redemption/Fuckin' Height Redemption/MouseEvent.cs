@@ -52,6 +52,11 @@ namespace Fuckin__Height_Redemption
             return position;
         }
 
+        public Vector2 GetPosition()
+        {
+            return new Vector2(souris.X, souris.Y);
+        }
+
 
     }
 }

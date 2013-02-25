@@ -32,10 +32,14 @@ namespace Fuckin__Height_Redemption
         }
 
         private int speed;
+        private float anglevisee;
+
         private Vector2 position;
         private Vector2 direction;
+        private Vector2 visee;
+
         private Rectangle rectangle;
-        private Rectangle target; // Rectangle plus petit servant de contact aux zombies
+        private Rectangle target;// Rectangle plus petit servant de contact aux zombies
 
         private Texture2D texture0;
         private Texture2D texture45;
@@ -84,8 +88,10 @@ namespace Fuckin__Height_Redemption
                     position.X = 0;
 
             SetRectangle();
-            SetTartget();
+            SetTarget();
         }
+
+
 
         public void MoveGamePad(GamePadEvent manette, int height, int width)
         {
@@ -112,13 +118,36 @@ namespace Fuckin__Height_Redemption
                 if (position.X <= 0)
                     position.X = 0;
             SetRectangle();
-            SetTartget();
+            SetTarget();
         }
+
 
 
         public void DrawJoueur(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture0, position, Color.White); 
+            if(anglevisee >= -23 && anglevisee <= 23)
+                spriteBatch.Draw(texture0, rectangle, Color.White);
+
+            if (anglevisee >= 24 && anglevisee <= 67)
+                spriteBatch.Draw(texture45, rectangle, Color.White);
+
+            if (anglevisee >= 68 && anglevisee <= 113)
+                spriteBatch.Draw(texture90, rectangle, Color.White);
+
+            if (anglevisee >= 114 && anglevisee <= 157)
+                spriteBatch.Draw(texture135, rectangle, Color.White);
+
+            if ((anglevisee >= 158 && anglevisee <= 180) || (anglevisee >= -180 && anglevisee <= -158))
+                spriteBatch.Draw(texture180, rectangle, Color.White);
+
+            if (anglevisee >= -158 && anglevisee <= -114)
+                spriteBatch.Draw(texture225, rectangle, Color.White);
+
+            if (anglevisee >= -113 && anglevisee <= -68)
+                spriteBatch.Draw(texture270, rectangle, Color.White);
+
+            if (anglevisee >= -68 && anglevisee <= -24)
+                spriteBatch.Draw(texture315, rectangle, Color.White); 
         }
 
 
@@ -126,10 +155,31 @@ namespace Fuckin__Height_Redemption
 
 
 
+        public void SetVisee()
+        {
+            visee = new Vector2((float)Math.Cos(anglevisee), (float)Math.Sin(anglevisee));
+        }
+
+        public Vector2 GetVisee()
+        {
+            return visee;
+        }
 
 
+        public void SetAngleVisee(Vector2 souris_position)
+        {
+            Vector2 angle;
+            angle.X = souris_position.X - rectangle.Center.X;
+            angle.Y = souris_position.Y - rectangle.Center.Y;
 
+            double rad = Math.Atan2(angle.Y, angle.X);
+            anglevisee = /*(float)rad;//*/-(int)((180 * rad) / Math.PI);
+        }
 
+        public float GetAngleVisee()
+        {
+            return anglevisee;
+        }
 
 
         public int GetSpeed()
@@ -142,6 +192,7 @@ namespace Fuckin__Height_Redemption
             this.speed = speed;
         }
 
+
         public Vector2 GetPosition()
         {
             return position;
@@ -151,6 +202,7 @@ namespace Fuckin__Height_Redemption
         {
             this.position = position;
         }
+
 
         public Vector2 GetDirection()
         {
@@ -162,6 +214,7 @@ namespace Fuckin__Height_Redemption
             this.direction = direction;
         }
 
+
         public Rectangle GetRectangle()
         {
             return rectangle;
@@ -169,18 +222,25 @@ namespace Fuckin__Height_Redemption
 
         public void SetRectangle()
         {
-            this.rectangle = new Rectangle((int)position.X, (int)position.Y, texture0.Width, texture0.Height);
+            this.rectangle = new Rectangle((int)position.X, (int)position.Y, (int)(texture0.Width/1.5), (int)(texture0.Height/1.5));
         }
 
-        public void SetTartget()
+        public Vector2 GetRectangleCenter()
         {
-            target = new Rectangle(rectangle.X + texture0.Width / 3, rectangle.Y + texture0.Height / 3, texture0.Width / 2, texture0.Height / 2);
+            return new Vector2(rectangle.Center.X, rectangle.Center.Y);
+        }
+
+
+        public void SetTarget()
+        {
+            target = new Rectangle(rectangle.X + rectangle.Width/3, rectangle.Y + rectangle.Height/3, rectangle.Width/2, rectangle.Height/2);
         }
 
         public Rectangle GetTarget()
         {
             return target;
         }
+
 
         public Texture2D GetTexture()
         {

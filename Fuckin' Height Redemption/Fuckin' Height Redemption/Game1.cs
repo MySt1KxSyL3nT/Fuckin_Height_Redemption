@@ -25,7 +25,6 @@ namespace Fuckin__Height_Redemption
      * class: GamePadEvent, Zombie
      * methods: GamePadMove (joueur)
      * colision jouer/zombie
-     * bite
      * 
 
     */
@@ -54,13 +53,22 @@ namespace Fuckin__Height_Redemption
         ////////////////////////////////////// VARIABLES ! //////////////////////////////////////////////////////
 
         string status; // Statut du jeu: Principal,Jouer,Multi,Options,Jeu,Pause,Creer,Rejoindre,Audio,Video,Commandes
-        bool languefr;
         bool fullscreen; // defini si le jeu est en fullscreen ou non
         bool jeu_manette; // defini si la manette est activée
         bool clique_souris;
+        bool clique_clavier;
+        bool clique_manette;
+
+        int elapsedtime;
+        int lang; // 1 = francais, 2 = anglais, 3 = italien
+        int entiermanette;
+
+
 
         Joueur joueur;
-        Zombie zombie;
+        Zombie[] zombie;
+        //Zombie newzombie;
+        int nombre_zombie;
 
 
         MouseEvent souris;
@@ -75,6 +83,8 @@ namespace Fuckin__Height_Redemption
 
         Texture2D background;
         Texture2D backgroundmenu;
+        Texture2D pausemenu;
+        Texture2D menupause;
 
         MenuButton Bjouer;
         MenuButton Bmulti;
@@ -93,6 +103,9 @@ namespace Fuckin__Height_Redemption
         MenuButton Bcommandes;
 
         MenuButton Blangue;
+        MenuButton Blanguefr;
+        MenuButton Blangueen;
+        MenuButton Blangueit;
         MenuButton Bfullscreen;
         MenuButton Bfenetre;
 
@@ -118,12 +131,17 @@ namespace Fuckin__Height_Redemption
             ////////////////////////////////////// VARIABLES ! //////////////////////////////////////////////////////
 
             status = "Principal";
-            languefr = true;
             fullscreen = true;
             jeu_manette = true;
 
             joueur = new Joueur(Vector2.One, Content.Load<Texture2D>("Player 0"), Content.Load<Texture2D>("Player 45"), Content.Load<Texture2D>("Player 90"), Content.Load<Texture2D>("Player 135"), Content.Load<Texture2D>("Player 180"), Content.Load<Texture2D>("Player 225"), Content.Load<Texture2D>("Player 270"), Content.Load<Texture2D>("Player 315"));
-            zombie = new Zombie(new Vector2(1000,1000), 1.5f, Content.Load<Texture2D>("Zombie 0"), Content.Load<Texture2D>("Zombie 45"), Content.Load<Texture2D>("Zombie 90"), Content.Load<Texture2D>("Zombie 135"), Content.Load<Texture2D>("Zombie 180"), Content.Load<Texture2D>("Zombie 225"), Content.Load<Texture2D>("Zombie 270"), Content.Load<Texture2D>("Zombie 315"));
+            zombie = new Zombie[10];
+
+            nombre_zombie = 0;
+
+            elapsedtime = 1;
+            entiermanette = 1;
+            lang = 1;
 
             souris = new MouseEvent();
             clavier = new KeyboardEvent();
@@ -134,36 +152,46 @@ namespace Fuckin__Height_Redemption
             background = Content.Load<Texture2D>("background");
             backgroundmenu = Content.Load<Texture2D>("menuprincipal");
 
+            menupause = Content.Load<Texture2D>("menupause");
+            pausemenu = Content.Load<Texture2D>("pausemenu");
+
+
             // principal
-            Bjouer = new MenuButton(Vector2.One, Content.Load<Texture2D>("jouer"), Content.Load<Texture2D>("play"));
-            Bmulti = new MenuButton(Vector2.One, Content.Load<Texture2D>("multijoueur"), Content.Load<Texture2D>("multiplayer"));
-            Boptions = new MenuButton(Vector2.One, Content.Load<Texture2D>("options"), Content.Load<Texture2D>("options"));
-            Bquitter = new MenuButton(Vector2.One, Content.Load<Texture2D>("quitter"), Content.Load<Texture2D>("exit"));
-            Bretour = new MenuButton(Vector2.One, Content.Load<Texture2D>("retour"), Content.Load<Texture2D>("back"));
+            Bjouer = new MenuButton(Vector2.One, Content.Load<Texture2D>("jouer"), Content.Load<Texture2D>("play"), Content.Load<Texture2D>("jouerit"));
+            Bmulti = new MenuButton(Vector2.One, Content.Load<Texture2D>("multijoueur"), Content.Load<Texture2D>("multiplayer"), Content.Load<Texture2D>("multijoueurit"));
+            Boptions = new MenuButton(Vector2.One, Content.Load<Texture2D>("options"), Content.Load<Texture2D>("options"), Content.Load<Texture2D>("optionsit"));
+            Bquitter = new MenuButton(Vector2.One, Content.Load<Texture2D>("quitter"), Content.Load<Texture2D>("exit"), Content.Load<Texture2D>("quitterit"));
+            Bretour = new MenuButton(Vector2.One, Content.Load<Texture2D>("retour"), Content.Load<Texture2D>("back"), Content.Load<Texture2D>("retourit"));
 
             // Jouer
-            Bnouveaujeu = new MenuButton(Vector2.One, Content.Load<Texture2D>("nouveaujeu"), Content.Load<Texture2D>("newgame"));
-            Bcontinuer = new MenuButton(Vector2.One, Content.Load<Texture2D>("continuer"), Content.Load<Texture2D>("continue"));
+            Bnouveaujeu = new MenuButton(Vector2.One, Content.Load<Texture2D>("nouveaujeu"), Content.Load<Texture2D>("newgame"), Content.Load<Texture2D>("nouveaujeuit"));
+            Bcontinuer = new MenuButton(Vector2.One, Content.Load<Texture2D>("continuer"), Content.Load<Texture2D>("continue"), Content.Load<Texture2D>("continuerit"));
 
 
             // Multi
-            Bcreer = new MenuButton(Vector2.One, Content.Load<Texture2D>("créer"), Content.Load<Texture2D>("create"));
-            Brejoindre = new MenuButton(Vector2.One, Content.Load<Texture2D>("rejoindre"), Content.Load<Texture2D>("join"));
+            Bcreer = new MenuButton(Vector2.One, Content.Load<Texture2D>("créer"), Content.Load<Texture2D>("create"), Content.Load<Texture2D>("creerit"));
+            Brejoindre = new MenuButton(Vector2.One, Content.Load<Texture2D>("rejoindre"), Content.Load<Texture2D>("join"), Content.Load<Texture2D>("rejoindreit"));
 
 
             //Options
-            Bvideo = new MenuButton(Vector2.One, Content.Load<Texture2D>("vidéo"), Content.Load<Texture2D>("video"));
-            Baudio = new MenuButton(Vector2.One, Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio"));
-            Bcommandes = new MenuButton(Vector2.One, Content.Load<Texture2D>("commandes"), Content.Load<Texture2D>("controls"));
+            Bvideo = new MenuButton(Vector2.One, Content.Load<Texture2D>("vidéo"), Content.Load<Texture2D>("video"), Content.Load<Texture2D>("video"));
+            Baudio = new MenuButton(Vector2.One, Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio"));
+            Bcommandes = new MenuButton(Vector2.One, Content.Load<Texture2D>("commandes"), Content.Load<Texture2D>("controls"), Content.Load<Texture2D>("commandesit"));
 
             // Video
-            Blangue = new MenuButton(Vector2.One, Content.Load<Texture2D>("anglais"), Content.Load<Texture2D>("french"));
-            Bfullscreen = new MenuButton(Vector2.One, Content.Load<Texture2D>("pleinecran"), Content.Load<Texture2D>("fullscreen"));
-            Bfenetre = new MenuButton(Vector2.One, Content.Load<Texture2D>("fenetre"), Content.Load<Texture2D>("windowed"));
+            Blangue = new MenuButton(Vector2.One, Content.Load<Texture2D>("langues"), Content.Load<Texture2D>("languages"), Content.Load<Texture2D>("languesit"));
+            Bfullscreen = new MenuButton(Vector2.One, Content.Load<Texture2D>("pleinecran"), Content.Load<Texture2D>("fullscreen"), Content.Load<Texture2D>("pleinecranit"));
+            Bfenetre = new MenuButton(Vector2.One, Content.Load<Texture2D>("fenetre"), Content.Load<Texture2D>("windowed"), Content.Load<Texture2D>("fenetreit"));
+
+            //Langues
+            Blanguefr = new MenuButton(Vector2.One, Content.Load<Texture2D>("french"), Content.Load<Texture2D>("french"), Content.Load<Texture2D>("francaisit"));
+            Blangueen = new MenuButton(Vector2.One, Content.Load<Texture2D>("anglais"), Content.Load<Texture2D>("anglaisit"), Content.Load<Texture2D>("anglaisit"));
+            Blangueit = new MenuButton(Vector2.One, Content.Load<Texture2D>("italien"), Content.Load<Texture2D>("italian"), Content.Load<Texture2D>("anglaisit"));
 
             // Commandes
-            Bmanette = new MenuButton(Vector2.One, Content.Load<Texture2D>("manette"), Content.Load<Texture2D>("controller"));
-            Bbox = new MenuButton(Vector2.One, Content.Load<Texture2D>("checked"), Content.Load<Texture2D>("unchecked"));
+            Bmanette = new MenuButton(Vector2.One, Content.Load<Texture2D>("manette"), Content.Load<Texture2D>("controller"), Content.Load<Texture2D>("manetteit"));
+            Bbox = new MenuButton(Vector2.One, Content.Load<Texture2D>("checked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"));
+
 
 
 
@@ -236,16 +264,72 @@ namespace Fuckin__Height_Redemption
             clavier.UpdateKeyboard();
             manette.UpdateGamepad();
 
+            if (status == "Nouveau_Jeu")
+            {
+                joueur = new Joueur(Vector2.One, Content.Load<Texture2D>("Player 0"), Content.Load<Texture2D>("Player 45"), Content.Load<Texture2D>("Player 90"), Content.Load<Texture2D>("Player 135"), Content.Load<Texture2D>("Player 180"), Content.Load<Texture2D>("Player 225"), Content.Load<Texture2D>("Player 270"), Content.Load<Texture2D>("Player 315"));
+                zombie = new Zombie[1000];
+                nombre_zombie = 0;
+                elapsedtime = 1;
+                status = "Jeu";
+            }
+
             if (status == "Jeu")
             {
-                if(jeu_manette && manette.Connected())
+                if (jeu_manette && manette.Connected())
+                {
                     joueur.MoveGamePad(manette, Window.ClientBounds.Height, Window.ClientBounds.Width);
+                    if (manette.IsPressed(Buttons.Start) && !clique_manette)
+                        status = "Pause";
+                    clique_manette = manette.IsPressed(Buttons.Start);
+                }
                 else
+                {
                     joueur.MoveKeyboard(clavier, Window.ClientBounds.Height, Window.ClientBounds.Width);
+                    joueur.SetAngleVisee(souris.GetPosition()); // defini l'angle de la visee (vers la souris)
+                    if (clavier.KeyPressed(Keys.Escape) && !clique_clavier)
+                        status = "Pause";
+                    clique_clavier = clavier.KeyPressed(Keys.Escape);
+                }
 
-                
+                joueur.SetVisee(); // Creer un vecteur de visee avec l'angle
 
-                zombie.Move(joueur, Window.ClientBounds.Height, Window.ClientBounds.Width);
+                foreach (Zombie z in zombie)
+                {
+                    if (z != null)
+                    {
+                        z.Move(joueur, Window.ClientBounds.Height, Window.ClientBounds.Width);
+                        z.SetAngleVisee(joueur.GetRectangleCenter());
+                        z.SetVisee();
+                    }
+                }
+
+                elapsedtime += gameTime.ElapsedGameTime.Milliseconds;
+
+                if (elapsedtime / 50 > nombre_zombie && nombre_zombie < zombie.Length)
+                {
+                    zombie[nombre_zombie] = Zombie.SpawnZombie(Window.ClientBounds.Width, Window.ClientBounds.Height, Content);
+                    nombre_zombie += 1;
+                }
+
+            }
+
+            if (status == "Pause")
+            {
+                Bcontinuer.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2 - Bcontinuer.GetTexturefr().Width, (Window.ClientBounds.Height - Bcontinuer.GetTexturefr().Height) / 2));
+                Bquitter.SetPosition(new Vector2((Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2 + Bcontinuer.GetTexturefr().Width), (Window.ClientBounds.Height - Bcontinuer.GetTexturefr().Height) / 2));
+
+                if ((souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) && !souris.LeftClick() && clique_souris) || (clavier.KeyPressed(Keys.Escape) && !clique_clavier) || (manette.IsPressed(Buttons.Start) && !clique_manette))
+                {
+                    status = "Jeu";
+                }
+                if (souris.GetRectangle().Intersects(Bquitter.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    status = "Principal";
+                }
+
+                clique_manette = manette.IsPressed(Buttons.Start);
+                clique_souris = souris.LeftClick();
+                clique_clavier = clavier.KeyPressed(Keys.Escape);
             }
 
             if (status == "Principal")
@@ -289,11 +373,11 @@ namespace Fuckin__Height_Redemption
 
                 if (souris.GetRectangle().Intersects(Bnouveaujeu.GetRectangle()) && !souris.LeftClick() && clique_souris)
                 {
-                    status = "Jeu";
+                    status = "Nouveau_Jeu";
                 }
                 if (souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) && !souris.LeftClick() && clique_souris)
                 {
-                    status = "Continuer";
+                    status = "Jeu";
                 }
                 if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris)
                 {
@@ -371,7 +455,7 @@ namespace Fuckin__Height_Redemption
 
                 if (souris.GetRectangle().Intersects(Blangue.GetRectangle()) && !souris.LeftClick() && clique_souris)
                 {
-                    languefr = !languefr;
+                    status = "Langues";
                 }
                 if (souris.GetRectangle().Intersects(Bfullscreen.GetRectangle()) && !souris.LeftClick() && clique_souris)
                 {
@@ -382,6 +466,47 @@ namespace Fuckin__Height_Redemption
                 {
                     status = "Options";
                 }
+
+                clique_souris = souris.LeftClick();
+            }
+
+            if (status == "Langues")
+            {
+                Blangueen.SetPosition(new Vector2(-10000));
+                Blangueit.SetPosition(new Vector2(-10000));
+                Blanguefr.SetPosition(new Vector2(-10000));
+                if (lang == 1) //francais
+                {
+                    Blangueen.SetPosition(positionBoutton1);
+                    Blangueit.SetPosition(positionBoutton2);
+                    Bretour.SetPosition(positionBoutton4);
+                }
+                if (lang == 2) //anglais
+                {
+                    Blanguefr.SetPosition(positionBoutton1);
+                    Blangueit.SetPosition(positionBoutton2);
+                    Bretour.SetPosition(positionBoutton4);
+                }
+                if (lang == 3) //italien
+                {
+                    Blanguefr.SetPosition(positionBoutton1);
+                    Blangueen.SetPosition(positionBoutton2);
+                    Bretour.SetPosition(positionBoutton4);
+                }
+
+                if (souris.GetRectangle().Intersects(Blanguefr.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                    lang = 1;
+                if (souris.GetRectangle().Intersects(Blangueen.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                    lang = 2;
+                if (souris.GetRectangle().Intersects(Blangueit.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                    lang = 3;
+
+
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    status = "Video";
+                }
+
 
                 clique_souris = souris.LeftClick();
             }
@@ -438,59 +563,107 @@ namespace Fuckin__Height_Redemption
 
             spriteBatch.Begin();
 
-            if (status == "Jeu")
+            if (status == "Jeu" || status == "Pause")
             {
                 spriteBatch.Draw(background, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                foreach (Zombie z in zombie)
+                {
+                    if(z != null)
+                        z.DrawZombie(spriteBatch);
+                }
                 joueur.DrawJoueur(spriteBatch);
-                zombie.DrawZombie(spriteBatch);
+                //spriteBatch.Draw(joueur.GetTexture(), joueur.GetRectangle(), null, Color.White, joueur.GetAngleVisee(), new Vector2(joueur.GetTexture().Width / 2, joueur.GetTexture().Height / 2), SpriteEffects.None, 0f);
+                // changer gsetanglevisee pour la rot fluide
+            }
+
+            if (status == "Pause")
+            {
+                if (lang == 1)
+                    spriteBatch.Draw(menupause, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                else
+                {
+                    if (lang == 2)
+                        spriteBatch.Draw(pausemenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    else
+                        spriteBatch.Draw(pausemenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+
+                Bcontinuer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()));
+                Bquitter.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bquitter.GetRectangle()));
             }
 
             if (status == "Principal")
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Bjouer.DrawButton(spriteBatch, languefr);
-                Bmulti.DrawButton(spriteBatch, languefr);
-                Boptions.DrawButton(spriteBatch, languefr);
-                Bquitter.DrawButton(spriteBatch, languefr);
+                Bjouer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bjouer.GetRectangle()));
+                Bmulti.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmulti.GetRectangle()));
+                Boptions.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Boptions.GetRectangle()));
+                Bquitter.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bquitter.GetRectangle()));
             }
             if (status == "Jouer")
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Bnouveaujeu.DrawButton(spriteBatch, languefr);
-                Bcontinuer.DrawButton(spriteBatch, languefr);
-                Bretour.DrawButton(spriteBatch, languefr);
+                Bnouveaujeu.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bnouveaujeu.GetRectangle()));
+                Bcontinuer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()));
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
             }
             if (status == "Multi")
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Bcreer.DrawButton(spriteBatch, languefr);
-                Brejoindre.DrawButton(spriteBatch, languefr);
-                Bretour.DrawButton(spriteBatch, languefr);
+                Bcreer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcreer.GetRectangle()));
+                Brejoindre.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Brejoindre.GetRectangle()));
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
             }
             if (status == "Options")
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Bvideo.DrawButton(spriteBatch, languefr);
-                Baudio.DrawButton(spriteBatch, languefr);
-                Bcommandes.DrawButton(spriteBatch, languefr);
-                Bretour.DrawButton(spriteBatch, languefr);
+                Bvideo.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bvideo.GetRectangle()));
+                Baudio.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Baudio.GetRectangle()));
+                Bcommandes.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcommandes.GetRectangle()));
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
             }
             if (status == "Video")
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Blangue.DrawButton(spriteBatch, languefr);
+                Blangue.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangue.GetRectangle()));
                 if (!fullscreen)
-                    Bfullscreen.DrawButton(spriteBatch, languefr);
+                    Bfenetre.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bfenetre.GetRectangle()));
                 else
-                    Bfenetre.DrawButton(spriteBatch, languefr);
-                Bretour.DrawButton(spriteBatch, languefr);
+                    Bfullscreen.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bfullscreen.GetRectangle()));
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+            }
+            if (status == "Langues")
+            {
+                spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                if (lang == 1) //francais
+                {
+                    Blangueen.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueen.GetRectangle()));
+                    Blangueit.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueit.GetRectangle()));
+                    Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                }
+                if (lang == 2) //anglais
+                {
+                    Blanguefr.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blanguefr.GetRectangle()));
+                    Blangueit.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueit.GetRectangle()));
+                    Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                }
+                if (lang == 3) //italien
+                {
+                    Blanguefr.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blanguefr.GetRectangle()));
+                    Blangueen.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueen.GetRectangle()));
+                    Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                }
             }
             if (status == "Commandes")
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Bmanette.DrawButton(spriteBatch, languefr);
-                Bbox.DrawButton(spriteBatch, jeu_manette);
-                Bretour.DrawButton(spriteBatch, languefr);
+                Bmanette.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmanette.GetRectangle()));
+                if (jeu_manette)
+                    entiermanette = 1;
+                else
+                    entiermanette = 2;
+                Bbox.DrawButton(spriteBatch, entiermanette, souris.GetRectangle().Intersects(Bbox.GetRectangle()));
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
             }
 
 

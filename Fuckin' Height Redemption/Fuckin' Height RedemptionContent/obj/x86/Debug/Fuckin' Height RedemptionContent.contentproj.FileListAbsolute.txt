@@ -1,2 +1,3 @@
 C:\Users\Mystik\Desktop\Fuckin' Height Redemption\soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height RedemptionContent\obj\x86\Debug\ResolveAssemblyReference.cache
-H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height RedemptionContent\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Bureau\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height RedemptionContent\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Bureau\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height RedemptionContent\obj\x86\Debug\ResolveAssemblyReference.cache

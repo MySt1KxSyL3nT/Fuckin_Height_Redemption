@@ -32,8 +32,12 @@ namespace Fuckin__Height_Redemption
         }
 
         private float speed;
+        private int anglevisee;
+
         private Vector2 position;
         private Vector2 direction;
+        private Vector2 visee;
+
         private Rectangle rectangle;
 
         private Texture2D texture0;
@@ -56,7 +60,7 @@ namespace Fuckin__Height_Redemption
                 SetPosition(position + (direction * speed));
             }
 
-            if (position.Y + texture0.Height >= height)
+            /*if (position.Y + texture0.Height >= height)
                 position.Y = height - texture0.Height;
             else
                 if (position.Y <= 0)
@@ -66,7 +70,7 @@ namespace Fuckin__Height_Redemption
                 position.X = width - texture0.Width;
             else
                 if (position.X <= 0)
-                    position.X = 0;
+                    position.X = 0;*/
             SetRectangle();
         }
 
@@ -74,8 +78,103 @@ namespace Fuckin__Height_Redemption
 
         public void DrawZombie(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture0, position, Color.White);
+            if (anglevisee >= -23 && anglevisee <= 23)
+                spriteBatch.Draw(texture0, rectangle, Color.White);
+
+            if (anglevisee >= 24 && anglevisee <= 67)
+                spriteBatch.Draw(texture45, rectangle, Color.White);
+
+            if (anglevisee >= 68 && anglevisee <= 113)
+                spriteBatch.Draw(texture90, rectangle, Color.White);
+
+            if (anglevisee >= 114 && anglevisee <= 157)
+                spriteBatch.Draw(texture135, rectangle, Color.White);
+
+            if ((anglevisee >= 158 && anglevisee <= 180) || (anglevisee >= -180 && anglevisee <= -158))
+                spriteBatch.Draw(texture180, rectangle, Color.White);
+
+            if (anglevisee >= -158 && anglevisee <= -114)
+                spriteBatch.Draw(texture225, rectangle, Color.White);
+
+            if (anglevisee >= -113 && anglevisee <= -68)
+                spriteBatch.Draw(texture270, rectangle, Color.White);
+
+            if (anglevisee >= -68 && anglevisee <= -24)
+                spriteBatch.Draw(texture315, rectangle, Color.White);
         }
+
+
+
+        public static Zombie SpawnZombie(int width, int height, ContentManager Content)
+        {
+            Random random = new Random();
+            float decimalspeed = (float)random.Next(0, 6);
+            float zombiespeed = 1 + (decimalspeed / 10);
+
+            Vector2 pop_position = new Vector2();
+
+            int border = random.Next(0, 3); // determine d'ou va arriver le zombie 0,1,2,3 => haut,bas,gauche,droite
+
+            if (border == 0)
+            {
+                pop_position.Y = -100;
+                pop_position.X = random.Next(0, width);
+            }
+            if (border == 1)
+            {
+                pop_position.Y = height + 100;
+                pop_position.X = random.Next(0, width);
+            }
+            if (border == 2)
+            {
+                pop_position.X = -100;
+                pop_position.Y = random.Next(0, height);
+            }
+            if (border == 3)
+            {
+                pop_position.X = width + 100;
+                pop_position.Y = random.Next(0, height);
+            }
+
+            return new Zombie(pop_position, zombiespeed, Content.Load<Texture2D>("Zombie 0"), Content.Load<Texture2D>("Zombie 45"), Content.Load<Texture2D>("Zombie 90"), Content.Load<Texture2D>("Zombie 135"), Content.Load<Texture2D>("Zombie 180"), Content.Load<Texture2D>("Zombie 225"), Content.Load<Texture2D>("Zombie 270"), Content.Load<Texture2D>("Zombie 315"));
+
+        }
+
+
+
+
+
+
+
+
+
+
+        public void SetVisee()
+        {
+            visee = new Vector2((float)Math.Cos(anglevisee), (float)Math.Sin(anglevisee));
+        }
+
+        public Vector2 GetVisee()
+        {
+            return visee;
+        }
+
+
+        public void SetAngleVisee(Vector2 joueur_position)
+        {
+            Vector2 angle;
+            angle.X = joueur_position.X - rectangle.Center.X;
+            angle.Y = joueur_position.Y - rectangle.Center.Y;
+
+            double rad = Math.Atan2(angle.Y, angle.X);
+            anglevisee = -(int)((180 * rad) / Math.PI);
+        }
+
+        public int GetAngleVisee()
+        {
+            return anglevisee;
+        }
+
 
         public float GetSpeed()
         {
@@ -87,6 +186,8 @@ namespace Fuckin__Height_Redemption
             this.speed = speed;
         }
 
+
+
         public Vector2 GetPosition()
         {
             return position;
@@ -96,6 +197,8 @@ namespace Fuckin__Height_Redemption
         {
             this.position = position;
         }
+
+
 
         public Vector2 GetDirection()
         {
@@ -107,6 +210,8 @@ namespace Fuckin__Height_Redemption
             this.direction = direction;
         }
 
+
+
         public Rectangle GetRectangle()
         {
             return rectangle;
@@ -114,13 +219,22 @@ namespace Fuckin__Height_Redemption
 
         public void SetRectangle()
         {
-            this.rectangle = new Rectangle((int)position.X, (int)position.Y, texture0.Width, texture0.Height);
+            this.rectangle = new Rectangle((int)position.X, (int)position.Y, (int)(texture0.Width / 1.5), (int)(texture0.Height / 1.5));
         }
+
+        public Vector2 GetRectangleCenter()
+        {
+            return new Vector2(rectangle.Center.X, rectangle.Center.Y);
+        }
+
 
         public Texture2D GetTexture()
         {
             return texture0;
         }
+
+
+        
 
     } // End Class
 }

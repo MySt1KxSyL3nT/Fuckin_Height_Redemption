@@ -1,6 +1,5 @@
 Content\audio.xnb
 Content\back.xnb
-Content\background.xnb
 Content\backtogame.xnb
 Content\checked.xnb
 Content\commandes.xnb
@@ -57,3 +56,24 @@ Content\Zombie 45.xnb
 Content\Zombie 90.xnb
 Content\anglais.xnb
 Content\french.xnb
+Content\anglaisit.xnb
+Content\background.xnb
+Content\commandesit.xnb
+Content\continuerit.xnb
+Content\creerit.xnb
+Content\fenetreit.xnb
+Content\francaisit.xnb
+Content\italian.xnb
+Content\italien.xnb
+Content\jouerit.xnb
+Content\languesit.xnb
+Content\manetteit.xnb
+Content\multijoueurit.xnb
+Content\nouveaujeuit.xnb
+Content\optionsit.xnb
+Content\pleinecranit.xnb
+Content\quitterit.xnb
+Content\recommencerit.xnb
+Content\rejoindreit.xnb
+Content\reprendreit.xnb
+Content\retourit.xnb

@@ -16,18 +16,20 @@ namespace Fuckin__Height_Redemption
 {
     class MenuButton
     {
-        public MenuButton(Vector2 position, Texture2D texturefr, Texture2D textureen)
+        public MenuButton(Vector2 position, Texture2D texturefr, Texture2D textureen, Texture2D textureit)
         {
 
             this.position = position;
             this.texturefr = texturefr;
             this.textureen = textureen;
+            this.textureit = textureit;
             this.rectangle = GetRectangle();
         }
 
         private Vector2 position;
         private Texture2D texturefr;
         private Texture2D textureen;
+        private Texture2D textureit;
         private Rectangle rectangle;
 
         /// <summary>
@@ -68,7 +70,7 @@ namespace Fuckin__Height_Redemption
         }
 
         /// <summary>
-        /// renvoie la texture englaise
+        /// renvoie la texture anglaise
         /// </summary>
         /// <returns></returns>
         public Texture2D GetTextureen()
@@ -77,16 +79,41 @@ namespace Fuckin__Height_Redemption
         }
 
         /// <summary>
+        /// renvoie la texture italienne
+        /// </summary>
+        /// <returns></returns>
+        public Texture2D GetTextureit()
+        {
+            return textureit;
+        }
+
+
+        /// <summary>
         /// dessine le bouton
         /// </summary>
         /// <param name="spriteBatch"></param>
         /// <param name="lang"></param>
-        public void DrawButton(SpriteBatch spriteBatch, bool lang)
+        public void DrawButton(SpriteBatch spriteBatch, int lang, bool touche)
         {
-            if(lang)
-                spriteBatch.Draw(texturefr, position, Color.White);
+
+            if (touche)
+            {
+                if (lang == 1)
+                    spriteBatch.Draw(texturefr, position, Color.DarkOrange);
+                if (lang == 2)
+                    spriteBatch.Draw(textureen, position, Color.DarkOrange);
+                if (lang == 3)
+                    spriteBatch.Draw(textureit, position, Color.DarkOrange);
+            }
             else
-                spriteBatch.Draw(textureen, position, Color.White);
+            {
+                if (lang == 1)
+                    spriteBatch.Draw(texturefr, position, Color.White);
+                if (lang == 2)
+                    spriteBatch.Draw(textureen, position, Color.White);
+                if (lang == 3)
+                    spriteBatch.Draw(textureit, position, Color.White);
+            }
         }
 
 
