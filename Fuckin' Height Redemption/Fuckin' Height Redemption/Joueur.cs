@@ -75,14 +75,14 @@ namespace Fuckin__Height_Redemption
 
             SetPosition(position + (direction * speed));
 
-            if (position.Y + texture0.Height >= height)
-                position.Y = height - texture0.Height;
+            if (position.Y + rectangle.Height >= height)
+                position.Y = height - rectangle.Height;
             else
                 if (position.Y <= 0)
                     position.Y = 0;
 
-            if (position.X + texture0.Width >= width)
-                position.X = width - texture0.Width;
+            if (position.X + rectangle.Width >= width)
+                position.X = width - rectangle.Width;
             else
                 if (position.X <= 0)
                     position.X = 0;
@@ -106,14 +106,14 @@ namespace Fuckin__Height_Redemption
 
             SetPosition(position + (direction * speed));
 
-            if (position.Y + texture0.Height >= height)
-                position.Y = height - texture0.Height;
+            if (position.Y + rectangle.Height >= height)
+                position.Y = height - rectangle.Height;
             else
                 if (position.Y <= 0)
                     position.Y = 0;
 
-            if (position.X + texture0.Width >= width)
-                position.X = width - texture0.Width;
+            if (position.X + rectangle.Width >= width)
+                position.X = width - rectangle.Width;
             else
                 if (position.X <= 0)
                     position.X = 0;
@@ -123,31 +123,40 @@ namespace Fuckin__Height_Redemption
 
 
 
-        public void DrawJoueur(SpriteBatch spriteBatch)
+        public void DrawJoueur(SpriteBatch spriteBatch, bool iso2D)
         {
-            if(anglevisee >= -23 && anglevisee <= 23)
-                spriteBatch.Draw(texture0, rectangle, Color.White);
+            if (iso2D)
+            {
+                spriteBatch.Draw(GetTexture(), new Rectangle(GetRectangle().X + GetRectangle().Width / 2, GetRectangle().Y + GetRectangle().Height / 2, GetRectangle().Width, GetRectangle().Height), null, Color.White, GetAngleVisee(), new Vector2(GetTexture().Width / 2, GetTexture().Height / 2), SpriteEffects.None, 0f);
+            }
+            else
+            {
+                if (GetAngleViseeDeg() >= -23 && GetAngleViseeDeg() <= 24)
+                    spriteBatch.Draw(texture0, rectangle, Color.White);
 
-            if (anglevisee >= 24 && anglevisee <= 67)
-                spriteBatch.Draw(texture45, rectangle, Color.White);
+                if (GetAngleViseeDeg() >= 24 && GetAngleViseeDeg() <= 68)
+                    spriteBatch.Draw(texture45, rectangle, Color.White);
 
-            if (anglevisee >= 68 && anglevisee <= 113)
-                spriteBatch.Draw(texture90, rectangle, Color.White);
+                if (GetAngleViseeDeg() >= 68 && GetAngleViseeDeg() <= 114)
+                    spriteBatch.Draw(texture90, rectangle, Color.White);
 
-            if (anglevisee >= 114 && anglevisee <= 157)
-                spriteBatch.Draw(texture135, rectangle, Color.White);
+                if (GetAngleViseeDeg() >= 114 && GetAngleViseeDeg() <= 158)
+                    spriteBatch.Draw(texture135, rectangle, Color.White);
 
-            if ((anglevisee >= 158 && anglevisee <= 180) || (anglevisee >= -180 && anglevisee <= -158))
-                spriteBatch.Draw(texture180, rectangle, Color.White);
+                if ((GetAngleViseeDeg() >= 158 && GetAngleViseeDeg() <= 180) || (GetAngleViseeDeg() >= -180 && GetAngleViseeDeg() <= -158))
+                    spriteBatch.Draw(texture180, rectangle, Color.White);
 
-            if (anglevisee >= -158 && anglevisee <= -114)
-                spriteBatch.Draw(texture225, rectangle, Color.White);
+                if (GetAngleViseeDeg() >= -158 && GetAngleViseeDeg() <= -114)
+                    spriteBatch.Draw(texture225, rectangle, Color.White);
 
-            if (anglevisee >= -113 && anglevisee <= -68)
-                spriteBatch.Draw(texture270, rectangle, Color.White);
+                if (GetAngleViseeDeg() >= -114 && GetAngleViseeDeg() <= -68)
+                    spriteBatch.Draw(texture270, rectangle, Color.White);
 
-            if (anglevisee >= -68 && anglevisee <= -24)
-                spriteBatch.Draw(texture315, rectangle, Color.White); 
+                if (GetAngleViseeDeg() >= -68 && GetAngleViseeDeg() <= -23)
+                    spriteBatch.Draw(texture315, rectangle, Color.White);
+
+                Console.WriteLine(GetAngleViseeDeg());
+            }
         }
 
 
@@ -173,12 +182,17 @@ namespace Fuckin__Height_Redemption
             angle.Y = souris_position.Y - rectangle.Center.Y;
 
             double rad = Math.Atan2(angle.Y, angle.X);
-            anglevisee = /*(float)rad;//*/-(int)((180 * rad) / Math.PI);
+            anglevisee = (float)rad;
         }
 
         public float GetAngleVisee()
         {
             return anglevisee;
+        }
+
+        public float GetAngleViseeDeg()
+        {
+            return -MathHelper.ToDegrees(anglevisee);
         }
 
 

@@ -136,7 +136,6 @@ namespace Fuckin__Height_Redemption
             jeu_manette = true;
 
             joueur = new Joueur(Vector2.One, Content.Load<Texture2D>("Player 0"), Content.Load<Texture2D>("Player 45"), Content.Load<Texture2D>("Player 90"), Content.Load<Texture2D>("Player 135"), Content.Load<Texture2D>("Player 180"), Content.Load<Texture2D>("Player 225"), Content.Load<Texture2D>("Player 270"), Content.Load<Texture2D>("Player 315"));
-            zombie = new Zombie[10];
 
             nombre_zombie = 0; 
 
@@ -269,7 +268,7 @@ namespace Fuckin__Height_Redemption
             if (status == "Nouveau_Jeu")
             {
                 joueur = new Joueur(Vector2.One, Content.Load<Texture2D>("Player 0"), Content.Load<Texture2D>("Player 45"), Content.Load<Texture2D>("Player 90"), Content.Load<Texture2D>("Player 135"), Content.Load<Texture2D>("Player 180"), Content.Load<Texture2D>("Player 225"), Content.Load<Texture2D>("Player 270"), Content.Load<Texture2D>("Player 315"));
-                zombie = new Zombie[1000];
+                zombie = new Zombie[2];
                 nombre_zombie = 0;
                 elapsedtime = 1;
                 status = "Jeu";
@@ -307,7 +306,7 @@ namespace Fuckin__Height_Redemption
 
                 elapsedtime += gameTime.ElapsedGameTime.Milliseconds;
 
-                if (elapsedtime / 50 > nombre_zombie && nombre_zombie < zombie.Length)
+                if (elapsedtime / 500 > nombre_zombie && nombre_zombie < zombie.Length)
                 {
                     zombie[nombre_zombie] = Zombie.SpawnZombie(Window.ClientBounds.Width, Window.ClientBounds.Height, Content);
                     nombre_zombie += 1;
@@ -570,11 +569,14 @@ namespace Fuckin__Height_Redemption
                 spriteBatch.Draw(background, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                 foreach (Zombie z in zombie)
                 {
-                    if(z != null)
-                        z.DrawZombie(spriteBatch);
+                    if (z != null)
+                    {
+                        z.DrawZombie(spriteBatch, false);
+                        //spriteBatch.Draw(z.GetTexture(), new Rectangle(z.GetRectangle().X + z.GetRectangle().Width / 2, z.GetRectangle().Y + z.GetRectangle().Height / 2, z.GetRectangle().Width, z.GetRectangle().Height), null, Color.White, z.GetAngleVisee(), new Vector2(z.GetTexture().Width / 2, z.GetTexture().Height / 2), SpriteEffects.None, 0f);
+                    }
                 }
-                joueur.DrawJoueur(spriteBatch);
-                //spriteBatch.Draw(joueur.GetTexture(), joueur.GetRectangle(), null, Color.White, joueur.GetAngleVisee(), new Vector2(joueur.GetTexture().Width / 2, joueur.GetTexture().Height / 2), SpriteEffects.None, 0f);
+                joueur.DrawJoueur(spriteBatch, false);
+                //spriteBatch.Draw(joueur.GetTexture(), new Rectangle(joueur.GetRectangle().X + joueur.GetRectangle().Width / 2,joueur.GetRectangle().Y + joueur.GetRectangle().Height / 2, joueur.GetRectangle().Width, joueur.GetRectangle().Height) , null, Color.White, joueur.GetAngleVisee(), new Vector2(joueur.GetTexture().Width / 2, joueur.GetTexture().Height / 2), SpriteEffects.None, 0f);
                 // changer gsetanglevisee pour la rot fluide
             }
 
