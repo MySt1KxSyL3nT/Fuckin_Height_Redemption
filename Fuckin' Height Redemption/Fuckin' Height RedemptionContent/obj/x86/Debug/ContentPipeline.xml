@@ -846,7 +846,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\difficile.xnb</Output>
-      <Time>2013-02-26T01:46:23.3474757+01:00</Time>
+      <Time>2013-02-26T12:05:57.9482323+01:00</Time>
     </Item>
     <Item>
       <Source>difficult.png</Source>
@@ -855,7 +855,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\difficult.xnb</Output>
-      <Time>2013-02-26T01:46:23.3214742+01:00</Time>
+      <Time>2013-02-26T12:05:57.9532326+01:00</Time>
     </Item>
     <Item>
       <Source>easy.png</Source>
@@ -864,7 +864,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\easy.xnb</Output>
-      <Time>2013-02-26T01:46:23.3274746+01:00</Time>
+      <Time>2013-02-26T12:05:57.9582329+01:00</Time>
     </Item>
     <Item>
       <Source>facile.png</Source>
@@ -873,7 +873,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\facile.xnb</Output>
-      <Time>2013-02-26T01:46:23.3314748+01:00</Time>
+      <Time>2013-02-26T12:05:57.9632332+01:00</Time>
     </Item>
     <Item>
       <Source>impossibile.png</Source>
@@ -882,7 +882,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\impossibile.xnb</Output>
-      <Time>2013-02-26T01:46:23.334475+01:00</Time>
+      <Time>2013-02-26T12:05:57.9672334+01:00</Time>
     </Item>
     <Item>
       <Source>impossible.png</Source>
@@ -891,7 +891,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\impossible.xnb</Output>
-      <Time>2013-02-26T01:46:23.3374751+01:00</Time>
+      <Time>2013-02-26T12:05:57.9722337+01:00</Time>
     </Item>
     <Item>
       <Source>intermediate.png</Source>
@@ -900,7 +900,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\intermediate.xnb</Output>
-      <Time>2013-02-26T01:46:23.3424754+01:00</Time>
+      <Time>2013-02-26T12:05:57.9792341+01:00</Time>
     </Item>
     <Item>
       <Source>intermedio.png</Source>
@@ -909,16 +909,205 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\intermedio.xnb</Output>
-      <Time>2013-02-26T01:46:23.3454756+01:00</Time>
+      <Time>2013-02-26T12:05:57.9432321+01:00</Time>
     </Item>
     <Item>
-      <Source>intermédiaire.png</Source>
-      <Name>intermédiaire</Name>
+      <Source>cinematiqueit1.png</Source>
+      <Name>cinematiqueit1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\intermédiaire.xnb</Output>
-      <Time>2013-02-26T01:46:23.3404753+01:00</Time>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematiqueit1.xnb</Output>
+      <Time>2013-02-26T11:27:33.387419+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematiqueit2.png</Source>
+      <Name>cinematiqueit2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematiqueit2.xnb</Output>
+      <Time>2013-02-26T11:27:33.3564172+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematiqueit3.png</Source>
+      <Name>cinematiqueit3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematiqueit3.xnb</Output>
+      <Time>2013-02-26T11:27:33.3744183+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematiqueit4.png</Source>
+      <Name>cinematiqueit4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematiqueit4.xnb</Output>
+      <Time>2013-02-26T11:27:33.3784185+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematiqueit5.png</Source>
+      <Name>cinematiqueit5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematiqueit5.xnb</Output>
+      <Time>2013-02-26T11:27:33.3804186+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematiqueit6.png</Source>
+      <Name>cinematiqueit6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematiqueit6.xnb</Output>
+      <Time>2013-02-26T11:27:33.3824187+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematiqueit7.png</Source>
+      <Name>cinematiqueit7</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematiqueit7.xnb</Output>
+      <Time>2013-02-26T11:27:33.3844188+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematique1.png</Source>
+      <Name>cinematique1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematique1.xnb</Output>
+      <Time>2013-02-26T11:27:42.5879452+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematique2.png</Source>
+      <Name>cinematique2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematique2.xnb</Output>
+      <Time>2013-02-26T11:27:42.5899454+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematique3.png</Source>
+      <Name>cinematique3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematique3.xnb</Output>
+      <Time>2013-02-26T11:27:42.5929455+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematique4.png</Source>
+      <Name>cinematique4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematique4.xnb</Output>
+      <Time>2013-02-26T11:27:42.5949456+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematique5.png</Source>
+      <Name>cinematique5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematique5.xnb</Output>
+      <Time>2013-02-26T11:27:42.5969458+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematique6.png</Source>
+      <Name>cinematique6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematique6.xnb</Output>
+      <Time>2013-02-26T11:27:42.5999459+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematique7.png</Source>
+      <Name>cinematique7</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematique7.xnb</Output>
+      <Time>2013-02-26T11:27:42.601946+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematiqueen1.png</Source>
+      <Name>cinematiqueen1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematiqueen1.xnb</Output>
+      <Time>2013-02-26T11:27:56.4767396+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematiqueen2.png</Source>
+      <Name>cinematiqueen2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematiqueen2.xnb</Output>
+      <Time>2013-02-26T11:27:56.4797398+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematiqueen3.png</Source>
+      <Name>cinematiqueen3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematiqueen3.xnb</Output>
+      <Time>2013-02-26T11:27:56.4897404+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematiqueen4.png</Source>
+      <Name>cinematiqueen4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematiqueen4.xnb</Output>
+      <Time>2013-02-26T11:27:56.4927406+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematiqueen5.png</Source>
+      <Name>cinematiqueen5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematiqueen5.xnb</Output>
+      <Time>2013-02-26T11:27:56.4947407+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematiqueen6.png</Source>
+      <Name>cinematiqueen6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematiqueen6.xnb</Output>
+      <Time>2013-02-26T11:27:56.4967408+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cinematiqueen7.png</Source>
+      <Name>cinematiqueen7</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\cinematiqueen7.xnb</Output>
+      <Time>2013-02-26T11:27:56.499741+01:00</Time>
+    </Item>
+    <Item>
+      <Source>intermediaire.png</Source>
+      <Name>intermediaire</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\intermediaire.xnb</Output>
+      <Time>2013-02-26T12:05:57.977234+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

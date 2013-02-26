@@ -73,9 +73,14 @@ namespace Fuckin__Height_Redemption
         int volumemusic;
         int volumeeffects;
 
+        int diff;
+        Difficulté difficulté;
+
 
         Joueur joueur;
         Zombie[] zombie;
+        List<Zombie> zombiesloins;
+        List<Zombie> zombiesprets;
         //Zombie newzombie;
         int nombre_zombie;
 
@@ -100,6 +105,29 @@ namespace Fuckin__Height_Redemption
         Texture2D barreson;
         Texture2D contourson;
 
+
+        Texture2D cinematique1;
+        Texture2D cinematiqueen1;
+        Texture2D cinematiqueit1;
+        Texture2D cinematique2;
+        Texture2D cinematiqueen2;
+        Texture2D cinematiqueit2;
+        Texture2D cinematique3;
+        Texture2D cinematiqueen3;
+        Texture2D cinematiqueit3;
+        Texture2D cinematique4;
+        Texture2D cinematiqueen4;
+        Texture2D cinematiqueit4;
+        Texture2D cinematique5;
+        Texture2D cinematiqueen5;
+        Texture2D cinematiqueit5;
+        Texture2D cinematique6;
+        Texture2D cinematiqueen6;
+        Texture2D cinematiqueit6;
+        Texture2D cinematique7;
+        Texture2D cinematiqueen7;
+        Texture2D cinematiqueit7;
+
         MenuButton Bjouer;
         MenuButton Bmulti;
         MenuButton Boptions;
@@ -108,6 +136,11 @@ namespace Fuckin__Height_Redemption
 
         MenuButton Bnouveaujeu;
         MenuButton Bcontinuer;
+
+        MenuButton Bfacile;
+        MenuButton BIntermediaire;
+        MenuButton Bdifficle;
+        MenuButton Bimpossible;
 
         MenuButton Bcreer;
         MenuButton Brejoindre;
@@ -142,6 +175,7 @@ namespace Fuckin__Height_Redemption
         Vector2 positionBoutton2;
         Vector2 positionBoutton3;
         Vector2 positionBoutton4;
+        Vector2 positionBoutton5;
 
 
 
@@ -197,6 +231,32 @@ namespace Fuckin__Height_Redemption
             contourson = Content.Load<Texture2D>("contourson");
 
 
+            cinematique1 = Content.Load<Texture2D>("cinematique1");
+            cinematique2 = Content.Load<Texture2D>("cinematique2");
+            cinematique3 = Content.Load<Texture2D>("cinematique3");
+            cinematique4 = Content.Load<Texture2D>("cinematique4");
+            cinematique5 = Content.Load<Texture2D>("cinematique5");
+            cinematique6 = Content.Load<Texture2D>("cinematique6");
+            cinematique7 = Content.Load<Texture2D>("cinematique7");
+            cinematiqueen1 = Content.Load<Texture2D>("cinematiqueen1");
+            cinematiqueen2 = Content.Load<Texture2D>("cinematiqueen2");
+            cinematiqueen3 = Content.Load<Texture2D>("cinematiqueen3");
+            cinematiqueen4 = Content.Load<Texture2D>("cinematiqueen4");
+            cinematiqueen5 = Content.Load<Texture2D>("cinematiqueen5");
+            cinematiqueen6 = Content.Load<Texture2D>("cinematiqueen6");
+            cinematiqueen7 = Content.Load<Texture2D>("cinematiqueen7");
+            cinematiqueit1 = Content.Load<Texture2D>("cinematiqueit1");
+            cinematiqueit2 = Content.Load<Texture2D>("cinematiqueit2");
+            cinematiqueit3 = Content.Load<Texture2D>("cinematiqueit3");
+            cinematiqueit4 = Content.Load<Texture2D>("cinematiqueit4");
+            cinematiqueit5 = Content.Load<Texture2D>("cinematiqueit5");
+            cinematiqueit6 = Content.Load<Texture2D>("cinematiqueit6");
+            cinematiqueit7 = Content.Load<Texture2D>("cinematiqueit7");
+
+
+
+
+
             // principal
             Bjouer = new MenuButton(Vector2.One, Content.Load<Texture2D>("jouer"), Content.Load<Texture2D>("play"), Content.Load<Texture2D>("jouerit"));
             Bmulti = new MenuButton(Vector2.One, Content.Load<Texture2D>("multijoueur"), Content.Load<Texture2D>("multiplayer"), Content.Load<Texture2D>("multijoueurit"));
@@ -208,6 +268,12 @@ namespace Fuckin__Height_Redemption
             Bnouveaujeu = new MenuButton(Vector2.One, Content.Load<Texture2D>("nouveaujeu"), Content.Load<Texture2D>("newgame"), Content.Load<Texture2D>("nouveaujeuit"));
             Bcontinuer = new MenuButton(Vector2.One, Content.Load<Texture2D>("continuer"), Content.Load<Texture2D>("continue"), Content.Load<Texture2D>("continuerit"));
 
+
+            //Modes
+            Bfacile = new MenuButton(Vector2.One, Content.Load<Texture2D>("facile"), Content.Load<Texture2D>("easy"), Content.Load<Texture2D>("facile"));
+            BIntermediaire = new MenuButton(Vector2.One, Content.Load<Texture2D>("intermediaire"), Content.Load<Texture2D>("intermediate"), Content.Load<Texture2D>("intermedio"));
+            Bdifficle = new MenuButton(Vector2.One, Content.Load<Texture2D>("difficile"), Content.Load<Texture2D>("difficult"), Content.Load<Texture2D>("difficile"));
+            Bimpossible = new MenuButton(Vector2.One, Content.Load<Texture2D>("impossible"), Content.Load<Texture2D>("impossible"), Content.Load<Texture2D>("impossibile"));
 
             // Multi
             Bcreer = new MenuButton(Vector2.One, Content.Load<Texture2D>("créer"), Content.Load<Texture2D>("create"), Content.Load<Texture2D>("creerit"));
@@ -252,6 +318,7 @@ namespace Fuckin__Height_Redemption
             positionBoutton2 = new Vector2(positionBoutton1.X, positionBoutton1.Y + Bjouer.GetTexturefr().Height + Window.ClientBounds.Height / 18);
             positionBoutton3 = new Vector2(positionBoutton2.X, positionBoutton2.Y + Bjouer.GetTexturefr().Height + Window.ClientBounds.Height / 18);
             positionBoutton4 = new Vector2(positionBoutton3.X, positionBoutton3.Y + Bjouer.GetTexturefr().Height + Window.ClientBounds.Height / 18);
+            positionBoutton5 = new Vector2(positionBoutton4.X, positionBoutton4.Y + Bjouer.GetTexturefr().Height + Window.ClientBounds.Height / 18);
 
 
             base.Initialize();
@@ -318,7 +385,7 @@ namespace Fuckin__Height_Redemption
 
 
             // MUSIQUES !
-            if (status == "Principal" || status == "Jouer" || status == "Multi" || status == "Options" || status == "Video" || status == "Audio" || status == "Commandes" || status == "Langues")
+            if (status == "Principal" || status == "Choix_Niveau" || status == "Cinematiques" || status == "Jouer" || status == "Multi" || status == "Options" || status == "Video" || status == "Audio" || status == "Commandes" || status == "Langues")
             {
                 if (MediaPlayer.State == MediaState.Stopped)
                     MediaPlayer.Play(sonprincipal);
@@ -329,27 +396,21 @@ namespace Fuckin__Height_Redemption
             }
 
 
-            if (status == "Nouveau_Jeu")
-            {
-                joueur = new Joueur(Vector2.One, Content.Load<Texture2D>("Player 2d"), Content.Load<Texture2D>("Player 0"), Content.Load<Texture2D>("Player 45"), Content.Load<Texture2D>("Player 90"), Content.Load<Texture2D>("Player 135"), Content.Load<Texture2D>("Player 180"), Content.Load<Texture2D>("Player 225"), Content.Load<Texture2D>("Player 270"), Content.Load<Texture2D>("Player 315"));
-                zombie = new Zombie[2];
-                nombre_zombie = 0;
-                elapsedtime = 1;
-                status = "Jeu";
-            }
+
+
 
             if (status == "Jeu")
             {
                 if (jeu_manette && manette.Connected())
                 {
-                    joueur.MoveGamePad(manette, Window.ClientBounds.Height, Window.ClientBounds.Width);
+                    joueur.MoveGamePad(manette, Window.ClientBounds.Height, Window.ClientBounds.Width, zombie);
                     if (manette.IsPressed(Buttons.Start) && !clique_manette)
                         status = "Pause";
                     clique_manette = manette.IsPressed(Buttons.Start);
                 }
                 else
                 {
-                    joueur.MoveKeyboard(clavier, Window.ClientBounds.Height, Window.ClientBounds.Width);
+                    joueur.MoveKeyboard(clavier, Window.ClientBounds.Height, Window.ClientBounds.Width, zombie);
                     joueur.SetAngleVisee(souris.GetPosition()); // defini l'angle de la visee (vers la souris)
                     if (clavier.KeyPressed(Keys.Escape) && !clique_clavier)
                         status = "Pause";
@@ -370,32 +431,18 @@ namespace Fuckin__Height_Redemption
 
                 elapsedtime += gameTime.ElapsedGameTime.Milliseconds;
 
-                if (elapsedtime / 500 > nombre_zombie && nombre_zombie < zombie.Length)
+                if (elapsedtime / difficulté.GetMilliseconds() > nombre_zombie && nombre_zombie < zombie.Length)
                 {
-                    zombie[nombre_zombie] = Zombie.SpawnZombie(Window.ClientBounds.Width, Window.ClientBounds.Height, Content);
+                    zombie[nombre_zombie] = Zombie.SpawnZombie(Window.ClientBounds.Width, Window.ClientBounds.Height, Content, difficulté.GetMaxSpeed());
                     nombre_zombie += 1;
                 }
 
             }
 
-            if (status == "Pause")
-            {
-                Bcontinuer.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2 - Bcontinuer.GetTexturefr().Width, (Window.ClientBounds.Height - Bcontinuer.GetTexturefr().Height) / 2));
-                Bquitter.SetPosition(new Vector2((Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2 + Bcontinuer.GetTexturefr().Width), (Window.ClientBounds.Height - Bcontinuer.GetTexturefr().Height) / 2));
 
-                if ((souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) && !souris.LeftClick() && clique_souris) || (clavier.KeyPressed(Keys.Escape) && !clique_clavier) || (manette.IsPressed(Buttons.Start) && !clique_manette))
-                {
-                    status = "Jeu";
-                }
-                if (souris.GetRectangle().Intersects(Bquitter.GetRectangle()) && !souris.LeftClick() && clique_souris)
-                {
-                    status = "Principal";
-                }
 
-                clique_manette = manette.IsPressed(Buttons.Start);
-                clique_souris = souris.LeftClick();
-                clique_clavier = clavier.KeyPressed(Keys.Escape);
-            }
+
+
 
             if (status == "Principal")
             {
@@ -438,7 +485,7 @@ namespace Fuckin__Height_Redemption
 
                 if (souris.GetRectangle().Intersects(Bnouveaujeu.GetRectangle()) && !souris.LeftClick() && clique_souris)
                 {
-                    status = "Nouveau_Jeu";
+                    status = "Choix_Niveau";
                 }
                 if (souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) && !souris.LeftClick() && clique_souris)
                 {
@@ -451,6 +498,103 @@ namespace Fuckin__Height_Redemption
 
                 clique_souris = souris.LeftClick();
             }
+
+
+
+            if (status == "Choix_Niveau")
+            {
+                Bfacile.SetPosition(positionBoutton1);
+                BIntermediaire.SetPosition(positionBoutton2);
+                Bdifficle.SetPosition(positionBoutton3);
+                Bimpossible.SetPosition(positionBoutton4);
+                Bretour.SetPosition(positionBoutton5);
+
+                if (souris.GetRectangle().Intersects(Bfacile.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    status = "Cinematiques";
+                    diff = 1;
+                }
+                if (souris.GetRectangle().Intersects(BIntermediaire.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    status = "Cinematiques";
+                    diff = 2;
+                }
+                if (souris.GetRectangle().Intersects(Bdifficle.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    status = "Cinematiques";
+                    diff = 3;
+                }
+                if (souris.GetRectangle().Intersects(Bimpossible.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    status = "Cinematiques";
+                    diff = 4;
+                }
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    status = "Jouer";
+                }
+
+                elapsedtime = 1;
+
+
+                clique_souris = souris.LeftClick();
+            }
+
+
+
+
+
+
+            if (status == "Cinematiques")
+            {
+
+                if (elapsedtime < 35000 && !clavier.KeyPressed(Keys.Enter))
+                    elapsedtime += gameTime.ElapsedGameTime.Milliseconds;
+                else
+                {
+                    difficulté = new Difficulté(diff);
+                    status = "Nouveau_Jeu";
+                }
+            }
+
+
+
+
+
+            if (status == "Nouveau_Jeu")
+            {
+                joueur = new Joueur(Vector2.One, Content.Load<Texture2D>("Player 2d"), Content.Load<Texture2D>("Player 0"), Content.Load<Texture2D>("Player 45"), Content.Load<Texture2D>("Player 90"), Content.Load<Texture2D>("Player 135"), Content.Load<Texture2D>("Player 180"), Content.Load<Texture2D>("Player 225"), Content.Load<Texture2D>("Player 270"), Content.Load<Texture2D>("Player 315"));
+                zombie = new Zombie[difficulté.GetMaxZombies()];
+                nombre_zombie = 0;
+                elapsedtime = 1;
+                status = "Jeu";
+            }
+
+
+            if (status == "Pause")
+            {
+                Bcontinuer.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2 - Bcontinuer.GetTexturefr().Width, (Window.ClientBounds.Height - Bcontinuer.GetTexturefr().Height) / 2));
+                Bquitter.SetPosition(new Vector2((Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2 + Bcontinuer.GetTexturefr().Width), (Window.ClientBounds.Height - Bcontinuer.GetTexturefr().Height) / 2));
+
+                if ((souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) && !souris.LeftClick() && clique_souris) || (clavier.KeyPressed(Keys.Escape) && !clique_clavier) || (manette.IsPressed(Buttons.Start) && !clique_manette))
+                {
+                    status = "Jeu";
+                }
+                if (souris.GetRectangle().Intersects(Bquitter.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    status = "Principal";
+                }
+
+                clique_manette = manette.IsPressed(Buttons.Start);
+                clique_souris = souris.LeftClick();
+                clique_clavier = clavier.KeyPressed(Keys.Escape);
+            }
+
+
+
+
+
+
 
 
             if (status == "Multi")
@@ -717,30 +861,113 @@ namespace Fuckin__Height_Redemption
 
             spriteBatch.Begin();
 
+
+            if (status == "Cinematiques")
+            {
+                if (elapsedtime < 5000)
+                {
+                    if (lang == 1)
+                        spriteBatch.Draw(cinematique1, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 2)
+                        spriteBatch.Draw(cinematiqueen1, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 3)
+                        spriteBatch.Draw(cinematiqueit1, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+                if (elapsedtime >= 5000 && elapsedtime < 10000)
+                {
+                    if (lang == 1)
+                        spriteBatch.Draw(cinematique2, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 2)
+                        spriteBatch.Draw(cinematiqueen2, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 3)
+                        spriteBatch.Draw(cinematiqueit2, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+                if (elapsedtime >= 10000 && elapsedtime < 15000)
+                {
+                    if (lang == 1)
+                        spriteBatch.Draw(cinematique3, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 2)
+                        spriteBatch.Draw(cinematiqueen3, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 3)
+                        spriteBatch.Draw(cinematiqueit3, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+                if (elapsedtime >= 15000 && elapsedtime < 20000)
+                {
+                    if (lang == 1)
+                        spriteBatch.Draw(cinematique4, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 2)
+                        spriteBatch.Draw(cinematiqueen4, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 3)
+                        spriteBatch.Draw(cinematiqueit4, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+                if (elapsedtime >= 20000 && elapsedtime < 25000)
+                {
+                    if (lang == 1)
+                        spriteBatch.Draw(cinematique5, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 2)
+                        spriteBatch.Draw(cinematiqueen5, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 3)
+                        spriteBatch.Draw(cinematiqueit5, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+                if (elapsedtime >= 25000 && elapsedtime < 30000)
+                {
+                    if (lang == 1)
+                        spriteBatch.Draw(cinematique6, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 2)
+                        spriteBatch.Draw(cinematiqueen6, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 3)
+                        spriteBatch.Draw(cinematiqueit6, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+                if (elapsedtime >= 30000 && elapsedtime < 35000)
+                {
+                    if (lang == 1)
+                        spriteBatch.Draw(cinematique7, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 2)
+                        spriteBatch.Draw(cinematiqueen7, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 3)
+                        spriteBatch.Draw(cinematiqueit7, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+
+                    
+            }
+
+
+
             if (status == "Jeu" || status == "Pause")
             {
+                zombiesloins = new List<Zombie>();
+                zombiesprets = new List<Zombie>();
+
                 //sans scrolling
                 //spriteBatch.Draw(background, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                 //avec
                 spriteBatch.Draw(background, new Rectangle(Convert.ToInt32(-joueur.GetPosition().X), Convert.ToInt32(-joueur.GetPosition().Y), Window.ClientBounds.Width * 2, Window.ClientBounds.Height * 2), Color.White);
+
                 foreach (Zombie z in zombie)
                 {
-                    if (z != null && z.GetPosition().Y < joueur.GetPosition().Y)
+                    if (z != null)
                     {
-                        z.DrawZombie(spriteBatch, false/*bool pour la 2d ou 2Diso*/);
+                        if (z.GetPosition().Y <= joueur.GetPosition().Y)
+                            zombiesloins.Add(z);
+                        else
+                            zombiesprets.Add(z);
                     }
                 }
+
+                zombiesloins.Sort();
+                zombiesprets.Sort();
+
+
+
+                foreach (Zombie z in zombiesloins)
+                    z.DrawZombie(spriteBatch, false/*bool 2d iso*/);
 
                 joueur.DrawJoueur(spriteBatch, false/*idem*/);
 
-                foreach (Zombie z in zombie)
-                {
-                    if (z != null && z.GetPosition().Y >= joueur.GetPosition().Y)
-                    {
-                        z.DrawZombie(spriteBatch, false/*bool pour la 2d ou 2Diso*/);
-                    }
-                }
+                foreach (Zombie z in zombiesprets)
+                    z.DrawZombie(spriteBatch, false/*idem*/);
             }
+
 
             if (status == "Pause")
             {
@@ -757,6 +984,18 @@ namespace Fuckin__Height_Redemption
                 Bcontinuer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()));
                 Bquitter.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bquitter.GetRectangle()));
             }
+
+
+            if (status == "Choix_Niveau")
+            {
+                spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                Bfacile.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bfacile.GetRectangle()));
+                BIntermediaire.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(BIntermediaire.GetRectangle()));
+                Bdifficle.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bdifficle.GetRectangle()));
+                Bimpossible.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bimpossible.GetRectangle()));
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle())); 
+            }
+
 
             if (status == "Principal")
             {

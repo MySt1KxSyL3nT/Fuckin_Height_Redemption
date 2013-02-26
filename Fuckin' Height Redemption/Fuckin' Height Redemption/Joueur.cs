@@ -54,7 +54,7 @@ namespace Fuckin__Height_Redemption
 
 
 
-        public void MoveKeyboard(KeyboardEvent clavier, int height, int width)
+        public void MoveKeyboard(KeyboardEvent clavier, int height, int width, Zombie[] zombies)
         {
             if (clavier.KeyPressed(Keys.Up))
                 direction.Y = -1;
@@ -75,6 +75,41 @@ namespace Fuckin__Height_Redemption
             else
                 SetSpeed(2);
 
+
+            //colission avec zombies
+            foreach (Zombie z in zombies)
+            {
+                if (z != null)
+                {
+                    if (target.Intersects(z.GetRectangle()))
+                    {
+                        //a gauche
+                        if (target.X >= (z.GetRectangle().X - target.Width) && target.X <= (z.GetRectangle().X - target.Width + 5) && direction.X > 0)
+                        {
+                            direction.X = 0;
+                        }
+                        //a droite
+                        if (target.X <= z.GetRectangle().X + z.GetRectangle().Width && target.X >= z.GetRectangle().X + z.GetRectangle().Width - 5 && direction.X < 0)
+                        {
+                            direction.X = 0;
+                        }
+                        //en haut
+                        if (target.Y >= (z.GetRectangle().Y - target.Height) && target.Y <= (z.GetRectangle().Y - target.Height + 5) && direction.Y > 0)
+                        {
+                            direction.Y = 0;
+                        }
+                        //en bas
+                        if (target.Y <= z.GetRectangle().Y + z.GetRectangle().Height && target.Y >= z.GetRectangle().Y + z.GetRectangle().Height - 5 && direction.Y < 0)
+                        {
+                            direction.Y = 0;
+                        }
+                    }
+                }
+            }
+
+            
+
+
             SetPosition(position + (direction * speed));
 
             if (position.Y + rectangle.Height >= height)
@@ -89,13 +124,14 @@ namespace Fuckin__Height_Redemption
                 if (position.X <= 0)
                     position.X = 0;
 
+
             SetRectangle();
             SetTarget();
         }
 
 
 
-        public void MoveGamePad(GamePadEvent manette, int height, int width)
+        public void MoveGamePad(GamePadEvent manette, int height, int width, Zombie[] zombies)
         {
             direction.X = manette.GetLeftStick().X;
             direction.Y = -manette.GetLeftStick().Y;
@@ -248,7 +284,7 @@ namespace Fuckin__Height_Redemption
 
         public void SetTarget()
         {
-            target = new Rectangle(rectangle.X + rectangle.Width/3, rectangle.Y + rectangle.Height/3, rectangle.Width/2, rectangle.Height/2);
+            target = new Rectangle(rectangle.X + rectangle.Width/3 + 10, rectangle.Y + rectangle.Height/3 + 10, rectangle.Width/8, rectangle.Height/8);
         }
 
         public Rectangle GetTarget()

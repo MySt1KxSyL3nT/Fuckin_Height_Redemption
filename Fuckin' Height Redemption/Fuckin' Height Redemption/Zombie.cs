@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Design;
 
 namespace Fuckin__Height_Redemption
 {
-    class Zombie
+    class Zombie : IComparable
     {
         public Zombie(Vector2 position, float speed, Texture2D texture2d, Texture2D texture0, Texture2D texture45, Texture2D texture90, Texture2D texture135, Texture2D texture180, Texture2D texture225, Texture2D texture270, Texture2D texture315)
         {
@@ -51,11 +51,38 @@ namespace Fuckin__Height_Redemption
         private Texture2D texture270;
         private Texture2D texture315;
 
+        //NE PAS TOUCHER !!
+        public override bool Equals(object obj)
+        {
+            Zombie z = obj as Zombie;
+            if (z == null)
+                return false;
+            return position.Y == z.GetPosition().Y;
+        }
+        //NE PAS TOUCHER !!
+        public override int GetHashCode()
+        {
+            return position.Y.GetHashCode();
+        }
+        //NE PAS TOUCHER !!
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+                return 1;
+            Zombie z = obj as Zombie;
+
+            if (z != null)
+                return this.position.Y.CompareTo(z.GetPosition().Y);
+            else
+                throw new ArgumentException("Not a Zombie");
+        }
+
+
 
 
         public void Move(Joueur joueur, int height, int width)
         {
-            direction = (joueur.GetPosition() - position)/(joueur.GetPosition() - position).Length();
+            direction = (/*joueur.GetPosition()*/new Vector2(joueur.GetTarget().X, joueur.GetTarget().Y) - position) / (/*joueur.GetPosition()*/(new Vector2(joueur.GetTarget().X, joueur.GetTarget().Y) -position).Length());
 
             if (!rectangle.Intersects(joueur.GetTarget()))
             {
@@ -114,10 +141,10 @@ namespace Fuckin__Height_Redemption
 
 
 
-        public static Zombie SpawnZombie(int width, int height, ContentManager Content)
+        public static Zombie SpawnZombie(int width, int height, ContentManager Content, int maxspeed)
         {
             Random random = new Random();
-            float decimalspeed = (float)random.Next(0, 6);
+            float decimalspeed = (float)random.Next(0, maxspeed);
             float zombiespeed = 1 + (decimalspeed / 10);
 
             Vector2 pop_position = new Vector2();
