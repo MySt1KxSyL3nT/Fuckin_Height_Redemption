@@ -120,7 +120,7 @@ namespace Fuckin__Height_Redemption
 
             Vector2 pop_position = new Vector2();
 
-            int border = random.Next(0, 3); // determine d'ou va arriver le zombie 0,1,2,3 => haut,bas,gauche,droite
+            int border = random.Next(0, 4); // determine d'ou va arriver le zombie 0,1,2,3 => haut,bas,gauche,droite
 
             if (border == 0)
             {

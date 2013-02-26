@@ -322,6 +322,10 @@ namespace Fuckin__Height_Redemption
                 if (MediaPlayer.State == MediaState.Stopped)
                     MediaPlayer.Play(sonprincipal);
             }
+            else
+            {
+                MediaPlayer.Stop();
+            }
 
 
             if (status == "Nouveau_Jeu")
@@ -714,7 +718,10 @@ namespace Fuckin__Height_Redemption
 
             if (status == "Jeu" || status == "Pause")
             {
-                spriteBatch.Draw(background, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                //sans scrolling
+                //spriteBatch.Draw(background, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                //avec
+                spriteBatch.Draw(background, new Rectangle(Convert.ToInt32(-joueur.GetPosition().X), Convert.ToInt32(-joueur.GetPosition().Y), Window.ClientBounds.Width * 2, Window.ClientBounds.Height * 2), Color.White);
                 foreach (Zombie z in zombie)
                 {
                     if (z != null)
