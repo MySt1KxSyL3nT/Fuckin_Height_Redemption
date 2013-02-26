@@ -370,3 +370,14 @@ C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' H
 C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\contourson.xnb
 C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\sonprincipal.xnb
 C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\sonprincipal.wma
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Player 2d.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Zombie 2d.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\difficile.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\difficult.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\easy.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\facile.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\impossibile.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\impossible.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\intermediate.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\intermedio.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\intermédiaire.xnb

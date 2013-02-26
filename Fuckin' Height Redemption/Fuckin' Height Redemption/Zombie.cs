@@ -16,8 +16,9 @@ namespace Fuckin__Height_Redemption
 {
     class Zombie
     {
-        public Zombie(Vector2 position, float speed, Texture2D texture0, Texture2D texture45, Texture2D texture90, Texture2D texture135, Texture2D texture180, Texture2D texture225, Texture2D texture270, Texture2D texture315)
+        public Zombie(Vector2 position, float speed, Texture2D texture2d, Texture2D texture0, Texture2D texture45, Texture2D texture90, Texture2D texture135, Texture2D texture180, Texture2D texture225, Texture2D texture270, Texture2D texture315)
         {
+            this.texture2d = texture2d;
             this.texture0 = texture0;
             this.texture45 = texture45;
             this.texture90 = texture90;
@@ -40,6 +41,7 @@ namespace Fuckin__Height_Redemption
 
         private Rectangle rectangle;
 
+        private Texture2D texture2d;
         private Texture2D texture0;
         private Texture2D texture45;
         private Texture2D texture90;
@@ -80,7 +82,7 @@ namespace Fuckin__Height_Redemption
         {
             if (iso2D)
             {
-                spriteBatch.Draw(GetTexture(), new Rectangle(GetRectangle().X + GetRectangle().Width / 2, GetRectangle().Y + GetRectangle().Height / 2, GetRectangle().Width, GetRectangle().Height), null, Color.White, GetAngleVisee(), new Vector2(GetTexture().Width / 2, GetTexture().Height / 2), SpriteEffects.None, 0f);
+                spriteBatch.Draw(GetTexture2d(), new Rectangle(GetRectangle().X + GetRectangle().Width / 2, GetRectangle().Y + GetRectangle().Height / 2, GetRectangle().Width, GetRectangle().Height), null, Color.White, GetAngleVisee(), new Vector2(GetTexture().Width / 2, GetTexture().Height / 2), SpriteEffects.None, 0f);
             }
             else
             {
@@ -143,7 +145,7 @@ namespace Fuckin__Height_Redemption
                 pop_position.Y = random.Next(0, height);
             }
 
-            return new Zombie(pop_position, zombiespeed, Content.Load<Texture2D>("Zombie 0"), Content.Load<Texture2D>("Zombie 45"), Content.Load<Texture2D>("Zombie 90"), Content.Load<Texture2D>("Zombie 135"), Content.Load<Texture2D>("Zombie 180"), Content.Load<Texture2D>("Zombie 225"), Content.Load<Texture2D>("Zombie 270"), Content.Load<Texture2D>("Zombie 315"));
+            return new Zombie(pop_position, zombiespeed, Content.Load<Texture2D>("Zombie 2d"), Content.Load<Texture2D>("Zombie 0"), Content.Load<Texture2D>("Zombie 45"), Content.Load<Texture2D>("Zombie 90"), Content.Load<Texture2D>("Zombie 135"), Content.Load<Texture2D>("Zombie 180"), Content.Load<Texture2D>("Zombie 225"), Content.Load<Texture2D>("Zombie 270"), Content.Load<Texture2D>("Zombie 315"));
 
         }
 
@@ -231,7 +233,7 @@ namespace Fuckin__Height_Redemption
 
         public void SetRectangle()
         {
-            this.rectangle = new Rectangle((int)position.X, (int)position.Y, (int)(texture0.Width / 1.5), (int)(texture0.Height / 1.5));
+            this.rectangle = new Rectangle((int)position.X, (int)position.Y, (int)(texture0.Width / 3), (int)(texture0.Height / 3));
         }
 
         public Vector2 GetRectangleCenter()
@@ -243,6 +245,10 @@ namespace Fuckin__Height_Redemption
         public Texture2D GetTexture()
         {
             return texture0;
+        }
+        public Texture2D GetTexture2d()
+        {
+            return texture2d;
         }
 
 

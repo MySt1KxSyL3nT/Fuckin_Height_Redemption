@@ -59,6 +59,7 @@ namespace Fuckin__Height_Redemption
         bool clique_clavier;
         bool clique_manette;
 
+
         int elapsedtime;
         int lang; // 1 = francais, 2 = anglais, 3 = italien
         int entiermanette;
@@ -158,9 +159,9 @@ namespace Fuckin__Height_Redemption
             fullscreen = true;
             jeu_manette = true;
 
-            joueur = new Joueur(Vector2.One, Content.Load<Texture2D>("Player 0"), Content.Load<Texture2D>("Player 45"), Content.Load<Texture2D>("Player 90"), Content.Load<Texture2D>("Player 135"), Content.Load<Texture2D>("Player 180"), Content.Load<Texture2D>("Player 225"), Content.Load<Texture2D>("Player 270"), Content.Load<Texture2D>("Player 315"));
+            joueur = new Joueur(Vector2.One, Content.Load<Texture2D>("Player 2d"), Content.Load<Texture2D>("Player 0"), Content.Load<Texture2D>("Player 45"), Content.Load<Texture2D>("Player 90"), Content.Load<Texture2D>("Player 135"), Content.Load<Texture2D>("Player 180"), Content.Load<Texture2D>("Player 225"), Content.Load<Texture2D>("Player 270"), Content.Load<Texture2D>("Player 315"));
 
-            nombre_zombie = 0; 
+            nombre_zombie = 0;
 
             elapsedtime = 1;
             entiermanette = 1;
@@ -330,7 +331,7 @@ namespace Fuckin__Height_Redemption
 
             if (status == "Nouveau_Jeu")
             {
-                joueur = new Joueur(Vector2.One, Content.Load<Texture2D>("Player 0"), Content.Load<Texture2D>("Player 45"), Content.Load<Texture2D>("Player 90"), Content.Load<Texture2D>("Player 135"), Content.Load<Texture2D>("Player 180"), Content.Load<Texture2D>("Player 225"), Content.Load<Texture2D>("Player 270"), Content.Load<Texture2D>("Player 315"));
+                joueur = new Joueur(Vector2.One, Content.Load<Texture2D>("Player 2d"), Content.Load<Texture2D>("Player 0"), Content.Load<Texture2D>("Player 45"), Content.Load<Texture2D>("Player 90"), Content.Load<Texture2D>("Player 135"), Content.Load<Texture2D>("Player 180"), Content.Load<Texture2D>("Player 225"), Content.Load<Texture2D>("Player 270"), Content.Load<Texture2D>("Player 315"));
                 zombie = new Zombie[2];
                 nombre_zombie = 0;
                 elapsedtime = 1;
@@ -724,12 +725,21 @@ namespace Fuckin__Height_Redemption
                 spriteBatch.Draw(background, new Rectangle(Convert.ToInt32(-joueur.GetPosition().X), Convert.ToInt32(-joueur.GetPosition().Y), Window.ClientBounds.Width * 2, Window.ClientBounds.Height * 2), Color.White);
                 foreach (Zombie z in zombie)
                 {
-                    if (z != null)
+                    if (z != null && z.GetPosition().Y < joueur.GetPosition().Y)
                     {
-                        z.DrawZombie(spriteBatch, false);
+                        z.DrawZombie(spriteBatch, false/*bool pour la 2d ou 2Diso*/);
                     }
                 }
-                joueur.DrawJoueur(spriteBatch, false);
+
+                joueur.DrawJoueur(spriteBatch, false/*idem*/);
+
+                foreach (Zombie z in zombie)
+                {
+                    if (z != null && z.GetPosition().Y >= joueur.GetPosition().Y)
+                    {
+                        z.DrawZombie(spriteBatch, false/*bool pour la 2d ou 2Diso*/);
+                    }
+                }
             }
 
             if (status == "Pause")
