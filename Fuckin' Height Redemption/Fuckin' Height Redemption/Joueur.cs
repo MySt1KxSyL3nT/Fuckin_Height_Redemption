@@ -155,7 +155,6 @@ namespace Fuckin__Height_Redemption
                 if (GetAngleViseeDeg() >= -68 && GetAngleViseeDeg() <= -23)
                     spriteBatch.Draw(texture315, rectangle, Color.White);
 
-                Console.WriteLine(GetAngleViseeDeg());
             }
         }
 

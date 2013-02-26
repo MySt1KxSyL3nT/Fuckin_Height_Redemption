@@ -64,6 +64,14 @@ namespace Fuckin__Height_Redemption
         int entiermanette;
 
 
+        // musique
+        bool musique;
+        bool effets;
+        int entiermusique;
+        int entiereffets;
+        int volumemusic;
+        int volumeeffects;
+
 
         Joueur joueur;
         Zombie[] zombie;
@@ -77,6 +85,8 @@ namespace Fuckin__Height_Redemption
 
 
 
+        Song sonprincipal;
+
 
 
         ////////////////////////////////////// BOUTONS ! ////////////////////////////////////////////////////////
@@ -86,6 +96,8 @@ namespace Fuckin__Height_Redemption
         Texture2D pausemenu;
         Texture2D menupause;
         Texture2D menupausa;
+        Texture2D barreson;
+        Texture2D contourson;
 
         MenuButton Bjouer;
         MenuButton Bmulti;
@@ -102,6 +114,17 @@ namespace Fuckin__Height_Redemption
         MenuButton Bvideo;
         MenuButton Baudio;
         MenuButton Bcommandes;
+
+        MenuButton Bmusique;
+        MenuButton Beffets;
+        MenuButton Bboxmusique;
+        MenuButton Bboxeffects;
+        MenuButton Bmoinsmusic;
+        MenuButton Bplusmusic;
+        MenuButton Bmoinseffects;
+        MenuButton Bpluseffects;
+        Rectangle musicbar;
+        Rectangle effectsbar;
 
         MenuButton Blangue;
         MenuButton Blanguefr;
@@ -143,9 +166,23 @@ namespace Fuckin__Height_Redemption
             entiermanette = 1;
             lang = 1;
 
+
+            //musique
+            musique = true;
+            effets = !musique;
+            entiermusique = 1;
+            entiereffets = 1;
+
+            volumemusic = 2;
+            volumeeffects = 2;
+
+
             souris = new MouseEvent();
             clavier = new KeyboardEvent();
             manette = new GamePadEvent(PlayerIndex.One);
+
+
+            sonprincipal = Content.Load<Song>("sonprincipal");
 
             ////////////////////////////////////// BOUTONS ! ////////////////////////////////////////////////////////
 
@@ -155,6 +192,8 @@ namespace Fuckin__Height_Redemption
             menupause = Content.Load<Texture2D>("menupause");
             pausemenu = Content.Load<Texture2D>("pausemenu");
             menupausa = Content.Load<Texture2D>("menupausa");
+            barreson = Content.Load<Texture2D>("barreson");
+            contourson = Content.Load<Texture2D>("contourson");
 
 
             // principal
@@ -178,6 +217,17 @@ namespace Fuckin__Height_Redemption
             Bvideo = new MenuButton(Vector2.One, Content.Load<Texture2D>("vidéo"), Content.Load<Texture2D>("video"), Content.Load<Texture2D>("video"));
             Baudio = new MenuButton(Vector2.One, Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio"));
             Bcommandes = new MenuButton(Vector2.One, Content.Load<Texture2D>("commandes"), Content.Load<Texture2D>("controls"), Content.Load<Texture2D>("commandesit"));
+
+            //Audio
+            Bmusique = new MenuButton(Vector2.One, Content.Load<Texture2D>("musique"), Content.Load<Texture2D>("music"), Content.Load<Texture2D>("musica"));
+            Beffets = new MenuButton(Vector2.One, Content.Load<Texture2D>("effetssonores"), Content.Load<Texture2D>("soundeffects"), Content.Load<Texture2D>("effettisonori"));
+            Bboxmusique = new MenuButton(Vector2.One, Content.Load<Texture2D>("checked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"));
+            Bboxeffects = new MenuButton(Vector2.One, Content.Load<Texture2D>("checked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"));
+            Bmoinsmusic = new MenuButton(Vector2.One, Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"));
+            Bplusmusic = new MenuButton(Vector2.One, Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"));
+            Bmoinseffects = new MenuButton(Vector2.One, Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"));
+            Bpluseffects = new MenuButton(Vector2.One, Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"));
+            
 
             // Video
             Blangue = new MenuButton(Vector2.One, Content.Load<Texture2D>("langues"), Content.Load<Texture2D>("languages"), Content.Load<Texture2D>("languesit"));
@@ -264,6 +314,15 @@ namespace Fuckin__Height_Redemption
             souris.UpdateMouse();
             clavier.UpdateKeyboard();
             manette.UpdateGamepad();
+
+
+            // MUSIQUES !
+            if (status == "Principal" || status == "Jouer" || status == "Multi" || status == "Options" || status == "Video" || status == "Audio" || status == "Commandes" || status == "Langues")
+            {
+                if (MediaPlayer.State == MediaState.Stopped)
+                    MediaPlayer.Play(sonprincipal);
+            }
+
 
             if (status == "Nouveau_Jeu")
             {
@@ -430,7 +489,7 @@ namespace Fuckin__Height_Redemption
                 }
                 if (souris.GetRectangle().Intersects(Baudio.GetRectangle()) && !souris.LeftClick() && clique_souris)
                 {
-                    //status = "Audio";
+                    status = "Audio";
                 }
                 if (souris.GetRectangle().Intersects(Bcommandes.GetRectangle()) && !souris.LeftClick() && clique_souris)
                 {
@@ -443,6 +502,95 @@ namespace Fuckin__Height_Redemption
 
                 clique_souris = souris.LeftClick();
             }
+
+
+            if (status == "Audio")
+            {
+                Bmusique.SetPosition(new Vector2(positionBoutton1.X - (int)(1.5 * Bmusique.GetTexturefr().Width), positionBoutton1.Y));
+                Bboxmusique.SetPosition(new Vector2(Bmusique.GetPosition().X - 40, positionBoutton1.Y + 8));
+                Bmoinsmusic.SetPosition(new Vector2(Bmusique.GetPosition().X + 10 + Bmusique.GetTexturefr().Width, positionBoutton1.Y));
+                Bplusmusic.SetPosition(new Vector2(Bmoinsmusic.GetPosition().X + 90 + Bmusique.GetTexturefr().Width, positionBoutton1.Y));
+
+                Beffets.SetPosition(new Vector2(positionBoutton2.X - (int)(1.5 * Bmusique.GetTexturefr().Width), positionBoutton2.Y));
+                Bboxeffects.SetPosition(new Vector2(Beffets.GetPosition().X - 40, positionBoutton2.Y + 8));
+                Bmoinseffects.SetPosition(new Vector2(Bmusique.GetPosition().X + 10 + Bmusique.GetTexturefr().Width, positionBoutton2.Y));
+                Bpluseffects.SetPosition(new Vector2(Bmoinsmusic.GetPosition().X + 90 + Bmusique.GetTexturefr().Width, positionBoutton2.Y));
+
+
+                musicbar = new Rectangle((int)Bmoinsmusic.GetPosition().X + Bmoinsmusic.GetTexturefr().Width + 8, (int)Bmoinsmusic.GetPosition().Y + Bmoinsmusic.GetTexturefr().Height / 4, (int)(200 * (float)volumemusic / (float)10), Bmusique.GetTexturefr().Height / 2);
+                effectsbar = new Rectangle((int)Bmoinsmusic.GetPosition().X + Bmoinsmusic.GetTexturefr().Width + 8, (int)Bmoinseffects.GetPosition().Y + Bmoinsmusic.GetTexturefr().Height / 4, (int)(200 * (float)volumeeffects / (float)10), Bmusique.GetTexturefr().Height / 2);
+
+
+                Bretour.SetPosition(positionBoutton4);
+
+                if (souris.GetRectangle().Intersects(Bmusique.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    musique = !musique;
+                }
+                if (souris.GetRectangle().Intersects(Bboxmusique.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    musique = !musique;
+                }
+                if (souris.GetRectangle().Intersects(Beffets.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    effets = !effets;
+                }
+                if (souris.GetRectangle().Intersects(Bboxeffects.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    effets = !effets;
+                }
+
+                //Volume du son
+                if (souris.GetRectangle().Intersects(Bplusmusic.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    if (volumemusic < 10)
+                        volumemusic += 1;
+                    else
+                        volumemusic = 10;
+                }
+                if (souris.GetRectangle().Intersects(Bmoinsmusic.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    if (volumemusic > 0)
+                        volumemusic -= 1;
+                    else
+                        volumemusic = 0;
+                }
+
+
+                if (souris.GetRectangle().Intersects(Bpluseffects.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    if (volumeeffects < 10)
+                        volumeeffects += 1;
+                    else
+                        volumeeffects = 10;
+                }
+                if (souris.GetRectangle().Intersects(Bmoinseffects.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    if (volumeeffects > 0)
+                        volumeeffects -= 1;
+                    else
+                        volumeeffects = 0;
+                }
+
+
+
+                if (!musique)
+                    volumemusic = 0;
+                if (!effets)
+                    volumeeffects = 0;
+
+
+
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                {
+                    status = "Options";
+                }
+
+                clique_souris = souris.LeftClick();
+
+                MediaPlayer.Volume = (float)volumemusic / 10f;
+            }
+
 
             if (status == "Video")
             {
@@ -560,7 +708,7 @@ namespace Fuckin__Height_Redemption
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
 
@@ -572,12 +720,9 @@ namespace Fuckin__Height_Redemption
                     if (z != null)
                     {
                         z.DrawZombie(spriteBatch, false);
-                        //spriteBatch.Draw(z.GetTexture(), new Rectangle(z.GetRectangle().X + z.GetRectangle().Width / 2, z.GetRectangle().Y + z.GetRectangle().Height / 2, z.GetRectangle().Width, z.GetRectangle().Height), null, Color.White, z.GetAngleVisee(), new Vector2(z.GetTexture().Width / 2, z.GetTexture().Height / 2), SpriteEffects.None, 0f);
                     }
                 }
                 joueur.DrawJoueur(spriteBatch, false);
-                //spriteBatch.Draw(joueur.GetTexture(), new Rectangle(joueur.GetRectangle().X + joueur.GetRectangle().Width / 2,joueur.GetRectangle().Y + joueur.GetRectangle().Height / 2, joueur.GetRectangle().Width, joueur.GetRectangle().Height) , null, Color.White, joueur.GetAngleVisee(), new Vector2(joueur.GetTexture().Width / 2, joueur.GetTexture().Height / 2), SpriteEffects.None, 0f);
-                // changer gsetanglevisee pour la rot fluide
             }
 
             if (status == "Pause")
@@ -636,6 +781,39 @@ namespace Fuckin__Height_Redemption
                     Bfullscreen.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bfullscreen.GetRectangle()));
                 Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
             }
+
+            if (status == "Audio")
+            {
+                spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                Bmusique.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmusique.GetRectangle()));
+                if (musique)
+                    entiermusique = 1;
+                else
+                    entiermusique = 2;
+                Bboxmusique.DrawButton(spriteBatch, entiermusique, false);
+
+                Beffets.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Beffets.GetRectangle()));
+                if (effets)
+                    entiereffets = 1;
+                else
+                    entiereffets = 2;
+                Bboxeffects.DrawButton(spriteBatch, entiereffets, false);
+
+
+                spriteBatch.Draw(barreson, musicbar, Color.Orange);
+                spriteBatch.Draw(barreson, effectsbar, Color.Orange);
+                spriteBatch.Draw(contourson, new Rectangle(musicbar.X, musicbar.Y, 200, musicbar.Height), Color.White);
+                spriteBatch.Draw(contourson, new Rectangle(effectsbar.X, effectsbar.Y, 200, effectsbar.Height), Color.White);
+
+
+                Bplusmusic.DrawButton(spriteBatch, 1, souris.GetRectangle().Intersects(Bplusmusic.GetRectangle()));
+                Bmoinsmusic.DrawButton(spriteBatch, 1, souris.GetRectangle().Intersects(Bmoinsmusic.GetRectangle()));
+                Bpluseffects.DrawButton(spriteBatch, 1, souris.GetRectangle().Intersects(Bpluseffects.GetRectangle()));
+                Bmoinseffects.DrawButton(spriteBatch, 1, souris.GetRectangle().Intersects(Bmoinseffects.GetRectangle()));
+
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+            }
+
             if (status == "Langues")
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
@@ -666,7 +844,7 @@ namespace Fuckin__Height_Redemption
                     entiermanette = 1;
                 else
                     entiermanette = 2;
-                Bbox.DrawButton(spriteBatch, entiermanette, souris.GetRectangle().Intersects(Bbox.GetRectangle()));
+                Bbox.DrawButton(spriteBatch, entiermanette, false);
                 Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
             }
 

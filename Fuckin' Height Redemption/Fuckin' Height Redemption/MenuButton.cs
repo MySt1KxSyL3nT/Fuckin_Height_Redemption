@@ -39,6 +39,7 @@ namespace Fuckin__Height_Redemption
         public void SetPosition(Vector2 position)
         {
             this.position = position;
+            rectangle = GetRectangle();
         }
 
         /// <summary>

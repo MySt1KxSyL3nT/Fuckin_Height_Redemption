@@ -358,3 +358,15 @@ C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' H
 C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Fuckin' Height Redemption.pdb
 C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\obj\x86\Debug\Fuckin' Height Redemption.exe.manifest
 C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\obj\x86\Debug\Fuckin' Height Redemption.application
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\moins.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\music.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\musica.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\musique.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\effetssonores.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\soundeffects.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\plus.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\effettisonori.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\barreson.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\contourson.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\sonprincipal.xnb
+C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\sonprincipal.wma

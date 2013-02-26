@@ -35,7 +35,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\checked.xnb</Output>
-      <Time>2013-02-25T16:28:02.0983138+01:00</Time>
+      <Time>2013-02-25T23:00:48.7912516+01:00</Time>
     </Item>
     <Item>
       <Source>commandes.png</Source>
@@ -404,7 +404,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\unchecked.xnb</Output>
-      <Time>2013-02-25T16:28:02.188319+01:00</Time>
+      <Time>2013-02-25T23:00:48.7842512+01:00</Time>
     </Item>
     <Item>
       <Source>video.png</Source>
@@ -720,6 +720,106 @@
       <Options>None</Options>
       <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\menupausa.xnb</Output>
       <Time>2013-02-25T16:28:02.1383161+01:00</Time>
+    </Item>
+    <Item>
+      <Source>moins.png</Source>
+      <Name>moins</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\moins.xnb</Output>
+      <Time>2013-02-25T23:00:48.7722505+01:00</Time>
+    </Item>
+    <Item>
+      <Source>music.png</Source>
+      <Name>music</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\music.xnb</Output>
+      <Time>2013-02-25T22:59:32.7699034+01:00</Time>
+    </Item>
+    <Item>
+      <Source>musica.png</Source>
+      <Name>musica</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\musica.xnb</Output>
+      <Time>2013-02-25T22:59:32.7739036+01:00</Time>
+    </Item>
+    <Item>
+      <Source>musique.png</Source>
+      <Name>musique</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\musique.xnb</Output>
+      <Time>2013-02-25T22:59:32.7769038+01:00</Time>
+    </Item>
+    <Item>
+      <Source>effetssonores.png</Source>
+      <Name>effetssonores</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\effetssonores.xnb</Output>
+      <Time>2013-02-25T23:00:12.4891752+01:00</Time>
+    </Item>
+    <Item>
+      <Source>soundeffects.png</Source>
+      <Name>soundeffects</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\soundeffects.xnb</Output>
+      <Time>2013-02-25T23:00:20.7686488+01:00</Time>
+    </Item>
+    <Item>
+      <Source>plus.png</Source>
+      <Name>plus</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\plus.xnb</Output>
+      <Time>2013-02-25T23:00:48.7772508+01:00</Time>
+    </Item>
+    <Item>
+      <Source>effettisonori.png</Source>
+      <Name>effettisonori</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\effettisonori.xnb</Output>
+      <Time>2013-02-25T23:14:37.3486424+01:00</Time>
+    </Item>
+    <Item>
+      <Source>barreson.png</Source>
+      <Name>barreson</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\barreson.xnb</Output>
+      <Time>2013-02-25T23:40:38.6689448+01:00</Time>
+    </Item>
+    <Item>
+      <Source>contourson.png</Source>
+      <Name>contourson</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\contourson.xnb</Output>
+      <Time>2013-02-26T00:47:20.1628171+01:00</Time>
+    </Item>
+    <Item>
+      <Source>sonprincipal.MP3</Source>
+      <Name>sonprincipal</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\sonprincipal.xnb</Output>
+      <Extra>C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\sonprincipal.wma</Extra>
+      <Time>2013-02-26T00:55:52.0290942+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

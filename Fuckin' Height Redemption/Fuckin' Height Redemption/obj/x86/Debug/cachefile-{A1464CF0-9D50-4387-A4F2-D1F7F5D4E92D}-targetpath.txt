@@ -78,3 +78,15 @@ Content\rejoindreit.xnb
 Content\reprendreit.xnb
 Content\retourit.xnb
 Content\menupausa.xnb
+Content\moins.xnb
+Content\music.xnb
+Content\musica.xnb
+Content\musique.xnb
+Content\effetssonores.xnb
+Content\soundeffects.xnb
+Content\plus.xnb
+Content\effettisonori.xnb
+Content\barreson.xnb
+Content\contourson.xnb
+Content\sonprincipal.xnb
+Content\sonprincipal.wma
