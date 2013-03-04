@@ -73,6 +73,7 @@ namespace Fuckin__Height_Redemption
         int volumemusic;
         int volumeeffects;
 
+        //difficulté jeu
         int diff;
         Difficulté difficulté;
 
@@ -89,7 +90,11 @@ namespace Fuckin__Height_Redemption
         KeyboardEvent clavier;
         GamePadEvent manette;
 
-
+        //menu
+        int gestionclavier;
+        bool clique_bas;
+        bool clique_haut;
+        bool clique_back;
 
         Song sonprincipal;
 
@@ -104,6 +109,9 @@ namespace Fuckin__Height_Redemption
         Texture2D menupausa;
         Texture2D barreson;
         Texture2D contourson;
+
+        Texture2D HUD_vie;
+        Texture2D HUD_arme;
 
 
         Texture2D cinematique1;
@@ -216,6 +224,7 @@ namespace Fuckin__Height_Redemption
             clavier = new KeyboardEvent();
             manette = new GamePadEvent(PlayerIndex.One);
 
+            gestionclavier = -1;
 
             sonprincipal = Content.Load<Song>("sonprincipal");
 
@@ -229,6 +238,9 @@ namespace Fuckin__Height_Redemption
             menupausa = Content.Load<Texture2D>("menupausa");
             barreson = Content.Load<Texture2D>("barreson");
             contourson = Content.Load<Texture2D>("contourson");
+
+            HUD_vie = Content.Load<Texture2D>("vie");
+            HUD_arme = Content.Load<Texture2D>("arme");
 
 
             cinematique1 = Content.Load<Texture2D>("cinematique1");
@@ -443,7 +455,7 @@ namespace Fuckin__Height_Redemption
 
 
 
-
+            //gestion: ok
             if (status == "Principal")
             {
 
@@ -453,27 +465,56 @@ namespace Fuckin__Height_Redemption
                 Bquitter.SetPosition(positionBoutton4);
 
 
-                if (souris.GetRectangle().Intersects(Bjouer.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if ((souris.GetRectangle().Intersects(Bjouer.GetRectangle()) && !souris.LeftClick() && clique_souris) || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
+                    gestionclavier = -1;
                     status = "Jouer";
                 }
-                if (souris.GetRectangle().Intersects(Bmulti.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if ((souris.GetRectangle().Intersects(Bmulti.GetRectangle()) && !souris.LeftClick() && clique_souris) || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
+                    gestionclavier = -1;
                     status = "Multi";
                 }
-                if (souris.GetRectangle().Intersects(Boptions.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if ((souris.GetRectangle().Intersects(Boptions.GetRectangle()) && !souris.LeftClick() && clique_souris) || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
+                    gestionclavier = -1;
                     status = "Options";
                 }
-                if (souris.GetRectangle().Intersects(Bquitter.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if ((souris.GetRectangle().Intersects(Bquitter.GetRectangle()) && !souris.LeftClick() && clique_souris) || (gestionclavier == 3 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
                     this.Exit();
                 }
 
+
+
+                if (!clavier.KeyPressed(Keys.Down) && clique_bas)
+                {
+                    if (gestionclavier < 3)
+                        gestionclavier += 1;
+                    else
+                        gestionclavier = 0;
+                }
+                if (!clavier.KeyPressed(Keys.Up) && clique_haut)
+                {
+                    if (gestionclavier > 0)
+                        gestionclavier -= 1;
+                    else
+                        gestionclavier = 3;
+                }
+
+                if (souris.GetRectangle().Intersects(Bjouer.GetRectangle()) || souris.GetRectangle().Intersects(Bmulti.GetRectangle()) || souris.GetRectangle().Intersects(Boptions.GetRectangle()) || souris.GetRectangle().Intersects(Bquitter.GetRectangle()))
+                    gestionclavier = -1;
+
+
                 clique_souris = souris.LeftClick();
+                clique_clavier = clavier.KeyPressed(Keys.Enter);
+                clique_bas = clavier.KeyPressed(Keys.Down);
+                clique_haut = clavier.KeyPressed(Keys.Up);
+                clique_back = clavier.KeyPressed(Keys.Escape);
+
             }
 
-
+            //gestion: ok
             if (status == "Jouer")
             {
 
@@ -483,24 +524,54 @@ namespace Fuckin__Height_Redemption
                 Bretour.SetPosition(positionBoutton4);
 
 
-                if (souris.GetRectangle().Intersects(Bnouveaujeu.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bnouveaujeu.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
+                    gestionclavier = -1;
                     status = "Choix_Niveau";
                 }
-                if (souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
-                    status = "Jeu";
+                    if (zombie != null)
+                    {
+                        gestionclavier = -1;
+                        status = "Jeu";
+                    }
                 }
-                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clique_clavier) || (clique_back && !clavier.KeyPressed(Keys.Escape)))
                 {
+                    gestionclavier = -1;
                     status = "Principal";
                 }
 
+
+                if (!clavier.KeyPressed(Keys.Down) && clique_bas)
+                {
+                    if (gestionclavier < 2)
+                        gestionclavier += 1;
+                    else
+                        gestionclavier = 0;
+                }
+                if (!clavier.KeyPressed(Keys.Up) && clique_haut)
+                {
+                    if (gestionclavier > 0)
+                        gestionclavier -= 1;
+                    else
+                        gestionclavier = 2;
+                }
+
+                if (souris.GetRectangle().Intersects(Bnouveaujeu.GetRectangle()) || souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) || souris.GetRectangle().Intersects(Bretour.GetRectangle()))
+                    gestionclavier = -1;
+
+
                 clique_souris = souris.LeftClick();
+                clique_clavier = clavier.KeyPressed(Keys.Enter);
+                clique_bas = clavier.KeyPressed(Keys.Down);
+                clique_haut = clavier.KeyPressed(Keys.Up);
+                clique_back = clavier.KeyPressed(Keys.Escape);
             }
 
 
-
+            //gestion: ok
             if (status == "Choix_Niveau")
             {
                 Bfacile.SetPosition(positionBoutton1);
@@ -509,35 +580,65 @@ namespace Fuckin__Height_Redemption
                 Bimpossible.SetPosition(positionBoutton4);
                 Bretour.SetPosition(positionBoutton5);
 
-                if (souris.GetRectangle().Intersects(Bfacile.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bfacile.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
+                    gestionclavier = -1;
                     status = "Cinematiques";
                     diff = 1;
                 }
-                if (souris.GetRectangle().Intersects(BIntermediaire.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(BIntermediaire.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
+                    gestionclavier = -1;
                     status = "Cinematiques";
                     diff = 2;
                 }
-                if (souris.GetRectangle().Intersects(Bdifficle.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bdifficle.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
+                    gestionclavier = -1;
                     status = "Cinematiques";
                     diff = 3;
                 }
-                if (souris.GetRectangle().Intersects(Bimpossible.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bimpossible.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 3 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
+                    gestionclavier = -1;
                     status = "Cinematiques";
                     diff = 4;
                 }
-                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 4 && !clavier.KeyPressed(Keys.Enter) && clique_clavier) || (clique_back && !clavier.KeyPressed(Keys.Escape)))
                 {
+                    gestionclavier = -1;
                     status = "Jouer";
                 }
 
                 elapsedtime = 1;
 
 
+
+
+                if (!clavier.KeyPressed(Keys.Down) && clique_bas)
+                {
+                    if (gestionclavier < 4)
+                        gestionclavier += 1;
+                    else
+                        gestionclavier = 0;
+                }
+                if (!clavier.KeyPressed(Keys.Up) && clique_haut)
+                {
+                    if (gestionclavier > 0)
+                        gestionclavier -= 1;
+                    else
+                        gestionclavier = 4;
+                }
+
+                if (souris.GetRectangle().Intersects(Bfacile.GetRectangle()) || souris.GetRectangle().Intersects(BIntermediaire.GetRectangle()) || souris.GetRectangle().Intersects(Bdifficle.GetRectangle()) || souris.GetRectangle().Intersects(Bimpossible.GetRectangle()) || souris.GetRectangle().Intersects(Bretour.GetRectangle()))
+                    gestionclavier = -1;
+
+
                 clique_souris = souris.LeftClick();
+                clique_clavier = clavier.KeyPressed(Keys.Enter);
+                clique_bas = clavier.KeyPressed(Keys.Down);
+                clique_haut = clavier.KeyPressed(Keys.Up);
+                clique_back = clavier.KeyPressed(Keys.Escape);
             }
 
 
@@ -596,7 +697,7 @@ namespace Fuckin__Height_Redemption
 
 
 
-
+            //gestion: ok
             if (status == "Multi")
             {
 
@@ -606,20 +707,44 @@ namespace Fuckin__Height_Redemption
                 Bretour.SetPosition(positionBoutton4);
 
 
-                if (souris.GetRectangle().Intersects(Bnouveaujeu.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bcreer.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
                     //status = "Creer";
                 }
-                if (souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Brejoindre.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
                     //status = "Rejoindre";
                 }
-                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clique_clavier) || (clique_back && !clavier.KeyPressed(Keys.Escape)))
                 {
+                    gestionclavier = -1;
                     status = "Principal";
                 }
 
+                if (!clavier.KeyPressed(Keys.Down) && clique_bas)
+                {
+                    if (gestionclavier < 2)
+                        gestionclavier += 1;
+                    else
+                        gestionclavier = 0;
+                }
+                if (!clavier.KeyPressed(Keys.Up) && clique_haut)
+                {
+                    if (gestionclavier > 0)
+                        gestionclavier -= 1;
+                    else
+                        gestionclavier = 2;
+                }
+
+                if (souris.GetRectangle().Intersects(Bcreer.GetRectangle()) || souris.GetRectangle().Intersects(Brejoindre.GetRectangle()) || souris.GetRectangle().Intersects(Bretour.GetRectangle()))
+                    gestionclavier = -1;
+
+
                 clique_souris = souris.LeftClick();
+                clique_clavier = clavier.KeyPressed(Keys.Enter);
+                clique_bas = clavier.KeyPressed(Keys.Down);
+                clique_haut = clavier.KeyPressed(Keys.Up);
+                clique_back = clavier.KeyPressed(Keys.Escape);
             }
 
 
@@ -632,24 +757,51 @@ namespace Fuckin__Height_Redemption
                 Bretour.SetPosition(positionBoutton4);
 
 
-                if (souris.GetRectangle().Intersects(Bvideo.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bvideo.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
+                    gestionclavier = -1;
                     status = "Video";
                 }
-                if (souris.GetRectangle().Intersects(Baudio.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Baudio.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
+                    gestionclavier = -1;
                     status = "Audio";
                 }
-                if (souris.GetRectangle().Intersects(Bcommandes.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bcommandes.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
+                    gestionclavier = -1;
                     status = "Commandes";
                 }
-                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 3 && !clavier.KeyPressed(Keys.Enter) && clique_clavier) || (clique_back && !clavier.KeyPressed(Keys.Escape)))
                 {
+                    gestionclavier = -1;
                     status = "Principal";
                 }
 
+                if (!clavier.KeyPressed(Keys.Down) && clique_bas)
+                {
+                    if (gestionclavier < 3)
+                        gestionclavier += 1;
+                    else
+                        gestionclavier = 0;
+                }
+                if (!clavier.KeyPressed(Keys.Up) && clique_haut)
+                {
+                    if (gestionclavier > 0)
+                        gestionclavier -= 1;
+                    else
+                        gestionclavier = 3;
+                }
+
+                if (souris.GetRectangle().Intersects(Bvideo.GetRectangle()) || souris.GetRectangle().Intersects(Baudio.GetRectangle()) || souris.GetRectangle().Intersects(Bcommandes.GetRectangle()) || souris.GetRectangle().Intersects(Bretour.GetRectangle()))
+                    gestionclavier = -1;
+
+
                 clique_souris = souris.LeftClick();
+                clique_clavier = clavier.KeyPressed(Keys.Enter);
+                clique_bas = clavier.KeyPressed(Keys.Down);
+                clique_haut = clavier.KeyPressed(Keys.Up);
+                clique_back = clavier.KeyPressed(Keys.Escape);
             }
 
 
@@ -730,12 +882,36 @@ namespace Fuckin__Height_Redemption
 
 
 
-                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clique_clavier) || (clique_back && !clavier.KeyPressed(Keys.Escape)))
                 {
+                    gestionclavier = -1;
                     status = "Options";
                 }
 
+                if (!clavier.KeyPressed(Keys.Down) && clique_bas)
+                {
+                    if (gestionclavier < 0)
+                        gestionclavier += 1;
+                    else
+                        gestionclavier = 0;
+                }
+                if (!clavier.KeyPressed(Keys.Up) && clique_haut)
+                {
+                    if (gestionclavier > 0)
+                        gestionclavier -= 1;
+                    else
+                        gestionclavier = 0;
+                }
+
+                if (souris.GetRectangle().Intersects(Bmusique.GetRectangle()) || souris.GetRectangle().Intersects(Bmoinsmusic.GetRectangle()) || souris.GetRectangle().Intersects(Bplusmusic.GetRectangle()) || souris.GetRectangle().Intersects(Beffets.GetRectangle()) || souris.GetRectangle().Intersects(Bmoinseffects.GetRectangle()) || souris.GetRectangle().Intersects(Bpluseffects.GetRectangle()) || souris.GetRectangle().Intersects(Bretour.GetRectangle()))
+                    gestionclavier = -1;
+
+
                 clique_souris = souris.LeftClick();
+                clique_clavier = clavier.KeyPressed(Keys.Enter);
+                clique_bas = clavier.KeyPressed(Keys.Down);
+                clique_haut = clavier.KeyPressed(Keys.Up);
+                clique_back = clavier.KeyPressed(Keys.Escape);
 
                 MediaPlayer.Volume = (float)volumemusic / 10f;
             }
@@ -751,21 +927,46 @@ namespace Fuckin__Height_Redemption
                 Bretour.SetPosition(positionBoutton4);
 
 
-                if (souris.GetRectangle().Intersects(Blangue.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Blangue.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
+                    gestionclavier = -1;
                     status = "Langues";
                 }
-                if (souris.GetRectangle().Intersects(Bfullscreen.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bfullscreen.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
                     fullscreen = !fullscreen;
                     graphics.ToggleFullScreen();
                 }
-                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clique_clavier) || (clique_back && !clavier.KeyPressed(Keys.Escape)))
                 {
+                    gestionclavier = -1;
                     status = "Options";
                 }
 
+                if (!clavier.KeyPressed(Keys.Down) && clique_bas)
+                {
+                    if (gestionclavier < 2)
+                        gestionclavier += 1;
+                    else
+                        gestionclavier = 0;
+                }
+                if (!clavier.KeyPressed(Keys.Up) && clique_haut)
+                {
+                    if (gestionclavier > 0)
+                        gestionclavier -= 1;
+                    else
+                        gestionclavier = 2;
+                }
+
+                if (souris.GetRectangle().Intersects(Bnouveaujeu.GetRectangle()) || souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) || souris.GetRectangle().Intersects(Bretour.GetRectangle()))
+                    gestionclavier = -1;
+
+
                 clique_souris = souris.LeftClick();
+                clique_clavier = clavier.KeyPressed(Keys.Enter);
+                clique_bas = clavier.KeyPressed(Keys.Down);
+                clique_haut = clavier.KeyPressed(Keys.Up);
+                clique_back = clavier.KeyPressed(Keys.Escape);
             }
 
             if (status == "Langues")
@@ -792,21 +993,53 @@ namespace Fuckin__Height_Redemption
                     Bretour.SetPosition(positionBoutton4);
                 }
 
-                if (souris.GetRectangle().Intersects(Blanguefr.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Blanguefr.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
+                {
+                    gestionclavier = -1;
                     lang = 1;
-                if (souris.GetRectangle().Intersects(Blangueen.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                }
+                if (souris.GetRectangle().Intersects(Blangueen.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
+                {
+                    gestionclavier = -1;
                     lang = 2;
-                if (souris.GetRectangle().Intersects(Blangueit.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                }
+                if (souris.GetRectangle().Intersects(Blangueit.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
+                {
+                    gestionclavier = -1;
                     lang = 3;
+                }
 
 
-                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 3 && !clavier.KeyPressed(Keys.Enter) && clique_clavier) || (clique_back && !clavier.KeyPressed(Keys.Escape)))
                 {
                     status = "Video";
                 }
 
 
+                if (!clavier.KeyPressed(Keys.Down) && clique_bas)
+                {
+                    if (gestionclavier < 2)
+                        gestionclavier += 1;
+                    else
+                        gestionclavier = 0;
+                }
+                if (!clavier.KeyPressed(Keys.Up) && clique_haut)
+                {
+                    if (gestionclavier > 0)
+                        gestionclavier -= 1;
+                    else
+                        gestionclavier = 2;
+                }
+
+                if (souris.GetRectangle().Intersects(Bnouveaujeu.GetRectangle()) || souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) || souris.GetRectangle().Intersects(Bretour.GetRectangle()))
+                    gestionclavier = -1;
+
+
                 clique_souris = souris.LeftClick();
+                clique_clavier = clavier.KeyPressed(Keys.Enter);
+                clique_bas = clavier.KeyPressed(Keys.Down);
+                clique_haut = clavier.KeyPressed(Keys.Up);
+                clique_back = clavier.KeyPressed(Keys.Escape);
             }
 
             if (status == "Commandes")
@@ -819,7 +1052,7 @@ namespace Fuckin__Height_Redemption
                 Bretour.SetPosition(positionBoutton4);
 
 
-                if (souris.GetRectangle().Intersects(Bmanette.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bmanette.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clique_clavier))
                 {
                     jeu_manette = !jeu_manette;
                 }
@@ -827,13 +1060,37 @@ namespace Fuckin__Height_Redemption
                 {
                     jeu_manette = !jeu_manette;
                 }
-                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris)
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && clique_souris || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clique_clavier) || (clique_back && !clavier.KeyPressed(Keys.Escape)))
                 {
+                    gestionclavier = -1;
                     status = "Options";
                 }
 
 
+                if (!clavier.KeyPressed(Keys.Down) && clique_bas)
+                {
+                    if (gestionclavier < 1)
+                        gestionclavier += 1;
+                    else
+                        gestionclavier = 0;
+                }
+                if (!clavier.KeyPressed(Keys.Up) && clique_haut)
+                {
+                    if (gestionclavier > 0)
+                        gestionclavier -= 1;
+                    else
+                        gestionclavier = 1;
+                }
+
+                if (souris.GetRectangle().Intersects(Bnouveaujeu.GetRectangle()) || souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) || souris.GetRectangle().Intersects(Bretour.GetRectangle()))
+                    gestionclavier = -1;
+
+
                 clique_souris = souris.LeftClick();
+                clique_clavier = clavier.KeyPressed(Keys.Enter);
+                clique_bas = clavier.KeyPressed(Keys.Down);
+                clique_haut = clavier.KeyPressed(Keys.Up);
+                clique_back = clavier.KeyPressed(Keys.Escape);
             }
 
 
@@ -966,6 +1223,11 @@ namespace Fuckin__Height_Redemption
 
                 foreach (Zombie z in zombiesprets)
                     z.DrawZombie(spriteBatch, false/*idem*/);
+
+                spriteBatch.Draw(HUD_arme, new Vector2(Window.ClientBounds.Width - 50, Window.ClientBounds.Height - 50), Color.White);
+                spriteBatch.Draw(HUD_vie, new Vector2(Window.ClientBounds.Width - 50, Window.ClientBounds.Height - 100), Color.White);
+                spriteBatch.Draw(barreson, new Rectangle(Window.ClientBounds.Width - 60 - HUD_vie.Width * 4, Window.ClientBounds.Height - 90, HUD_vie.Width * 4, HUD_vie.Height / 2), Color.White);
+                spriteBatch.Draw(contourson, new Rectangle(Window.ClientBounds.Width - 60 - HUD_vie.Width * 4, Window.ClientBounds.Height - 90, HUD_vie.Width * 4, HUD_vie.Height / 2), Color.Black);
             }
 
 
@@ -989,59 +1251,59 @@ namespace Fuckin__Height_Redemption
             if (status == "Choix_Niveau")
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Bfacile.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bfacile.GetRectangle()));
-                BIntermediaire.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(BIntermediaire.GetRectangle()));
-                Bdifficle.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bdifficle.GetRectangle()));
-                Bimpossible.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bimpossible.GetRectangle()));
-                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle())); 
+                Bfacile.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bfacile.GetRectangle()) || gestionclavier == 0);
+                BIntermediaire.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(BIntermediaire.GetRectangle()) || gestionclavier == 1);
+                Bdifficle.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bdifficle.GetRectangle()) || gestionclavier == 2);
+                Bimpossible.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bimpossible.GetRectangle()) || gestionclavier == 3);
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()) || gestionclavier == 4);
             }
 
 
             if (status == "Principal")
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Bjouer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bjouer.GetRectangle()));
-                Bmulti.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmulti.GetRectangle()));
-                Boptions.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Boptions.GetRectangle()));
-                Bquitter.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bquitter.GetRectangle()));
+                Bjouer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bjouer.GetRectangle()) || gestionclavier == 0);
+                Bmulti.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmulti.GetRectangle()) || gestionclavier == 1);
+                Boptions.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Boptions.GetRectangle()) || gestionclavier == 2);
+                Bquitter.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bquitter.GetRectangle()) || gestionclavier == 3);
             }
             if (status == "Jouer")
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Bnouveaujeu.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bnouveaujeu.GetRectangle()));
-                Bcontinuer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()));
-                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                Bnouveaujeu.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bnouveaujeu.GetRectangle()) || gestionclavier == 0);
+                Bcontinuer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) || gestionclavier == 1);
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()) || gestionclavier == 2);
             }
             if (status == "Multi")
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Bcreer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcreer.GetRectangle()));
-                Brejoindre.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Brejoindre.GetRectangle()));
-                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                Bcreer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcreer.GetRectangle()) || gestionclavier == 0);
+                Brejoindre.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Brejoindre.GetRectangle()) || gestionclavier == 1);
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()) || gestionclavier == 2);
             }
             if (status == "Options")
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Bvideo.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bvideo.GetRectangle()));
-                Baudio.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Baudio.GetRectangle()));
-                Bcommandes.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcommandes.GetRectangle()));
-                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                Bvideo.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bvideo.GetRectangle()) || gestionclavier == 0);
+                Baudio.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Baudio.GetRectangle()) || gestionclavier == 1);
+                Bcommandes.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcommandes.GetRectangle()) || gestionclavier == 2);
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()) || gestionclavier == 3);
             }
             if (status == "Video")
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Blangue.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangue.GetRectangle()));
+                Blangue.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangue.GetRectangle()) || gestionclavier == 0);
                 if (!fullscreen)
-                    Bfenetre.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bfenetre.GetRectangle()));
+                    Bfenetre.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bfenetre.GetRectangle()) || gestionclavier == 1);
                 else
-                    Bfullscreen.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bfullscreen.GetRectangle()));
-                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                    Bfullscreen.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bfullscreen.GetRectangle()) || gestionclavier == 1);
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()) || gestionclavier == 2);
             }
 
             if (status == "Audio")
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Bmusique.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmusique.GetRectangle()));
+                Bmusique.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmusique.GetRectangle()) || gestionclavier == 0);
                 if (musique)
                     entiermusique = 1;
                 else
@@ -1095,13 +1357,13 @@ namespace Fuckin__Height_Redemption
             if (status == "Commandes")
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Bmanette.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmanette.GetRectangle()));
+                Bmanette.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmanette.GetRectangle()) || gestionclavier == 0);
                 if (jeu_manette)
                     entiermanette = 1;
                 else
                     entiermanette = 2;
                 Bbox.DrawButton(spriteBatch, entiermanette, false);
-                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()) || gestionclavier == 1);
             }
 
 

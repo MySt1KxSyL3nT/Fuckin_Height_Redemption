@@ -27,14 +27,7 @@ Content\options.xnb
 Content\pause.xnb
 Content\pausemenu.xnb
 Content\play.xnb
-Content\Player 0.xnb
-Content\Player 135.xnb
-Content\Player 180.xnb
-Content\Player 225.xnb
-Content\Player 270.xnb
-Content\Player 315.xnb
-Content\Player 45.xnb
-Content\Player 90.xnb
+Content\Player 2d.xnb
 Content\pleinecran.xnb
 Content\quitter.xnb
 Content\recommencer.xnb
@@ -46,14 +39,7 @@ Content\unchecked.xnb
 Content\video.xnb
 Content\vidéo.xnb
 Content\windowed.xnb
-Content\Zombie 0.xnb
-Content\Zombie 135.xnb
-Content\Zombie 180.xnb
-Content\Zombie 225.xnb
-Content\Zombie 270.xnb
-Content\Zombie 315.xnb
-Content\Zombie 45.xnb
-Content\Zombie 90.xnb
+Content\Zombie 2d.xnb
 Content\anglais.xnb
 Content\french.xnb
 Content\anglaisit.xnb
@@ -88,9 +74,6 @@ Content\plus.xnb
 Content\effettisonori.xnb
 Content\barreson.xnb
 Content\contourson.xnb
-Content\sonprincipal.xnb
-Content\Player 2d.xnb
-Content\Zombie 2d.xnb
 Content\difficile.xnb
 Content\difficult.xnb
 Content\easy.xnb
@@ -99,6 +82,23 @@ Content\impossibile.xnb
 Content\impossible.xnb
 Content\intermediate.xnb
 Content\intermedio.xnb
+Content\intermediaire.xnb
+Content\Player 0.xnb
+Content\Player 135.xnb
+Content\Player 180.xnb
+Content\Player 225.xnb
+Content\Player 270.xnb
+Content\Player 315.xnb
+Content\Player 45.xnb
+Content\Player 90.xnb
+Content\Zombie 0.xnb
+Content\Zombie 135.xnb
+Content\Zombie 180.xnb
+Content\Zombie 225.xnb
+Content\Zombie 270.xnb
+Content\Zombie 315.xnb
+Content\Zombie 45.xnb
+Content\Zombie 90.xnb
 Content\cinematiqueit1.xnb
 Content\cinematiqueit2.xnb
 Content\cinematiqueit3.xnb
@@ -120,5 +120,7 @@ Content\cinematiqueen4.xnb
 Content\cinematiqueen5.xnb
 Content\cinematiqueen6.xnb
 Content\cinematiqueen7.xnb
-Content\intermediaire.xnb
+Content\arme.xnb
+Content\vie.xnb
+Content\sonprincipal.xnb
 Content\sonprincipal.wma
