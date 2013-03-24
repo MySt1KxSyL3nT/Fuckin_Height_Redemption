@@ -15,16 +15,16 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          Options du manifeste de contrôle de compte d'utilisateur
-          Si vous souhaitez modifier le niveau du contrôle de compte d'utilisateur Windows, remplacez le 
-          nœud requestedExecutionLevel par l'une des propositions suivantes :
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         Si vous souhaitez utiliser la virtualisation de fichiers et du Registre pour la 
-         compatibilité descendante, supprimez le nœud requestedExecutionLevel.
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
@@ -93,14 +93,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Fuckin' Height Redemption.exe" size="47104">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Fuckin' Height Redemption.exe" size="49664">
       <assemblyIdentity name="Fuckin' Height Redemption" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>qz6P3EmHYFhrSITuwDkB2ZPbScI=</dsig:DigestValue>
+        <dsig:DigestValue>MiY96yjHtGa0Y/skVd+fjL+U5AM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1091,7 +1091,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>o2EIjJjIAODkMsEP+wrp8U4HhVA=</dsig:DigestValue>
+      <dsig:DigestValue>yz+eRIXVJamuKnveFB22v2k3Xxo=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\sonprincipal.xnb" size="130">

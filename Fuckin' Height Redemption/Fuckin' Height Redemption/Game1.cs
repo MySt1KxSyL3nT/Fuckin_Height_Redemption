@@ -419,6 +419,9 @@ namespace Fuckin__Height_Redemption
                     if (manette.IsPressed(Buttons.Start) && !clique_manette)
                         status = "Pause";
                     clique_manette = manette.IsPressed(Buttons.Start);
+                    if (manette.IsPressed(Buttons.RightTrigger))
+                        joueur.Fire(zombie, Window.ClientBounds.Height, Window.ClientBounds.Width);
+                    
                 }
                 else
                 {
@@ -427,15 +430,27 @@ namespace Fuckin__Height_Redemption
                     if (clavier.KeyPressed(Keys.Escape) && !clique_clavier)
                         status = "Pause";
                     clique_clavier = clavier.KeyPressed(Keys.Escape);
+                    
+                    if (souris.LeftClick())
+                        joueur.Fire(zombie, Window.ClientBounds.Height, Window.ClientBounds.Width);
+
+                    // update le bool pour le tir semi auto 
+                    joueur.SetLastShoot(souris.LeftClick());
                 }
 
                 joueur.SetVisee(); // Creer un vecteur de visee avec l'angle
 
+
+
+
+
+
+
                 foreach (Zombie z in zombie)
                 {
-                    if (z != null)
+                    if (z != null && !z.GetDead())
                     {
-                        z.Move(joueur, Window.ClientBounds.Height, Window.ClientBounds.Width);
+                        z.Move(joueur, zombie, gameTime.ElapsedGameTime.Milliseconds, Window.ClientBounds.Height, Window.ClientBounds.Width);
                         z.SetAngleVisee(joueur.GetRectangleCenter());
                         z.SetVisee();
                     }
@@ -448,6 +463,7 @@ namespace Fuckin__Height_Redemption
                     zombie[nombre_zombie] = Zombie.SpawnZombie(Window.ClientBounds.Width, Window.ClientBounds.Height, Content, difficulté.GetMaxSpeed());
                     nombre_zombie += 1;
                 }
+               
 
             }
 
@@ -1202,7 +1218,7 @@ namespace Fuckin__Height_Redemption
 
                 foreach (Zombie z in zombie)
                 {
-                    if (z != null)
+                    if (z != null && !z.GetDead())
                     {
                         if (z.GetPosition().Y <= joueur.GetPosition().Y)
                             zombiesloins.Add(z);
@@ -1226,7 +1242,7 @@ namespace Fuckin__Height_Redemption
 
                 spriteBatch.Draw(HUD_arme, new Vector2(Window.ClientBounds.Width - 50, Window.ClientBounds.Height - 50), Color.White);
                 spriteBatch.Draw(HUD_vie, new Vector2(Window.ClientBounds.Width - 50, Window.ClientBounds.Height - 100), Color.White);
-                spriteBatch.Draw(barreson, new Rectangle(Window.ClientBounds.Width - 60 - HUD_vie.Width * 4, Window.ClientBounds.Height - 90, HUD_vie.Width * 4, HUD_vie.Height / 2), Color.White);
+                spriteBatch.Draw(barreson, new Rectangle(Window.ClientBounds.Width - 60 - HUD_vie.Width * 4, Window.ClientBounds.Height - 90, (int)(((float)joueur.GetHealth() / 100) * (HUD_vie.Width * 4)), HUD_vie.Height / 2), Color.White);
                 spriteBatch.Draw(contourson, new Rectangle(Window.ClientBounds.Width - 60 - HUD_vie.Width * 4, Window.ClientBounds.Height - 90, HUD_vie.Width * 4, HUD_vie.Height / 2), Color.Black);
             }
 

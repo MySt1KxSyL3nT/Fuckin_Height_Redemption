@@ -4,3 +4,5 @@ D:\Bureau\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Rede
 D:\Bureau\Soutenance 2\Soutenance 2\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height RedemptionContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\HP\Desktop\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height RedemptionContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\HP\Desktop\old\Fuckin' Height Redemption\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height RedemptionContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height RedemptionContent\obj\x86\Debug\ResolveAssemblyReference.cache
+H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height RedemptionContent\obj\x86\Debug\ResolveAssemblyReference.cache

@@ -28,12 +28,19 @@ namespace Fuckin__Height_Redemption
             this.texture270 = texture270;
             this.texture315 = texture315;
             this.position = position;
-            this.speed = speed; 
+            this.speed = speed;
+            this.health = 100;
+            this.dead = false;
             SetRectangle();
         }
 
+        int attack_cooldown;
+
         private float speed;
         private float anglevisee;
+
+        private int health;
+        private bool dead;
 
         private Vector2 position;
         private Vector2 direction;
@@ -80,38 +87,73 @@ namespace Fuckin__Height_Redemption
 
 
 
-        public void Move(Joueur joueur, int height, int width)
+        public void Move(Joueur joueur, Zombie[] zombies, int elapsed_time, int height, int width)
         {
-            direction = (/*joueur.GetPosition()*/new Vector2(joueur.GetTarget().X, joueur.GetTarget().Y) - position) / (/*joueur.GetPosition()*/(new Vector2(joueur.GetTarget().X, joueur.GetTarget().Y) -position).Length());
+            direction = (new Vector2(joueur.GetTarget().X, joueur.GetTarget().Y) - position) / ((new Vector2(joueur.GetTarget().X, joueur.GetTarget().Y) - position).Length());
+
+             //colission avec zombies
+            foreach (Zombie z in zombies)
+            {
+                if (z != null && !z.GetDead())
+                {
+                    if (rectangle.Intersects(z.GetRectangle()))
+                    {
+                        //a gauche
+                        if (rectangle.X >= (z.GetRectangle().X - rectangle.Width) && rectangle.X <= (z.GetRectangle().X - rectangle.Width + 5) && direction.X > 0)
+                        {
+                            direction.X = 0;
+                        }
+                        //a droite
+                        if (rectangle.X <= z.GetRectangle().X + z.GetRectangle().Width && rectangle.X >= z.GetRectangle().X + z.GetRectangle().Width - 5 && direction.X < 0)
+                        {
+                            direction.X = 0;
+                        }
+                        //en haut
+                        if (rectangle.Y >= (z.GetRectangle().Y - rectangle.Height) && rectangle.Y <= (z.GetRectangle().Y - rectangle.Height + 5) && direction.Y > 0)
+                        {
+                            direction.Y = 0;
+                        }
+                        //en bas
+                        if (rectangle.Y <= z.GetRectangle().Y + z.GetRectangle().Height && rectangle.Y >= z.GetRectangle().Y + z.GetRectangle().Height - 5 && direction.Y < 0)
+                        {
+                            direction.Y = 0;
+                        }
+                    }
+                }
+            }
 
             if (!rectangle.Intersects(joueur.GetTarget()))
             {
                 SetPosition(position + (direction * speed));
             }
-
-            /*if (position.Y + texture0.Height >= height)
-                position.Y = height - texture0.Height;
             else
-                if (position.Y <= 0)
-                    position.Y = 0;
+            {
+                if (attack_cooldown == 0 || attack_cooldown >= 1000)
+                {
+                    Attack(joueur);
+                    attack_cooldown = 0;
+                }
+            }
+            attack_cooldown += elapsed_time;
 
-            if (position.X + texture0.Width >= width)
-                position.X = width - texture0.Width;
-            else
-                if (position.X <= 0)
-                    position.X = 0;*/
+
             SetRectangle();
+        }
+
+
+
+        public void Attack(Joueur joueur)
+        {
+            joueur.Hurt(10);
+            attack_cooldown = 0;
+            Console.WriteLine("attack");
         }
 
 
 
         public void DrawZombie(SpriteBatch spriteBatch, bool iso2D)
         {
-            if (iso2D)
-            {
-                spriteBatch.Draw(GetTexture2d(), new Rectangle(GetRectangle().X + GetRectangle().Width / 2, GetRectangle().Y + GetRectangle().Height / 2, GetRectangle().Width, GetRectangle().Height), null, Color.White, GetAngleVisee(), new Vector2(GetTexture().Width / 2, GetTexture().Height / 2), SpriteEffects.None, 0f);
-            }
-            else
+            if (!dead)
             {
                 if (GetAngleViseeDeg() >= -23 && GetAngleViseeDeg() <= 24)
                     spriteBatch.Draw(texture0, rectangle, Color.White);
@@ -138,6 +180,7 @@ namespace Fuckin__Height_Redemption
                     spriteBatch.Draw(texture315, rectangle, Color.White);
             }
         }
+
 
 
 
@@ -180,9 +223,22 @@ namespace Fuckin__Height_Redemption
 
 
 
+        public bool GetDead()
+        {
+            return dead;
+        }
 
+        public void Hurt(int dmg)
+        {
+            this.health -= dmg;
+            if (health <= 0)
+                dead = true;
+        }
 
-
+        public int GetHeath()
+        {
+            return this.health;
+        }
 
 
         public void SetVisee()
@@ -279,7 +335,7 @@ namespace Fuckin__Height_Redemption
         }
 
 
-        
+
 
     } // End Class
 }

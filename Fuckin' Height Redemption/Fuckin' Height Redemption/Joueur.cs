@@ -28,6 +28,13 @@ namespace Fuckin__Height_Redemption
             this.texture270 = texture270;
             this.texture315 = texture315;
             this.position = position;
+
+            this.health = 100;
+
+            this.weapons = new Weapon[5];
+            weapons[0] = Weapon.Pistol;
+            current_weapon = 0;
+
             SetSpeed(2);
             SetRectangle();
         }
@@ -35,12 +42,18 @@ namespace Fuckin__Height_Redemption
         private int speed;
         private float anglevisee;
 
+
+        private int health;
+
+
         private Vector2 position;
         private Vector2 direction;
         private Vector2 visee;
 
+
         private Rectangle rectangle;
         private Rectangle target;// Rectangle plus petit servant de contact aux zombies
+
 
         private Texture2D texture2d;
         private Texture2D texture0;
@@ -51,6 +64,13 @@ namespace Fuckin__Height_Redemption
         private Texture2D texture225;
         private Texture2D texture270;
         private Texture2D texture315;
+
+
+        private Weapon[] weapons;
+        private int current_weapon;
+        private int weapon_dmg;
+        private bool last_shoot;
+        private bool autoshoot;// utiliser pour le tir semi auto ! (pas de tir continu avec pistolet, shotgun... etc)
 
 
 
@@ -79,7 +99,7 @@ namespace Fuckin__Height_Redemption
             //colission avec zombies
             foreach (Zombie z in zombies)
             {
-                if (z != null)
+                if (z != null && !z.GetDead())
                 {
                     if (target.Intersects(z.GetRectangle()))
                     {
@@ -107,7 +127,7 @@ namespace Fuckin__Height_Redemption
                 }
             }
 
-            
+
 
 
             SetPosition(position + (direction * speed));
@@ -141,6 +161,37 @@ namespace Fuckin__Height_Redemption
                 SetSpeed(4);
             else
                 SetSpeed(2);
+
+             //colission avec zombies
+            foreach (Zombie z in zombies)
+            {
+                if (z != null && !z.GetDead())
+                {
+                    if (target.Intersects(z.GetRectangle()))
+                    {
+                        //a gauche
+                        if (target.X >= (z.GetRectangle().X - target.Width) && target.X <= (z.GetRectangle().X - target.Width + 5) && direction.X > 0)
+                        {
+                            direction.X = 0;
+                        }
+                        //a droite
+                        if (target.X <= z.GetRectangle().X + z.GetRectangle().Width && target.X >= z.GetRectangle().X + z.GetRectangle().Width - 5 && direction.X < 0)
+                        {
+                            direction.X = 0;
+                        }
+                        //en haut
+                        if (target.Y >= (z.GetRectangle().Y - target.Height) && target.Y <= (z.GetRectangle().Y - target.Height + 5) && direction.Y > 0)
+                        {
+                            direction.Y = 0;
+                        }
+                        //en bas
+                        if (target.Y <= z.GetRectangle().Y + z.GetRectangle().Height && target.Y >= z.GetRectangle().Y + z.GetRectangle().Height - 5 && direction.Y < 0)
+                        {
+                            direction.Y = 0;
+                        }
+                    }
+                }
+            }
 
             SetPosition(position + (direction * speed));
 
@@ -198,6 +249,59 @@ namespace Fuckin__Height_Redemption
 
 
 
+        public void Hurt(int dmg)
+        {
+            this.health -= dmg;
+        }
+        public void Heal(int hp)
+        {
+            this.health += hp;
+            if (health > 100)
+                health = 100;
+        }
+        public int GetHealth()
+        {
+            return health;
+        }
+
+
+        public void SetLastShoot(bool last)
+        {
+            last_shoot = last;
+        }
+
+        // fire clavier
+        public void Fire(Zombie[] zombies, int height, int width)
+        {
+            if (weapons[current_weapon] == Weapon.Pistol)
+            {
+                weapon_dmg = 10;
+                autoshoot = false;
+            }
+            if (!autoshoot && last_shoot)
+            {
+                //ne pas tirer
+            }
+            else
+            {
+                float x = rectangle.Center.X;
+                float y = rectangle.Center.Y;
+                bool touched = false;
+                while (!touched && x > 0 && x < width && y > 0 && y < height)
+                {
+                    x += visee.X;
+                    y += visee.Y;
+                    foreach (Zombie z in zombies)
+                    {
+                        if (z != null && !z.GetDead() && z.GetRectangle().Contains((int)x, (int)y))
+                        {
+                            touched = true;
+                            z.Hurt(weapon_dmg);
+                        }
+                    }
+                }
+            }
+        }
 
 
 
@@ -284,7 +388,7 @@ namespace Fuckin__Height_Redemption
 
         public void SetTarget()
         {
-            target = new Rectangle(rectangle.X + rectangle.Width/3 + 10, rectangle.Y + rectangle.Height/3 + 10, rectangle.Width/8, rectangle.Height/8);
+            target = new Rectangle(rectangle.X + rectangle.Width / 3 + 10, rectangle.Y + rectangle.Height / 3 + 10, rectangle.Width / 8, rectangle.Height / 8);
         }
 
         public Rectangle GetTarget()

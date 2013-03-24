@@ -11,7 +11,7 @@ namespace Fuckin__Height_Redemption
         {
             if (lv == 1)
             {
-                maxZombies = 1;
+                maxZombies = 2;
                 maxSpeed = 3;
                 millisecondToPop = 6000;
             }
