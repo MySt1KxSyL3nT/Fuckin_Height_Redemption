@@ -87,7 +87,7 @@ namespace Fuckin__Height_Redemption
 
 
 
-        public void Move(Joueur joueur, Zombie[] zombies, int elapsed_time, int height, int width)
+        public void Move(Joueur joueur, List<Zombie> zombies, int elapsed_time, int height, int width)
         {
             direction = (new Vector2(joueur.GetTarget().X, joueur.GetTarget().Y) - position) / ((new Vector2(joueur.GetTarget().X, joueur.GetTarget().Y) - position).Length());
 

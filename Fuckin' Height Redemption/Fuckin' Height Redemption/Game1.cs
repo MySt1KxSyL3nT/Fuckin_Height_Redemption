@@ -79,7 +79,7 @@ namespace Fuckin__Height_Redemption
 
 
         Joueur joueur;
-        Zombie[] zombie;
+        List<Zombie> zombie;
         List<Zombie> zombiesloins;
         List<Zombie> zombiesprets;
         //Zombie newzombie;
@@ -411,6 +411,12 @@ namespace Fuckin__Height_Redemption
 
 
 
+
+
+
+
+
+
             if (status == "Jeu")
             {
                 if (jeu_manette && manette.Connected())
@@ -419,8 +425,17 @@ namespace Fuckin__Height_Redemption
                     if (manette.IsPressed(Buttons.Start) && !clique_manette)
                         status = "Pause";
                     clique_manette = manette.IsPressed(Buttons.Start);
+
                     if (manette.IsPressed(Buttons.RightTrigger))
                         joueur.Fire(zombie, Window.ClientBounds.Height, Window.ClientBounds.Width);
+
+                    if (manette.IsPressed(Buttons.X))
+                        joueur.Reload();
+
+                    joueur.UpdateShootCooldown(gameTime.ElapsedGameTime.Milliseconds);
+
+                    // update le bool pour le tir semi auto 
+                    joueur.SetLastShoot(manette.IsPressed(Buttons.RightTrigger));
                     
                 }
                 else
@@ -434,6 +449,11 @@ namespace Fuckin__Height_Redemption
                     if (souris.LeftClick())
                         joueur.Fire(zombie, Window.ClientBounds.Height, Window.ClientBounds.Width);
 
+                    if (clavier.KeyPressed(Keys.E))
+                        joueur.Reload();
+
+                    joueur.UpdateShootCooldown(gameTime.ElapsedGameTime.Milliseconds);
+
                     // update le bool pour le tir semi auto 
                     joueur.SetLastShoot(souris.LeftClick());
                 }
@@ -445,10 +465,9 @@ namespace Fuckin__Height_Redemption
 
 
 
-
                 foreach (Zombie z in zombie)
                 {
-                    if (z != null && !z.GetDead())
+                    if (!z.GetDead())
                     {
                         z.Move(joueur, zombie, gameTime.ElapsedGameTime.Milliseconds, Window.ClientBounds.Height, Window.ClientBounds.Width);
                         z.SetAngleVisee(joueur.GetRectangleCenter());
@@ -458,14 +477,20 @@ namespace Fuckin__Height_Redemption
 
                 elapsedtime += gameTime.ElapsedGameTime.Milliseconds;
 
-                if (elapsedtime / difficulté.GetMilliseconds() > nombre_zombie && nombre_zombie < zombie.Length)
+                if (elapsedtime / difficulté.GetMilliseconds() > nombre_zombie)
                 {
-                    zombie[nombre_zombie] = Zombie.SpawnZombie(Window.ClientBounds.Width, Window.ClientBounds.Height, Content, difficulté.GetMaxSpeed());
+                    zombie.Add(Zombie.SpawnZombie(Window.ClientBounds.Width, Window.ClientBounds.Height, Content, difficulté.GetMaxSpeed()));
                     nombre_zombie += 1;
                 }
                
-
             }
+
+
+
+
+
+
+
 
 
 
@@ -681,7 +706,7 @@ namespace Fuckin__Height_Redemption
             if (status == "Nouveau_Jeu")
             {
                 joueur = new Joueur(Vector2.One, Content.Load<Texture2D>("Player 2d"), Content.Load<Texture2D>("Player 0"), Content.Load<Texture2D>("Player 45"), Content.Load<Texture2D>("Player 90"), Content.Load<Texture2D>("Player 135"), Content.Load<Texture2D>("Player 180"), Content.Load<Texture2D>("Player 225"), Content.Load<Texture2D>("Player 270"), Content.Load<Texture2D>("Player 315"));
-                zombie = new Zombie[difficulté.GetMaxZombies()];
+                zombie = new List<Zombie>();
                 nombre_zombie = 0;
                 elapsedtime = 1;
                 status = "Jeu";
@@ -1210,6 +1235,7 @@ namespace Fuckin__Height_Redemption
             {
                 zombiesloins = new List<Zombie>();
                 zombiesprets = new List<Zombie>();
+                zombie.Sort();
 
                 //sans scrolling
                 //spriteBatch.Draw(background, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
@@ -1218,7 +1244,7 @@ namespace Fuckin__Height_Redemption
 
                 foreach (Zombie z in zombie)
                 {
-                    if (z != null && !z.GetDead())
+                    if (!z.GetDead())
                     {
                         if (z.GetPosition().Y <= joueur.GetPosition().Y)
                             zombiesloins.Add(z);
@@ -1226,9 +1252,6 @@ namespace Fuckin__Height_Redemption
                             zombiesprets.Add(z);
                     }
                 }
-
-                zombiesloins.Sort();
-                zombiesprets.Sort();
 
 
 

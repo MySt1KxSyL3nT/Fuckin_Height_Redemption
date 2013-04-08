@@ -31,8 +31,12 @@ namespace Fuckin__Height_Redemption
 
             this.health = 100;
 
-            this.weapons = new Weapon[5];
-            weapons[0] = Weapon.Pistol;
+            this.weapons = new Weapon[4];
+            weapons[0] = new Weapon("USP");
+            weapons[1] = new Weapon("ShotGun");
+            weapons[2] = new Weapon("Uzi");
+            weapons[3] = new Weapon("AK47");
+
             current_weapon = 0;
 
             SetSpeed(2);
@@ -65,16 +69,17 @@ namespace Fuckin__Height_Redemption
         private Texture2D texture270;
         private Texture2D texture315;
 
-
+        //armes
         private Weapon[] weapons;
         private int current_weapon;
-        private int weapon_dmg;
+
+
         private bool last_shoot;
-        private bool autoshoot;// utiliser pour le tir semi auto ! (pas de tir continu avec pistolet, shotgun... etc)
+        private int elapsed_time_since_last_shoot; // utiliser pour les tirs auto
 
 
 
-        public void MoveKeyboard(KeyboardEvent clavier, int height, int width, Zombie[] zombies)
+        public void MoveKeyboard(KeyboardEvent clavier, int height, int width, List<Zombie> zombies)
         {
             if (clavier.KeyPressed(Keys.Up))
                 direction.Y = -1;
@@ -151,7 +156,7 @@ namespace Fuckin__Height_Redemption
 
 
 
-        public void MoveGamePad(GamePadEvent manette, int height, int width, Zombie[] zombies)
+        public void MoveGamePad(GamePadEvent manette, int height, int width, List<Zombie> zombies)
         {
             direction.X = manette.GetLeftStick().X;
             direction.Y = -manette.GetLeftStick().Y;
@@ -162,10 +167,10 @@ namespace Fuckin__Height_Redemption
             else
                 SetSpeed(2);
 
-             //colission avec zombies
+            //colission avec zombies
             foreach (Zombie z in zombies)
             {
-                if (z != null && !z.GetDead())
+                if (!z.GetDead())
                 {
                     if (target.Intersects(z.GetRectangle()))
                     {
@@ -269,39 +274,93 @@ namespace Fuckin__Height_Redemption
         {
             last_shoot = last;
         }
+        public void UpdateShootCooldown(int elapsed)
+        {
+            elapsed_time_since_last_shoot += elapsed;
+        }
 
         // fire clavier
-        public void Fire(Zombie[] zombies, int height, int width)
+        public void Fire(List<Zombie> zombies, int height, int width)
         {
-            if (weapons[current_weapon] == Weapon.Pistol)
+            if (weapons[current_weapon].current_clip >= 0)
             {
-                weapon_dmg = 10;
-                autoshoot = false;
-            }
-            if (!autoshoot && last_shoot)
-            {
-                //ne pas tirer
+                if (!weapons[current_weapon].autoshoot && !last_shoot)
+                {
+                    Console.WriteLine("{0} / {1}", weapons[current_weapon].current_clip, weapons[current_weapon].clip_max);
+                    FireSemiAuto(zombies, height, width);
+                    elapsed_time_since_last_shoot = 0;
+                    
+                }
+                if(weapons[current_weapon].autoshoot && elapsed_time_since_last_shoot > weapons[current_weapon].cooldown)
+                {
+                    Console.WriteLine("{0} / {1}", weapons[current_weapon].current_clip, weapons[current_weapon].clip_max);
+                    FireAuto(zombies, height, width);
+                    elapsed_time_since_last_shoot = 0;
+                }
             }
             else
             {
-                float x = rectangle.Center.X;
-                float y = rectangle.Center.Y;
-                bool touched = false;
-                while (!touched && x > 0 && x < width && y > 0 && y < height)
+                Reload();
+                Console.WriteLine("reload");
+            }
+        }
+
+        /// <summary>
+        /// tir semi automatique
+        /// </summary>
+        /// <param name="zombies"></param>
+        /// <param name="height"></param>
+        /// <param name="width"></param>
+        public void FireSemiAuto(List<Zombie> zombies, int height, int width)
+        {
+            weapons[current_weapon].current_clip -= 1;
+            float x = rectangle.Center.X;
+            float y = rectangle.Center.Y;
+            bool touched = false;
+            while (!touched && x > 0 && x < width && y > 0 && y < height)
+            {
+                x += 5 * visee.X;
+                y += 5 * visee.Y;
+                foreach (Zombie z in zombies)
                 {
-                    x += visee.X;
-                    y += visee.Y;
-                    foreach (Zombie z in zombies)
+                    if (!z.GetDead() && z.GetRectangle().Contains((int)x, (int)y))
                     {
-                        if (z != null && !z.GetDead() && z.GetRectangle().Contains((int)x, (int)y))
-                        {
-                            touched = true;
-                            z.Hurt(weapon_dmg);
-                        }
+                        touched = true;
+                        z.Hurt(weapons[current_weapon].dmg);
                     }
                 }
             }
+
         }
+
+        /// <summary>
+        /// tir auto
+        /// </summary>
+        /// <param name="zombies"></param>
+        /// <param name="height"></param>
+        /// <param name="width"></param>
+        public void FireAuto(List<Zombie> zombies, int height, int width)
+        {
+            weapons[current_weapon].current_clip -= 1;
+        }
+
+        /// <summary>
+        /// recharge l'arme en cours
+        /// </summary>
+        public void Reload()
+        {
+            if (weapons[current_weapon].ammo <= weapons[current_weapon].clip_max - weapons[current_weapon].current_clip)
+            {
+                weapons[current_weapon].current_clip += weapons[current_weapon].ammo;
+                weapons[current_weapon].ammo = 0;
+            }
+            else
+            {
+                weapons[current_weapon].ammo -= weapons[current_weapon].clip_max - weapons[current_weapon].current_clip;
+                weapons[current_weapon].current_clip = weapons[current_weapon].clip_max;
+            }
+        }
+
 
 
 
