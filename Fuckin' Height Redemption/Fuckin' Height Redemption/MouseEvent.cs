@@ -42,6 +42,11 @@ namespace Fuckin__Height_Redemption
             return souris.LeftButton == ButtonState.Pressed;
         }
 
+        public int ScrollUp()
+        {
+            return souris.ScrollWheelValue;
+        }
+
         /// <summary>
         /// renvoie le rectangle sur le curseur
         /// </summary>

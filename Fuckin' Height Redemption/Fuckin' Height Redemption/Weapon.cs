@@ -14,8 +14,8 @@ namespace Fuckin__Height_Redemption
             {
                 clip_max = 8;
                 current_clip = 8;
-                ammo = 100000;
-                ammo_max = 1000000;
+                ammo = 10000;
+                ammo_max = 100000;
                 dmg = 20;
                 unlocked = true;
                 playing = true;
@@ -30,11 +30,11 @@ namespace Fuckin__Height_Redemption
                 ammo = 16;
                 ammo_max = 40;
                 dmg = 100;
-                unlocked = false;
+                unlocked = true;
                 playing = false;
                 autoshoot = false;
                 cooldown = 0;
-                reload_time = 1000 * current_clip;
+                reload_time = 500;
             }
             if (name == "Uzi")
             {
@@ -43,7 +43,7 @@ namespace Fuckin__Height_Redemption
                 ammo = 60;
                 ammo_max = 100;
                 dmg = 10;
-                unlocked = false;
+                unlocked = true;
                 playing = false;
                 autoshoot = true;
                 cooldown = 80;
@@ -56,10 +56,10 @@ namespace Fuckin__Height_Redemption
                 ammo = 120;
                 ammo_max = 240;
                 dmg = 10;
-                unlocked = false;
+                unlocked = true;
                 playing = false;
                 autoshoot = true;
-                cooldown = 125;
+                cooldown = 115;
                 reload_time = 2000;
             }
         }

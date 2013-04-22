@@ -37,6 +37,8 @@ namespace Fuckin__Height_Redemption
             weapons[2] = new Weapon("Uzi");
             weapons[3] = new Weapon("AK47");
 
+            reloading = false;
+
             current_weapon = 0;
 
             SetSpeed(2);
@@ -76,6 +78,8 @@ namespace Fuckin__Height_Redemption
 
         private bool last_shoot;
         private int elapsed_time_since_last_shoot; // utiliser pour les tirs auto
+        private int elapsed_time_since_reload; // temps de rechargement
+        private bool reloading;
 
 
 
@@ -278,20 +282,29 @@ namespace Fuckin__Height_Redemption
         {
             elapsed_time_since_last_shoot += elapsed;
         }
+        public void UpdateReloadCooldowm(int elapsed)
+        {
+            elapsed_time_since_reload += elapsed;
+            if (elapsed_time_since_reload >= weapons[current_weapon].reload_time && reloading)
+            {
+                Console.WriteLine("Reloaded !");
+                reloading = false;
+            }
+        }
 
         // fire clavier
         public void Fire(List<Zombie> zombies, int height, int width)
         {
-            if (weapons[current_weapon].current_clip >= 0)
+            if (weapons[current_weapon].current_clip >= 0 && !reloading)
             {
                 if (!weapons[current_weapon].autoshoot && !last_shoot)
                 {
-                    Console.WriteLine("{0} / {1}", weapons[current_weapon].current_clip, weapons[current_weapon].clip_max);
+                    Console.WriteLine("{0} / {1}", weapons[current_weapon].current_clip, weapons[current_weapon].ammo);
                     FireSemiAuto(zombies, height, width);
                     elapsed_time_since_last_shoot = 0;
-                    
+
                 }
-                if(weapons[current_weapon].autoshoot && elapsed_time_since_last_shoot > weapons[current_weapon].cooldown)
+                if (weapons[current_weapon].autoshoot && elapsed_time_since_last_shoot > weapons[current_weapon].cooldown)
                 {
                     Console.WriteLine("{0} / {1}", weapons[current_weapon].current_clip, weapons[current_weapon].clip_max);
                     FireAuto(zombies, height, width);
@@ -300,8 +313,13 @@ namespace Fuckin__Height_Redemption
             }
             else
             {
-                Reload();
-                Console.WriteLine("reload");
+                if (weapons[current_weapon].current_clip <= 0)
+                {
+                    Reload();
+                    Console.WriteLine("reload");
+                }
+                else
+                    Console.WriteLine("Reloading !");
             }
         }
 
@@ -330,7 +348,6 @@ namespace Fuckin__Height_Redemption
                     }
                 }
             }
-
         }
 
         /// <summary>
@@ -342,6 +359,22 @@ namespace Fuckin__Height_Redemption
         public void FireAuto(List<Zombie> zombies, int height, int width)
         {
             weapons[current_weapon].current_clip -= 1;
+            float x = rectangle.Center.X;
+            float y = rectangle.Center.Y;
+            bool touched = false;
+            while (!touched && x > 0 && x < width && y > 0 && y < height)
+            {
+                x += 5 * visee.X;
+                y += 5 * visee.Y;
+                foreach (Zombie z in zombies)
+                {
+                    if (!z.GetDead() && z.GetRectangle().Contains((int)x, (int)y))
+                    {
+                        touched = true;
+                        z.Hurt(weapons[current_weapon].dmg);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -349,16 +382,38 @@ namespace Fuckin__Height_Redemption
         /// </summary>
         public void Reload()
         {
+            if (weapons[current_weapon].name == "ShotGun")
+                weapons[current_weapon].reload_time = (weapons[current_weapon].clip_max - weapons[current_weapon].current_clip) * 500;
+
             if (weapons[current_weapon].ammo <= weapons[current_weapon].clip_max - weapons[current_weapon].current_clip)
             {
                 weapons[current_weapon].current_clip += weapons[current_weapon].ammo;
                 weapons[current_weapon].ammo = 0;
+                elapsed_time_since_reload = 0;
+                reloading = true;
             }
             else
             {
                 weapons[current_weapon].ammo -= weapons[current_weapon].clip_max - weapons[current_weapon].current_clip;
                 weapons[current_weapon].current_clip = weapons[current_weapon].clip_max;
+                elapsed_time_since_reload = 0;
+                reloading = true;
             }
+        }
+
+        public void Switch_Weapon(int n)
+        {
+            weapons[current_weapon].playing = false;
+            current_weapon += n;
+            if (current_weapon == 4)
+                current_weapon = 0;
+            if (current_weapon == -1)
+                current_weapon = 3;
+            if (!weapons[current_weapon].unlocked)
+                Switch_Weapon(n);
+            else
+                weapons[current_weapon].playing = true;
+            Console.WriteLine(weapons[current_weapon].name);
         }
 
 

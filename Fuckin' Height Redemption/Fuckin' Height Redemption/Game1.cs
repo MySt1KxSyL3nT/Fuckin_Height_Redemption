@@ -63,6 +63,7 @@ namespace Fuckin__Height_Redemption
         int elapsedtime;
         int lang; // 1 = francais, 2 = anglais, 3 = italien
         int entiermanette;
+        int last_molette; // pour comparer le chgt de valeur de la molette
 
 
         // musique
@@ -208,6 +209,7 @@ namespace Fuckin__Height_Redemption
             elapsedtime = 1;
             entiermanette = 1;
             lang = 1;
+            last_molette = 0;
 
 
             //musique
@@ -452,7 +454,14 @@ namespace Fuckin__Height_Redemption
                     if (clavier.KeyPressed(Keys.E))
                         joueur.Reload();
 
+                    if (souris.ScrollUp() != last_molette)
+                    {
+                        joueur.Switch_Weapon((souris.ScrollUp() - last_molette) / 120);
+                        last_molette = souris.ScrollUp();
+                    }
+
                     joueur.UpdateShootCooldown(gameTime.ElapsedGameTime.Milliseconds);
+                    joueur.UpdateReloadCooldowm(gameTime.ElapsedGameTime.Milliseconds);
 
                     // update le bool pour le tir semi auto 
                     joueur.SetLastShoot(souris.LeftClick());
