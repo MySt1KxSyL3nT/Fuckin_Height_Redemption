@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Design;
 
 namespace Fuckin__Height_Redemption
 {
-    class KeyboardEvent
+    public class KeyboardEvent
     {
         public KeyboardEvent()
         {

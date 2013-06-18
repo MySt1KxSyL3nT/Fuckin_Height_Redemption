@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Design;
 
 namespace Fuckin__Height_Redemption
 {
-    class MenuButton
+    public class MenuButton
     {
         public MenuButton(Vector2 position, Texture2D texturefr, Texture2D textureen, Texture2D textureit)
         {

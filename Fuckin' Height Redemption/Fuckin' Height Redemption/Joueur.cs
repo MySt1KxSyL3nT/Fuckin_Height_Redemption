@@ -14,44 +14,139 @@ using Microsoft.Xna.Framework.Design;
 
 namespace Fuckin__Height_Redemption
 {
-    class Joueur
+    public class Joueur
     {
-        public Joueur(Vector2 position, Texture2D texture2d, Texture2D texture0, Texture2D texture45, Texture2D texture90, Texture2D texture135, Texture2D texture180, Texture2D texture225, Texture2D texture270, Texture2D texture315)
+        public Joueur(Texture2D[,] texture_usp, Texture2D[,] texture_ak47, Texture2D[,] texture_mp5, Texture2D[,] texture_m3, ContentManager Content, int height, int width)
         {
-            this.texture2d = texture2d;
-            this.texture0 = texture0;
-            this.texture45 = texture45;
-            this.texture90 = texture90;
-            this.texture135 = texture135;
-            this.texture180 = texture180;
-            this.texture225 = texture225;
-            this.texture270 = texture270;
-            this.texture315 = texture315;
-            this.position = position;
+            this.height = height;
+            this.width = width;
+
+
+            this.texture_usp = texture_usp;
+            this.texture_ak47 = texture_ak47;
+            this.texture_mp5 = texture_mp5;
+            this.texture_m3 = texture_m3;
+
+            this.position = new Vector2(width / 2  - texture_ak47[1,1].Width / 6, height / 2 - texture_ak47[1,1].Height / 6 );
+            this.init_position = this.position;
 
             this.health = 100;
+            this.money = 0;
 
             this.weapons = new Weapon[4];
-            weapons[0] = new Weapon("USP");
-            weapons[1] = new Weapon("ShotGun");
-            weapons[2] = new Weapon("Uzi");
-            weapons[3] = new Weapon("AK47");
+            weapons[0] = new Weapon("USP", Content);
+            weapons[1] = new Weapon("AK47", Content);
+            weapons[2] = new Weapon("MP5", Content);
+            weapons[3] = new Weapon("ShotGun", Content);
 
             reloading = false;
 
             current_weapon = 0;
+            dist_marche = 0;
+            pas = 0;
 
             SetSpeed(2);
             SetRectangle();
         }
+
+
+
+        public void Update(int height, int width, GameTime gameTime)
+        {
+            if (Game1.jeu_manette && Game1.manette.Connected())
+            {
+                MoveGamePad(Game1.manette, height, width, Game1.zombie);
+                if (Game1.manette.GetRightStick() != Vector2.Zero)
+                    SetAngleVisee(Game1.manette);
+
+                if (!Game1.manette.IsPressed(Buttons.Start) && Game1.manette_old.IsPressed(Buttons.Start))
+                {
+                    Game1.status = "Pause";
+                    Game1.manette_old = new GamePadEvent(PlayerIndex.One);
+                }
+
+                if (!Game1.manette.IsPressed(Buttons.Back) && Game1.manette_old.IsPressed(Buttons.Back))
+                {
+                    Game1.status = "Magasin";
+                    Game1.manette_old = new GamePadEvent(PlayerIndex.One);
+                }
+
+                if (Game1.manette.IsPressed(Buttons.RightTrigger))
+                    Fire(Game1.zombie, height, width);
+
+                if (Game1.manette.IsPressed(Buttons.X))
+                    Reload();
+
+                if (Game1.manette_old.IsPressed(Buttons.Y) && !Game1.manette.IsPressed(Buttons.Y))
+                    Game1.joueur.Switch_Weapon(1);
+
+                UpdateShootCooldown(gameTime.ElapsedGameTime.Milliseconds);
+                UpdateReloadCooldowm(gameTime.ElapsedGameTime.Milliseconds);
+
+                // update le bool pour le tir semi auto 
+                SetLastShoot(Game1.manette.IsPressed(Buttons.RightTrigger));
+
+            }
+            else
+            {
+                MoveKeyboard(Game1.clavier, height, width, Game1.zombie);
+                SetAngleVisee(Game1.souris.GetPosition()); // defini l'angle de la visee (vers la souris)
+
+                if (!Game1.clavier.KeyPressed(Keys.Escape) && Game1.clavier_old.KeyPressed(Keys.Escape))
+                {
+                    Game1.status = "Pause";
+                    Game1.souris_old = new MouseEvent();
+                    Game1.clavier_old = new KeyboardEvent();
+                }
+
+
+                if (!Game1.clavier.KeyPressed(Keys.X) && Game1.clavier_old.KeyPressed(Keys.X))
+                {
+                    Game1.status = "Magasin";
+                    Game1.souris_old = new MouseEvent();
+                    Game1.clavier_old = new KeyboardEvent();
+                }
+
+
+                if (!Game1.clavier.KeyPressed(Keys.M) && Game1.clavier_old.KeyPressed(Keys.M))
+                    SetMoney(10000);
+
+
+                if (Game1.souris.LeftClick())
+                    Fire(Game1.zombie, height, width);
+
+                if (Game1.clavier.KeyPressed(Keys.E) && !Game1.joueur.IsReloading())
+                    Reload();
+
+                if (Game1.souris.ScrollUp() != Game1.last_molette)
+                {
+                    Switch_Weapon((Game1.souris.ScrollUp() - Game1.last_molette) / 120);
+                    Game1.last_molette = Game1.souris.ScrollUp();
+                }
+
+                UpdateShootCooldown(gameTime.ElapsedGameTime.Milliseconds);
+                UpdateReloadCooldowm(gameTime.ElapsedGameTime.Milliseconds);
+
+                // update le bool pour le tir semi auto 
+                SetLastShoot(Game1.souris.LeftClick());
+            }
+
+            SetVisee(); // Creer un vecteur de visee avec l'angle
+            SetMarche(); // pour les animations
+        }
+
+
+
+        private int height, width;
 
         private int speed;
         private float anglevisee;
 
 
         private int health;
+        private int money;
 
-
+        private Vector2 init_position;
         private Vector2 position;
         private Vector2 direction;
         private Vector2 visee;
@@ -61,15 +156,12 @@ namespace Fuckin__Height_Redemption
         private Rectangle target;// Rectangle plus petit servant de contact aux zombies
 
 
-        private Texture2D texture2d;
-        private Texture2D texture0;
-        private Texture2D texture45;
-        private Texture2D texture90;
-        private Texture2D texture135;
-        private Texture2D texture180;
-        private Texture2D texture225;
-        private Texture2D texture270;
-        private Texture2D texture315;
+        private Texture2D[,] texture_usp;
+        private Texture2D[,] texture_ak47;
+        private Texture2D[,] texture_mp5;
+        private Texture2D[,] texture_m3;
+
+
 
         //armes
         private Weapon[] weapons;
@@ -81,25 +173,28 @@ namespace Fuckin__Height_Redemption
         private int elapsed_time_since_reload; // temps de rechargement
         private bool reloading;
 
+        private int dist_marche;// pour l'animation
+        private int pas;// pour la texture a afficher
+
 
 
         public void MoveKeyboard(KeyboardEvent clavier, int height, int width, List<Zombie> zombies)
         {
-            if (clavier.KeyPressed(Keys.Up))
+            if (clavier.KeyPressed(Keys.Z))
                 direction.Y = -1;
-            if (clavier.KeyPressed(Keys.Down))
+            if (clavier.KeyPressed(Keys.S))
                 direction.Y = 1;
-            if (clavier.KeyPressed(Keys.Left))
+            if (clavier.KeyPressed(Keys.Q))
                 direction.X = -1;
-            if (clavier.KeyPressed(Keys.Right))
+            if (clavier.KeyPressed(Keys.D))
                 direction.X = 1;
-            if (clavier.KeyPressed(Keys.Down) == clavier.KeyPressed(Keys.Up))
+            if (clavier.KeyPressed(Keys.S) == clavier.KeyPressed(Keys.Z))
                 direction.Y = 0;
-            if (clavier.KeyPressed(Keys.Left) == clavier.KeyPressed(Keys.Right))
+            if (clavier.KeyPressed(Keys.Q) == clavier.KeyPressed(Keys.D))
                 direction.X = 0;
 
             // sprint
-            if (clavier.KeyPressed(Keys.RightShift))
+            if (clavier.KeyPressed(Keys.LeftShift))
                 SetSpeed(4);
             else
                 SetSpeed(2);
@@ -110,25 +205,25 @@ namespace Fuckin__Height_Redemption
             {
                 if (z != null && !z.GetDead())
                 {
-                    if (target.Intersects(z.GetRectangle()))
+                    if (target.Intersects(z.GetTarget()))
                     {
                         //a gauche
-                        if (target.X >= (z.GetRectangle().X - target.Width) && target.X <= (z.GetRectangle().X - target.Width + 5) && direction.X > 0)
+                        if (target.X >= (z.GetTarget().X - target.Width) && target.X <= (z.GetTarget().X - target.Width + 5) && direction.X > 0)
                         {
                             direction.X = 0;
                         }
                         //a droite
-                        if (target.X <= z.GetRectangle().X + z.GetRectangle().Width && target.X >= z.GetRectangle().X + z.GetRectangle().Width - 5 && direction.X < 0)
+                        if (target.X <= z.GetTarget().X + z.GetTarget().Width && target.X >= z.GetTarget().X + z.GetTarget().Width - 5 && direction.X < 0)
                         {
                             direction.X = 0;
                         }
                         //en haut
-                        if (target.Y >= (z.GetRectangle().Y - target.Height) && target.Y <= (z.GetRectangle().Y - target.Height + 5) && direction.Y > 0)
+                        if (target.Y >= (z.GetTarget().Y - target.Height) && target.Y <= (z.GetTarget().Y - target.Height + 5) && direction.Y > 0)
                         {
                             direction.Y = 0;
                         }
                         //en bas
-                        if (target.Y <= z.GetRectangle().Y + z.GetRectangle().Height && target.Y >= z.GetRectangle().Y + z.GetRectangle().Height - 5 && direction.Y < 0)
+                        if (target.Y <= z.GetTarget().Y + z.GetTarget().Height && target.Y >= z.GetTarget().Y + z.GetTarget().Height - 5 && direction.Y < 0)
                         {
                             direction.Y = 0;
                         }
@@ -138,10 +233,10 @@ namespace Fuckin__Height_Redemption
 
 
 
+            Game1.map.Update(this);
+            //SetPosition(position + (direction * speed) + Game1.map.GetDirection());
 
-            SetPosition(position + (direction * speed));
-
-            if (position.Y + rectangle.Height >= height)
+            /*if (position.Y + rectangle.Height >= height)
                 position.Y = height - rectangle.Height;
             else
                 if (position.Y <= 0)
@@ -151,7 +246,7 @@ namespace Fuckin__Height_Redemption
                 position.X = width - rectangle.Width;
             else
                 if (position.X <= 0)
-                    position.X = 0;
+                    position.X = 0;*/
 
 
             SetRectangle();
@@ -202,7 +297,7 @@ namespace Fuckin__Height_Redemption
                 }
             }
 
-            SetPosition(position + (direction * speed));
+            //SetPosition(position + (direction * speed));
 
             if (position.Y + rectangle.Height >= height)
                 position.Y = height - rectangle.Height;
@@ -221,39 +316,233 @@ namespace Fuckin__Height_Redemption
 
 
 
-        public void DrawJoueur(SpriteBatch spriteBatch, bool iso2D)
+        public void DrawJoueur(SpriteBatch spriteBatch)
         {
-            if (iso2D)
+            if (GetAngleViseeDeg() >= -23 && GetAngleViseeDeg() <= 24) // 0
             {
-                spriteBatch.Draw(GetTexture2d(), new Rectangle(GetRectangle().X + GetRectangle().Width / 2, GetRectangle().Y + GetRectangle().Height / 2, GetRectangle().Width, GetRectangle().Height), null, Color.White, GetAngleVisee(), new Vector2(GetTexture().Width / 2, GetTexture().Height / 2), SpriteEffects.None, 0f);
+                switch (current_weapon)
+                {
+                    case 0:
+                        {
+                            spriteBatch.Draw(texture_usp[0,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 1:
+                        {
+                            spriteBatch.Draw(texture_ak47[0,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 2:
+                        {
+                            spriteBatch.Draw(texture_mp5[0,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 3:
+                        {
+                            spriteBatch.Draw(texture_m3[0,pas], rectangle, Color.White);
+                            break;
+                        }
+                }
             }
-            else
-            {
-                if (GetAngleViseeDeg() >= -23 && GetAngleViseeDeg() <= 24)
-                    spriteBatch.Draw(texture0, rectangle, Color.White);
 
-                if (GetAngleViseeDeg() >= 24 && GetAngleViseeDeg() <= 68)
-                    spriteBatch.Draw(texture45, rectangle, Color.White);
+            if (GetAngleViseeDeg() >= 24 && GetAngleViseeDeg() <= 68)// 45
+                switch (current_weapon)
+                {
+                    case 0:
+                        {
+                            spriteBatch.Draw(texture_usp[1,pas], rectangle, Color.White);
+                            break;
+                        }
 
-                if (GetAngleViseeDeg() >= 68 && GetAngleViseeDeg() <= 114)
-                    spriteBatch.Draw(texture90, rectangle, Color.White);
+                    case 1:
+                        {
+                            spriteBatch.Draw(texture_ak47[1,pas], rectangle, Color.White);
+                            break;
+                        }
 
-                if (GetAngleViseeDeg() >= 114 && GetAngleViseeDeg() <= 158)
-                    spriteBatch.Draw(texture135, rectangle, Color.White);
+                    case 2:
+                        {
+                            spriteBatch.Draw(texture_mp5[1,pas], rectangle, Color.White);
+                            break;
+                        }
 
-                if ((GetAngleViseeDeg() >= 158 && GetAngleViseeDeg() <= 180) || (GetAngleViseeDeg() >= -180 && GetAngleViseeDeg() <= -158))
-                    spriteBatch.Draw(texture180, rectangle, Color.White);
+                    case 3:
+                        {
+                            spriteBatch.Draw(texture_m3[1,pas], rectangle, Color.White);
+                            break;
+                        }
+                }
 
-                if (GetAngleViseeDeg() >= -158 && GetAngleViseeDeg() <= -114)
-                    spriteBatch.Draw(texture225, rectangle, Color.White);
+            if (GetAngleViseeDeg() >= 68 && GetAngleViseeDeg() <= 114)// 90
+                switch (current_weapon)
+                {
+                    case 0:
+                        {
+                            spriteBatch.Draw(texture_usp[2,pas], rectangle, Color.White);
+                            break;
+                        }
 
-                if (GetAngleViseeDeg() >= -114 && GetAngleViseeDeg() <= -68)
-                    spriteBatch.Draw(texture270, rectangle, Color.White);
+                    case 1:
+                        {
+                            spriteBatch.Draw(texture_ak47[2,pas], rectangle, Color.White);
+                            break;
+                        }
 
-                if (GetAngleViseeDeg() >= -68 && GetAngleViseeDeg() <= -23)
-                    spriteBatch.Draw(texture315, rectangle, Color.White);
+                    case 2:
+                        {
+                            spriteBatch.Draw(texture_mp5[2,pas], rectangle, Color.White);
+                            break;
+                        }
 
-            }
+                    case 3:
+                        {
+                            spriteBatch.Draw(texture_m3[2,pas], rectangle, Color.White);
+                            break;
+                        }
+                }
+
+            if (GetAngleViseeDeg() >= 114 && GetAngleViseeDeg() <= 158)// 135
+                switch (current_weapon)
+                {
+                    case 0:
+                        {
+                            spriteBatch.Draw(texture_usp[3,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 1:
+                        {
+                            spriteBatch.Draw(texture_ak47[3,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 2:
+                        {
+                            spriteBatch.Draw(texture_mp5[3,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 3:
+                        {
+                            spriteBatch.Draw(texture_m3[3,pas], rectangle, Color.White);
+                            break;
+                        }
+                }
+
+            if ((GetAngleViseeDeg() >= 158 && GetAngleViseeDeg() <= 180) || (GetAngleViseeDeg() >= -180 && GetAngleViseeDeg() <= -158))// 180
+                switch (current_weapon)
+                {
+                    case 0:
+                        {
+                            spriteBatch.Draw(texture_usp[4,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 1:
+                        {
+                            spriteBatch.Draw(texture_ak47[4,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 2:
+                        {
+                            spriteBatch.Draw(texture_mp5[4,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 3:
+                        {
+                            spriteBatch.Draw(texture_m3[4,pas], rectangle, Color.White);
+                            break;
+                        }
+                }
+
+            if (GetAngleViseeDeg() >= -158 && GetAngleViseeDeg() <= -114)// 225
+                switch (current_weapon)
+                {
+                    case 0:
+                        {
+                            spriteBatch.Draw(texture_usp[5,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 1:
+                        {
+                            spriteBatch.Draw(texture_ak47[5,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 2:
+                        {
+                            spriteBatch.Draw(texture_mp5[5,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 3:
+                        {
+                            spriteBatch.Draw(texture_m3[5,pas], rectangle, Color.White);
+                            break;
+                        }
+                }
+
+            if (GetAngleViseeDeg() >= -114 && GetAngleViseeDeg() <= -68)// 270
+                switch (current_weapon)
+                {
+                    case 0:
+                        {
+                            spriteBatch.Draw(texture_usp[6,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 1:
+                        {
+                            spriteBatch.Draw(texture_ak47[6,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 2:
+                        {
+                            spriteBatch.Draw(texture_mp5[6,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 3:
+                        {
+                            spriteBatch.Draw(texture_m3[6,pas], rectangle, Color.White);
+                            break;
+                        }
+                }
+
+            if (GetAngleViseeDeg() >= -68 && GetAngleViseeDeg() <= -23)// 315
+                switch (current_weapon)
+                {
+                    case 0:
+                        {
+                            spriteBatch.Draw(texture_usp[7,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 1:
+                        {
+                            spriteBatch.Draw(texture_ak47[7,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 2:
+                        {
+                            spriteBatch.Draw(texture_mp5[7,pas], rectangle, Color.White);
+                            break;
+                        }
+
+                    case 3:
+                        {
+                            spriteBatch.Draw(texture_m3[7,pas], rectangle, Color.White);
+                            break;
+                        }
+                }
         }
 
 
@@ -295,25 +584,27 @@ namespace Fuckin__Height_Redemption
         // fire clavier
         public void Fire(List<Zombie> zombies, int height, int width)
         {
-            if (weapons[current_weapon].current_clip >= 0 && !reloading)
+            if (weapons[current_weapon].current_clip > 0 && !reloading)
             {
-                if (!weapons[current_weapon].autoshoot && !last_shoot)
+                if (!weapons[current_weapon].autoshoot && !last_shoot && elapsed_time_since_last_shoot > weapons[current_weapon].cooldown)
                 {
-                    Console.WriteLine("{0} / {1}", weapons[current_weapon].current_clip, weapons[current_weapon].ammo);
+                    //Console.WriteLine("{0} / {1}", weapons[current_weapon].current_clip, weapons[current_weapon].ammo);
                     FireSemiAuto(zombies, height, width);
                     elapsed_time_since_last_shoot = 0;
-
+                    weapons[current_weapon].tir.Play();
                 }
                 if (weapons[current_weapon].autoshoot && elapsed_time_since_last_shoot > weapons[current_weapon].cooldown)
                 {
-                    Console.WriteLine("{0} / {1}", weapons[current_weapon].current_clip, weapons[current_weapon].clip_max);
+                    //Console.WriteLine("{0} / {1}", weapons[current_weapon].current_clip, weapons[current_weapon].ammo);
                     FireAuto(zombies, height, width);
                     elapsed_time_since_last_shoot = 0;
+                    weapons[current_weapon].tir.Play();
                 }
+                
             }
             else
             {
-                if (weapons[current_weapon].current_clip <= 0)
+                if (weapons[current_weapon].current_clip <= 0 && weapons[current_weapon].ammo > 0)
                 {
                     Reload();
                     Console.WriteLine("reload");
@@ -345,6 +636,10 @@ namespace Fuckin__Height_Redemption
                     {
                         touched = true;
                         z.Hurt(weapons[current_weapon].dmg);
+                        if (z.GetHealth() <= 0)
+                        {
+                            money += Game1.difficulté.GetMoneyEarned();
+                        }
                     }
                 }
             }
@@ -368,10 +663,14 @@ namespace Fuckin__Height_Redemption
                 y += 5 * visee.Y;
                 foreach (Zombie z in zombies)
                 {
-                    if (!z.GetDead() && z.GetRectangle().Contains((int)x, (int)y))
+                    if (!z.GetDead() && z.GetRectangle().Contains((int)x, (int)y) && !touched)
                     {
                         touched = true;
                         z.Hurt(weapons[current_weapon].dmg);
+                        if (z.GetHealth() <= 0)
+                        {
+                            money += Game1.difficulté.GetMoneyEarned();
+                        }
                     }
                 }
             }
@@ -382,42 +681,202 @@ namespace Fuckin__Height_Redemption
         /// </summary>
         public void Reload()
         {
-            if (weapons[current_weapon].name == "ShotGun")
-                weapons[current_weapon].reload_time = (weapons[current_weapon].clip_max - weapons[current_weapon].current_clip) * 500;
+            if (weapons[current_weapon].current_clip < weapons[current_weapon].clip_max && weapons[current_weapon].ammo > 0)
+            {
+                if (weapons[current_weapon].name == "ShotGun")
+                {
+                    switch (weapons[current_weapon].current_clip)
+                    {
+                        case 0:
+                            {
+                                weapons[current_weapon].reload_time = (int)weapons[current_weapon].rechargement8.Duration.TotalMilliseconds;
+                                weapons[current_weapon].rechargement = weapons[current_weapon].rechargement8;
+                                break;
+                            }
+                        case 1:
+                            {
+                                weapons[current_weapon].reload_time = (int)weapons[current_weapon].rechargement7.Duration.TotalMilliseconds;
+                                weapons[current_weapon].rechargement = weapons[current_weapon].rechargement7;
+                                break;
+                            }
+                        case 2:
+                            {
+                                weapons[current_weapon].reload_time = (int)weapons[current_weapon].rechargement6.Duration.TotalMilliseconds;
+                                weapons[current_weapon].rechargement = weapons[current_weapon].rechargement6;
+                                break;
+                            }
+                        case 3:
+                            {
+                                weapons[current_weapon].reload_time = (int)weapons[current_weapon].rechargement5.Duration.TotalMilliseconds;
+                                weapons[current_weapon].rechargement = weapons[current_weapon].rechargement5;
+                                break;
+                            }
+                        case 4:
+                            {
+                                weapons[current_weapon].reload_time = (int)weapons[current_weapon].rechargement4.Duration.TotalMilliseconds;
+                                weapons[current_weapon].rechargement = weapons[current_weapon].rechargement4;
+                                break;
+                            }
+                        case 5:
+                            {
+                                weapons[current_weapon].reload_time = (int)weapons[current_weapon].rechargement3.Duration.TotalMilliseconds;
+                                weapons[current_weapon].rechargement = weapons[current_weapon].rechargement3;
+                                break;
+                            }
+                        case 6:
+                            {
+                                weapons[current_weapon].reload_time = (int)weapons[current_weapon].rechargement2.Duration.TotalMilliseconds;
+                                weapons[current_weapon].rechargement = weapons[current_weapon].rechargement2;
+                                break;
+                            }
+                        default:
+                            {
+                                weapons[current_weapon].reload_time = (int)weapons[current_weapon].rechargement1.Duration.TotalMilliseconds;
+                                weapons[current_weapon].rechargement = weapons[current_weapon].rechargement1;
+                                break;
+                            }
+                    }
+                }
 
-            if (weapons[current_weapon].ammo <= weapons[current_weapon].clip_max - weapons[current_weapon].current_clip)
-            {
-                weapons[current_weapon].current_clip += weapons[current_weapon].ammo;
-                weapons[current_weapon].ammo = 0;
-                elapsed_time_since_reload = 0;
-                reloading = true;
-            }
-            else
-            {
-                weapons[current_weapon].ammo -= weapons[current_weapon].clip_max - weapons[current_weapon].current_clip;
-                weapons[current_weapon].current_clip = weapons[current_weapon].clip_max;
-                elapsed_time_since_reload = 0;
-                reloading = true;
+                if (weapons[current_weapon].ammo <= weapons[current_weapon].clip_max - weapons[current_weapon].current_clip)
+                {
+                    weapons[current_weapon].current_clip += weapons[current_weapon].ammo;
+                    weapons[current_weapon].ammo = 0;
+                    elapsed_time_since_reload = 0;
+                    reloading = true;
+                }
+                else
+                {
+                    weapons[current_weapon].ammo -= weapons[current_weapon].clip_max - weapons[current_weapon].current_clip;
+                    weapons[current_weapon].current_clip = weapons[current_weapon].clip_max;
+                    elapsed_time_since_reload = 0;
+                    reloading = true;
+                }
+                weapons[current_weapon].rechargement.Play();
             }
         }
 
         public void Switch_Weapon(int n)
         {
-            weapons[current_weapon].playing = false;
-            current_weapon += n;
-            if (current_weapon == 4)
-                current_weapon = 0;
-            if (current_weapon == -1)
-                current_weapon = 3;
-            if (!weapons[current_weapon].unlocked)
-                Switch_Weapon(n);
-            else
-                weapons[current_weapon].playing = true;
-            Console.WriteLine(weapons[current_weapon].name);
+            if (!reloading)
+            {
+                current_weapon -= n;
+                if (current_weapon >= 4)
+                    current_weapon = 0;
+                if (current_weapon <= -1)
+                    current_weapon = 3;
+                if (!weapons[current_weapon].unlocked)
+                    Switch_Weapon(n);
+                Console.WriteLine(weapons[current_weapon].name);
+            }
         }
 
 
 
+
+
+
+
+
+
+        //////////// POUR MAGASIN ////////////
+
+        public void Debloque_Weapon(Weapon arme)
+        {
+            if (arme == weapons[3])//m3
+                this.money -= 5000;
+            if (arme == weapons[2])//mp5
+                this.money -= 10000;
+            if (arme == weapons[1])//ak47
+                this.money -= 50000;
+        }
+
+        public void ChangeHealth(string drogue)
+        {
+            if (drogue == "seringue")
+            {
+                this.health = 100;
+                this.money -= 1000;
+            }
+        }
+
+        public void Refill_ammo(int n)
+        {
+            if (n == 1)
+                this.money -= 2000;
+            if (n == 2)
+                this.money -= 1000;
+            if (n == 3)
+                this.money -= 500;
+
+            weapons[n].ammo = weapons[n].ammo_max;
+        }
+        /////////////////////////////////
+
+
+
+
+
+
+        public Weapon GetWeapons(string arme)
+        {
+            if (arme == "m3")
+                return weapons[3];
+            if (arme == "usp")
+                return weapons[0];
+            if (arme == "ak47")
+                return weapons[1];
+            if (arme == "mp5")
+                return weapons[2];
+            else
+                return weapons[0];
+        }
+
+        public Weapon[] GetWeapons()
+        {
+            return weapons;
+        }
+
+
+
+
+
+
+
+        public bool IsReloading()
+        {
+            return reloading;
+        }
+
+        public void SetMarche()
+        {
+            if (direction != Vector2.Zero)
+            {
+               dist_marche += 1;
+            }
+            if (dist_marche >= 10)
+            {
+                dist_marche = 0;
+                pas += 1;
+                pas = pas % 4;
+            }
+        }
+
+        public int GetMoney()
+        {
+            return money;
+        }
+
+        public void SetMoney(int n)
+        {
+            money += n;
+        }
+
+
+        public int GetCurrentWeapon()
+        {
+            return current_weapon;
+        }
 
         public void SetVisee()
         {
@@ -437,6 +896,12 @@ namespace Fuckin__Height_Redemption
             angle.Y = souris_position.Y - rectangle.Center.Y;
 
             double rad = Math.Atan2(angle.Y, angle.X);
+            anglevisee = (float)rad;
+        }
+
+        public void SetAngleVisee(GamePadEvent manette)
+        {
+            double rad = Math.Atan2(-manette.GetRightStick().Y, manette.GetRightStick().X);
             anglevisee = (float)rad;
         }
 
@@ -461,6 +926,10 @@ namespace Fuckin__Height_Redemption
             this.speed = speed;
         }
 
+        public Vector2 GetInitPosition()
+        {
+            return init_position;
+        }
 
         public Vector2 GetPosition()
         {
@@ -491,20 +960,19 @@ namespace Fuckin__Height_Redemption
 
         public void SetRectangle()
         {
-            this.rectangle = new Rectangle((int)position.X, (int)position.Y, (int)(texture0.Width / 3), (int)(texture0.Height / 3));
+            this.rectangle = new Rectangle((int)position.X, (int)position.Y, (int)(texture_usp[0, 0].Width / 3), (int)(texture_usp[0, 0].Height / 3));
         }
 
         public Vector2 GetRectangleCenter()
         {
-            return new Vector2(rectangle.Center.X, rectangle.Center.Y);
+            return new Vector2(rectangle.X + rectangle.Width/2 + 20, rectangle.Y + rectangle.Height/2);
         }
 
 
         public void SetTarget()
         {
-            target = new Rectangle(rectangle.X + rectangle.Width / 3 + 10, rectangle.Y + rectangle.Height / 3 + 10, rectangle.Width / 8, rectangle.Height / 8);
+            target = new Rectangle(rectangle.X + 37, rectangle.Y + rectangle.Height - 30, rectangle.Width / 3, rectangle.Height / 10);
         }
-
         public Rectangle GetTarget()
         {
             return target;
@@ -513,11 +981,7 @@ namespace Fuckin__Height_Redemption
 
         public Texture2D GetTexture()
         {
-            return texture0;
-        }
-        public Texture2D GetTexture2d()
-        {
-            return texture2d;
+            return texture_usp[0, 0];
         }
 
 

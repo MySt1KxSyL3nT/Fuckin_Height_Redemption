@@ -27,7 +27,6 @@ Content\options.xnb
 Content\pause.xnb
 Content\pausemenu.xnb
 Content\play.xnb
-Content\Player 2d.xnb
 Content\pleinecran.xnb
 Content\quitter.xnb
 Content\recommencer.xnb
@@ -39,11 +38,9 @@ Content\unchecked.xnb
 Content\video.xnb
 Content\vidéo.xnb
 Content\windowed.xnb
-Content\Zombie 2d.xnb
 Content\anglais.xnb
 Content\french.xnb
 Content\anglaisit.xnb
-Content\background.xnb
 Content\commandesit.xnb
 Content\continuerit.xnb
 Content\creerit.xnb
@@ -83,22 +80,6 @@ Content\impossible.xnb
 Content\intermediate.xnb
 Content\intermedio.xnb
 Content\intermediaire.xnb
-Content\Player 0.xnb
-Content\Player 135.xnb
-Content\Player 180.xnb
-Content\Player 225.xnb
-Content\Player 270.xnb
-Content\Player 315.xnb
-Content\Player 45.xnb
-Content\Player 90.xnb
-Content\Zombie 0.xnb
-Content\Zombie 135.xnb
-Content\Zombie 180.xnb
-Content\Zombie 225.xnb
-Content\Zombie 270.xnb
-Content\Zombie 315.xnb
-Content\Zombie 45.xnb
-Content\Zombie 90.xnb
 Content\cinematiqueit1.xnb
 Content\cinematiqueit2.xnb
 Content\cinematiqueit3.xnb
@@ -122,5 +103,157 @@ Content\cinematiqueen6.xnb
 Content\cinematiqueen7.xnb
 Content\arme.xnb
 Content\vie.xnb
+Content\Player_ak_0_1.xnb
+Content\Player_ak_0_2.xnb
+Content\Player_ak_135_1.xnb
+Content\Player_ak_135_2.xnb
+Content\Player_ak_180_1.xnb
+Content\Player_ak_180_2.xnb
+Content\Player_ak_225_1.xnb
+Content\Player_ak_225_2.xnb
+Content\Player_ak_270_1.xnb
+Content\Player_ak_270_2.xnb
+Content\Player_ak_315_1.xnb
+Content\Player_ak_315_2.xnb
+Content\Player_ak_45_1.xnb
+Content\Player_ak_45_2.xnb
+Content\Player_ak_90_1.xnb
+Content\Player_ak_90_2.xnb
+Content\Player_m3_0_1.xnb
+Content\Player_m3_0_2.xnb
+Content\Player_m3_135_1.xnb
+Content\Player_m3_135_2.xnb
+Content\Player_m3_180_1.xnb
+Content\Player_m3_180_2.xnb
+Content\Player_m3_225_1.xnb
+Content\Player_m3_225_2.xnb
+Content\Player_m3_270_1.xnb
+Content\Player_m3_270_2.xnb
+Content\Player_m3_315_1.xnb
+Content\Player_m3_315_2.xnb
+Content\Player_m3_45_1.xnb
+Content\Player_m3_45_2.xnb
+Content\Player_m3_90_1.xnb
+Content\Player_m3_90_2.xnb
+Content\Player_mp5_0_1.xnb
+Content\Player_mp5_0_2.xnb
+Content\Player_mp5_135_1.xnb
+Content\Player_mp5_135_2.xnb
+Content\Player_mp5_180_1.xnb
+Content\Player_mp5_180_2.xnb
+Content\Player_mp5_225_1.xnb
+Content\Player_mp5_225_2.xnb
+Content\Player_mp5_270_1.xnb
+Content\Player_mp5_270_2.xnb
+Content\Player_mp5_315_1.xnb
+Content\Player_mp5_315_2.xnb
+Content\Player_mp5_45_1.xnb
+Content\Player_mp5_45_2.xnb
+Content\Player_mp5_90_1.xnb
+Content\Player_mp5_90_2.xnb
+Content\Player_usp_0_2.xnb
+Content\Player_usp_0_1.xnb
+Content\Player_usp_135_1.xnb
+Content\Player_usp_135_2.xnb
+Content\Player_usp_180_1.xnb
+Content\Player_usp_180_2.xnb
+Content\Player_usp_225_1.xnb
+Content\Player_usp_225_2.xnb
+Content\Player_usp_270_1.xnb
+Content\Player_usp_270_2.xnb
+Content\Player_usp_315_1.xnb
+Content\Player_usp_315_2.xnb
+Content\Player_usp_45_1.xnb
+Content\Player_usp_45_2.xnb
+Content\Player_usp_90_1.xnb
+Content\Player_usp_90_2.xnb
+Content\hud_ak47.xnb
+Content\hud_m3.xnb
+Content\hud_mp5.xnb
+Content\hud_usp.xnb
+Content\viseur.xnb
+Content\Zombie_0_1.xnb
+Content\Zombie_0_2.xnb
+Content\Zombie_135_1.xnb
+Content\Zombie_135_2.xnb
+Content\Zombie_180_1.xnb
+Content\Zombie_180_2.xnb
+Content\Zombie_225_1.xnb
+Content\Zombie_225_2.xnb
+Content\Zombie_270_1.xnb
+Content\Zombie_270_2.xnb
+Content\Zombie_315_1.xnb
+Content\Zombie_315_2.xnb
+Content\Zombie_45_1.xnb
+Content\Zombie_45_2.xnb
+Content\Zombie_90_1.xnb
+Content\Zombie_90_2.xnb
+Content\victoireEN.xnb
+Content\victoireFR.xnb
+Content\victoireIT.xnb
+Content\mortEN.xnb
+Content\mortFR.xnb
+Content\mortIT.xnb
+Content\Player_ak_0_3.xnb
+Content\Player_ak_135_3.xnb
+Content\Player_ak_180_3.xnb
+Content\Player_ak_225_3.xnb
+Content\Player_ak_270_3.xnb
+Content\Player_ak_315_3.xnb
+Content\Player_ak_45_3.xnb
+Content\Player_ak_90_3.xnb
+Content\Player_mp5_0_3.xnb
+Content\Player_mp5_135_3.xnb
+Content\Player_mp5_180_3.xnb
+Content\Player_mp5_225_3.xnb
+Content\Player_mp5_270_3.xnb
+Content\Player_mp5_315_3.xnb
+Content\Player_mp5_45_3.xnb
+Content\Player_mp5_90_3.xnb
+Content\Player_m3_0_3.xnb
+Content\Player_m3_135_3.xnb
+Content\Player_m3_180_3.xnb
+Content\Player_m3_225_3.xnb
+Content\Player_m3_270_3.xnb
+Content\Player_m3_315_3.xnb
+Content\Player_m3_45_3.xnb
+Content\Player_m3_90_3.xnb
+Content\Player_usp_0_3.xnb
+Content\Player_usp_135_3.xnb
+Content\Player_usp_180_3.xnb
+Content\Player_usp_225_3.xnb
+Content\Player_usp_270_3.xnb
+Content\Player_usp_315_3.xnb
+Content\Player_usp_45_3.xnb
+Content\Player_usp_90_3.xnb
+Content\Zombie_0_3.xnb
+Content\Zombie_135_3.xnb
+Content\Zombie_180_3.xnb
+Content\Zombie_225_3.xnb
+Content\Zombie_270_3.xnb
+Content\Zombie_315_3.xnb
+Content\Zombie_45_3.xnb
+Content\Zombie_90_3.xnb
+Content\hud_seringue.xnb
+Content\magasin.xnb
+Content\negozio.xnb
+Content\shop.xnb
 Content\sonprincipal.xnb
 Content\sonprincipal.wma
+Content\SpriteFont1.xnb
+Content\recharge_ak47.xnb
+Content\recharge_m3_1.xnb
+Content\recharge_m3_2.xnb
+Content\recharge_m3_3.xnb
+Content\recharge_m3_4.xnb
+Content\recharge_m3_5.xnb
+Content\recharge_m3_6.xnb
+Content\recharge_m3_7.xnb
+Content\recharge_m3_8.xnb
+Content\recharge_usp.xnb
+Content\tir_ak47.xnb
+Content\tir_m3.xnb
+Content\tir_mp5.xnb
+Content\tir_usp.xnb
+Content\recharge_mp5.xnb
+Content\map1.xnb

@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Design;
 
 namespace Fuckin__Height_Redemption
 {
-    class GamePadEvent
+    public class GamePadEvent
     {
         public GamePadEvent(PlayerIndex index)
         {
