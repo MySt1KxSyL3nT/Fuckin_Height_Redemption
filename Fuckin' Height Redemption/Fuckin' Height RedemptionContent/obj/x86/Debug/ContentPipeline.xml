@@ -2324,6 +2324,114 @@
       <Output>H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\map1.xnb</Output>
       <Time>2013-04-08T12:10:03.6755382+02:00</Time>
     </Item>
+    <Item>
+      <Source>joueurIT.png</Source>
+      <Name>joueurIT</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\joueurIT.xnb</Output>
+      <Time>2013-06-18T15:45:52.1258013+02:00</Time>
+    </Item>
+    <Item>
+      <Source>nomIT.png</Source>
+      <Name>nomIT</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\nomIT.xnb</Output>
+      <Time>2013-06-18T15:45:52.1168008+02:00</Time>
+    </Item>
+    <Item>
+      <Source>resetIT.png</Source>
+      <Name>resetIT</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\resetIT.xnb</Output>
+      <Time>2013-06-18T15:45:52.119801+02:00</Time>
+    </Item>
+    <Item>
+      <Source>saveIT.png</Source>
+      <Name>saveIT</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\saveIT.xnb</Output>
+      <Time>2013-06-18T15:45:52.1218011+02:00</Time>
+    </Item>
+    <Item>
+      <Source>joueurEN.png</Source>
+      <Name>joueurEN</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\joueurEN.xnb</Output>
+      <Time>2013-06-18T15:47:22.6239775+02:00</Time>
+    </Item>
+    <Item>
+      <Source>nomEN.png</Source>
+      <Name>nomEN</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\nomEN.xnb</Output>
+      <Time>2013-06-18T15:47:22.613977+02:00</Time>
+    </Item>
+    <Item>
+      <Source>resetEN.png</Source>
+      <Name>resetEN</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\resetEN.xnb</Output>
+      <Time>2013-06-18T15:47:22.6179772+02:00</Time>
+    </Item>
+    <Item>
+      <Source>saveEN.png</Source>
+      <Name>saveEN</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\saveEN.xnb</Output>
+      <Time>2013-06-18T15:47:22.6209774+02:00</Time>
+    </Item>
+    <Item>
+      <Source>joueur.png</Source>
+      <Name>joueur</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\joueur.xnb</Output>
+      <Time>2013-06-18T15:48:07.7115564+02:00</Time>
+    </Item>
+    <Item>
+      <Source>nom.png</Source>
+      <Name>nom</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\nom.xnb</Output>
+      <Time>2013-06-18T15:48:07.7155566+02:00</Time>
+    </Item>
+    <Item>
+      <Source>reset.png</Source>
+      <Name>reset</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\reset.xnb</Output>
+      <Time>2013-06-18T15:48:07.7185568+02:00</Time>
+    </Item>
+    <Item>
+      <Source>save.png</Source>
+      <Name>save</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\save.xnb</Output>
+      <Time>2013-06-18T15:48:07.721557+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

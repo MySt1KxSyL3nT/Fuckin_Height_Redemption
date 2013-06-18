@@ -1083,3 +1083,15 @@ C:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Red
 C:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\Copy of tir_mp5.wma
 C:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\recharge_mp5.xnb
 H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\map1.xnb
+H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\joueurIT.xnb
+H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\nomIT.xnb
+H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\resetIT.xnb
+H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\saveIT.xnb
+H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\joueurEN.xnb
+H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\nomEN.xnb
+H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\resetEN.xnb
+H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\saveEN.xnb
+H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\joueur.xnb
+H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\nom.xnb
+H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\reset.xnb
+H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 3\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\save.xnb

@@ -11,13 +11,15 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Design;
+using System.IO;
 
 namespace Fuckin__Height_Redemption
 {
     public class Joueur
     {
-        public Joueur(Texture2D[,] texture_usp, Texture2D[,] texture_ak47, Texture2D[,] texture_mp5, Texture2D[,] texture_m3, ContentManager Content, int height, int width)
+        public Joueur(string[] data, Texture2D[,] texture_usp, Texture2D[,] texture_ak47, Texture2D[,] texture_mp5, Texture2D[,] texture_m3, ContentManager Content, int height, int width)
         {
+            this.name = data[0];
             this.height = height;
             this.width = width;
 
@@ -31,13 +33,13 @@ namespace Fuckin__Height_Redemption
             this.init_position = this.position;
 
             this.health = 100;
-            this.money = 0;
+            this.money = Int32.Parse(data[1]);
 
             this.weapons = new Weapon[4];
-            weapons[0] = new Weapon("USP", Content);
-            weapons[1] = new Weapon("AK47", Content);
-            weapons[2] = new Weapon("MP5", Content);
-            weapons[3] = new Weapon("ShotGun", Content);
+            weapons[0] = new Weapon("USP", 1, Int32.Parse(data[5]),  Content);
+            weapons[1] = new Weapon("AK47", Int32.Parse(data[4]), Int32.Parse(data[7]), Content);
+            weapons[2] = new Weapon("MP5", Int32.Parse(data[3]), Int32.Parse(data[6]), Content);
+            weapons[3] = new Weapon("ShotGun", Int32.Parse(data[2]), Int32.Parse(data[8]), Content);
 
             reloading = false;
 
@@ -136,7 +138,7 @@ namespace Fuckin__Height_Redemption
         }
 
 
-
+        public string name;
         private int height, width;
 
         private int speed;
@@ -546,6 +548,16 @@ namespace Fuckin__Height_Redemption
         }
 
 
+        public void Save(string path)
+        {
+            string[] temp = new string[9] { name, Convert.ToString(money), weapons[3].unlocked ? "1" : "0", weapons[2].unlocked ? "1" : "0", weapons[1].unlocked ? "1" : "0", Convert.ToString(weapons[0].GetLevel()), Convert.ToString(weapons[2].GetLevel()), Convert.ToString(weapons[1].GetLevel()), Convert.ToString(weapons[3].GetLevel()) };
+            StreamWriter file = new StreamWriter(path);
+            foreach (string s in temp)
+                file.WriteLine(s);
+            file.Close();
+        }
+
+
 
         public void Hurt(int dmg)
         {
@@ -580,6 +592,8 @@ namespace Fuckin__Height_Redemption
                 reloading = false;
             }
         }
+
+
 
         // fire clavier
         public void Fire(List<Zombie> zombies, int height, int width)
@@ -982,6 +996,12 @@ namespace Fuckin__Height_Redemption
         public Texture2D GetTexture()
         {
             return texture_usp[0, 0];
+        }
+
+
+        public void SetName(string s)
+        {
+            name = s;
         }
 
 

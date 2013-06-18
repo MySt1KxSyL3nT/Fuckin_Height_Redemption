@@ -40,6 +40,11 @@ namespace Fuckin__Height_Redemption
         {
             return clavier.IsKeyDown(key);
         }
+
+        public Keys[] GetAllKeys()
+        {
+            return clavier.GetPressedKeys();
+        }
         
     }
 }

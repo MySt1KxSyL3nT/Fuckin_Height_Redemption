@@ -16,9 +16,15 @@ namespace Fuckin__Height_Redemption
 {
     public class Weapon
     {
-        public Weapon(string name, ContentManager Content)
+        public Weapon(string name, int unlock, int lvl, ContentManager Content)
         {
             this.name = name;
+            this.level = lvl;
+            if (unlock == 1)
+                unlocked = true;
+            else
+                unlocked = false;
+
             if (name == "USP")
             {
                 clip_max = 8;
@@ -26,7 +32,6 @@ namespace Fuckin__Height_Redemption
                 ammo = 10000;
                 ammo_max = 100000;
                 dmg = 20;
-                unlocked = true;
                 autoshoot = false;
                 cooldown = 150;
                 tir = Content.Load<SoundEffect>("tir_usp");
@@ -40,7 +45,6 @@ namespace Fuckin__Height_Redemption
                 ammo = 16;
                 ammo_max = 40;
                 dmg = 100;
-                unlocked = true;
                 autoshoot = false;
                 tir = Content.Load<SoundEffect>("tir_m3");
                 rechargement1 = Content.Load<SoundEffect>("recharge_m3_1");
@@ -61,7 +65,6 @@ namespace Fuckin__Height_Redemption
                 ammo = 60;
                 ammo_max = 100;
                 dmg = 10;
-                unlocked = true;
                 autoshoot = true;
                 cooldown = 80;
                 tir = Content.Load<SoundEffect>("tir_mp5");
@@ -75,7 +78,6 @@ namespace Fuckin__Height_Redemption
                 ammo = 120;
                 ammo_max = 240;
                 dmg = 30;
-                unlocked = true;
                 autoshoot = true;
                 cooldown = 115;
                 tir = Content.Load<SoundEffect>("tir_ak47");
@@ -106,5 +108,16 @@ namespace Fuckin__Height_Redemption
         public bool autoshoot; // tir auto
         public int cooldown; // temps entre deux tir pour les auto (millisec)
         public int reload_time; // temps de rechargement (millisec)
+        private int level;
+
+        public int GetLevel()
+        {
+            return level;
+        }
+
+        public void SetLevel(int i)
+        {
+            level = i;
+        }
     }
 }

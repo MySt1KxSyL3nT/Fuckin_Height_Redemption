@@ -20,15 +20,11 @@ namespace Fuckin__Height_Redemption
     // A FAIRE !
     /*
      
-     * joueur/zombies
      * multi
-     * map(deplacement)
-     * tir du shotgun
      * menus a animer
      * animation mort zombie
      * améliorations des armes
-     * magasin
-     * argent
+     * TRADUIRE TEXTE PRITEFONT SUR SET_NOM ET RESET
 
     */
 
@@ -82,8 +78,10 @@ namespace Fuckin__Height_Redemption
         public static int diff;
         public static Difficulté difficulté;
 
-
+        public static string set_nom;
         public static Joueur joueur;
+        public static Joueur joueur1;
+        public static Joueur joueur2;
         public static List<Zombie> zombie;
         public static List<Zombie> zombiesloins;
         public static List<Zombie> zombiesprets;
@@ -184,6 +182,10 @@ namespace Fuckin__Height_Redemption
         public static MenuButton Bvideo;
         public static MenuButton Baudio;
         public static MenuButton Bcommandes;
+        public static MenuButton Bjoueur;
+        public static MenuButton Bnom;
+        public static MenuButton Breset;
+        public static MenuButton Bsave;
 
         public static MenuButton Bmusique;
         public static MenuButton Beffets;
@@ -263,7 +265,7 @@ namespace Fuckin__Height_Redemption
 
             elapsedtime = 1;
             entiermanette = 1;
-            lang = 1;
+            lang = 2;
             last_molette = 0;
 
 
@@ -378,6 +380,10 @@ namespace Fuckin__Height_Redemption
             Bvideo = new MenuButton(Vector2.One, Content.Load<Texture2D>("vidéo"), Content.Load<Texture2D>("video"), Content.Load<Texture2D>("video"));
             Baudio = new MenuButton(Vector2.One, Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio"));
             Bcommandes = new MenuButton(Vector2.One, Content.Load<Texture2D>("commandes"), Content.Load<Texture2D>("controls"), Content.Load<Texture2D>("commandesit"));
+            Bjoueur = new MenuButton(Vector2.One, Content.Load<Texture2D>("joueur"), Content.Load<Texture2D>("joueurEN"), Content.Load<Texture2D>("joueurIT"));
+            Breset = new MenuButton(Vector2.One, Content.Load<Texture2D>("reset"), Content.Load<Texture2D>("resetEN"), Content.Load<Texture2D>("resetIT"));
+            Bnom = new MenuButton(Vector2.One, Content.Load<Texture2D>("nom"), Content.Load<Texture2D>("nomEN"), Content.Load<Texture2D>("nomIT"));
+            Bsave = new MenuButton(Vector2.One, Content.Load<Texture2D>("save"), Content.Load<Texture2D>("saveEN"), Content.Load<Texture2D>("saveIT"));
 
             //Audio
             Bmusique = new MenuButton(Vector2.One, Content.Load<Texture2D>("musique"), Content.Load<Texture2D>("music"), Content.Load<Texture2D>("musica"));
@@ -441,6 +447,40 @@ namespace Fuckin__Height_Redemption
             #region fonts
             hud_font = Content.Load<SpriteFont>("SpriteFont1");
             #endregion
+
+            //////////////////////////////////////////////////// RECUP DE LA SAVE ///////////////////////////////////////////////////////////////
+            #region save
+            string[] data_saved;
+
+            // 0 = name, 1 = argent, 2 = m3 unlocked, 3 = mp5 unlocked, 4 = ak unlocked, 5 = usp level, 6 = mp5 level, 7 = ak level, 8 = m3 level
+
+            if (!File.Exists("solo.save"))
+            {
+                try
+                {
+                    StreamWriter file = new StreamWriter("solo.save");
+                    file.WriteLine("Joueur");
+                    file.WriteLine("0");
+                    file.WriteLine("0");
+                    file.WriteLine("0");
+                    file.WriteLine("0");
+                    file.WriteLine("0");
+                    file.WriteLine("0");
+                    file.WriteLine("0");
+                    file.WriteLine("0");
+                    file.Close();
+                }
+                catch
+                {
+                    Console.WriteLine("Erreur: pas de save creee");
+                }
+            }
+            data_saved = File.ReadAllLines("solo.save");
+
+            joueur = new Joueur(data_saved, usp, ak47, mp5, m3, Content, Window.ClientBounds.Height, Window.ClientBounds.Width);
+            #endregion
+
+
 
             base.Initialize();
         }// End initialize
@@ -526,7 +566,7 @@ namespace Fuckin__Height_Redemption
 
                 joueur.Update(Window.ClientBounds.Height, Window.ClientBounds.Width, gameTime);
                 //map.Update(joueur);                     
-                
+
                 List<Zombie> todelete = new List<Zombie>();
                 foreach (Zombie z in zombie)
                 {
@@ -577,6 +617,7 @@ namespace Fuckin__Height_Redemption
             #region fin mort
             if (status == "Fin_mort")
             {
+                joueur.Save("solo.save");
                 this.IsMouseVisible = true;
                 Bretour.SetPosition(new Vector2((Window.ClientBounds.Width - Bretour.GetTexturefr().Width) / 2, (Window.ClientBounds.Height - Bretour.GetTexturefr().Height) / 2 + 50));
                 if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)) || (clavier_old.KeyPressed(Keys.Escape) && !clavier.KeyPressed(Keys.Escape)))
@@ -592,6 +633,7 @@ namespace Fuckin__Height_Redemption
             #region fin victoire
             if (status == "Fin_victoire")
             {
+                joueur.Save("solo.save");
                 this.IsMouseVisible = true;
                 Bretour.SetPosition(new Vector2((Window.ClientBounds.Width - Bretour.GetTexturefr().Width) / 2, (Window.ClientBounds.Height - Bretour.GetTexturefr().Height) / 2 + 50));
                 if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)) || (clavier_old.KeyPressed(Keys.Escape) && !clavier.KeyPressed(Keys.Escape)))
@@ -892,7 +934,7 @@ namespace Fuckin__Height_Redemption
             {
                 this.IsMouseVisible = false;
                 MediaPlayer.Stop();
-                joueur = new Joueur(usp, ak47, mp5, m3, Content, Window.ClientBounds.Height, Window.ClientBounds.Width);
+                //joueur = new Joueur("Val", usp, ak47, mp5, m3, Content, Window.ClientBounds.Height, Window.ClientBounds.Width);
                 zombie = new List<Zombie>();
                 nombre_zombie = 0;
                 elapsedtime = 1;
@@ -989,7 +1031,7 @@ namespace Fuckin__Height_Redemption
 
                 Bvideo.SetPosition(positionBoutton1);
                 Baudio.SetPosition(positionBoutton2);
-                Bcommandes.SetPosition(positionBoutton3);
+                Bjoueur.SetPosition(positionBoutton3);
                 Bretour.SetPosition(positionBoutton4);
 
 
@@ -1007,10 +1049,10 @@ namespace Fuckin__Height_Redemption
                     souris_old = new MouseEvent();
                     clavier_old = new KeyboardEvent();
                 }
-                if (souris.GetRectangle().Intersects(Bcommandes.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                if (souris.GetRectangle().Intersects(Bjoueur.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
                 {
                     gestionclavier = -1;
-                    status = "Commandes";
+                    status = "Options_joueur";
                     souris_old = new MouseEvent();
                     clavier_old = new KeyboardEvent();
                 }
@@ -1043,6 +1085,328 @@ namespace Fuckin__Height_Redemption
 
 
             }
+            #endregion
+
+
+            // OPTIONS_JOUEUR
+            #region options_joueur
+            if (status == "Options_joueur")
+            {
+
+                Bnom.SetPosition(positionBoutton1);
+                Bcommandes.SetPosition(positionBoutton2);
+                Breset.SetPosition(positionBoutton3);
+                Bretour.SetPosition(positionBoutton4);
+
+
+                if (souris.GetRectangle().Intersects(Bnom.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                {
+                    gestionclavier = -1;
+                    status = "Preset_nom";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+                if (souris.GetRectangle().Intersects(Bcommandes.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                {
+                    gestionclavier = -1;
+                    status = "Commandes";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+                if (souris.GetRectangle().Intersects(Bjoueur.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                {
+                    gestionclavier = -1;
+                    status = "Reset";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 3 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)) || (clavier_old.KeyPressed(Keys.Escape) && !clavier.KeyPressed(Keys.Escape)))
+                {
+                    gestionclavier = -1;
+                    status = "Options";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+
+                if (!clavier.KeyPressed(Keys.Down) && clavier_old.KeyPressed(Keys.Down))
+                {
+                    if (gestionclavier < 3)
+                        gestionclavier += 1;
+                    else
+                        gestionclavier = 0;
+                }
+                if (!clavier.KeyPressed(Keys.Up) && clavier_old.KeyPressed(Keys.Up))
+                {
+                    if (gestionclavier > 0)
+                        gestionclavier -= 1;
+                    else
+                        gestionclavier = 3;
+                }
+
+                if (souris.GetRectangle().Intersects(Bvideo.GetRectangle()) || souris.GetRectangle().Intersects(Baudio.GetRectangle()) || souris.GetRectangle().Intersects(Bcommandes.GetRectangle()) || souris.GetRectangle().Intersects(Bretour.GetRectangle()))
+                    gestionclavier = -1;
+
+
+
+            }
+            #endregion
+
+
+            // SET_NOM
+            #region set_nom
+            if (status == "Preset_nom")
+            {
+                try
+                {
+                    set_nom = joueur.name;
+                }
+                catch
+                {
+                    set_nom = "Joueur";
+                }
+                status = "Set_nom";
+            }
+
+
+            if (status == "Set_nom")
+            {
+                Bretour.SetPosition(new Vector2(positionBoutton4.X - (int)(2.5f * Bretour.GetTexturefr().Width), positionBoutton4.Y));
+                Bsave.SetPosition(positionBoutton4);
+
+                if (souris.GetRectangle().Intersects(Bsave.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+
+                    string[] temp = File.ReadAllLines("solo.save");
+                    temp[0] = set_nom;
+                    StreamWriter file = new StreamWriter("solo.save");
+                    foreach (string s in temp)
+                        file.WriteLine(s);
+                    file.Close();
+
+                    joueur.SetName(set_nom);
+
+                    gestionclavier = -1;
+                    status = "Options_joueur";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (clavier_old.KeyPressed(Keys.Escape) && !clavier.KeyPressed(Keys.Escape)))
+                {
+                    gestionclavier = -1;
+                    status = "Options_joueur";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+
+                Keys[] keysToCheck = new Keys[] {
+                    Keys.A, Keys.B, Keys.C, Keys.D, Keys.E,
+                    Keys.F, Keys.G, Keys.H, Keys.I, Keys.J,
+                    Keys.K, Keys.L, Keys.M, Keys.N, Keys.O,
+                    Keys.P, Keys.Q, Keys.R, Keys.S, Keys.T,
+                    Keys.U, Keys.V, Keys.W, Keys.X, Keys.Y,
+                    Keys.Z, Keys.Back, Keys.Space };
+
+                foreach (Keys key in keysToCheck)
+                {
+                    if (clavier_old.KeyPressed(key) && !clavier.KeyPressed(key))
+                    {
+                        if (set_nom.Length < 16)
+                        {
+                            switch (key)
+                            {
+                                case Keys.A:
+                                    set_nom += "A";
+                                    break;
+                                case Keys.B:
+                                    set_nom += "B";
+                                    break;
+                                case Keys.C:
+                                    set_nom += "C";
+                                    break;
+                                case Keys.D:
+                                    set_nom += "D";
+                                    break;
+                                case Keys.E:
+                                    set_nom += "E";
+                                    break;
+                                case Keys.F:
+                                    set_nom += "F";
+                                    break;
+                                case Keys.G:
+                                    set_nom += "G";
+                                    break;
+                                case Keys.H:
+                                    set_nom += "H";
+                                    break;
+                                case Keys.I:
+                                    set_nom += "I";
+                                    break;
+                                case Keys.J:
+                                    set_nom += "J";
+                                    break;
+                                case Keys.K:
+                                    set_nom += "K";
+                                    break;
+                                case Keys.L:
+                                    set_nom += "L";
+                                    break;
+                                case Keys.M:
+                                    set_nom += "M";
+                                    break;
+                                case Keys.N:
+                                    set_nom += "N";
+                                    break;
+                                case Keys.O:
+                                    set_nom += "O";
+                                    break;
+                                case Keys.P:
+                                    set_nom += "P";
+                                    break;
+                                case Keys.Q:
+                                    set_nom += "Q";
+                                    break;
+                                case Keys.R:
+                                    set_nom += "R";
+                                    break;
+                                case Keys.S:
+                                    set_nom += "S";
+                                    break;
+                                case Keys.T:
+                                    set_nom += "T";
+                                    break;
+                                case Keys.U:
+                                    set_nom += "U";
+                                    break;
+                                case Keys.V:
+                                    set_nom += "V";
+                                    break;
+                                case Keys.W:
+                                    set_nom += "W";
+                                    break;
+                                case Keys.X:
+                                    set_nom += "X";
+                                    break;
+                                case Keys.Y:
+                                    set_nom += "Y";
+                                    break;
+                                case Keys.Z:
+                                    set_nom += "Z";
+                                    break;
+                                case Keys.Space:
+                                    set_nom += " ";
+                                    break;
+                            }
+                        }
+
+                        if (key == Keys.Back)
+                        {
+                            string temp = "";
+                            for (int i = 0; i < set_nom.Length - 1; i++)
+                            {
+                                temp += set_nom[i];
+                            }
+                            set_nom = temp;
+                        }
+
+                    }
+                }
+            }
+            #endregion
+
+
+            // RESET
+            #region reset
+            if (status == "Reset")
+            {
+                Bretour.SetPosition(new Vector2((Window.ClientBounds.Width - Bretour.GetTextureen().Width) / 2, (Window.ClientBounds.Height - Bretour.GetTextureen().Height) / 2));
+
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (clavier_old.KeyPressed(Keys.Escape) && !clavier.KeyPressed(Keys.Escape)))
+                {
+                    gestionclavier = -1;
+                    status = "Options_joueur";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+
+                if (!clavier.KeyPressed(Keys.R) && clavier_old.KeyPressed(Keys.R))
+                {
+                    try
+                    {
+                        StreamWriter file = new StreamWriter("solo.save");
+                        file.WriteLine("Joueur");
+                        file.WriteLine("0");
+                        file.WriteLine("0");
+                        file.WriteLine("0");
+                        file.WriteLine("0");
+                        file.WriteLine("0");
+                        file.WriteLine("0");
+                        file.WriteLine("0");
+                        file.WriteLine("0");
+                        file.Close();
+                        status = "Reset_done";
+                    }
+                    catch
+                    {
+                        status = "Reset_error";
+                    }
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+
+                if (!clavier.KeyPressed(Keys.M) && clavier_old.KeyPressed(Keys.M))
+                {
+                    try
+                    {
+                        StreamWriter file = new StreamWriter("j1.save");
+                        file.WriteLine("Joueur");
+                        file.WriteLine("0");
+                        file.WriteLine("0");
+                        file.WriteLine("0");
+                        file.WriteLine("0");
+                        file.WriteLine("0");
+                        file.WriteLine("0");
+                        file.WriteLine("0");
+                        file.WriteLine("0");
+                        file.Close();
+
+                        StreamWriter file2 = new StreamWriter("j2.save");
+                        file2.WriteLine("Joueur");
+                        file2.WriteLine("0");
+                        file2.WriteLine("0");
+                        file2.WriteLine("0");
+                        file2.WriteLine("0");
+                        file2.WriteLine("0");
+                        file2.WriteLine("0");
+                        file2.WriteLine("0");
+                        file2.WriteLine("0");
+                        file2.Close();
+
+                        status = "Reset_done";
+                    }
+                    catch
+                    {
+                        status = "Reset_error";
+                    }
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+            }
+
+            if (status == "Reset_done" || status == "Reset_error")
+            {
+                Bretour.SetPosition(new Vector2((Window.ClientBounds.Width - Bretour.GetTextureen().Width) / 2, (Window.ClientBounds.Height - Bretour.GetTextureen().Height) / 2));
+
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (clavier_old.KeyPressed(Keys.Escape) && !clavier.KeyPressed(Keys.Escape)))
+                {
+                    gestionclavier = -1;
+                    status = "Options_joueur";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+            }
+
+
             #endregion
 
 
@@ -1639,7 +2003,7 @@ namespace Fuckin__Height_Redemption
                 Bm3.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bm3.GetRectangle()));
                 Bmp5.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmp5.GetRectangle()));
 
-                
+
                 string prix_m3 = "";
                 string prix_mp5 = "";
                 string prix_ak47 = "";
@@ -1724,7 +2088,7 @@ namespace Fuckin__Height_Redemption
 
                 Bseringue.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bseringue.GetRectangle()));
 
-                
+
                 spriteBatch.DrawString(hud_font, les_drogues, new Vector2((5 / 2) * Bcontinuer.GetTexturefr().Width + 2 * Bak47.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
 
             }
@@ -1789,8 +2153,60 @@ namespace Fuckin__Height_Redemption
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                 Bvideo.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bvideo.GetRectangle()) || gestionclavier == 0);
                 Baudio.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Baudio.GetRectangle()) || gestionclavier == 1);
-                Bcommandes.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcommandes.GetRectangle()) || gestionclavier == 2);
+                Bjoueur.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bjoueur.GetRectangle()) || gestionclavier == 2);
                 Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()) || gestionclavier == 3);
+            }
+            #endregion
+
+
+            // OPTIONS_JOUEUR
+            #region options
+            if (status == "Options_joueur")
+            {
+                spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                Bnom.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bnom.GetRectangle()) || gestionclavier == 0);
+                Bcommandes.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcommandes.GetRectangle()) || gestionclavier == 1);
+                Breset.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Breset.GetRectangle()) || gestionclavier == 2);
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()) || gestionclavier == 3);
+            }
+            #endregion
+
+            // SET_NOM
+            #region set_nom
+            if (status == "Set_nom")
+            {
+                spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                Bsave.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bsave.GetRectangle()));
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                spriteBatch.DrawString(hud_font, "Chose your name here", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.DrawString(hud_font, "(1-15 chars and letters/numbers only)", new Vector2(Window.ClientBounds.Width / 2 - 200, Window.ClientBounds.Height / 6), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.DrawString(hud_font, "name : " + set_nom, new Vector2(Window.ClientBounds.Width / 2 - 120, Window.ClientBounds.Height / 3), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+            }
+            #endregion
+
+
+            // RESET
+            #region reset
+            if (status == "Reset")
+            {
+                spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                spriteBatch.DrawString(hud_font, "You wil reset your saves", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.DrawString(hud_font, "Press \"R\" to reset solo and \"M\" for multi", new Vector2(Window.ClientBounds.Width / 2 - 200, Window.ClientBounds.Height / 6), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+            }
+
+            if (status == "Reset_done")
+            {
+                spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                spriteBatch.DrawString(hud_font, "Save successfully reset !", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+            }
+
+            if (status == "Reset_error")
+            {
+                spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                spriteBatch.DrawString(hud_font, "An error occured, please retry.", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
             }
             #endregion
 

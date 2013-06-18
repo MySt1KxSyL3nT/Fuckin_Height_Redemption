@@ -239,8 +239,6 @@ Content\magasin.xnb
 Content\negozio.xnb
 Content\shop.xnb
 Content\sonprincipal.xnb
-Content\Copy of tir_usp.xnb
-Content\Copy of tir_mp5.xnb
 Content\SpriteFont1.xnb
 Content\recharge_ak47.xnb
 Content\recharge_m3_1.xnb
@@ -256,9 +254,18 @@ Content\tir_ak47.xnb
 Content\tir_m3.xnb
 Content\tir_mp5.xnb
 Content\tir_usp.xnb
-Content\Copy of recharge_mp5.xnb
 Content\recharge_mp5.xnb
 Content\map1.xnb
+Content\joueurIT.xnb
+Content\nomIT.xnb
+Content\resetIT.xnb
+Content\saveIT.xnb
+Content\joueurEN.xnb
+Content\nomEN.xnb
+Content\resetEN.xnb
+Content\saveEN.xnb
+Content\joueur.xnb
+Content\nom.xnb
+Content\reset.xnb
+Content\save.xnb
 Content\sonprincipal.wma
-Content\Copy of tir_usp.wma
-Content\Copy of tir_mp5.wma
