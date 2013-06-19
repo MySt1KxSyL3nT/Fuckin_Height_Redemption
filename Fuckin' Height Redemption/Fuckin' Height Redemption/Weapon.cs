@@ -27,6 +27,7 @@ namespace Fuckin__Height_Redemption
 
             if (name == "USP")
             {
+                level = 0;
                 clip_max = 8;
                 current_clip = 8;
                 ammo = 10000;
@@ -60,6 +61,7 @@ namespace Fuckin__Height_Redemption
             }
             if (name == "MP5")
             {
+                level = 0;
                 clip_max = 20;
                 current_clip = 20;
                 ammo = 60;
@@ -73,6 +75,7 @@ namespace Fuckin__Height_Redemption
             }
             if (name == "AK47")
             {
+                level = 0;
                 clip_max = 30;
                 current_clip = 30;
                 ammo = 120;

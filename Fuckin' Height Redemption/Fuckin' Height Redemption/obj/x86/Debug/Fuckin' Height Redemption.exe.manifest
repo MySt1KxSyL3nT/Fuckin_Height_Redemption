@@ -93,14 +93,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Fuckin' Height Redemption.exe" size="78848">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Fuckin' Height Redemption.exe" size="85504">
       <assemblyIdentity name="Fuckin' Height Redemption" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>/V7PXEpzxY0ur20xd/c206UXIK8=</dsig:DigestValue>
+        <dsig:DigestValue>VNZVdYr0rRm224icAjoec4zvajI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -2180,7 +2180,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>sYc0wAB0XVpLQD4U3L70mWDClHQ=</dsig:DigestValue>
+      <dsig:DigestValue>nsyi7f/9TztViydSzMpv6AYQE2Q=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\sonprincipal.xnb" size="130">

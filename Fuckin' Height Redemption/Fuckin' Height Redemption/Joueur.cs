@@ -17,9 +17,9 @@ namespace Fuckin__Height_Redemption
 {
     public class Joueur
     {
-        public Joueur(string[] data, Texture2D[,] texture_usp, Texture2D[,] texture_ak47, Texture2D[,] texture_mp5, Texture2D[,] texture_m3, ContentManager Content, int height, int width)
+        public Joueur(string path, Texture2D[,] texture_usp, Texture2D[,] texture_ak47, Texture2D[,] texture_mp5, Texture2D[,] texture_m3, ContentManager Content, int height, int width)
         {
-            this.name = data[0];
+            Load(path, Content);
             this.height = height;
             this.width = width;
 
@@ -33,13 +33,6 @@ namespace Fuckin__Height_Redemption
             this.init_position = this.position;
 
             this.health = 100;
-            this.money = Int32.Parse(data[1]);
-
-            this.weapons = new Weapon[4];
-            weapons[0] = new Weapon("USP", 1, Int32.Parse(data[5]),  Content);
-            weapons[1] = new Weapon("AK47", Int32.Parse(data[4]), Int32.Parse(data[7]), Content);
-            weapons[2] = new Weapon("MP5", Int32.Parse(data[3]), Int32.Parse(data[6]), Content);
-            weapons[3] = new Weapon("ShotGun", Int32.Parse(data[2]), Int32.Parse(data[8]), Content);
 
             reloading = false;
 
@@ -51,7 +44,40 @@ namespace Fuckin__Height_Redemption
             SetRectangle();
         }
 
-
+        public void Load(string path, ContentManager Content)
+        {
+            string[] data_saved;
+            // 0 = name, 1 = argent, 2 = m3 unlocked, 3 = mp5 unlocked, 4 = ak unlocked, 5 = usp level, 6 = mp5 level, 7 = ak level, 8 = m3 level
+            if (!File.Exists("solo.save"))
+            {
+                try
+                {
+                    StreamWriter file = new StreamWriter(path);
+                    file.WriteLine("Joueur");
+                    file.WriteLine("0");
+                    file.WriteLine("0");
+                    file.WriteLine("0");
+                    file.WriteLine("0");
+                    file.WriteLine("0");
+                    file.WriteLine("0");
+                    file.WriteLine("0");
+                    file.WriteLine("0");
+                    file.Close();
+                }
+                catch
+                {
+                    Console.WriteLine("Erreur: pas de save creee");
+                }
+            }
+            data_saved = File.ReadAllLines("solo.save");
+            this.name = data_saved[0];
+            this.money = Int32.Parse(data_saved[1]);
+            this.weapons = new Weapon[4];
+            weapons[0] = new Weapon("USP", 1, Int32.Parse(data_saved[5]), Content);
+            weapons[1] = new Weapon("AK47", Int32.Parse(data_saved[4]), Int32.Parse(data_saved[7]), Content);
+            weapons[2] = new Weapon("MP5", Int32.Parse(data_saved[3]), Int32.Parse(data_saved[6]), Content);
+            weapons[3] = new Weapon("ShotGun", Int32.Parse(data_saved[2]), Int32.Parse(data_saved[8]), Content);
+        }
 
         public void Update(int height, int width, GameTime gameTime)
         {
@@ -807,12 +833,26 @@ namespace Fuckin__Height_Redemption
 
         public void ChangeHealth(string drogue)
         {
+            if (drogue == "shit")
+            {
+                this.health += 10;
+                this.money -= 200;
+            }
+            if (drogue == "coke")
+            {
+                if (this.health >= 50)
+                    this.health = 100;
+                else
+                    this.health += 50;
+                this.money -= 500;
+            }
             if (drogue == "seringue")
             {
                 this.health = 100;
                 this.money -= 1000;
             }
         }
+
 
         public void Refill_ammo(int n)
         {
@@ -826,9 +866,45 @@ namespace Fuckin__Height_Redemption
             weapons[n].ammo = weapons[n].ammo_max;
         }
         /////////////////////////////////
-
-
-
+        public void Refill_chargeur(int n)
+        {
+            if (n == 1)
+                this.money -= 3000;
+            if (n == 2)
+                this.money -= 2500;
+            if (n == 3)
+                this.money -= 1500;
+        }
+        /////////////////////////////////
+        public void Refill_dmg(int n)
+        {
+            if (n == 1)
+                this.money -= 5000;
+            if (n == 2)
+                this.money -= 3000;
+            if (n == 3)
+                this.money -= 2000;
+        }
+        ////////////////////////////////
+        public void Refill_reloadtime(int n)
+        {
+            if (n == 1)
+                this.money -= 10000;
+            if (n == 2)
+                this.money -= 7000;
+            if (n == 3)
+                this.money -= 4000;
+        }
+        /////////////////////////////////
+        public void Refill_reload(int n)
+        {
+            if (n == 1)
+                this.money -= 20000;
+            if (n == 2)
+                this.money -= 15000;
+            if (n == 3)
+                this.money -= 8000;
+        }
 
 
 
