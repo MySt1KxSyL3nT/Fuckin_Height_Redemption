@@ -16,13 +16,14 @@ namespace Fuckin__Height_Redemption
 {
     public class MenuButton
     {
-        public MenuButton(Vector2 position, Texture2D texturefr, Texture2D textureen, Texture2D textureit)
+        public MenuButton(Vector2 position, Texture2D texturefr, Texture2D textureen, Texture2D textureit, Texture2D texturede)
         {
 
             this.position = position;
             this.texturefr = texturefr;
             this.textureen = textureen;
             this.textureit = textureit;
+            this.texturede = texturede;
             this.rectangle = GetRectangle();
         }
 
@@ -30,6 +31,7 @@ namespace Fuckin__Height_Redemption
         private Texture2D texturefr;
         private Texture2D textureen;
         private Texture2D textureit;
+        private Texture2D texturede;
         private Rectangle rectangle;
 
         /// <summary>
@@ -88,6 +90,10 @@ namespace Fuckin__Height_Redemption
             return textureit;
         }
 
+        public Texture2D GetTexturede()
+        {
+            return texturede;
+        }
 
         /// <summary>
         /// dessine le bouton
@@ -105,6 +111,8 @@ namespace Fuckin__Height_Redemption
                     spriteBatch.Draw(textureen, position, Color.DarkOrange);
                 if (lang == 3)
                     spriteBatch.Draw(textureit, position, Color.DarkOrange);
+                if (lang == 4)
+                    spriteBatch.Draw(texturede, position, Color.DarkOrange);
             }
             else
             {
@@ -114,6 +122,8 @@ namespace Fuckin__Height_Redemption
                     spriteBatch.Draw(textureen, position, Color.White);
                 if (lang == 3)
                     spriteBatch.Draw(textureit, position, Color.White);
+                if (lang == 4)
+                    spriteBatch.Draw(texturede, position, Color.White);
             }
         }
 

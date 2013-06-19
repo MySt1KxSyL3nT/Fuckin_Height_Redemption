@@ -105,6 +105,16 @@ namespace Fuckin__Height_Redemption
 
 
         public static Song sonprincipal;
+
+        //magasin
+        string level1 = "";
+        string level2 = "";
+        string level3 = "";
+        string level4 = "";
+
+        string prix_amélio_m3 = "";
+        string prix_amélio_mp5 = "";
+        string prix_amélio_ak47 = "";
         #endregion
 
         ////////////////////////////////////// BOUTONS ! ////////////////////////////////////////////////////////
@@ -114,6 +124,7 @@ namespace Fuckin__Height_Redemption
         public static Texture2D pausemenu;
         public static Texture2D menupause;
         public static Texture2D menupausa;
+        public static Texture2D menupausede;
         public static Texture2D barreson;
         public static Texture2D contourson;
         public static Texture2D viseur;
@@ -122,16 +133,17 @@ namespace Fuckin__Height_Redemption
         public static Texture2D magasin;
         public static Texture2D negozio;
         public static Texture2D shop;
-
+        public static Texture2D magasinde;
 
         public static Texture2D mortFR;
         public static Texture2D mortEN;
         public static Texture2D mortIT;
+        public static Texture2D mortDE;
 
         public static Texture2D victoireFR;
         public static Texture2D victoireEN;
         public static Texture2D victoireIT;
-
+        public static Texture2D victoireDE;
 
         public static Texture2D HUD_vie;
         public static Texture2D HUD_usp;
@@ -143,24 +155,31 @@ namespace Fuckin__Height_Redemption
         public static Texture2D cinematique1;
         public static Texture2D cinematiqueen1;
         public static Texture2D cinematiqueit1;
+        public static Texture2D cinematique1de;
         public static Texture2D cinematique2;
         public static Texture2D cinematiqueen2;
         public static Texture2D cinematiqueit2;
+        public static Texture2D cinematique2de;
         public static Texture2D cinematique3;
         public static Texture2D cinematiqueen3;
         public static Texture2D cinematiqueit3;
+        public static Texture2D cinematique3de;
         public static Texture2D cinematique4;
         public static Texture2D cinematiqueen4;
         public static Texture2D cinematiqueit4;
+        public static Texture2D cinematique4de;
         public static Texture2D cinematique5;
         public static Texture2D cinematiqueen5;
         public static Texture2D cinematiqueit5;
+        public static Texture2D cinematique5de;
         public static Texture2D cinematique6;
         public static Texture2D cinematiqueen6;
         public static Texture2D cinematiqueit6;
+        public static Texture2D cinematique6de;
         public static Texture2D cinematique7;
         public static Texture2D cinematiqueen7;
         public static Texture2D cinematiqueit7;
+        public static Texture2D cinematique7de;
 
         public static MenuButton Bjouer;
         public static MenuButton Bmulti;
@@ -202,6 +221,7 @@ namespace Fuckin__Height_Redemption
         public static MenuButton Blanguefr;
         public static MenuButton Blangueen;
         public static MenuButton Blangueit;
+        public static MenuButton Blanguede;
         public static MenuButton Bfullscreen;
         public static MenuButton Bfenetre;
 
@@ -219,6 +239,10 @@ namespace Fuckin__Height_Redemption
         public static MenuButton Bseringue;
         /////////////////////////////////////////////////////
 
+
+        public static MenuButton Bacheter;
+        public static MenuButton Bmunitions;
+        public static MenuButton Bameliorer;
 
 
         public static Vector2 positionBoutton1;
@@ -293,6 +317,52 @@ namespace Fuckin__Height_Redemption
             gestionclavier = -1;
 
             sonprincipal = Content.Load<Song>("sonprincipal");
+
+            prix_amélio_m3 = "1500 $";
+            prix_amélio_mp5 = "2500 $";
+            prix_amélio_ak47 = "3000 $";
+
+
+            switch (lang)
+            {
+                case 1:
+                    {
+                        level1 = "Niveau1 : Chargeur";
+                        level2 = "Niveau2 : Dégâts";
+                        level3 = "Niveau3 : Cadence";
+                        level4 = "Niveau4 : Temps de rechargement";
+                        break;
+                    }
+
+
+                case 2:
+                    {
+                        level1 = "Level1: Magazine";
+                        level2 = "Level2: Damages";
+                        level3 = "Level3: Rhythm";
+                        level4 = "Level4: Reload time";
+                        break;
+                    }
+
+
+                case 3:
+                    {
+                        level1 = "Livello1: Caricatore";
+                        level2 = "Livello2: Danni";
+                        level3 = "Livello3: Cadenza";
+                        level4 = "Livello4: Tempo di ricarica";
+                        break;
+                    }
+                case 4:
+                    {
+                        level1 = "Höhe1: Magazin";
+                        level2 = "Höhe2: Schaden";
+                        level3 = "Höhe3: Rhythmus";
+                        level4 = "Höhe4: Ladezeit";
+                        break;
+                    }
+
+            }
             #endregion
 
             ////////////////////////////////////// BOUTONS & IMAGES! ////////////////////////////////////////////////
@@ -302,6 +372,7 @@ namespace Fuckin__Height_Redemption
             menupause = Content.Load<Texture2D>("menupause");
             pausemenu = Content.Load<Texture2D>("pausemenu");
             menupausa = Content.Load<Texture2D>("menupausa");
+            menupausede = Content.Load<Texture2D>("menupause-allemand");
             barreson = Content.Load<Texture2D>("barreson");
             contourson = Content.Load<Texture2D>("contourson");
             viseur = Content.Load<Texture2D>("viseur");
@@ -310,18 +381,17 @@ namespace Fuckin__Height_Redemption
             magasin = Content.Load<Texture2D>("magasin");
             negozio = Content.Load<Texture2D>("negozio");
             shop = Content.Load<Texture2D>("shop");
-
+            magasinde = Content.Load<Texture2D>("magasin-allemand");
 
             mortFR = Content.Load<Texture2D>("mortFR");
             mortEN = Content.Load<Texture2D>("mortEN");
             mortIT = Content.Load<Texture2D>("mortIT");
+            mortDE = Content.Load<Texture2D>("mortDE");
 
             victoireFR = Content.Load<Texture2D>("victoireFR");
             victoireEN = Content.Load<Texture2D>("victoireEN");
             victoireIT = Content.Load<Texture2D>("victoireIT");
-
-
-
+            victoireDE = Content.Load<Texture2D>("victoireDE");
 
             HUD_vie = Content.Load<Texture2D>("vie");
             HUD_usp = Content.Load<Texture2D>("hud_usp");
@@ -350,83 +420,91 @@ namespace Fuckin__Height_Redemption
             cinematiqueit5 = Content.Load<Texture2D>("cinematiqueit5");
             cinematiqueit6 = Content.Load<Texture2D>("cinematiqueit6");
             cinematiqueit7 = Content.Load<Texture2D>("cinematiqueit7");
-
+            cinematique1de = Content.Load<Texture2D>("cinematique1de");
+            cinematique2de = Content.Load<Texture2D>("cinematique2de");
+            cinematique3de = Content.Load<Texture2D>("cinematique3de");
+            cinematique4de = Content.Load<Texture2D>("cinematique4de");
+            cinematique5de = Content.Load<Texture2D>("cinematique5de");
+            cinematique6de = Content.Load<Texture2D>("cinematique6de");
+            cinematique7de = Content.Load<Texture2D>("cinematique7de");
 
 
 
 
             // principal
-            Bjouer = new MenuButton(Vector2.One, Content.Load<Texture2D>("jouer"), Content.Load<Texture2D>("play"), Content.Load<Texture2D>("jouerit"));
-            Bmulti = new MenuButton(Vector2.One, Content.Load<Texture2D>("multijoueur"), Content.Load<Texture2D>("multiplayer"), Content.Load<Texture2D>("multijoueurit"));
-            Boptions = new MenuButton(Vector2.One, Content.Load<Texture2D>("options"), Content.Load<Texture2D>("options"), Content.Load<Texture2D>("optionsit"));
-            Bquitter = new MenuButton(Vector2.One, Content.Load<Texture2D>("quitter"), Content.Load<Texture2D>("exit"), Content.Load<Texture2D>("quitterit"));
-            Bretour = new MenuButton(Vector2.One, Content.Load<Texture2D>("retour"), Content.Load<Texture2D>("back"), Content.Load<Texture2D>("retourit"));
+            Bjouer = new MenuButton(Vector2.One, Content.Load<Texture2D>("jouer"), Content.Load<Texture2D>("play"), Content.Load<Texture2D>("jouerit"), Content.Load<Texture2D>("jouer-allemand"));
+            Bmulti = new MenuButton(Vector2.One, Content.Load<Texture2D>("multijoueur"), Content.Load<Texture2D>("multiplayer"), Content.Load<Texture2D>("multijoueurit"), Content.Load<Texture2D>("multijoueur-allemand"));
+            Boptions = new MenuButton(Vector2.One, Content.Load<Texture2D>("options"), Content.Load<Texture2D>("options"), Content.Load<Texture2D>("optionsit"), Content.Load<Texture2D>("options-allemand"));
+            Bquitter = new MenuButton(Vector2.One, Content.Load<Texture2D>("quitter"), Content.Load<Texture2D>("exit"), Content.Load<Texture2D>("quitterit"), Content.Load<Texture2D>("quitter-allemand"));
+            Bretour = new MenuButton(Vector2.One, Content.Load<Texture2D>("retour"), Content.Load<Texture2D>("back"), Content.Load<Texture2D>("retourit"), Content.Load<Texture2D>("retour-allemand"));
 
             // Jouer
-            Bnouveaujeu = new MenuButton(Vector2.One, Content.Load<Texture2D>("nouveaujeu"), Content.Load<Texture2D>("newgame"), Content.Load<Texture2D>("nouveaujeuit"));
-            Bcontinuer = new MenuButton(Vector2.One, Content.Load<Texture2D>("continuer"), Content.Load<Texture2D>("continue"), Content.Load<Texture2D>("continuerit"));
+            Bnouveaujeu = new MenuButton(Vector2.One, Content.Load<Texture2D>("nouveaujeu"), Content.Load<Texture2D>("newgame"), Content.Load<Texture2D>("nouveaujeuit"), Content.Load<Texture2D>("nouveaujeu-allemand"));
+            Bcontinuer = new MenuButton(Vector2.One, Content.Load<Texture2D>("continuer"), Content.Load<Texture2D>("continue"), Content.Load<Texture2D>("continuerit"), Content.Load<Texture2D>("continuer-allemand"));
 
 
             //Modes
-            Bfacile = new MenuButton(Vector2.One, Content.Load<Texture2D>("facile"), Content.Load<Texture2D>("easy"), Content.Load<Texture2D>("facile"));
-            BIntermediaire = new MenuButton(Vector2.One, Content.Load<Texture2D>("intermediaire"), Content.Load<Texture2D>("intermediate"), Content.Load<Texture2D>("intermedio"));
-            Bdifficle = new MenuButton(Vector2.One, Content.Load<Texture2D>("difficile"), Content.Load<Texture2D>("difficult"), Content.Load<Texture2D>("difficile"));
-            Bimpossible = new MenuButton(Vector2.One, Content.Load<Texture2D>("impossible"), Content.Load<Texture2D>("impossible"), Content.Load<Texture2D>("impossibile"));
+            Bfacile = new MenuButton(Vector2.One, Content.Load<Texture2D>("facile"), Content.Load<Texture2D>("easy"), Content.Load<Texture2D>("facile"), Content.Load<Texture2D>("facile-allemand"));
+            BIntermediaire = new MenuButton(Vector2.One, Content.Load<Texture2D>("intermediaire"), Content.Load<Texture2D>("intermediate"), Content.Load<Texture2D>("intermedio"), Content.Load<Texture2D>("intermediaire-allemand"));
+            Bdifficle = new MenuButton(Vector2.One, Content.Load<Texture2D>("difficile"), Content.Load<Texture2D>("difficult"), Content.Load<Texture2D>("difficile"), Content.Load<Texture2D>("difficile-allemand"));
+            Bimpossible = new MenuButton(Vector2.One, Content.Load<Texture2D>("impossible"), Content.Load<Texture2D>("impossible"), Content.Load<Texture2D>("impossibile"), Content.Load<Texture2D>("impossible-allemand"));
 
             // Multi
-            Bcreer = new MenuButton(Vector2.One, Content.Load<Texture2D>("créer"), Content.Load<Texture2D>("create"), Content.Load<Texture2D>("creerit"));
-            Brejoindre = new MenuButton(Vector2.One, Content.Load<Texture2D>("rejoindre"), Content.Load<Texture2D>("join"), Content.Load<Texture2D>("rejoindreit"));
-
+            Bcreer = new MenuButton(Vector2.One, Content.Load<Texture2D>("créer"), Content.Load<Texture2D>("create"), Content.Load<Texture2D>("creerit"), Content.Load<Texture2D>("creer-allemand"));
+            Brejoindre = new MenuButton(Vector2.One, Content.Load<Texture2D>("rejoindre"), Content.Load<Texture2D>("join"), Content.Load<Texture2D>("rejoindreit"), Content.Load<Texture2D>("rejoindre-allemand"));
 
             //Options
-            Bvideo = new MenuButton(Vector2.One, Content.Load<Texture2D>("vidéo"), Content.Load<Texture2D>("video"), Content.Load<Texture2D>("video"));
-            Baudio = new MenuButton(Vector2.One, Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio"));
-            Bcommandes = new MenuButton(Vector2.One, Content.Load<Texture2D>("commandes"), Content.Load<Texture2D>("controls"), Content.Load<Texture2D>("commandesit"));
-            Bjoueur = new MenuButton(Vector2.One, Content.Load<Texture2D>("joueur"), Content.Load<Texture2D>("joueurEN"), Content.Load<Texture2D>("joueurIT"));
-            Breset = new MenuButton(Vector2.One, Content.Load<Texture2D>("reset"), Content.Load<Texture2D>("resetEN"), Content.Load<Texture2D>("resetIT"));
-            Bnom = new MenuButton(Vector2.One, Content.Load<Texture2D>("nom"), Content.Load<Texture2D>("nomEN"), Content.Load<Texture2D>("nomIT"));
-            Bsave = new MenuButton(Vector2.One, Content.Load<Texture2D>("save"), Content.Load<Texture2D>("saveEN"), Content.Load<Texture2D>("saveIT"));
+            Bvideo = new MenuButton(Vector2.One, Content.Load<Texture2D>("vidéo"), Content.Load<Texture2D>("video"), Content.Load<Texture2D>("video"), Content.Load<Texture2D>("video-allemand"));
+            Baudio = new MenuButton(Vector2.One, Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio-allemand"));
+            Bcommandes = new MenuButton(Vector2.One, Content.Load<Texture2D>("commandes"), Content.Load<Texture2D>("controls"), Content.Load<Texture2D>("commandesit"), Content.Load<Texture2D>("commandes-allemand"));
+            Bjoueur = new MenuButton(Vector2.One, Content.Load<Texture2D>("joueur"), Content.Load<Texture2D>("joueurEN"), Content.Load<Texture2D>("joueurIT"), Content.Load<Texture2D>("joueurDE"));
+            Breset = new MenuButton(Vector2.One, Content.Load<Texture2D>("reset"), Content.Load<Texture2D>("resetEN"), Content.Load<Texture2D>("resetIT"), Content.Load<Texture2D>("reinitialiserDE"));
+            Bnom = new MenuButton(Vector2.One, Content.Load<Texture2D>("nom"), Content.Load<Texture2D>("nomEN"), Content.Load<Texture2D>("nomIT"), Content.Load<Texture2D>("nomDE"));
+            Bsave = new MenuButton(Vector2.One, Content.Load<Texture2D>("save"), Content.Load<Texture2D>("saveEN"), Content.Load<Texture2D>("saveIT"), Content.Load<Texture2D>("sauvegarderDE"));
 
             //Audio
-            Bmusique = new MenuButton(Vector2.One, Content.Load<Texture2D>("musique"), Content.Load<Texture2D>("music"), Content.Load<Texture2D>("musica"));
-            Beffets = new MenuButton(Vector2.One, Content.Load<Texture2D>("effetssonores"), Content.Load<Texture2D>("soundeffects"), Content.Load<Texture2D>("effettisonori"));
-            Bboxmusique = new MenuButton(Vector2.One, Content.Load<Texture2D>("checked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"));
-            Bboxeffects = new MenuButton(Vector2.One, Content.Load<Texture2D>("checked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"));
-            Bmoinsmusic = new MenuButton(Vector2.One, Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"));
-            Bplusmusic = new MenuButton(Vector2.One, Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"));
-            Bmoinseffects = new MenuButton(Vector2.One, Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"));
-            Bpluseffects = new MenuButton(Vector2.One, Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"));
+            Bmusique = new MenuButton(Vector2.One, Content.Load<Texture2D>("musique"), Content.Load<Texture2D>("music"), Content.Load<Texture2D>("musica"), Content.Load<Texture2D>("musique-allemand"));
+            Beffets = new MenuButton(Vector2.One, Content.Load<Texture2D>("effetssonores"), Content.Load<Texture2D>("soundeffects"), Content.Load<Texture2D>("effettisonori"), Content.Load<Texture2D>("effetssonores-allemand"));
+            Bboxmusique = new MenuButton(Vector2.One, Content.Load<Texture2D>("checked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"));
+            Bboxeffects = new MenuButton(Vector2.One, Content.Load<Texture2D>("checked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"));
+            Bmoinsmusic = new MenuButton(Vector2.One, Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"));
+            Bplusmusic = new MenuButton(Vector2.One, Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"));
+            Bmoinseffects = new MenuButton(Vector2.One, Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"));
+            Bpluseffects = new MenuButton(Vector2.One, Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"));
 
 
             // Video
-            Blangue = new MenuButton(Vector2.One, Content.Load<Texture2D>("langues"), Content.Load<Texture2D>("languages"), Content.Load<Texture2D>("languesit"));
-            Bfullscreen = new MenuButton(Vector2.One, Content.Load<Texture2D>("pleinecran"), Content.Load<Texture2D>("fullscreen"), Content.Load<Texture2D>("pleinecranit"));
-            Bfenetre = new MenuButton(Vector2.One, Content.Load<Texture2D>("fenetre"), Content.Load<Texture2D>("windowed"), Content.Load<Texture2D>("fenetreit"));
+            Blangue = new MenuButton(Vector2.One, Content.Load<Texture2D>("langues"), Content.Load<Texture2D>("languages"), Content.Load<Texture2D>("languesit"), Content.Load<Texture2D>("langues-allemand"));
+            Bfullscreen = new MenuButton(Vector2.One, Content.Load<Texture2D>("pleinecran"), Content.Load<Texture2D>("fullscreen"), Content.Load<Texture2D>("pleinecranit"), Content.Load<Texture2D>("pleinecran-allemand"));
+            Bfenetre = new MenuButton(Vector2.One, Content.Load<Texture2D>("fenetre"), Content.Load<Texture2D>("windowed"), Content.Load<Texture2D>("fenetreit"), Content.Load<Texture2D>("fenetre-allemand"));
 
             //Langues
-            Blanguefr = new MenuButton(Vector2.One, Content.Load<Texture2D>("french"), Content.Load<Texture2D>("french"), Content.Load<Texture2D>("francaisit"));
-            Blangueen = new MenuButton(Vector2.One, Content.Load<Texture2D>("anglais"), Content.Load<Texture2D>("anglaisit"), Content.Load<Texture2D>("anglaisit"));
-            Blangueit = new MenuButton(Vector2.One, Content.Load<Texture2D>("italien"), Content.Load<Texture2D>("italian"), Content.Load<Texture2D>("anglaisit"));
+            Blanguefr = new MenuButton(Vector2.One, Content.Load<Texture2D>("french"), Content.Load<Texture2D>("french"), Content.Load<Texture2D>("francaisit"), Content.Load<Texture2D>("francais-allemand"));
+            Blangueen = new MenuButton(Vector2.One, Content.Load<Texture2D>("anglais"), Content.Load<Texture2D>("anglaisit"), Content.Load<Texture2D>("anglaisit"), Content.Load<Texture2D>("anglais-allemand"));
+            Blangueit = new MenuButton(Vector2.One, Content.Load<Texture2D>("italien"), Content.Load<Texture2D>("italian"), Content.Load<Texture2D>("anglaisit"), Content.Load<Texture2D>("italien-allemand"));
+            Blanguede = new MenuButton(Vector2.One, Content.Load<Texture2D>("italien"), Content.Load<Texture2D>("italian"), Content.Load<Texture2D>("anglaisit"), Content.Load<Texture2D>("italien-allemand"));
 
             // Commandes
-            Bmanette = new MenuButton(Vector2.One, Content.Load<Texture2D>("manette"), Content.Load<Texture2D>("controller"), Content.Load<Texture2D>("manetteit"));
-            Bbox = new MenuButton(Vector2.One, Content.Load<Texture2D>("checked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"));
+            Bmanette = new MenuButton(Vector2.One, Content.Load<Texture2D>("manette"), Content.Load<Texture2D>("controller"), Content.Load<Texture2D>("manetteit"), Content.Load<Texture2D>("manette-allemand"));
+            Bbox = new MenuButton(Vector2.One, Content.Load<Texture2D>("checked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"));
 
 
 
             // Armes & Drogues ///////////////////////////////////////
-            Bak47 = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_ak47"), Content.Load<Texture2D>("hud_ak47"), Content.Load<Texture2D>("hud_ak47"));
-            Bm3 = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_m3"), Content.Load<Texture2D>("hud_m3"), Content.Load<Texture2D>("hud_m3"));
-            Bmp5 = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_mp5"), Content.Load<Texture2D>("hud_mp5"), Content.Load<Texture2D>("hud_mp5"));
-            Busp = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_usp"), Content.Load<Texture2D>("hud_usp"), Content.Load<Texture2D>("hud_usp"));
+            Bak47 = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_ak47"), Content.Load<Texture2D>("hud_ak47"), Content.Load<Texture2D>("hud_ak47"), Content.Load<Texture2D>("hud_ak47"));
+            Bm3 = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_m3"), Content.Load<Texture2D>("hud_m3"), Content.Load<Texture2D>("hud_m3"), Content.Load<Texture2D>("hud_m3"));
+            Bmp5 = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_mp5"), Content.Load<Texture2D>("hud_mp5"), Content.Load<Texture2D>("hud_mp5"), Content.Load<Texture2D>("hud_mp5"));
+            Busp = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_usp"), Content.Load<Texture2D>("hud_usp"), Content.Load<Texture2D>("hud_usp"), Content.Load<Texture2D>("hud_usp"));
 
-            Bshit = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"));
-            Bcoke = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"));
-            Bseringue = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"));
+            Bshit = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"));
+            Bcoke = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"));
+            Bseringue = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"));
             ////////////////////////////////////////////////////////////////////////
 
-
-
+            //Armes bloquées-débloquées
+            Bacheter = new MenuButton(Vector2.One, Content.Load<Texture2D>("acheter"), Content.Load<Texture2D>("acheterEN"), Content.Load<Texture2D>("acheterIT"), Content.Load<Texture2D>("acheterDE"));
+            Bmunitions = new MenuButton(Vector2.One, Content.Load<Texture2D>("munitions"), Content.Load<Texture2D>("munitionsEN"), Content.Load<Texture2D>("munitionsIT"), Content.Load<Texture2D>("munitionsDE"));
+            Bameliorer = new MenuButton(Vector2.One, Content.Load<Texture2D>("améliorer"), Content.Load<Texture2D>("améliorerEN"), Content.Load<Texture2D>("améliorerIT"), Content.Load<Texture2D>("améliorerDE"));
 
 
             // Positions
@@ -640,136 +718,30 @@ namespace Fuckin__Height_Redemption
                     status = "Jeu";
                 }
 
-                #region m3
+
+                //ARMES
                 if (souris.GetRectangle().Intersects(Bm3.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
                 {
                     if (joueur.GetWeapons("m3").unlocked == false)
-                    {
-                        if (joueur.GetMoney() >= 5000)
-                        {
-                            joueur.GetWeapons("m3").unlocked = true;
-                            joueur.Debloque_Weapon(joueur.GetWeapons("m3"));
-                            joueur.GetWeapons("m3").SetLevel(1);
-                        }
-                    }
+                        status = "M3";
                     else
-                    {
-                        //joueur.GetWeapons("m3").unlocked = true;
-                        if ((joueur.GetMoney() >= 500) && (joueur.GetWeapons("m3").GetLevel() == 1))
-                        {
-                            joueur.Refill_ammo(3);
-                            joueur.GetWeapons("m3").SetLevel(2);
-                        }
-                        if ((joueur.GetMoney() >= 1500) && (joueur.GetWeapons("m3").GetLevel() == 2))
-                        {
-                            joueur.Refill_chargeur(3);
-                            joueur.GetWeapons("m3").SetLevel(3);
-                        }
-                        if ((joueur.GetMoney() >= 2000) && (joueur.GetWeapons("m3").GetLevel() == 3))
-                        {
-                            joueur.Refill_dmg(3);
-                            joueur.GetWeapons("m3").SetLevel(4);
-                        }
-                        if ((joueur.GetMoney() >= 4000) && (joueur.GetWeapons("m3").GetLevel() == 4))
-                        {
-                            joueur.Refill_reloadtime(3);
-                            joueur.GetWeapons("m3").SetLevel(5);
-                        }
-                        if ((joueur.GetMoney() >= 8000) && (joueur.GetWeapons("m3").GetLevel() == 5))
-                        {
-                            joueur.Refill_reload(3);
-                        }
-                    }
-
+                        status = "M3 UNLOCKED";
                 }
-                #endregion
-
-                #region mp5
                 if (souris.GetRectangle().Intersects(Bmp5.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
                 {
                     if (joueur.GetWeapons("mp5").unlocked == false)
-                    {
-                        if (joueur.GetMoney() >= 10000)
-                        {
-                            joueur.GetWeapons("mp5").unlocked = true;
-                            joueur.Debloque_Weapon(joueur.GetWeapons("mp5"));
-                            joueur.GetWeapons("mp5").SetLevel(1);
-                        }
-                    }
+                        status = "MP5";
                     else
-                    {
-                        //joueur.GetWeapons("mp5").unlocked = true;
-                        if ((joueur.GetMoney() >= 1000) && (joueur.GetWeapons("ak47").GetLevel() == 1))
-                        {
-                            joueur.Refill_ammo(2);
-                            joueur.GetWeapons("mp5").SetLevel(2);
-                        }
-                        if ((joueur.GetMoney() >= 2500) && (joueur.GetWeapons("mp5").GetLevel() == 2))
-                        {
-                            joueur.Refill_chargeur(2);
-                            joueur.GetWeapons("mp5").SetLevel(3);
-                        }
-                        if ((joueur.GetMoney() >= 3000) && (joueur.GetWeapons("mp5").GetLevel() == 3))
-                        {
-                            joueur.Refill_dmg(2);
-                            joueur.GetWeapons("mp5").SetLevel(4);
-                        }
-                        if ((joueur.GetMoney() >= 7000) && (joueur.GetWeapons("mp5").GetLevel() == 4))
-                        {
-                            joueur.Refill_reloadtime(2);
-                            joueur.GetWeapons("mp5").SetLevel(5);
-                        }
-                        if ((joueur.GetMoney() >= 15000) && (joueur.GetWeapons("mp5").GetLevel() == 5))
-                        {
-                            joueur.Refill_reload(2);
-                        }
-                    }
-
+                        status = "MP5 UNLOCKED";
                 }
-                #endregion
-
-                #region ak47
                 if (souris.GetRectangle().Intersects(Bak47.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
                 {
                     if (joueur.GetWeapons("ak47").unlocked == false)
-                    {
-                        if (joueur.GetMoney() >= 50000)
-                        {
-                            joueur.GetWeapons("ak47").unlocked = true;
-                            joueur.Debloque_Weapon(joueur.GetWeapons("ak47"));
-                            joueur.GetWeapons("ak47").SetLevel(1);
-                        }
-                    }
+                        status = "AK47";
                     else
-                    {
-                        //joueur.GetWeapons("ak47").unlocked = true;
-                        if ((joueur.GetMoney() >= 2000) && (joueur.GetWeapons("ak47").GetLevel() == 1))
-                        {
-                            joueur.Refill_ammo(1);
-                            joueur.GetWeapons("ak47").SetLevel(2);
-                        }
-                        if ((joueur.GetMoney() >= 3000) && (joueur.GetWeapons("ak47").GetLevel() == 2))
-                        {
-                            joueur.Refill_chargeur(1);
-                            joueur.GetWeapons("ak47").SetLevel(3);
-                        }
-                        if ((joueur.GetMoney() >= 5000) && (joueur.GetWeapons("ak47").GetLevel() == 3))
-                        {
-                            joueur.Refill_dmg(1);
-                            joueur.GetWeapons("ak47").SetLevel(4);
-                        }
-                        if ((joueur.GetMoney() >= 10000) && (joueur.GetWeapons("ak47").GetLevel() == 4))
-                        {
-                            joueur.Refill_reloadtime(1);
-                            joueur.GetWeapons("ak47").SetLevel(5);
-                        }
-                        if ((joueur.GetMoney() >= 20000) && (joueur.GetWeapons("ak47").GetLevel() == 5))
-                            joueur.Refill_reload(1);
-
-                    }
-
+                        status = "AK47 UNLOCKED";
                 }
-                #endregion
+
 
                 //SHIT
                 if (souris.GetRectangle().Intersects(Bshit.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
@@ -796,6 +768,242 @@ namespace Fuckin__Height_Redemption
                     {
                         joueur.ChangeHealth("seringue");
                     }
+                }
+            }
+            #endregion
+
+
+            //M3
+            #region m3
+            if (status == "M3")
+            {
+                this.IsMouseVisible = true;
+                Bm3.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height));
+                Bacheter.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                Bretour.SetPosition(new Vector2(Window.ClientBounds.Width - 2 * Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height - 3 * Bcontinuer.GetTexturefr().Height));
+
+                if (souris.GetRectangle().Intersects(Bjouer.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    if (joueur.GetMoney() >= 5000)
+                    {
+                        status = "M3 UNLOCKED";
+                        joueur.GetWeapons("m3").unlocked = true;
+                        joueur.Debloque_Weapon(joueur.GetWeapons("m3"));
+                    }
+                }
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    status = "Magasin";
+                }
+            }
+            #endregion
+
+
+            //M3 UNLOCKED
+            #region m3 unlocked
+            if (status == "M3 UNLOCKED")
+            {
+                this.IsMouseVisible = true;
+
+                Bm3.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height));
+                Bameliorer.SetPosition(new Vector2(Window.ClientBounds.Width / 2 + Bcontinuer.GetTexturefr().Width / 3, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                Bmunitions.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                Bretour.SetPosition(new Vector2(Window.ClientBounds.Width - 2 * Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height - 3 * Bcontinuer.GetTexturefr().Height));
+
+                if (souris.GetRectangle().Intersects(Bameliorer.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    if (joueur.GetWeapons("m3").GetLevel() == 1 && joueur.GetMoney() >= 1500)
+                    {
+                        joueur.Refill_clip(3);
+                        joueur.GetWeapons("m3").SetLevel(2);
+                        prix_amélio_m3 = "2000 $";
+                    }
+                    if (joueur.GetWeapons("m3").GetLevel() == 2 && joueur.GetMoney() >= 2000)
+                    {
+                        joueur.Refill_dmg(3);
+                        joueur.GetWeapons("m3").SetLevel(3);
+                        prix_amélio_m3 = "4000 $";
+                    }
+                    if (joueur.GetWeapons("m3").GetLevel() == 3 && joueur.GetMoney() >= 4000)
+                    {
+                        joueur.Refill_cooldown(3);
+                        joueur.GetWeapons("m3").SetLevel(4);
+                        prix_amélio_m3 = "8000 $";
+                    }
+                    if (joueur.GetWeapons("m3").GetLevel() == 4 && joueur.GetMoney() >= 8000)
+                    {
+                        joueur.Refill_reloadtime(3);
+                    }
+                }
+
+                if (souris.GetRectangle().Intersects(Bmunitions.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    if (joueur.GetMoney() >= 500)
+                    {
+                        joueur.Refill_ammo(3);
+                    }
+                }
+
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    status = "Magasin";
+                }
+            }
+            #endregion
+
+
+            //MP5
+            #region mp5
+            if (status == "MP5")
+            {
+                this.IsMouseVisible = true;
+                Bmp5.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height));
+                Bacheter.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                Bretour.SetPosition(new Vector2(Window.ClientBounds.Width - 2 * Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height - 3 * Bcontinuer.GetTexturefr().Height));
+
+                if (joueur.GetMoney() >= 10000)
+                {
+                    status = "MP5 UNLOCKED";
+                    joueur.GetWeapons("mp5").unlocked = true;
+                    joueur.Debloque_Weapon(joueur.GetWeapons("mp5"));
+                }
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    status = "Magasin";
+                }
+            }
+            #endregion
+
+
+            //MP5 UNLOCKED
+            #region mp5 unlocked
+            if (status == "MP5 UNLOCKED")
+            {
+                this.IsMouseVisible = true;
+                Bmp5.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height));
+                Bameliorer.SetPosition(new Vector2(Window.ClientBounds.Width / 2 + Bcontinuer.GetTexturefr().Width / 3, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                Bmunitions.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                Bretour.SetPosition(new Vector2(Window.ClientBounds.Width - 2 * Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height - 3 * Bcontinuer.GetTexturefr().Height));
+
+                if (souris.GetRectangle().Intersects(Bameliorer.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    if (joueur.GetWeapons("mp5").GetLevel() == 1 && joueur.GetMoney() >= 2500)
+                    {
+                        joueur.Refill_clip(2);
+                        joueur.GetWeapons("mp5").SetLevel(2);
+                        prix_amélio_mp5 = "3000 $";
+                    }
+                    if (joueur.GetWeapons("mp5").GetLevel() == 2 && joueur.GetMoney() >= 3000)
+                    {
+                        joueur.Refill_dmg(2);
+                        joueur.GetWeapons("mp5").SetLevel(3);
+                        prix_amélio_mp5 = "7000 $";
+                    }
+                    if (joueur.GetWeapons("mp5").GetLevel() == 3 && joueur.GetMoney() >= 7000)
+                    {
+                        joueur.Refill_cooldown(2);
+                        joueur.GetWeapons("mp5").SetLevel(4);
+                        prix_amélio_mp5 = "15000 $";
+                    }
+                    if (joueur.GetWeapons("mp5").GetLevel() == 4 && joueur.GetMoney() >= 15000)
+                    {
+                        joueur.Refill_reloadtime(2);
+                    }
+                }
+
+
+                if (souris.GetRectangle().Intersects(Bmunitions.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    if (joueur.GetMoney() >= 1000)
+                    {
+                        joueur.Refill_ammo(2);
+                        prix_amélio_mp5 = "1000 $";
+                    }
+                }
+
+
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    status = "Magasin";
+                }
+            }
+            #endregion
+
+
+            //AK47
+            #region ak47
+            if (status == "AK47")
+            {
+                this.IsMouseVisible = true;
+
+                Bak47.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height));
+                Bacheter.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                Bretour.SetPosition(new Vector2(Window.ClientBounds.Width - 2 * Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height - 3 * Bcontinuer.GetTexturefr().Height));
+
+                if (joueur.GetMoney() >= 50000)
+                {
+                    status = "AK47 UNLOCKED";
+                    joueur.GetWeapons("ak47").unlocked = true;
+                    joueur.Debloque_Weapon(joueur.GetWeapons("ak47"));
+                }
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    status = "Magasin";
+                }
+            }
+            #endregion
+
+
+            //AK47 UNLOCKED
+            #region ak47 unlocked
+            if (status == "AK47 UNLOCKED")
+            {
+                this.IsMouseVisible = true;
+
+                Bak47.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height));
+                Bameliorer.SetPosition(new Vector2(Window.ClientBounds.Width / 2 + Bcontinuer.GetTexturefr().Width / 3, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                Bmunitions.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                Bretour.SetPosition(new Vector2(Window.ClientBounds.Width - 2 * Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height - 3 * Bcontinuer.GetTexturefr().Height));
+
+                if (souris.GetRectangle().Intersects(Bameliorer.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    if (joueur.GetWeapons("ak47").GetLevel() == 1 && joueur.GetMoney() >= 3000)
+                    {
+                        joueur.Refill_clip(1);
+                        joueur.GetWeapons("ak47").SetLevel(2);
+                        prix_amélio_ak47 = "5000 $";
+                    }
+                    if (joueur.GetWeapons("ak47").GetLevel() == 2 && joueur.GetMoney() >= 5000)
+                    {
+                        joueur.Refill_dmg(1);
+                        joueur.GetWeapons("ak47").SetLevel(3);
+                        prix_amélio_ak47 = "10000 $";
+                    }
+                    if (joueur.GetWeapons("ak47").GetLevel() == 3 && joueur.GetMoney() >= 10000)
+                    {
+                        joueur.Refill_cooldown(1);
+                        joueur.GetWeapons("ak47").SetLevel(4);
+                        prix_amélio_ak47 = "20000 $";
+                    }
+                    if (joueur.GetWeapons("ak47").GetLevel() == 4 && joueur.GetMoney() >= 20000)
+                    {
+                        joueur.Refill_reloadtime(1);
+                    }
+                }
+
+
+                if (souris.GetRectangle().Intersects(Bmunitions.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    if (joueur.GetMoney() >= 2000)
+                    {
+                        joueur.Refill_ammo(1);
+                    }
+                }
+
+
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    status = "Magasin";
                 }
             }
             #endregion
@@ -1657,22 +1865,33 @@ namespace Fuckin__Height_Redemption
                 Blangueen.SetPosition(new Vector2(-10000));
                 Blangueit.SetPosition(new Vector2(-10000));
                 Blanguefr.SetPosition(new Vector2(-10000));
+                Blanguede.SetPosition(new Vector2(-10000));
                 if (lang == 1) //francais
                 {
                     Blangueen.SetPosition(positionBoutton1);
                     Blangueit.SetPosition(positionBoutton2);
+                    Blanguede.SetPosition(positionBoutton3);
                     Bretour.SetPosition(positionBoutton4);
                 }
                 if (lang == 2) //anglais
                 {
                     Blanguefr.SetPosition(positionBoutton1);
                     Blangueit.SetPosition(positionBoutton2);
+                    Blanguede.SetPosition(positionBoutton3);
                     Bretour.SetPosition(positionBoutton4);
                 }
                 if (lang == 3) //italien
                 {
                     Blanguefr.SetPosition(positionBoutton1);
                     Blangueen.SetPosition(positionBoutton2);
+                    Blanguede.SetPosition(positionBoutton3);
+                    Bretour.SetPosition(positionBoutton4);
+                }
+                if (lang == 4) //allemand
+                {
+                    Blanguefr.SetPosition(positionBoutton1);
+                    Blangueen.SetPosition(positionBoutton2);
+                    Blangueit.SetPosition(positionBoutton3);
                     Bretour.SetPosition(positionBoutton4);
                 }
 
@@ -1690,6 +1909,11 @@ namespace Fuckin__Height_Redemption
                 {
                     gestionclavier = -1;
                     lang = 3;
+                }
+                if (souris.GetRectangle().Intersects(Blanguede.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                {
+                    gestionclavier = -1;
+                    lang = 4;
                 }
 
 
@@ -1824,6 +2048,8 @@ namespace Fuckin__Height_Redemption
                         spriteBatch.Draw(cinematiqueen1, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                     if (lang == 3)
                         spriteBatch.Draw(cinematiqueit1, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 4)
+                        spriteBatch.Draw(cinematique1de, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                 }
                 if (elapsedtime >= 5000 && elapsedtime < 10000)
                 {
@@ -1833,6 +2059,8 @@ namespace Fuckin__Height_Redemption
                         spriteBatch.Draw(cinematiqueen2, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                     if (lang == 3)
                         spriteBatch.Draw(cinematiqueit2, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 4)
+                        spriteBatch.Draw(cinematique2de, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                 }
                 if (elapsedtime >= 10000 && elapsedtime < 15000)
                 {
@@ -1842,6 +2070,8 @@ namespace Fuckin__Height_Redemption
                         spriteBatch.Draw(cinematiqueen3, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                     if (lang == 3)
                         spriteBatch.Draw(cinematiqueit3, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 4)
+                        spriteBatch.Draw(cinematique3de, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                 }
                 if (elapsedtime >= 15000 && elapsedtime < 20000)
                 {
@@ -1851,6 +2081,8 @@ namespace Fuckin__Height_Redemption
                         spriteBatch.Draw(cinematiqueen4, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                     if (lang == 3)
                         spriteBatch.Draw(cinematiqueit4, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 4)
+                        spriteBatch.Draw(cinematique4de, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                 }
                 if (elapsedtime >= 20000 && elapsedtime < 25000)
                 {
@@ -1860,6 +2092,8 @@ namespace Fuckin__Height_Redemption
                         spriteBatch.Draw(cinematiqueen5, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                     if (lang == 3)
                         spriteBatch.Draw(cinematiqueit5, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 4)
+                        spriteBatch.Draw(cinematique5de, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                 }
                 if (elapsedtime >= 25000 && elapsedtime < 30000)
                 {
@@ -1869,6 +2103,8 @@ namespace Fuckin__Height_Redemption
                         spriteBatch.Draw(cinematiqueen6, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                     if (lang == 3)
                         spriteBatch.Draw(cinematiqueit6, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 4)
+                        spriteBatch.Draw(cinematique6de, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                 }
                 if (elapsedtime >= 30000 && elapsedtime < 35000)
                 {
@@ -1878,14 +2114,16 @@ namespace Fuckin__Height_Redemption
                         spriteBatch.Draw(cinematiqueen7, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                     if (lang == 3)
                         spriteBatch.Draw(cinematiqueit7, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    if (lang == 4)
+                        spriteBatch.Draw(cinematique7de, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                 }
             }
             #endregion
 
 
-            // JEU + PAUSE + FIN + MAGASIN
+            // JEU + PAUSE + FIN + MAGASIN + ARMES
             #region jeu
-            if (status == "Jeu" || status == "Pause" || status == "Fin_mort" || status == "Fin_victoire" || status == "Magasin")
+            if (status == "Jeu" || status == "Pause" || status == "Fin_mort" || status == "Fin_victoire" || status == "Magasin" || status == "M3" || status == "MP5" || status == "AK47" || status == "M3 UNLOCKED" || status == "MP5 UNLOCKED" || status == "AK47 UNLOCKED")
             {
 
                 zombiesloins = new List<Zombie>();
@@ -1984,8 +2222,10 @@ namespace Fuckin__Height_Redemption
                 {
                     if (lang == 2)
                         spriteBatch.Draw(pausemenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                    else
+                    else if (lang == 3)
                         spriteBatch.Draw(menupausa, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    else
+                        spriteBatch.Draw(menupausede, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                 }
 
                 Bcontinuer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()));
@@ -2068,9 +2308,17 @@ namespace Fuckin__Height_Redemption
                     }
                     else
                     {
-                        spriteBatch.Draw(negozio, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        if (lang == 3)
+                        {
+                            spriteBatch.Draw(negozio, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        }
+                        else
+                        {
+                            spriteBatch.Draw(magasinde, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        }
                     }
                 }
+
 
                 Bquitter.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bquitter.GetRectangle()));
                 Bak47.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bak47.GetRectangle()));
@@ -2078,196 +2326,47 @@ namespace Fuckin__Height_Redemption
                 Bmp5.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmp5.GetRectangle()));
 
 
-                string prix_m3 = "";
-                string prix_mp5 = "";
-                string prix_ak47 = "";
+                string _m3 = "M3";
+                string _mp5 = "MP5";
+                string _ak47 = "AK47";
                 string les_drogues = "";
                 string les_armes = "";
+                string prix_shit = "200 $";
+                string prix_coke = "500 $";
                 string prix_seringue = "1000 $";
+
 
                 switch (lang)
                 {
-                    #region français
                     case 1:
                         {
-
-                            if (joueur.GetWeapons()[1].unlocked)
-                            {
-                                if (joueur.GetWeapons("ak47").GetLevel() == 1)
-                                    prix_ak47 = "Munitions : 2000 $";
-                                if (joueur.GetWeapons("ak47").GetLevel() == 2)
-                                    prix_ak47 = "Chargeur : 3000 $";
-                                if (joueur.GetWeapons("ak47").GetLevel() == 3)
-                                    prix_ak47 = "Dégats : 5000 $";
-                                if (joueur.GetWeapons("ak47").GetLevel() == 4)
-                                    prix_ak47 = "Cadence : 10000 $";
-                                if (joueur.GetWeapons("ak47").GetLevel() == 5)
-                                    prix_ak47 = "Rechargement : 20000 $";
-                            }
-                            else
-                                prix_ak47 = "50000 $";
-
-
-                            if (joueur.GetWeapons()[2].unlocked)
-                            {
-                                if (joueur.GetWeapons("mp5").GetLevel() == 1)
-                                    prix_mp5 = "Munitions : 1000 $";
-                                if (joueur.GetWeapons("mp5").GetLevel() == 2)
-                                    prix_mp5 = "Chargeur : 2500 $";
-                                if (joueur.GetWeapons("mp5").GetLevel() == 3)
-                                    prix_mp5 = "Dégats : 3000 $";
-                                if (joueur.GetWeapons("mp5").GetLevel() == 4)
-                                    prix_mp5 = "Cadence : 7000 $";
-                                if (joueur.GetWeapons("mp5").GetLevel() == 5)
-                                    prix_mp5 = "Rechargement : 15000 $";
-                            }
-                            else
-                                prix_mp5 = "10000 $";
-
-
-                            if (joueur.GetWeapons()[3].unlocked)
-                            {
-                                if (joueur.GetWeapons("m3").GetLevel() == 1)
-                                    prix_m3 = "Munitions : 500 $";
-                                if (joueur.GetWeapons("m3").GetLevel() == 2)
-                                    prix_m3 = "Chargeur : 1500 $";
-                                if (joueur.GetWeapons("m3").GetLevel() == 3)
-                                    prix_m3 = "Dégats : 2000 $";
-                                if (joueur.GetWeapons("m3").GetLevel() == 4)
-                                    prix_m3 = "Cadence : 4000 $";
-                                if (joueur.GetWeapons("m3").GetLevel() == 5)
-                                    prix_m3 = "Rechargement : 8000 $";
-                            }
-                            else
-                                prix_m3 = "5000 $";
-
-
-
                             les_armes = "Les armes :";
                             les_drogues = "Les drogues :";
                             break;
                         }
-                    #endregion
 
-                    #region anglais
+
                     case 2:
                         {
-                            if (joueur.GetWeapons()[1].unlocked)
-                            {
-                                if (joueur.GetWeapons("ak47").GetLevel() == 1)
-                                    prix_ak47 = "Ammo: 2000 $";
-                                if (joueur.GetWeapons("ak47").GetLevel() == 2)
-                                    prix_ak47 = "Loader: 3000 $";
-                                if (joueur.GetWeapons("ak47").GetLevel() == 3)
-                                    prix_ak47 = "Damages: 5000 $";
-                                if (joueur.GetWeapons("ak47").GetLevel() == 4)
-                                    prix_ak47 = "Reload time: 10000 $";
-                                if (joueur.GetWeapons("ak47").GetLevel() == 5)
-                                    prix_ak47 = "Reload: 20000 $";
-                            }
-                            else
-                                prix_ak47 = "50000 $";
-
-
-                            if (joueur.GetWeapons()[2].unlocked)
-                            {
-                                if (joueur.GetWeapons("mp5").GetLevel() == 1)
-                                    prix_mp5 = "Ammo: 1000 $";
-                                if (joueur.GetWeapons("mp5").GetLevel() == 2)
-                                    prix_mp5 = "Loader: 2500 $";
-                                if (joueur.GetWeapons("mp5").GetLevel() == 3)
-                                    prix_mp5 = "Damages: 3000 $";
-                                if (joueur.GetWeapons("mp5").GetLevel() == 4)
-                                    prix_mp5 = "Reload time: 7000 $";
-                                if (joueur.GetWeapons("mp5").GetLevel() == 5)
-                                    prix_mp5 = "Reload: 15000 $";
-                            }
-                            else
-                                prix_mp5 = "10000 $";
-
-
-                            if (joueur.GetWeapons()[3].unlocked)
-                            {
-                                if (joueur.GetWeapons("m3").GetLevel() == 1)
-                                    prix_m3 = "Ammo: 500 $";
-                                if (joueur.GetWeapons("m3").GetLevel() == 2)
-                                    prix_m3 = "Loader: 1500 $";
-                                if (joueur.GetWeapons("m3").GetLevel() == 3)
-                                    prix_m3 = "Danni: 2000 $";
-                                if (joueur.GetWeapons("m3").GetLevel() == 4)
-                                    prix_m3 = "Temps di ricarica: 4000 $";
-                                if (joueur.GetWeapons("m3").GetLevel() == 5)
-                                    prix_m3 = "Ricarica: 8000 $";
-                            }
-                            else
-                                prix_m3 = "5000 $";
-
-
-                            les_armes = "Weapons :";
-                            les_drogues = "Drugs :";
+                            les_armes = "Weapons:";
+                            les_drogues = "Drugs:";
                             break;
                         }
-                    #endregion
 
-                    #region italien
+
                     case 3:
                         {
-                            if (joueur.GetWeapons()[1].unlocked)
-                            {
-                                if (joueur.GetWeapons("ak47").GetLevel() == 1)
-                                    prix_ak47 = "Munizioni: 2000 $";
-                                if (joueur.GetWeapons("ak47").GetLevel() == 2)
-                                    prix_ak47 = "Caricatore: 3000 $";
-                                if (joueur.GetWeapons("ak47").GetLevel() == 3)
-                                    prix_ak47 = "Danni: 5000 $";
-                                if (joueur.GetWeapons("ak47").GetLevel() == 4)
-                                    prix_ak47 = "Tempo di ricarica: 10000 $";
-                                if (joueur.GetWeapons("ak47").GetLevel() == 5)
-                                    prix_ak47 = "Ricarica: 20000 $";
-                            }
-                            else
-                                prix_ak47 = "50000 $";
-
-                            if (joueur.GetWeapons()[2].unlocked)
-                            {
-                                if (joueur.GetWeapons("mp5").GetLevel() == 1)
-                                    prix_mp5 = "Munizioni: 1000 $";
-                                if (joueur.GetWeapons("mp5").GetLevel() == 2)
-                                    prix_mp5 = "Caricatore: 2500 $";
-                                if (joueur.GetWeapons("mp5").GetLevel() == 3)
-                                    prix_mp5 = "Danni: 3000 $";
-                                if (joueur.GetWeapons("mp5").GetLevel() == 4)
-                                    prix_mp5 = "Tempo di ricarica: 7000 $";
-                                if (joueur.GetWeapons("mp5").GetLevel() == 5)
-                                    prix_mp5 = "Ricarica: 15000 $";
-                            }
-                            else
-                                prix_mp5 = "10000 $";
-
-                            if (joueur.GetWeapons()[3].unlocked)
-                            {
-                                if (joueur.GetWeapons("m3").GetLevel() == 1)
-                                    prix_m3 = "Munizioni: 500 $";
-                                if (joueur.GetWeapons("m3").GetLevel() == 1)
-                                    prix_m3 = "Caritore: 1500 $";
-                                if (joueur.GetWeapons("m3").GetLevel() == 1)
-                                    prix_m3 = "Danni: 2000 $";
-                                if (joueur.GetWeapons("m3").GetLevel() == 1)
-                                    prix_m3 = "Tempo di ricarica: 4000 $";
-                                if (joueur.GetWeapons("m3").GetLevel() == 1)
-                                    prix_m3 = "Ricarica: 8000 $";
-                            }
-                            else
-                                prix_m3 = "5000 $";
-
-
-                            les_armes = "Le armi :";
-                            les_drogues = "Le droghe :";
+                            les_armes = "Le armi:";
+                            les_drogues = "Le droghe:";
                             break;
                         }
-                    #endregion
 
-                    ///////region ALLEMAND 
+                    case 4:
+                        {
+                            les_armes = "Die Munition:";
+                            les_drogues = "Die Drogen:";
+                            break;
+                        }
                 }
 
 
@@ -2279,19 +2378,285 @@ namespace Fuckin__Height_Redemption
                 spriteBatch.DrawString(hud_font, prix_m3, new Vector2(Bcontinuer.GetTexturefr().Width + Bak47.GetTexturefr().Width, 4 * Bcontinuer.GetTexturefr().Height), Color.Black, 0, Vector2.One, 1.0f, SpriteEffects.None, 0.5f);
                 spriteBatch.DrawString(hud_font, prix_mp5, new Vector2(Bcontinuer.GetTexturefr().Width + Bak47.GetTexturefr().Width, 5 * Bcontinuer.GetTexturefr().Height), Color.Black, 0, Vector2.One, 1.0f, SpriteEffects.None, 0.5f);*/
 
-                spriteBatch.DrawString(hud_font, prix_m3, new Vector2(Bm3.GetPosition().X + Bm3.GetTexturefr().Width + 10, Bm3.GetPosition().Y), Color.Black);
-                spriteBatch.DrawString(hud_font, prix_mp5, new Vector2(Bmp5.GetPosition().X + Bmp5.GetTexturefr().Width + 10, Bmp5.GetPosition().Y), Color.Black);
-                spriteBatch.DrawString(hud_font, prix_ak47, new Vector2(Bak47.GetPosition().X + Bak47.GetTexturefr().Width + 10, Bak47.GetPosition().Y), Color.Black);
+                spriteBatch.DrawString(hud_font, _m3, new Vector2(Bm3.GetPosition().X + Bm3.GetTexturefr().Width + 10, Bm3.GetPosition().Y), Color.Black);
+                spriteBatch.DrawString(hud_font, _mp5, new Vector2(Bmp5.GetPosition().X + Bmp5.GetTexturefr().Width + 10, Bmp5.GetPosition().Y), Color.Black);
+                spriteBatch.DrawString(hud_font, _ak47, new Vector2(Bak47.GetPosition().X + Bak47.GetTexturefr().Width + 10, Bak47.GetPosition().Y), Color.Black);
+                spriteBatch.DrawString(hud_font, prix_shit, new Vector2(Bshit.GetPosition().X + Bshit.GetTexturefr().Width + 10, Bshit.GetPosition().Y), Color.Black);
+                spriteBatch.DrawString(hud_font, prix_coke, new Vector2(Bcoke.GetPosition().X + Bcoke.GetTexturefr().Width + 10, Bcoke.GetPosition().Y), Color.Black);
                 spriteBatch.DrawString(hud_font, prix_seringue, new Vector2(Bseringue.GetPosition().X + Bseringue.GetTexturefr().Width + 10, Bseringue.GetPosition().Y), Color.Black);
 
-
-                Bshit.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bseringue.GetRectangle()));
-                Bcoke.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bseringue.GetRectangle()));
+                Bshit.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bshit.GetRectangle()));
+                Bcoke.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcoke.GetRectangle()));
                 Bseringue.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bseringue.GetRectangle()));
 
 
                 spriteBatch.DrawString(hud_font, les_drogues, new Vector2((5 / 2) * Bcontinuer.GetTexturefr().Width + 2 * Bak47.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
 
+            }
+            #endregion
+
+
+            //M3
+            #region m3
+            if (status == "M3")
+            {
+                if (lang == 1)
+                {
+                    spriteBatch.Draw(magasin, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+                else
+                {
+                    if (lang == 2)
+                    {
+                        spriteBatch.Draw(shop, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    }
+                    else
+                    {
+                        if (lang == 3)
+                        {
+                            spriteBatch.Draw(negozio, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        }
+                        else
+                        {
+                            spriteBatch.Draw(magasinde, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        }
+                    }
+                }
+
+                Bm3.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bm3.GetRectangle()));
+                Bacheter.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bacheter.GetRectangle()));
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+
+                string _m3 = "M3";
+                spriteBatch.DrawString(hud_font, _m3, new Vector2(Bm3.GetPosition().X + Bm3.GetTexturefr().Width + 10, Bm3.GetPosition().Y), Color.Black);
+                string prix_m3 = "5000 $";
+                spriteBatch.DrawString(hud_font, prix_m3, new Vector2(Bacheter.GetPosition().X, Bacheter.GetPosition().Y - Bacheter.GetTexturefr().Height / 2), Color.Black);
+
+            }
+            #endregion
+
+
+            //M3 UNLOCKED
+            #region m3 unlocked
+            if (status == "M3 UNLOCKED")
+            {
+                if (lang == 1)
+                {
+                    spriteBatch.Draw(magasin, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+                else
+                {
+                    if (lang == 2)
+                    {
+                        spriteBatch.Draw(shop, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    }
+                    else
+                    {
+                        if (lang == 3)
+                        {
+                            spriteBatch.Draw(negozio, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        }
+                        else
+                        {
+                            spriteBatch.Draw(magasinde, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        }
+                    }
+                }
+                Bm3.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bm3.GetRectangle()));
+                Bameliorer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bameliorer.GetRectangle()));/////// "AMELIORER"
+                Bmunitions.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmunitions.GetRectangle()));//////// "MUNITIONS"
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+
+                string _m3 = "M3";
+                spriteBatch.DrawString(hud_font, _m3, new Vector2(Bm3.GetPosition().X + Bm3.GetTexturefr().Width + 10, Bm3.GetPosition().Y), Color.Black);
+
+
+                if (joueur.GetWeapons("m3").GetLevel() == 1)
+                    spriteBatch.DrawString(hud_font, level1, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                if (joueur.GetWeapons("m3").GetLevel() == 2)
+                    spriteBatch.DrawString(hud_font, level2, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                if (joueur.GetWeapons("m3").GetLevel() == 3)
+                    spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                if (joueur.GetWeapons("m3").GetLevel() == 4)
+                    spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+
+                spriteBatch.DrawString(hud_font, prix_amélio_m3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.Black);
+                spriteBatch.DrawString(hud_font, "500 $", new Vector2(Bmunitions.GetPosition().X, Bmunitions.GetPosition().Y + Bmunitions.GetTexturefr().Height), Color.Black);
+            }
+            #endregion
+
+
+            //MP5
+            #region mp5
+            if (status == "MP5")
+            {
+                if (lang == 1)
+                {
+                    spriteBatch.Draw(magasin, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+                else
+                {
+                    if (lang == 2)
+                    {
+                        spriteBatch.Draw(shop, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    }
+                    else
+                    {
+                        if (lang == 3)
+                        {
+                            spriteBatch.Draw(negozio, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        }
+                        else
+                        {
+                            spriteBatch.Draw(magasinde, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        }
+                    }
+                    Bmp5.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmp5.GetRectangle()));
+                    Bacheter.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bacheter.GetRectangle()));
+                    Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+
+                    string _mp5 = "MP5";
+                    spriteBatch.DrawString(hud_font, _mp5, new Vector2(Bmp5.GetPosition().X + Bmp5.GetTexturefr().Width + 10, Bmp5.GetPosition().Y), Color.Black);
+                    string prix_mp5 = "10000 $";
+                    spriteBatch.DrawString(hud_font, prix_mp5, new Vector2(Bacheter.GetPosition().X, Bacheter.GetPosition().Y - Bacheter.GetTexturefr().Height / 2), Color.Black);
+                }
+            }
+            #endregion
+
+
+            //MP5 UNLOCKED
+            #region mp5 unlocked
+            if (status == "MP5 UNLOCKED")
+            {
+                if (lang == 1)
+                {
+                    spriteBatch.Draw(magasin, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+                else
+                {
+                    if (lang == 2)
+                    {
+                        spriteBatch.Draw(shop, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    }
+                    else
+                    {
+                        if (lang == 3)
+                        {
+                            spriteBatch.Draw(negozio, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        }
+                        else
+                        {
+                            spriteBatch.Draw(magasinde, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        }
+                    }
+                }
+                Bmp5.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmp5.GetRectangle()));
+                Bameliorer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bameliorer.GetRectangle()));
+                Bmunitions.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmunitions.GetRectangle()));
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+
+                string _mp5 = "MP5";
+                spriteBatch.DrawString(hud_font, _mp5, new Vector2(Bmp5.GetPosition().X + Bmp5.GetTexturefr().Width + 10, Bmp5.GetPosition().Y), Color.Black);
+
+
+                if (joueur.GetWeapons("mp5").GetLevel() == 1)
+                    spriteBatch.DrawString(hud_font, level1, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                if (joueur.GetWeapons("mp5").GetLevel() == 2)
+                    spriteBatch.DrawString(hud_font, level2, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                if (joueur.GetWeapons("mp5").GetLevel() == 3)
+                    spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                if (joueur.GetWeapons("mp5").GetLevel() == 4)
+                    spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+
+                spriteBatch.DrawString(hud_font, prix_amélio_mp5, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.Black);
+                spriteBatch.DrawString(hud_font, "1000 $", new Vector2(Bmunitions.GetPosition().X, Bmunitions.GetPosition().Y + Bmunitions.GetTexturefr().Height), Color.Black);
+            }
+            #endregion
+
+
+            //AK47
+            #region ak47
+            if (status == "AK47")
+            {
+                if (lang == 1)
+                {
+                    spriteBatch.Draw(magasin, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+                else
+                {
+                    if (lang == 2)
+                    {
+                        spriteBatch.Draw(shop, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    }
+                    else
+                    {
+                        if (lang == 3)
+                        {
+                            spriteBatch.Draw(negozio, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        }
+                        else
+                        {
+                            spriteBatch.Draw(magasinde, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        }
+                    }
+                    Bak47.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bak47.GetRectangle()));
+                    Bacheter.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bacheter.GetRectangle()));
+                    Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+
+                    string _ak47 = "AK47";
+                    spriteBatch.DrawString(hud_font, _ak47, new Vector2(Bak47.GetPosition().X + Bak47.GetTexturefr().Width + 10, Bak47.GetPosition().Y), Color.Black);
+                    string prix_ak47 = "50000 $";
+                    spriteBatch.DrawString(hud_font, prix_ak47, new Vector2(Bacheter.GetPosition().X, Bacheter.GetPosition().Y - Bacheter.GetTexturefr().Height / 2), Color.Black);
+                }
+            }
+            #endregion
+
+
+            //AK47 UNLOCKED
+            #region ak47 unlocked
+            if (status == "AK47 UNLOCKED")
+            {
+                if (lang == 1)
+                {
+                    spriteBatch.Draw(magasin, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+                else
+                {
+                    if (lang == 2)
+                    {
+                        spriteBatch.Draw(shop, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    }
+                    else
+                    {
+                        if (lang == 3)
+                        {
+                            spriteBatch.Draw(negozio, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        }
+                        else
+                        {
+                            spriteBatch.Draw(magasinde, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        }
+                    }
+                }
+                Bak47.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bak47.GetRectangle()));
+                Bameliorer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bameliorer.GetRectangle()));
+                Bmunitions.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmunitions.GetRectangle()));
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+
+                string _ak47 = "AK47";
+                spriteBatch.DrawString(hud_font, _ak47, new Vector2(Bak47.GetPosition().X + Bak47.GetTexturefr().Width + 10, Bak47.GetPosition().Y), Color.Black);
+
+                if (joueur.GetWeapons("ak47").GetLevel() == 1)
+                    spriteBatch.DrawString(hud_font, level1, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                if (joueur.GetWeapons("ak47").GetLevel() == 2)
+                    spriteBatch.DrawString(hud_font, level2, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                if (joueur.GetWeapons("ak47").GetLevel() == 3)
+                    spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                if (joueur.GetWeapons("ak47").GetLevel() == 4)
+                    spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+
+                spriteBatch.DrawString(hud_font, prix_amélio_ak47, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.Black);
+                spriteBatch.DrawString(hud_font, "2000 $", new Vector2(Bmunitions.GetPosition().X, Bmunitions.GetPosition().Y + Bmunitions.GetTexturefr().Height), Color.Black);
             }
             #endregion
 
@@ -2415,7 +2780,7 @@ namespace Fuckin__Height_Redemption
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                 Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
-                spriteBatch.DrawString(hud_font, "Save successfully reset !", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.DrawString(hud_font, "Save successfully reset!", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
             }
 
             if (status == "Reset_error")
@@ -2487,18 +2852,28 @@ namespace Fuckin__Height_Redemption
                 {
                     Blangueen.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueen.GetRectangle()));
                     Blangueit.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueit.GetRectangle()));
+                    Blanguede.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blanguede.GetRectangle()));
                     Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
                 }
                 if (lang == 2) //anglais
                 {
                     Blanguefr.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blanguefr.GetRectangle()));
                     Blangueit.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueit.GetRectangle()));
+                    Blanguede.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blanguede.GetRectangle()));
                     Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
                 }
                 if (lang == 3) //italien
                 {
                     Blanguefr.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blanguefr.GetRectangle()));
                     Blangueen.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueen.GetRectangle()));
+                    Blanguede.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blanguede.GetRectangle()));
+                    Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                }
+                if (lang == 4) //italien
+                {
+                    Blanguefr.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blanguefr.GetRectangle()));
+                    Blangueen.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueen.GetRectangle()));
+                    Blangueit.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueit.GetRectangle()));
                     Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
                 }
             }

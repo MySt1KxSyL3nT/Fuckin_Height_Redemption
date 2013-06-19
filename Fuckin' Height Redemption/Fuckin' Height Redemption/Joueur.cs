@@ -857,53 +857,98 @@ namespace Fuckin__Height_Redemption
         public void Refill_ammo(int n)
         {
             if (n == 1)
+            {
                 this.money -= 2000;
+                this.weapons[1].ammo += 10;
+            }
             if (n == 2)
+            {
                 this.money -= 1000;
+                this.weapons[2].ammo += 20;
+            }
             if (n == 3)
+            {
                 this.money -= 500;
+                this.weapons[3].ammo += 30;
+            }
 
             weapons[n].ammo = weapons[n].ammo_max;
         }
         /////////////////////////////////
-        public void Refill_chargeur(int n)
+        public void Refill_clip(int n)
         {
             if (n == 1)
+            {
                 this.money -= 3000;
+                this.weapons[1].clip_max += 50;
+            }
             if (n == 2)
+            {
                 this.money -= 2500;
+                this.weapons[2].clip_max += 50;
+            }
             if (n == 3)
+            {
                 this.money -= 1500;
+                this.weapons[3].clip_max += 50;
+            }
         }
         /////////////////////////////////
         public void Refill_dmg(int n)
         {
             if (n == 1)
+            {
                 this.money -= 5000;
+                this.weapons[1].dmg += 50;
+            }
             if (n == 2)
+            {
                 this.money -= 3000;
+                this.weapons[2].dmg += 50;
+            }
             if (n == 3)
+            {
                 this.money -= 2000;
+                this.weapons[3].dmg += 50;
+            }
         }
         ////////////////////////////////
         public void Refill_reloadtime(int n)
         {
             if (n == 1)
+            {
                 this.money -= 10000;
+                this.weapons[1].reload_time += 50;
+            }
             if (n == 2)
+            {
                 this.money -= 7000;
+                this.weapons[2].reload_time += 50;
+            }
             if (n == 3)
+            {
                 this.money -= 4000;
+                this.weapons[3].reload_time += 50;
+            }
         }
         /////////////////////////////////
-        public void Refill_reload(int n)
+        public void Refill_cooldown(int n)
         {
             if (n == 1)
+            {
                 this.money -= 20000;
+                this.weapons[1].cooldown += 50;
+            }
             if (n == 2)
+            {
                 this.money -= 15000;
+                this.weapons[2].cooldown += 50;
+            }
             if (n == 3)
+            {
                 this.money -= 8000;
+                this.weapons[3].cooldown += 50;
+            }
         }
 
 
