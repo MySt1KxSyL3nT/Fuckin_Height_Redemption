@@ -1779,3 +1779,24 @@ H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 4\Fuckin_Height_Red
 H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 4\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\tir_m3_2.xnb
 H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 4\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\resetDE.xnb
 H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 4\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\saveDE.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\resetDE.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\saveDE.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\recharge_ak47_2.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\recharge_m3_1_2.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\recharge_m3_2_2.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\recharge_m3_3_2.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\recharge_m3_4_2.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\recharge_m3_5_2.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\recharge_m3_6_2.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\recharge_m3_7_2.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\recharge_m3_8_2.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\recharge_mp5_2.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\recharge_usp_2.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\tir_m3_2.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\allemandFR.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\allemandEN.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\allemandIT.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\sonmagasin.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\sonmagasin.wma
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\hud_coke.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\hud_shit.xnb

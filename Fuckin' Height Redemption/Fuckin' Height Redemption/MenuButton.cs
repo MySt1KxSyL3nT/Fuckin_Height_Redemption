@@ -16,7 +16,7 @@ namespace Fuckin__Height_Redemption
 {
     public class MenuButton
     {
-        public MenuButton(Vector2 position, Texture2D texturefr, Texture2D textureen, Texture2D textureit, Texture2D texturede)
+        public MenuButton(Vector2 position, Texture2D texturefr, Texture2D textureen, Texture2D textureit, Texture2D texturede, bool couleurachanger)
         {
 
             this.position = position;
@@ -25,6 +25,7 @@ namespace Fuckin__Height_Redemption
             this.textureit = textureit;
             this.texturede = texturede;
             this.rectangle = GetRectangle();
+            this.couleurachanger = couleurachanger;
         }
 
         private Vector2 position;
@@ -33,6 +34,7 @@ namespace Fuckin__Height_Redemption
         private Texture2D textureit;
         private Texture2D texturede;
         private Rectangle rectangle;
+        private bool couleurachanger;
 
         /// <summary>
         /// Defini la position
@@ -105,14 +107,28 @@ namespace Fuckin__Height_Redemption
 
             if (touche)
             {
-                if (lang == 1)
-                    spriteBatch.Draw(texturefr, position, Color.DarkOrange);
-                if (lang == 2)
-                    spriteBatch.Draw(textureen, position, Color.DarkOrange);
-                if (lang == 3)
-                    spriteBatch.Draw(textureit, position, Color.DarkOrange);
-                if (lang == 4)
-                    spriteBatch.Draw(texturede, position, Color.DarkOrange);
+                if (this.couleurachanger)
+                {
+                    if (lang == 1)
+                        spriteBatch.Draw(texturefr, position, Color.Salmon);
+                    if (lang == 2)
+                        spriteBatch.Draw(textureen, position, Color.Salmon);
+                    if (lang == 3)
+                        spriteBatch.Draw(textureit, position, Color.Salmon);
+                    if (lang == 4)
+                        spriteBatch.Draw(texturede, position, Color.Salmon);
+                }
+                else
+                {
+                    if (lang == 1)
+                        spriteBatch.Draw(texturefr, position, Color.DarkOrange);
+                    if (lang == 2)
+                        spriteBatch.Draw(textureen, position, Color.DarkOrange);
+                    if (lang == 3)
+                        spriteBatch.Draw(textureit, position, Color.DarkOrange);
+                    if (lang == 4)
+                        spriteBatch.Draw(texturede, position, Color.DarkOrange);
+                }
             }
             else
             {
@@ -125,6 +141,9 @@ namespace Fuckin__Height_Redemption
                 if (lang == 4)
                     spriteBatch.Draw(texturede, position, Color.White);
             }
+
+
+
         }
 
 

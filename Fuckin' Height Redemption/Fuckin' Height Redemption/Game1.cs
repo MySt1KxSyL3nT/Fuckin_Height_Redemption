@@ -60,7 +60,7 @@ namespace Fuckin__Height_Redemption
 
 
         public static int elapsedtime;
-        public static int lang; // 1 = francais, 2 = anglais, 3 = italien
+        public static int lang; // 1 = francais, 2 = anglais, 3 = italien, 4 = allemand
         public static int entiermanette;
         public static int last_molette; // pour comparer le chgt de valeur de la molette
 
@@ -106,6 +106,7 @@ namespace Fuckin__Height_Redemption
 
 
         public static Song sonprincipal;
+        public static Song sonmagasin;
 
         //magasin
         string level1 = "";
@@ -321,10 +322,11 @@ namespace Fuckin__Height_Redemption
             gestionclavier = -1;
 
             sonprincipal = Content.Load<Song>("sonprincipal");
+            sonmagasin = Content.Load<Song>("sonmagasin");
 
             #endregion
 
-            ////////////////////////////////////// BOUTONS & IMAGES! ////////////////////////////////////////////////
+            ////////////////////////////////////// BOUTONS & IMAGES ! ////////////////////////////////////////////////
             #region boutons et images
             backgroundmenu = Content.Load<Texture2D>("menuprincipal");
 
@@ -391,79 +393,79 @@ namespace Fuckin__Height_Redemption
 
 
             // principal
-            Bjouer = new MenuButton(Vector2.One, Content.Load<Texture2D>("jouer"), Content.Load<Texture2D>("play"), Content.Load<Texture2D>("jouerit"), Content.Load<Texture2D>("jouer-allemand"));
-            Bmulti = new MenuButton(Vector2.One, Content.Load<Texture2D>("multijoueur"), Content.Load<Texture2D>("multiplayer"), Content.Load<Texture2D>("multijoueurit"), Content.Load<Texture2D>("multijoueur-allemand"));
-            Boptions = new MenuButton(Vector2.One, Content.Load<Texture2D>("options"), Content.Load<Texture2D>("options"), Content.Load<Texture2D>("optionsit"), Content.Load<Texture2D>("options-allemand"));
-            Bquitter = new MenuButton(Vector2.One, Content.Load<Texture2D>("quitter"), Content.Load<Texture2D>("exit"), Content.Load<Texture2D>("quitterit"), Content.Load<Texture2D>("quitter-allemand"));
-            Bretour = new MenuButton(Vector2.One, Content.Load<Texture2D>("retour"), Content.Load<Texture2D>("back"), Content.Load<Texture2D>("retourit"), Content.Load<Texture2D>("retour-allemand"));
+            Bjouer = new MenuButton(Vector2.One, Content.Load<Texture2D>("jouer"), Content.Load<Texture2D>("play"), Content.Load<Texture2D>("jouerit"), Content.Load<Texture2D>("jouer-allemand"), false);
+            Bmulti = new MenuButton(Vector2.One, Content.Load<Texture2D>("multijoueur"), Content.Load<Texture2D>("multiplayer"), Content.Load<Texture2D>("multijoueurit"), Content.Load<Texture2D>("multijoueur-allemand"), false);
+            Boptions = new MenuButton(Vector2.One, Content.Load<Texture2D>("options"), Content.Load<Texture2D>("options"), Content.Load<Texture2D>("optionsit"), Content.Load<Texture2D>("options-allemand"), false);
+            Bquitter = new MenuButton(Vector2.One, Content.Load<Texture2D>("quitter"), Content.Load<Texture2D>("exit"), Content.Load<Texture2D>("quitterit"), Content.Load<Texture2D>("quitter-allemand"), false);
+            Bretour = new MenuButton(Vector2.One, Content.Load<Texture2D>("retour"), Content.Load<Texture2D>("back"), Content.Load<Texture2D>("retourit"), Content.Load<Texture2D>("retour-allemand"), false);
 
             // Jouer
-            Bnouveaujeu = new MenuButton(Vector2.One, Content.Load<Texture2D>("nouveaujeu"), Content.Load<Texture2D>("newgame"), Content.Load<Texture2D>("nouveaujeuit"), Content.Load<Texture2D>("nouveaujeu-allemand"));
-            Bcontinuer = new MenuButton(Vector2.One, Content.Load<Texture2D>("continuer"), Content.Load<Texture2D>("continue"), Content.Load<Texture2D>("continuerit"), Content.Load<Texture2D>("continuer-allemand"));
+            Bnouveaujeu = new MenuButton(Vector2.One, Content.Load<Texture2D>("nouveaujeu"), Content.Load<Texture2D>("newgame"), Content.Load<Texture2D>("nouveaujeuit"), Content.Load<Texture2D>("nouveaujeu-allemand"), false);
+            Bcontinuer = new MenuButton(Vector2.One, Content.Load<Texture2D>("continuer"), Content.Load<Texture2D>("continue"), Content.Load<Texture2D>("continuerit"), Content.Load<Texture2D>("continuer-allemand"), false);
 
 
             //Modes
-            Bfacile = new MenuButton(Vector2.One, Content.Load<Texture2D>("facile"), Content.Load<Texture2D>("easy"), Content.Load<Texture2D>("facile"), Content.Load<Texture2D>("facile-allemand"));
-            BIntermediaire = new MenuButton(Vector2.One, Content.Load<Texture2D>("intermediaire"), Content.Load<Texture2D>("intermediate"), Content.Load<Texture2D>("intermedio"), Content.Load<Texture2D>("intermediaire-allemand"));
-            Bdifficle = new MenuButton(Vector2.One, Content.Load<Texture2D>("difficile"), Content.Load<Texture2D>("difficult"), Content.Load<Texture2D>("difficile"), Content.Load<Texture2D>("difficile-allemand"));
-            Bimpossible = new MenuButton(Vector2.One, Content.Load<Texture2D>("impossible"), Content.Load<Texture2D>("impossible"), Content.Load<Texture2D>("impossibile"), Content.Load<Texture2D>("impossible-allemand"));
+            Bfacile = new MenuButton(Vector2.One, Content.Load<Texture2D>("facile"), Content.Load<Texture2D>("easy"), Content.Load<Texture2D>("facile"), Content.Load<Texture2D>("facile-allemand"), false);
+            BIntermediaire = new MenuButton(Vector2.One, Content.Load<Texture2D>("intermediaire"), Content.Load<Texture2D>("intermediate"), Content.Load<Texture2D>("intermedio"), Content.Load<Texture2D>("intermediaire-allemand"), false);
+            Bdifficle = new MenuButton(Vector2.One, Content.Load<Texture2D>("difficile"), Content.Load<Texture2D>("difficult"), Content.Load<Texture2D>("difficile"), Content.Load<Texture2D>("difficile-allemand"), false);
+            Bimpossible = new MenuButton(Vector2.One, Content.Load<Texture2D>("impossible"), Content.Load<Texture2D>("impossible"), Content.Load<Texture2D>("impossibile"), Content.Load<Texture2D>("impossible-allemand"), false);
 
             // Multi
-            Bcreer = new MenuButton(Vector2.One, Content.Load<Texture2D>("créer"), Content.Load<Texture2D>("create"), Content.Load<Texture2D>("creerit"), Content.Load<Texture2D>("creer-allemand"));
-            Brejoindre = new MenuButton(Vector2.One, Content.Load<Texture2D>("rejoindre"), Content.Load<Texture2D>("join"), Content.Load<Texture2D>("rejoindreit"), Content.Load<Texture2D>("rejoindre-allemand"));
+            Bcreer = new MenuButton(Vector2.One, Content.Load<Texture2D>("créer"), Content.Load<Texture2D>("create"), Content.Load<Texture2D>("creerit"), Content.Load<Texture2D>("creer-allemand"), false);
+            Brejoindre = new MenuButton(Vector2.One, Content.Load<Texture2D>("rejoindre"), Content.Load<Texture2D>("join"), Content.Load<Texture2D>("rejoindreit"), Content.Load<Texture2D>("rejoindre-allemand"), false);
 
             //Options
-            Bvideo = new MenuButton(Vector2.One, Content.Load<Texture2D>("vidéo"), Content.Load<Texture2D>("video"), Content.Load<Texture2D>("video"), Content.Load<Texture2D>("video-allemand"));
-            Baudio = new MenuButton(Vector2.One, Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio-allemand"));
-            Bcommandes = new MenuButton(Vector2.One, Content.Load<Texture2D>("commandes"), Content.Load<Texture2D>("controls"), Content.Load<Texture2D>("commandesit"), Content.Load<Texture2D>("commandes-allemand"));
-            Bjoueur = new MenuButton(Vector2.One, Content.Load<Texture2D>("joueur"), Content.Load<Texture2D>("joueurEN"), Content.Load<Texture2D>("joueurIT"), Content.Load<Texture2D>("joueurDE"));
-            Breset = new MenuButton(Vector2.One, Content.Load<Texture2D>("reset"), Content.Load<Texture2D>("resetEN"), Content.Load<Texture2D>("resetIT"), Content.Load<Texture2D>("reinitialiserDE"));
-            Bnom = new MenuButton(Vector2.One, Content.Load<Texture2D>("nom"), Content.Load<Texture2D>("nomEN"), Content.Load<Texture2D>("nomIT"), Content.Load<Texture2D>("nomDE"));
-            Bsave = new MenuButton(Vector2.One, Content.Load<Texture2D>("save"), Content.Load<Texture2D>("saveEN"), Content.Load<Texture2D>("saveIT"), Content.Load<Texture2D>("sauvegarderDE"));
+            Bvideo = new MenuButton(Vector2.One, Content.Load<Texture2D>("vidéo"), Content.Load<Texture2D>("video"), Content.Load<Texture2D>("video"), Content.Load<Texture2D>("video-allemand"), false);
+            Baudio = new MenuButton(Vector2.One, Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio"), Content.Load<Texture2D>("audio-allemand"), false);
+            Bcommandes = new MenuButton(Vector2.One, Content.Load<Texture2D>("commandes"), Content.Load<Texture2D>("controls"), Content.Load<Texture2D>("commandesit"), Content.Load<Texture2D>("commandes-allemand"), false);
+            Bjoueur = new MenuButton(Vector2.One, Content.Load<Texture2D>("joueur"), Content.Load<Texture2D>("joueurEN"), Content.Load<Texture2D>("joueurIT"), Content.Load<Texture2D>("joueurDE"), false);
+            Breset = new MenuButton(Vector2.One, Content.Load<Texture2D>("reset"), Content.Load<Texture2D>("resetEN"), Content.Load<Texture2D>("resetIT"), Content.Load<Texture2D>("reinitialiserDE"), false);
+            Bnom = new MenuButton(Vector2.One, Content.Load<Texture2D>("nom"), Content.Load<Texture2D>("nomEN"), Content.Load<Texture2D>("nomIT"), Content.Load<Texture2D>("nomDE"), false);
+            Bsave = new MenuButton(Vector2.One, Content.Load<Texture2D>("save"), Content.Load<Texture2D>("saveEN"), Content.Load<Texture2D>("saveIT"), Content.Load<Texture2D>("sauvegarderDE"), false);
 
             //Audio
-            Bmusique = new MenuButton(Vector2.One, Content.Load<Texture2D>("musique"), Content.Load<Texture2D>("music"), Content.Load<Texture2D>("musica"), Content.Load<Texture2D>("musique-allemand"));
-            Beffets = new MenuButton(Vector2.One, Content.Load<Texture2D>("effetssonores"), Content.Load<Texture2D>("soundeffects"), Content.Load<Texture2D>("effettisonori"), Content.Load<Texture2D>("effetssonores-allemand"));
-            Bboxmusique = new MenuButton(Vector2.One, Content.Load<Texture2D>("checked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"));
-            Bboxeffects = new MenuButton(Vector2.One, Content.Load<Texture2D>("checked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"));
-            Bmoinsmusic = new MenuButton(Vector2.One, Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"));
-            Bplusmusic = new MenuButton(Vector2.One, Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"));
-            Bmoinseffects = new MenuButton(Vector2.One, Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"));
-            Bpluseffects = new MenuButton(Vector2.One, Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"));
+            Bmusique = new MenuButton(Vector2.One, Content.Load<Texture2D>("musique"), Content.Load<Texture2D>("music"), Content.Load<Texture2D>("musica"), Content.Load<Texture2D>("musique-allemand"), false);
+            Beffets = new MenuButton(Vector2.One, Content.Load<Texture2D>("effetssonores"), Content.Load<Texture2D>("soundeffects"), Content.Load<Texture2D>("effettisonori"), Content.Load<Texture2D>("effetssonores-allemand"), false);
+            Bboxmusique = new MenuButton(Vector2.One, Content.Load<Texture2D>("checked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"), false);
+            Bboxeffects = new MenuButton(Vector2.One, Content.Load<Texture2D>("checked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"), false);
+            Bmoinsmusic = new MenuButton(Vector2.One, Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), false);
+            Bplusmusic = new MenuButton(Vector2.One, Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), false);
+            Bmoinseffects = new MenuButton(Vector2.One, Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), Content.Load<Texture2D>("moins"), false);
+            Bpluseffects = new MenuButton(Vector2.One, Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), Content.Load<Texture2D>("plus"), false);
 
 
             // Video
-            Blangue = new MenuButton(Vector2.One, Content.Load<Texture2D>("langues"), Content.Load<Texture2D>("languages"), Content.Load<Texture2D>("languesit"), Content.Load<Texture2D>("langues-allemand"));
-            Bfullscreen = new MenuButton(Vector2.One, Content.Load<Texture2D>("pleinecran"), Content.Load<Texture2D>("fullscreen"), Content.Load<Texture2D>("pleinecranit"), Content.Load<Texture2D>("pleinecran-allemand"));
-            Bfenetre = new MenuButton(Vector2.One, Content.Load<Texture2D>("fenetre"), Content.Load<Texture2D>("windowed"), Content.Load<Texture2D>("fenetreit"), Content.Load<Texture2D>("fenetre-allemand"));
+            Blangue = new MenuButton(Vector2.One, Content.Load<Texture2D>("langues"), Content.Load<Texture2D>("languages"), Content.Load<Texture2D>("languesit"), Content.Load<Texture2D>("langues-allemand"), false);
+            Bfullscreen = new MenuButton(Vector2.One, Content.Load<Texture2D>("pleinecran"), Content.Load<Texture2D>("fullscreen"), Content.Load<Texture2D>("pleinecranit"), Content.Load<Texture2D>("pleinecran-allemand"), false);
+            Bfenetre = new MenuButton(Vector2.One, Content.Load<Texture2D>("fenetre"), Content.Load<Texture2D>("windowed"), Content.Load<Texture2D>("fenetreit"), Content.Load<Texture2D>("fenetre-allemand"), false);
 
             //Langues
-            Blanguefr = new MenuButton(Vector2.One, Content.Load<Texture2D>("french"), Content.Load<Texture2D>("french"), Content.Load<Texture2D>("francaisit"), Content.Load<Texture2D>("francais-allemand"));
-            Blangueen = new MenuButton(Vector2.One, Content.Load<Texture2D>("anglais"), Content.Load<Texture2D>("anglaisit"), Content.Load<Texture2D>("anglaisit"), Content.Load<Texture2D>("anglais-allemand"));
-            Blangueit = new MenuButton(Vector2.One, Content.Load<Texture2D>("italien"), Content.Load<Texture2D>("italian"), Content.Load<Texture2D>("anglaisit"), Content.Load<Texture2D>("italien-allemand"));
-            Blanguede = new MenuButton(Vector2.One, Content.Load<Texture2D>("italien"), Content.Load<Texture2D>("italian"), Content.Load<Texture2D>("anglaisit"), Content.Load<Texture2D>("italien-allemand"));
+            Blanguefr = new MenuButton(Vector2.One, Content.Load<Texture2D>("french"), Content.Load<Texture2D>("french"), Content.Load<Texture2D>("francaisit"), Content.Load<Texture2D>("francais-allemand"), false);
+            Blangueen = new MenuButton(Vector2.One, Content.Load<Texture2D>("anglais"), Content.Load<Texture2D>("anglaisit"), Content.Load<Texture2D>("anglaisit"), Content.Load<Texture2D>("anglais-allemand"), false);
+            Blangueit = new MenuButton(Vector2.One, Content.Load<Texture2D>("italien"), Content.Load<Texture2D>("italian"), Content.Load<Texture2D>("anglaisit"), Content.Load<Texture2D>("italien-allemand"), false);
+            Blanguede = new MenuButton(Vector2.One, Content.Load<Texture2D>("allemandFR"), Content.Load<Texture2D>("allemandEN"), Content.Load<Texture2D>("allemandIT"), Content.Load<Texture2D>("italien-allemand"), false);
 
             // Commandes
-            Bmanette = new MenuButton(Vector2.One, Content.Load<Texture2D>("manette"), Content.Load<Texture2D>("controller"), Content.Load<Texture2D>("manetteit"), Content.Load<Texture2D>("manette-allemand"));
-            Bbox = new MenuButton(Vector2.One, Content.Load<Texture2D>("checked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"));
+            Bmanette = new MenuButton(Vector2.One, Content.Load<Texture2D>("manette"), Content.Load<Texture2D>("controller"), Content.Load<Texture2D>("manetteit"), Content.Load<Texture2D>("manette-allemand"), false);
+            Bbox = new MenuButton(Vector2.One, Content.Load<Texture2D>("checked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"), Content.Load<Texture2D>("unchecked"), false);
 
 
 
             // Armes & Drogues ///////////////////////////////////////
-            Bak47 = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_ak47"), Content.Load<Texture2D>("hud_ak47"), Content.Load<Texture2D>("hud_ak47"), Content.Load<Texture2D>("hud_ak47"));
-            Bm3 = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_m3"), Content.Load<Texture2D>("hud_m3"), Content.Load<Texture2D>("hud_m3"), Content.Load<Texture2D>("hud_m3"));
-            Bmp5 = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_mp5"), Content.Load<Texture2D>("hud_mp5"), Content.Load<Texture2D>("hud_mp5"), Content.Load<Texture2D>("hud_mp5"));
-            Busp = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_usp"), Content.Load<Texture2D>("hud_usp"), Content.Load<Texture2D>("hud_usp"), Content.Load<Texture2D>("hud_usp"));
+            Bak47 = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_ak47"), Content.Load<Texture2D>("hud_ak47"), Content.Load<Texture2D>("hud_ak47"), Content.Load<Texture2D>("hud_ak47"), false);
+            Bm3 = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_m3"), Content.Load<Texture2D>("hud_m3"), Content.Load<Texture2D>("hud_m3"), Content.Load<Texture2D>("hud_m3"), false);
+            Bmp5 = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_mp5"), Content.Load<Texture2D>("hud_mp5"), Content.Load<Texture2D>("hud_mp5"), Content.Load<Texture2D>("hud_mp5"), false);
+            Busp = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_usp"), Content.Load<Texture2D>("hud_usp"), Content.Load<Texture2D>("hud_usp"), Content.Load<Texture2D>("hud_usp"), false);
 
-            Bshit = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"));
-            Bcoke = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"));
-            Bseringue = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"));
+            Bshit = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_shit"), Content.Load<Texture2D>("hud_shit"), Content.Load<Texture2D>("hud_shit"), Content.Load<Texture2D>("hud_shit"), true);
+            Bcoke = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_coke"), Content.Load<Texture2D>("hud_coke"), Content.Load<Texture2D>("hud_coke"), Content.Load<Texture2D>("hud_coke"), true);
+            Bseringue = new MenuButton(Vector2.One, Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), Content.Load<Texture2D>("hud_seringue"), true);
             ////////////////////////////////////////////////////////////////////////
 
             //Armes bloquées-débloquées
-            Bacheter = new MenuButton(Vector2.One, Content.Load<Texture2D>("acheter"), Content.Load<Texture2D>("acheterEN"), Content.Load<Texture2D>("acheterIT"), Content.Load<Texture2D>("acheterDE"));
-            Bmunitions = new MenuButton(Vector2.One, Content.Load<Texture2D>("munitions"), Content.Load<Texture2D>("munitionsEN"), Content.Load<Texture2D>("munitionsIT"), Content.Load<Texture2D>("munitionsDE"));
-            Bameliorer = new MenuButton(Vector2.One, Content.Load<Texture2D>("améliorer"), Content.Load<Texture2D>("améliorerEN"), Content.Load<Texture2D>("améliorerIT"), Content.Load<Texture2D>("améliorerDE"));
+            Bacheter = new MenuButton(Vector2.One, Content.Load<Texture2D>("acheter"), Content.Load<Texture2D>("acheterEN"), Content.Load<Texture2D>("acheterIT"), Content.Load<Texture2D>("acheterDE"), false);
+            Bmunitions = new MenuButton(Vector2.One, Content.Load<Texture2D>("munitions"), Content.Load<Texture2D>("munitionsEN"), Content.Load<Texture2D>("munitionsIT"), Content.Load<Texture2D>("munitionsDE"), false);
+            Bameliorer = new MenuButton(Vector2.One, Content.Load<Texture2D>("améliorer"), Content.Load<Texture2D>("améliorerEN"), Content.Load<Texture2D>("améliorerIT"), Content.Load<Texture2D>("améliorerDE"), false);
 
 
             // Positions
@@ -653,11 +655,19 @@ namespace Fuckin__Height_Redemption
 
             // MUSIQUE
             #region musique menu
-            if (status == "Principal" || status == "Choix_Niveau" || status == "Cinematiques" || status == "Jouer" || status == "Multi" || status == "Options" || status == "Video" || status == "Audio" || status == "Commandes" || status == "Langues")
+            if (status == "Principal" || status == "Choix_Niveau" || status == "Cinematiques" || status == "Jouer" || status == "Multi" || status == "Options" || status == "Video" || status == "Audio" || status == "Commandes" || status == "Langues" || status == "Pause" || status == "Pause Options" || status == "Pause Langues" || status == "Pause Audio")
             {
                 if (MediaPlayer.State == MediaState.Stopped)
                 {
                     MediaPlayer.Play(sonprincipal);
+                }
+            }
+
+            if (status == "Magasin" || status == "M3" || status == "MP5" || status == "AK47" || status == "USP UNLOCKED" || status == "M3 UNLOCKED" || status == "MP5 UNLOCKED" || status == "AK47 UNLOCKED")
+            {
+                if (MediaPlayer.State == MediaState.Stopped)
+                {
+                    MediaPlayer.Play(sonmagasin);
                 }
             }
             #endregion
@@ -668,7 +678,7 @@ namespace Fuckin__Height_Redemption
             if (status == "Jeu")
             {
                 this.IsMouseVisible = false;
-
+                MediaPlayer.Stop();
 
                 joueur.Update(Window.ClientBounds.Height, Window.ClientBounds.Width, gameTime);
                 //map.Update(joueur);                     
@@ -842,7 +852,7 @@ namespace Fuckin__Height_Redemption
             {
                 this.IsMouseVisible = true;
 
-                Bm3.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height));
+                Busp.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height));
                 Bameliorer.SetPosition(new Vector2(Window.ClientBounds.Width / 2 + Bcontinuer.GetTexturefr().Width / 3, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
                 Bmunitions.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
                 Bretour.SetPosition(new Vector2(Window.ClientBounds.Width - 2 * Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height - 3 * Bcontinuer.GetTexturefr().Height));
@@ -895,7 +905,7 @@ namespace Fuckin__Height_Redemption
                                     }
                 }
 
-                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                if ((souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()) || (souris.GetRectangle().Intersects(Busp.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()))
                 {
                     status = "Magasin";
                 }
@@ -926,7 +936,7 @@ namespace Fuckin__Height_Redemption
                         joueur.Save("solo.save");
                     }
                 }
-                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                if ((souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()) || (souris.GetRectangle().Intersects(Bm3.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()))
                 {
                     status = "Magasin";
                     souris_old = new MouseEvent();
@@ -1003,7 +1013,7 @@ namespace Fuckin__Height_Redemption
                     }
                 }
 
-                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                if ((souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()) || (souris.GetRectangle().Intersects(Bm3.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()))
                 {
                     status = "Magasin";
                 }
@@ -1032,7 +1042,7 @@ namespace Fuckin__Height_Redemption
                     }
                 }
 
-                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                if ((souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()) || (souris.GetRectangle().Intersects(Bmp5.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()))
                 {
                     status = "Magasin";
                 }
@@ -1108,7 +1118,7 @@ namespace Fuckin__Height_Redemption
                 }
 
 
-                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                if ((souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()) || (souris.GetRectangle().Intersects(Bmp5.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()))
                 {
                     status = "Magasin";
                 }
@@ -1137,7 +1147,7 @@ namespace Fuckin__Height_Redemption
                         joueur.Save("solo.save");
                     }
                 }
-                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                if ((souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()) || (souris.GetRectangle().Intersects(Bak47.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()))
                 {
                     status = "Magasin";
                 }
@@ -1213,7 +1223,7 @@ namespace Fuckin__Height_Redemption
                 }
 
 
-                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                if ((souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()) || (souris.GetRectangle().Intersects(Bak47.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()))
                 {
                     status = "Magasin";
                 }
@@ -1221,7 +1231,6 @@ namespace Fuckin__Height_Redemption
             #endregion
 
             #endregion
-
 
 
             // MENU PRINCIPAL
@@ -1446,24 +1455,285 @@ namespace Fuckin__Height_Redemption
             #region pause
             if (status == "Pause")
             {
-                Bcontinuer.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2 - Bcontinuer.GetTexturefr().Width, (Window.ClientBounds.Height - Bcontinuer.GetTexturefr().Height) / 2));
-                Bquitter.SetPosition(new Vector2((Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2 + Bcontinuer.GetTexturefr().Width), (Window.ClientBounds.Height - Bcontinuer.GetTexturefr().Height) / 2));
+                Bcontinuer.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height * 2));
+                Boptions.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                Bquitter.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 + Bcontinuer.GetTexturefr().Height));
 
-                if ((souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()) || (!clavier.KeyPressed(Keys.Escape) && clavier_old.KeyPressed(Keys.Escape)) || (!manette.IsPressed(Buttons.Start) && manette_old.IsPressed(Buttons.Start)))
+                if ((souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()) || (!clavier.KeyPressed(Keys.Escape) && clavier_old.KeyPressed(Keys.Escape)) || (!manette.IsPressed(Buttons.Start) && manette_old.IsPressed(Buttons.Start)) || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
                 {
+                    gestionclavier = -1;
                     status = "Jeu";
                     souris_old = new MouseEvent();
                     clavier_old = new KeyboardEvent();
                     manette_old = new GamePadEvent(PlayerIndex.One);
                 }
-                if (souris.GetRectangle().Intersects(Bquitter.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                if ((souris.GetRectangle().Intersects(Boptions.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()) || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
                 {
+                    gestionclavier = -1;
+                    status = "Pause Options";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+                if ((souris.GetRectangle().Intersects(Bquitter.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()) || (!clavier.KeyPressed(Keys.Escape) && clavier_old.KeyPressed(Keys.Escape)) || (!manette.IsPressed(Buttons.Start) && manette_old.IsPressed(Buttons.Start)) || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                {
+                    gestionclavier = -1;
                     status = "Principal";
                     souris_old = new MouseEvent();
                     clavier_old = new KeyboardEvent();
                 }
 
+                if (!clavier.KeyPressed(Keys.Down) && clavier_old.KeyPressed(Keys.Down))
+                {
+                    if (gestionclavier < 2)
+                        gestionclavier += 1;
+                    else
+                        gestionclavier = 0;
+                }
+                if (!clavier.KeyPressed(Keys.Up) && clavier_old.KeyPressed(Keys.Up))
+                {
+                    if (gestionclavier > 0)
+                        gestionclavier -= 1;
+                    else
+                        gestionclavier = 2;
+                }
+
+                if (souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) || souris.GetRectangle().Intersects(Bquitter.GetRectangle()) || souris.GetRectangle().Intersects(Boptions.GetRectangle()))
+                    gestionclavier = -1;
+
             }
+
+            #region pause options
+            if (status == "Pause Options")
+            {
+                Blangue.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height * 2));
+                Baudio.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                Bretour.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 + Bcontinuer.GetTexturefr().Height));
+
+                if (souris.GetRectangle().Intersects(Blangue.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    status = "Pause Langues";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+                if (souris.GetRectangle().Intersects(Baudio.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    status = "Pause Audio";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    status = "Pause";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+            }
+            #endregion
+
+            #region pause langues
+            if (status == "Pause Langues")
+            {
+
+                Blangueen.SetPosition(new Vector2(-10000));
+                Blangueit.SetPosition(new Vector2(-10000));
+                Blanguefr.SetPosition(new Vector2(-10000));
+                Blanguede.SetPosition(new Vector2(-10000));
+                if (lang == 1) //francais
+                {
+                    Blangueen.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height * 2));
+                    Blangueit.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                    Blanguede.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 + Bcontinuer.GetTexturefr().Height));
+                    Bretour.SetPosition(positionBoutton4);
+                }
+                if (lang == 2) //anglais
+                {
+                    Blanguefr.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height * 2));
+                    Blangueit.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                    Blanguede.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 + Bcontinuer.GetTexturefr().Height));
+                    Bretour.SetPosition(positionBoutton4);
+                }
+                if (lang == 3) //italien
+                {
+                    Blanguefr.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height * 2));
+                    Blangueen.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                    Blanguede.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 + Bcontinuer.GetTexturefr().Height));
+                    Bretour.SetPosition(positionBoutton4);
+                }
+                if (lang == 4) //allemand
+                {
+                    Blanguefr.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height * 2));
+                    Blangueen.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                    Blangueit.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 + Bcontinuer.GetTexturefr().Height));
+                    Bretour.SetPosition(positionBoutton4);
+                }
+
+
+
+                if (souris.GetRectangle().Intersects(Blanguefr.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                {
+                    gestionclavier = -1;
+                    lang = 1;
+                }
+                if (souris.GetRectangle().Intersects(Blangueen.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                {
+                    gestionclavier = -1;
+                    lang = 2;
+                }
+                if (souris.GetRectangle().Intersects(Blangueit.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                {
+                    gestionclavier = -1;
+                    lang = 3;
+                }
+                if (souris.GetRectangle().Intersects(Blanguede.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                {
+                    gestionclavier = -1;
+                    lang = 4;
+                }
+
+
+
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 3 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)) || (clique_back && !clavier.KeyPressed(Keys.Escape)))
+                {
+                    status = "Pause Options";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+
+
+
+
+                if (!clavier.KeyPressed(Keys.Down) && clavier_old.KeyPressed(Keys.Down))
+                {
+                    if (gestionclavier < 2)
+                        gestionclavier += 1;
+                    else
+                        gestionclavier = 0;
+                }
+                if (!clavier.KeyPressed(Keys.Up) && clavier_old.KeyPressed(Keys.Up))
+                {
+                    if (gestionclavier > 0)
+                        gestionclavier -= 1;
+                    else
+                        gestionclavier = 2;
+                }
+
+                if (souris.GetRectangle().Intersects(Bnouveaujeu.GetRectangle()) || souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) || souris.GetRectangle().Intersects(Bretour.GetRectangle()))
+                    gestionclavier = -1;
+
+            }
+            #endregion
+
+            #region pause audio
+            if (status == "Pause Audio")
+            {
+                Bmusique.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height * 2));
+                Bboxmusique.SetPosition(new Vector2(Bmusique.GetPosition().X - 40, Bmusique.GetPosition().Y + 8));
+                Bmoinsmusic.SetPosition(new Vector2(Bmusique.GetPosition().X + 10 + Bmusique.GetTexturefr().Width, Bmusique.GetPosition().Y));
+                Bplusmusic.SetPosition(new Vector2(Bmoinsmusic.GetPosition().X + 90 + Bmusique.GetTexturefr().Width, Bmusique.GetPosition().Y));
+
+                Beffets.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                Bboxeffects.SetPosition(new Vector2(Beffets.GetPosition().X - 40, Beffets.GetPosition().Y + 8));
+                Bmoinseffects.SetPosition(new Vector2(Bmusique.GetPosition().X + 10 + Bmusique.GetTexturefr().Width, Beffets.GetPosition().Y));
+                Bpluseffects.SetPosition(new Vector2(Bmoinsmusic.GetPosition().X + 90 + Bmusique.GetTexturefr().Width, Beffets.GetPosition().Y));
+
+
+                musicbar = new Rectangle((int)Bmoinsmusic.GetPosition().X + Bmoinsmusic.GetTexturefr().Width + 8, (int)Bmoinsmusic.GetPosition().Y + Bmoinsmusic.GetTexturefr().Height / 4, (int)(200 * (float)volumemusic / (float)10), Bmusique.GetTexturefr().Height / 2);
+                effectsbar = new Rectangle((int)Bmoinsmusic.GetPosition().X + Bmoinsmusic.GetTexturefr().Width + 8, (int)Bmoinseffects.GetPosition().Y + Bmoinsmusic.GetTexturefr().Height / 4, (int)(200 * (float)volumeeffects / (float)10), Bmusique.GetTexturefr().Height / 2);
+
+
+                Bretour.SetPosition(positionBoutton4);
+
+                if (souris.GetRectangle().Intersects(Bmusique.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    musique = !musique;
+                }
+                if (souris.GetRectangle().Intersects(Bboxmusique.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    musique = !musique;
+                }
+                if (souris.GetRectangle().Intersects(Beffets.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    effets = !effets;
+                }
+                if (souris.GetRectangle().Intersects(Bboxeffects.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    effets = !effets;
+                }
+
+                //Volume du son
+                if (souris.GetRectangle().Intersects(Bplusmusic.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    if (volumemusic < 10)
+                        volumemusic += 1;
+                    else
+                        volumemusic = 10;
+                }
+                if (souris.GetRectangle().Intersects(Bmoinsmusic.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    if (volumemusic > 0)
+                        volumemusic -= 1;
+                    else
+                        volumemusic = 0;
+                }
+
+
+                if (souris.GetRectangle().Intersects(Bpluseffects.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    if (volumeeffects < 10)
+                        volumeeffects += 1;
+                    else
+                        volumeeffects = 10;
+                }
+                if (souris.GetRectangle().Intersects(Bmoinseffects.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    if (volumeeffects > 0)
+                        volumeeffects -= 1;
+                    else
+                        volumeeffects = 0;
+                }
+
+
+
+                if (!musique)
+                    volumemusic = 0;
+                if (!effets)
+                    volumeeffects = 0;
+
+
+
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)) || (clique_back && !clavier.KeyPressed(Keys.Escape)))
+                {
+                    gestionclavier = -1;
+                    status = "Pause Options";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+
+
+
+                if (!clavier.KeyPressed(Keys.Down) && clavier_old.KeyPressed(Keys.Down))
+                {
+                    if (gestionclavier < 0)
+                        gestionclavier += 1;
+                    else
+                        gestionclavier = 0;
+                }
+                if (!clavier.KeyPressed(Keys.Up) && clavier_old.KeyPressed(Keys.Up))
+                {
+                    if (gestionclavier > 0)
+                        gestionclavier -= 1;
+                    else
+                        gestionclavier = 0;
+                }
+
+                if (souris.GetRectangle().Intersects(Bmusique.GetRectangle()) || souris.GetRectangle().Intersects(Bmoinsmusic.GetRectangle()) || souris.GetRectangle().Intersects(Bplusmusic.GetRectangle()) || souris.GetRectangle().Intersects(Beffets.GetRectangle()) || souris.GetRectangle().Intersects(Bmoinseffects.GetRectangle()) || souris.GetRectangle().Intersects(Bpluseffects.GetRectangle()) || souris.GetRectangle().Intersects(Bretour.GetRectangle()))
+                    gestionclavier = -1;
+
+
+
+                MediaPlayer.Volume = (float)volumemusic / 10f;
+            }
+            #endregion
             #endregion
 
 
@@ -2134,6 +2404,7 @@ namespace Fuckin__Height_Redemption
 
                 if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 3 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)) || (clique_back && !clavier.KeyPressed(Keys.Escape)))
                 {
+                    gestionclavier = -1;
                     status = "Video";
                     souris_old = new MouseEvent();
                     clavier_old = new KeyboardEvent();
@@ -2142,7 +2413,7 @@ namespace Fuckin__Height_Redemption
 
                 if (!clavier.KeyPressed(Keys.Down) && clavier_old.KeyPressed(Keys.Down))
                 {
-                    if (gestionclavier < 2)
+                    if (gestionclavier < 3)
                         gestionclavier += 1;
                     else
                         gestionclavier = 0;
@@ -2152,7 +2423,7 @@ namespace Fuckin__Height_Redemption
                     if (gestionclavier > 0)
                         gestionclavier -= 1;
                     else
-                        gestionclavier = 2;
+                        gestionclavier = 3;
                 }
 
                 if (souris.GetRectangle().Intersects(Bnouveaujeu.GetRectangle()) || souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) || souris.GetRectangle().Intersects(Bretour.GetRectangle()))
@@ -2338,7 +2609,7 @@ namespace Fuckin__Height_Redemption
 
             // JEU + PAUSE + FIN + MAGASIN + ARMES
             #region jeu
-            if (status == "Jeu" || status == "Pause" || status == "Fin_mort" || status == "Fin_victoire" || status == "Magasin" || status == "M3" || status == "MP5" || status == "AK47" || status == "USP UNLOCKED" || status == "M3 UNLOCKED" || status == "MP5 UNLOCKED" || status == "AK47 UNLOCKED")
+            if (status == "Jeu" || status == "Pause" || status == "Pause Options" || status == "Pause Langues" || status == "Pause Audio" || status == "Fin_mort" || status == "Fin_victoire" || status == "Magasin" || status == "M3" || status == "MP5" || status == "AK47" || status == "USP UNLOCKED" || status == "M3 UNLOCKED" || status == "MP5 UNLOCKED" || status == "AK47 UNLOCKED")
             {
 
                 zombiesloins = new List<Zombie>();
@@ -2415,13 +2686,13 @@ namespace Fuckin__Height_Redemption
                 spriteBatch.Draw(barreson, new Rectangle(Window.ClientBounds.Width - 60 - HUD_vie.Width * 4, Window.ClientBounds.Height - 90, (int)(((float)joueur.GetHealth() / 100) * (HUD_vie.Width * 4)), HUD_vie.Height / 2), Color.White);
                 spriteBatch.Draw(contourson, new Rectangle(Window.ClientBounds.Width - 60 - HUD_vie.Width * 4, Window.ClientBounds.Height - 90, HUD_vie.Width * 4, HUD_vie.Height / 2), Color.Black);
                 string output_money = Convert.ToString(joueur.GetMoney()) + " $";
-                spriteBatch.DrawString(hud_font, output_money, new Vector2(Window.ClientBounds.Width - 35 - 13 * Convert.ToString(joueur.GetMoney()).Length, Window.ClientBounds.Height - 130), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.DrawString(hud_font, output_money, new Vector2(Window.ClientBounds.Width - 35 - 13 * Convert.ToString(joueur.GetMoney()).Length, Window.ClientBounds.Height - 130), Color.White, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
                 string output_ammos;
                 if (joueur.GetWeapons()[joueur.GetCurrentWeapon()].ammo_max > 5000)
                     output_ammos = Convert.ToString(joueur.GetWeapons()[joueur.GetCurrentWeapon()].current_clip) + "/oo";
                 else
                     output_ammos = Convert.ToString(joueur.GetWeapons()[joueur.GetCurrentWeapon()].current_clip) + "/" + Convert.ToString(joueur.GetWeapons()[joueur.GetCurrentWeapon()].ammo);
-                spriteBatch.DrawString(hud_font, output_ammos, new Vector2(Window.ClientBounds.Width - 52 - HUD_m3.Width - 13 * (output_ammos.Length - 3), Window.ClientBounds.Height - 47), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.DrawString(hud_font, output_ammos, new Vector2(Window.ClientBounds.Width - 52 - HUD_m3.Width - 13 * (output_ammos.Length - 3), Window.ClientBounds.Height - 47), Color.White, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
             }
             #endregion
 
@@ -2444,8 +2715,125 @@ namespace Fuckin__Height_Redemption
                 }
 
                 Bcontinuer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()));
+                Boptions.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Boptions.GetRectangle()));
                 Bquitter.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bquitter.GetRectangle()));
             }
+
+            #region pause options
+            if (status == "Pause Options")
+            {
+                this.IsMouseVisible = true;
+                if (lang == 1)
+                    spriteBatch.Draw(menupause, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                else
+                {
+                    if (lang == 2)
+                        spriteBatch.Draw(pausemenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    else if (lang == 3)
+                        spriteBatch.Draw(menupausa, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    else
+                        spriteBatch.Draw(menupausede, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+                Blangue.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangue.GetRectangle()));
+                Baudio.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Baudio.GetRectangle()));
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+            }
+            #endregion
+
+            #region pause langues
+            if (status == "Pause Langues")
+            {
+                this.IsMouseVisible = true;
+                if (lang == 1)
+                    spriteBatch.Draw(menupause, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                else
+                {
+                    if (lang == 2)
+                        spriteBatch.Draw(pausemenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    else if (lang == 3)
+                        spriteBatch.Draw(menupausa, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    else
+                        spriteBatch.Draw(menupausede, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+
+                if (lang == 1) //francais
+                {
+                    Blangueen.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueen.GetRectangle()));
+                    Blangueit.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueit.GetRectangle()));
+                    Blanguede.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blanguede.GetRectangle()));
+                    Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                }
+                if (lang == 2) //anglais
+                {
+                    Blanguefr.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blanguefr.GetRectangle()));
+                    Blangueit.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueit.GetRectangle()));
+                    Blanguede.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blanguede.GetRectangle()));
+                    Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                }
+                if (lang == 3) //italien
+                {
+                    Blanguefr.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blanguefr.GetRectangle()));
+                    Blangueen.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueen.GetRectangle()));
+                    Blanguede.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blanguede.GetRectangle()));
+                    Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                }
+                if (lang == 4) //allemand
+                {
+                    Blanguefr.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blanguefr.GetRectangle()));
+                    Blangueen.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueen.GetRectangle()));
+                    Blangueit.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueit.GetRectangle()));
+                    Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                }
+            }
+            #endregion
+
+            #region pause audio
+            if (status == "Pause Audio")
+            {
+                this.IsMouseVisible = true;
+
+                if (lang == 1)
+                    spriteBatch.Draw(menupause, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                else
+                {
+                    if (lang == 2)
+                        spriteBatch.Draw(pausemenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    else if (lang == 3)
+                        spriteBatch.Draw(menupausa, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    else
+                        spriteBatch.Draw(menupausede, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+
+                Bmusique.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmusique.GetRectangle()) || gestionclavier == 0);
+                if (musique)
+                    entiermusique = 1;
+                else
+                    entiermusique = 2;
+                Bboxmusique.DrawButton(spriteBatch, entiermusique, false);
+
+                Beffets.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Beffets.GetRectangle()));
+                if (effets)
+                    entiereffets = 1;
+                else
+                    entiereffets = 2;
+                Bboxeffects.DrawButton(spriteBatch, entiereffets, false);
+
+
+                spriteBatch.Draw(barreson, musicbar, Color.Orange);
+                spriteBatch.Draw(barreson, effectsbar, Color.Orange);
+                spriteBatch.Draw(contourson, new Rectangle(musicbar.X, musicbar.Y, 200, musicbar.Height), Color.White);
+                spriteBatch.Draw(contourson, new Rectangle(effectsbar.X, effectsbar.Y, 200, effectsbar.Height), Color.White);
+
+
+                Bplusmusic.DrawButton(spriteBatch, 1, souris.GetRectangle().Intersects(Bplusmusic.GetRectangle()));
+                Bmoinsmusic.DrawButton(spriteBatch, 1, souris.GetRectangle().Intersects(Bmoinsmusic.GetRectangle()));
+                Bpluseffects.DrawButton(spriteBatch, 1, souris.GetRectangle().Intersects(Bpluseffects.GetRectangle()));
+                Bmoinseffects.DrawButton(spriteBatch, 1, souris.GetRectangle().Intersects(Bmoinseffects.GetRectangle()));
+
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+            }
+            #endregion
+
             #endregion
 
 
@@ -2470,6 +2858,11 @@ namespace Fuckin__Height_Redemption
                     case 3:
                         {
                             spriteBatch.Draw(mortIT, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                            break;
+                        }
+                    case 4:
+                        {
+                            spriteBatch.Draw(mortDE, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                             break;
                         }
                 }
@@ -2499,6 +2892,11 @@ namespace Fuckin__Height_Redemption
                     case 3:
                         {
                             spriteBatch.Draw(victoireIT, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                            break;
+                        }
+                    case 4:
+                        {
+                            spriteBatch.Draw(victoireDE, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                             break;
                         }
                 }
@@ -2533,7 +2931,6 @@ namespace Fuckin__Height_Redemption
                         }
                     }
                 }
-
 
                 Bquitter.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bquitter.GetRectangle()));
                 Busp.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Busp.GetRectangle()));
@@ -2586,7 +2983,7 @@ namespace Fuckin__Height_Redemption
                 }
 
 
-                spriteBatch.DrawString(hud_font, les_armes, new Vector2(Bcontinuer.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.DrawString(hud_font, les_armes, new Vector2(Bcontinuer.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height), Color.DarkOrange, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
 
 
 
@@ -2594,20 +2991,20 @@ namespace Fuckin__Height_Redemption
                 spriteBatch.DrawString(hud_font, prix_m3, new Vector2(Bcontinuer.GetTexturefr().Width + Bak47.GetTexturefr().Width, 4 * Bcontinuer.GetTexturefr().Height), Color.Black, 0, Vector2.One, 1.0f, SpriteEffects.None, 0.5f);
                 spriteBatch.DrawString(hud_font, prix_mp5, new Vector2(Bcontinuer.GetTexturefr().Width + Bak47.GetTexturefr().Width, 5 * Bcontinuer.GetTexturefr().Height), Color.Black, 0, Vector2.One, 1.0f, SpriteEffects.None, 0.5f);*/
 
-                spriteBatch.DrawString(hud_font, _usp, new Vector2(Busp.GetPosition().X + Busp.GetTexturefr().Width + 10, Busp.GetPosition().Y), Color.Black);
-                spriteBatch.DrawString(hud_font, _m3, new Vector2(Bm3.GetPosition().X + Bm3.GetTexturefr().Width + 10, Bm3.GetPosition().Y), Color.Black);
-                spriteBatch.DrawString(hud_font, _mp5, new Vector2(Bmp5.GetPosition().X + Bmp5.GetTexturefr().Width + 10, Bmp5.GetPosition().Y), Color.Black);
-                spriteBatch.DrawString(hud_font, _ak47, new Vector2(Bak47.GetPosition().X + Bak47.GetTexturefr().Width + 10, Bak47.GetPosition().Y), Color.Black);
-                spriteBatch.DrawString(hud_font, prix_shit, new Vector2(Bshit.GetPosition().X + Bshit.GetTexturefr().Width + 10, Bshit.GetPosition().Y), Color.Black);
-                spriteBatch.DrawString(hud_font, prix_coke, new Vector2(Bcoke.GetPosition().X + Bcoke.GetTexturefr().Width + 10, Bcoke.GetPosition().Y), Color.Black);
-                spriteBatch.DrawString(hud_font, prix_seringue, new Vector2(Bseringue.GetPosition().X + Bseringue.GetTexturefr().Width + 10, Bseringue.GetPosition().Y), Color.Black);
+                spriteBatch.DrawString(hud_font, _usp, new Vector2(Busp.GetPosition().X + Busp.GetTexturefr().Width + 10, Busp.GetPosition().Y), Color.DarkOrange);
+                spriteBatch.DrawString(hud_font, _m3, new Vector2(Bm3.GetPosition().X + Bm3.GetTexturefr().Width + 10, Bm3.GetPosition().Y), Color.DarkOrange);
+                spriteBatch.DrawString(hud_font, _mp5, new Vector2(Bmp5.GetPosition().X + Bmp5.GetTexturefr().Width + 10, Bmp5.GetPosition().Y), Color.DarkOrange);
+                spriteBatch.DrawString(hud_font, _ak47, new Vector2(Bak47.GetPosition().X + Bak47.GetTexturefr().Width + 10, Bak47.GetPosition().Y), Color.DarkOrange);
+                spriteBatch.DrawString(hud_font, prix_shit, new Vector2(Bshit.GetPosition().X + Bshit.GetTexturefr().Width + 10, Bshit.GetPosition().Y), Color.Red);
+                spriteBatch.DrawString(hud_font, prix_coke, new Vector2(Bcoke.GetPosition().X + Bcoke.GetTexturefr().Width + 10, Bcoke.GetPosition().Y), Color.Red);
+                spriteBatch.DrawString(hud_font, prix_seringue, new Vector2(Bseringue.GetPosition().X + Bseringue.GetTexturefr().Width + 10, Bseringue.GetPosition().Y), Color.Red);
 
                 Bshit.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bshit.GetRectangle()));
                 Bcoke.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcoke.GetRectangle()));
                 Bseringue.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bseringue.GetRectangle()));
 
 
-                spriteBatch.DrawString(hud_font, les_drogues, new Vector2((5 / 2) * Bcontinuer.GetTexturefr().Width + 2 * Bak47.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                spriteBatch.DrawString(hud_font, les_drogues, new Vector2((5 / 2) * Bcontinuer.GetTexturefr().Width + 2 * Bak47.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height), Color.Red, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
 
             }
 
@@ -2643,17 +3040,17 @@ namespace Fuckin__Height_Redemption
                 Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
 
                 string _usp = "USP";
-                spriteBatch.DrawString(hud_font, _usp, new Vector2(Bm3.GetPosition().X + Bm3.GetTexturefr().Width + 10, Bm3.GetPosition().Y), Color.Black);
+                spriteBatch.DrawString(hud_font, _usp, new Vector2(Busp.GetPosition().X + Busp.GetTexturefr().Width + 10, Busp.GetPosition().Y), Color.DarkOrange);
 
 
                 if (joueur.GetWeapons("usp").GetLevel() == 1)
-                    spriteBatch.DrawString(hud_font, level1, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, level1, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("usp").GetLevel() == 2)
-                    spriteBatch.DrawString(hud_font, level2, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, level2, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("usp").GetLevel() == 3)
-                    spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("usp").GetLevel() == 4)
-                    spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 //lvl 5 et 6
                 //
                 //
@@ -2664,7 +3061,7 @@ namespace Fuckin__Height_Redemption
 
 
 
-                spriteBatch.DrawString(hud_font, prix_amelio_usp, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.Black);
+                spriteBatch.DrawString(hud_font, prix_amelio_usp, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.White);
             }
             #endregion
 
@@ -2700,9 +3097,9 @@ namespace Fuckin__Height_Redemption
                 Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
 
                 string _m3 = "M3";
-                spriteBatch.DrawString(hud_font, _m3, new Vector2(Bm3.GetPosition().X + Bm3.GetTexturefr().Width + 10, Bm3.GetPosition().Y), Color.Black);
+                spriteBatch.DrawString(hud_font, _m3, new Vector2(Bm3.GetPosition().X + Bm3.GetTexturefr().Width + 10, Bm3.GetPosition().Y), Color.DarkOrange);
                 string prix_m3 = "5000 $";
-                spriteBatch.DrawString(hud_font, prix_m3, new Vector2(Bacheter.GetPosition().X, Bacheter.GetPosition().Y - Bacheter.GetTexturefr().Height / 2), Color.Black);
+                spriteBatch.DrawString(hud_font, prix_m3, new Vector2(Bacheter.GetPosition().X, Bacheter.GetPosition().Y - Bacheter.GetTexturefr().Height / 2), Color.White);
 
             }
             #endregion
@@ -2740,20 +3137,20 @@ namespace Fuckin__Height_Redemption
                 Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
 
                 string _m3 = "M3";
-                spriteBatch.DrawString(hud_font, _m3, new Vector2(Bm3.GetPosition().X + Bm3.GetTexturefr().Width + 10, Bm3.GetPosition().Y), Color.Black);
+                spriteBatch.DrawString(hud_font, _m3, new Vector2(Bm3.GetPosition().X + Bm3.GetTexturefr().Width + 10, Bm3.GetPosition().Y), Color.DarkOrange);
 
 
                 if (joueur.GetWeapons("m3").GetLevel() == 1)
-                    spriteBatch.DrawString(hud_font, level1, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, level1, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("m3").GetLevel() == 2)
-                    spriteBatch.DrawString(hud_font, level2, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, level2, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("m3").GetLevel() == 3)
-                    spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("m3").GetLevel() == 4)
-                    spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
 
-                spriteBatch.DrawString(hud_font, prix_amelio_m3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.Black);
-                spriteBatch.DrawString(hud_font, "500 $", new Vector2(Bmunitions.GetPosition().X, Bmunitions.GetPosition().Y + Bmunitions.GetTexturefr().Height), Color.Black);
+                spriteBatch.DrawString(hud_font, prix_amelio_m3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.White);
+                spriteBatch.DrawString(hud_font, "500 $", new Vector2(Bmunitions.GetPosition().X, Bmunitions.GetPosition().Y + Bmunitions.GetTexturefr().Height), Color.White);
             }
             #endregion
 
@@ -2788,9 +3185,9 @@ namespace Fuckin__Height_Redemption
                     Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
 
                     string _mp5 = "MP5";
-                    spriteBatch.DrawString(hud_font, _mp5, new Vector2(Bmp5.GetPosition().X + Bmp5.GetTexturefr().Width + 10, Bmp5.GetPosition().Y), Color.Black);
+                    spriteBatch.DrawString(hud_font, _mp5, new Vector2(Bmp5.GetPosition().X + Bmp5.GetTexturefr().Width + 10, Bmp5.GetPosition().Y), Color.DarkOrange);
                     string prix_mp5 = "10000 $";
-                    spriteBatch.DrawString(hud_font, prix_mp5, new Vector2(Bacheter.GetPosition().X, Bacheter.GetPosition().Y - Bacheter.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, prix_mp5, new Vector2(Bacheter.GetPosition().X, Bacheter.GetPosition().Y - Bacheter.GetTexturefr().Height / 2), Color.White);
                 }
             }
             #endregion
@@ -2828,20 +3225,20 @@ namespace Fuckin__Height_Redemption
                 Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
 
                 string _mp5 = "MP5";
-                spriteBatch.DrawString(hud_font, _mp5, new Vector2(Bmp5.GetPosition().X + Bmp5.GetTexturefr().Width + 10, Bmp5.GetPosition().Y), Color.Black);
+                spriteBatch.DrawString(hud_font, _mp5, new Vector2(Bmp5.GetPosition().X + Bmp5.GetTexturefr().Width + 10, Bmp5.GetPosition().Y), Color.DarkOrange);
 
 
                 if (joueur.GetWeapons("mp5").GetLevel() == 1)
-                    spriteBatch.DrawString(hud_font, level1, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, level1, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("mp5").GetLevel() == 2)
-                    spriteBatch.DrawString(hud_font, level2, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, level2, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("mp5").GetLevel() == 3)
-                    spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("mp5").GetLevel() == 4)
-                    spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
 
-                spriteBatch.DrawString(hud_font, prix_amelio_mp5, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.Black);
-                spriteBatch.DrawString(hud_font, "1000 $", new Vector2(Bmunitions.GetPosition().X, Bmunitions.GetPosition().Y + Bmunitions.GetTexturefr().Height), Color.Black);
+                spriteBatch.DrawString(hud_font, prix_amelio_mp5, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.White);
+                spriteBatch.DrawString(hud_font, "1000 $", new Vector2(Bmunitions.GetPosition().X, Bmunitions.GetPosition().Y + Bmunitions.GetTexturefr().Height), Color.White);
             }
             #endregion
 
@@ -2876,9 +3273,9 @@ namespace Fuckin__Height_Redemption
                     Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
 
                     string _ak47 = "AK47";
-                    spriteBatch.DrawString(hud_font, _ak47, new Vector2(Bak47.GetPosition().X + Bak47.GetTexturefr().Width + 10, Bak47.GetPosition().Y), Color.Black);
+                    spriteBatch.DrawString(hud_font, _ak47, new Vector2(Bak47.GetPosition().X + Bak47.GetTexturefr().Width + 10, Bak47.GetPosition().Y), Color.DarkOrange);
                     string prix_ak47 = "50000 $";
-                    spriteBatch.DrawString(hud_font, prix_ak47, new Vector2(Bacheter.GetPosition().X, Bacheter.GetPosition().Y - Bacheter.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, prix_ak47, new Vector2(Bacheter.GetPosition().X, Bacheter.GetPosition().Y - Bacheter.GetTexturefr().Height / 2), Color.White);
                 }
             }
             #endregion
@@ -2916,19 +3313,19 @@ namespace Fuckin__Height_Redemption
                 Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
 
                 string _ak47 = "AK47";
-                spriteBatch.DrawString(hud_font, _ak47, new Vector2(Bak47.GetPosition().X + Bak47.GetTexturefr().Width + 10, Bak47.GetPosition().Y), Color.Black);
+                spriteBatch.DrawString(hud_font, _ak47, new Vector2(Bak47.GetPosition().X + Bak47.GetTexturefr().Width + 10, Bak47.GetPosition().Y), Color.DarkOrange);
 
                 if (joueur.GetWeapons("ak47").GetLevel() == 1)
-                    spriteBatch.DrawString(hud_font, level1, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, level1, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("ak47").GetLevel() == 2)
-                    spriteBatch.DrawString(hud_font, level2, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, level2, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("ak47").GetLevel() == 3)
-                    spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("ak47").GetLevel() == 4)
-                    spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                    spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
 
-                spriteBatch.DrawString(hud_font, prix_amelio_ak47, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.Black);
-                spriteBatch.DrawString(hud_font, "2000 $", new Vector2(Bmunitions.GetPosition().X, Bmunitions.GetPosition().Y + Bmunitions.GetTexturefr().Height), Color.Black);
+                spriteBatch.DrawString(hud_font, prix_amelio_ak47, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.White);
+                spriteBatch.DrawString(hud_font, "2000 $", new Vector2(Bmunitions.GetPosition().X, Bmunitions.GetPosition().Y + Bmunitions.GetTexturefr().Height), Color.White);
             }
             #endregion
 
@@ -3028,13 +3425,19 @@ namespace Fuckin__Height_Redemption
                 {
                     spriteBatch.DrawString(hud_font, "Choose your name here", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
                     spriteBatch.DrawString(hud_font, "(1-15 chars and letters/numbers only)", new Vector2(Window.ClientBounds.Width / 2 - 200, Window.ClientBounds.Height / 6), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
-                    spriteBatch.DrawString(hud_font, "name : " + set_nom, new Vector2(Window.ClientBounds.Width / 2 - 120, Window.ClientBounds.Height / 3), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                    spriteBatch.DrawString(hud_font, "name: " + set_nom, new Vector2(Window.ClientBounds.Width / 2 - 120, Window.ClientBounds.Height / 3), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
                 }
                 if (lang == 3)
                 {
                     spriteBatch.DrawString(hud_font, "Scegli il tuo nome qui", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
                     spriteBatch.DrawString(hud_font, "(1-15 chars and letters/numbers solo)", new Vector2(Window.ClientBounds.Width / 2 - 200, Window.ClientBounds.Height / 6), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
-                    spriteBatch.DrawString(hud_font, "name : " + set_nom, new Vector2(Window.ClientBounds.Width / 2 - 120, Window.ClientBounds.Height / 3), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                    spriteBatch.DrawString(hud_font, "nome: " + set_nom, new Vector2(Window.ClientBounds.Width / 2 - 120, Window.ClientBounds.Height / 3), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                }
+                if (lang == 4)
+                {
+                    spriteBatch.DrawString(hud_font, "Wahlen Sie hier Ihren Namen", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                    spriteBatch.DrawString(hud_font, "(1-15 Zeichen und Buchstaben / Zahlen nur)", new Vector2(Window.ClientBounds.Width / 2 - 200, Window.ClientBounds.Height / 6), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                    spriteBatch.DrawString(hud_font, "Name: " + set_nom, new Vector2(Window.ClientBounds.Width / 2 - 120, Window.ClientBounds.Height / 3), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
                 }
             }
             #endregion
@@ -3042,26 +3445,108 @@ namespace Fuckin__Height_Redemption
 
             // RESET
             #region reset
-            if (status == "Reset")
+            switch (lang)
             {
-                spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
-                spriteBatch.DrawString(hud_font, "You wil reset your saves", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
-                spriteBatch.DrawString(hud_font, "Press \"R\" to reset solo and \"M\" for multi", new Vector2(Window.ClientBounds.Width / 2 - 200, Window.ClientBounds.Height / 6), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
-            }
+                case 1:
+                    {
+                        if (status == "Reset")
+                        {
+                            spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                            Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                            spriteBatch.DrawString(hud_font, "Tes données vont être réinitialisées", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                            spriteBatch.DrawString(hud_font, "Appuie sur \"R\" pour réinitialiser le solo et \"M\" pour le multi", new Vector2(Window.ClientBounds.Width / 2 - 200, Window.ClientBounds.Height / 6), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                        }
 
-            if (status == "Reset_done")
-            {
-                spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
-                spriteBatch.DrawString(hud_font, "Save successfully reset!", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
-            }
+                        if (status == "Reset_done")
+                        {
+                            spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                            Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                            spriteBatch.DrawString(hud_font, "Sauvegarde réussie, réinitialisation", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                        }
 
-            if (status == "Reset_error")
-            {
-                spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
-                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
-                spriteBatch.DrawString(hud_font, "An error occured, please retry.", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                        if (status == "Reset_error")
+                        {
+                            spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                            Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                            spriteBatch.DrawString(hud_font, "Erreur rencontrée, réessaie.", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                        }
+                        break;
+                    }
+                case 2:
+                    {
+                        if (status == "Reset")
+                        {
+                            spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                            Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                            spriteBatch.DrawString(hud_font, "You will reset your saves", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                            spriteBatch.DrawString(hud_font, "Press \"R\" to reset solo and \"M\" for multi", new Vector2(Window.ClientBounds.Width / 2 - 200, Window.ClientBounds.Height / 6), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                        }
+
+                        if (status == "Reset_done")
+                        {
+                            spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                            Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                            spriteBatch.DrawString(hud_font, "Save successfully reset!", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                        }
+
+                        if (status == "Reset_error")
+                        {
+                            spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                            Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                            spriteBatch.DrawString(hud_font, "An error occured, please retry.", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                        }
+                        break;
+                    }
+                case 3:
+                    {
+                        if (status == "Reset")
+                        {
+                            spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                            Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                            spriteBatch.DrawString(hud_font, "I tuoi dati saranno resettati", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                            spriteBatch.DrawString(hud_font, "Preme \"R\" per azzezare il solo e \"M\" per il multi", new Vector2(Window.ClientBounds.Width / 2 - 200, Window.ClientBounds.Height / 6), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                        }
+
+                        if (status == "Reset_done")
+                        {
+                            spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                            Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                            spriteBatch.DrawString(hud_font, "Salvataggio riuscito, rinizializzazione!", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                        }
+
+                        if (status == "Reset_error")
+                        {
+                            spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                            Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                            spriteBatch.DrawString(hud_font, "Errore, prova di nuovo..", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                        }
+                        break;
+                    }
+                case 4:
+                    {
+                        if (status == "Reset")
+                        {
+                            spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                            Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                            spriteBatch.DrawString(hud_font, "Sie setzen Ihre Backups", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                            spriteBatch.DrawString(hud_font, "Drücken Sie \"R\" um solo und \"M\" um Multi zuruckgesetzt", new Vector2(Window.ClientBounds.Width / 2 - 200, Window.ClientBounds.Height / 6), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                        }
+
+                        if (status == "Reset_done")
+                        {
+                            spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                            Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                            spriteBatch.DrawString(hud_font, "Sie haben sich erfolgreich zurück!", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                        }
+
+                        if (status == "Reset_error")
+                        {
+                            spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                            Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+                            spriteBatch.DrawString(hud_font, "Ein Fehler ist aufgetreten, bitte versuchen Sie es erneut.", new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 10), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
+                        }
+                        break;
+                    }
             }
             #endregion
 
@@ -3143,7 +3628,7 @@ namespace Fuckin__Height_Redemption
                     Blanguede.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blanguede.GetRectangle()));
                     Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
                 }
-                if (lang == 4) //italien
+                if (lang == 4) //allemand
                 {
                     Blanguefr.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blanguefr.GetRectangle()));
                     Blangueen.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Blangueen.GetRectangle()));
