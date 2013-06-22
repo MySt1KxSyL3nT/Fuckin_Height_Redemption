@@ -18,8 +18,8 @@ namespace Fuckin__Height_Redemption
     {
         public Weapon(string name, int unlock, int lvl, ContentManager Content)
         {
+            this.Content = Content;
             this.name = name;
-            this.level = lvl;
             if (unlock == 1)
                 unlocked = true;
             else
@@ -88,8 +88,14 @@ namespace Fuckin__Height_Redemption
                 rechargement = Content.Load<SoundEffect>("recharge_ak47");
                 reload_time = (int)rechargement.Duration.TotalMilliseconds;
             }
+
+            while (level < lvl)
+            {
+                AddLevel();
+            }
         }
 
+        private ContentManager Content;
         public string name; //nom
         public int clip_max; // munition max chargeur
         public int current_clip; // munition en cours
@@ -112,16 +118,126 @@ namespace Fuckin__Height_Redemption
         public bool autoshoot; // tir auto
         public int cooldown; // temps entre deux tir pour les auto (millisec)
         public int reload_time; // temps de rechargement (millisec)
-        private int level;
+        private int level; // ammos/clip/tir/recharge/dmg
 
         public int GetLevel()
         {
             return level;
         }
 
-        public void SetLevel(int i)
+        public void AddLevel()
         {
-            this.level = i;
+            this.level++;
+
+            if (level == 2) // ammo
+            {
+                switch (name)
+                {
+                    case "USP":
+                        clip_max = 12;
+                        break;
+                    case "ShotGun":
+                        ammo_max = 60;
+                        ammo = ammo_max;
+                        break;
+                    case "MP5":
+                        ammo_max = 160;
+                        ammo = ammo_max;
+                        break;
+                    case "AK47":
+                        ammo_max = 300;
+                        ammo = ammo_max;
+                        break;
+                }
+            }
+
+            if (level == 3) // clip
+            {
+                switch (name)
+                {
+                    case "USP":
+                        clip_max = 15;
+                        break;
+                    case "ShotGun":
+                        ammo_max = 80;
+                        ammo = ammo_max;
+                        break;
+                    case "MP5":
+                        clip_max = 30;
+                        break;
+                    case "AK47":
+                        clip_max = 45;
+                        break;
+                }
+            }
+
+            if (level == 4) //tir
+            {
+                switch (name)
+                {
+                    case "USP":
+                        cooldown = 110;
+                        break;
+                    case "ShotGun":
+                        tir = Content.Load<SoundEffect>("tir_m3_2");
+                        cooldown = (int)tir.Duration.TotalMilliseconds - 400; // - 300 car son 0.3 sec trop long
+                        break;
+                    case "MP5":
+                        cooldown = 60;
+                        break;
+                    case "AK47":
+                        cooldown = 90;
+                        break;
+                }
+            }
+
+            if (level == 5) //recharge
+            {
+                switch (name)
+                {
+                    case "USP":
+                        rechargement = Content.Load<SoundEffect>("recharge_usp_2");
+                        reload_time = (int)rechargement.Duration.TotalMilliseconds;
+                        break;
+                    case "ShotGun":
+                        rechargement1 = Content.Load<SoundEffect>("recharge_m3_1_2");
+                        rechargement2 = Content.Load<SoundEffect>("recharge_m3_2_2");
+                        rechargement3 = Content.Load<SoundEffect>("recharge_m3_3_2");
+                        rechargement4 = Content.Load<SoundEffect>("recharge_m3_4_2");
+                        rechargement5 = Content.Load<SoundEffect>("recharge_m3_5_2");
+                        rechargement6 = Content.Load<SoundEffect>("recharge_m3_6_2");
+                        rechargement7 = Content.Load<SoundEffect>("recharge_m3_7_2");
+                        rechargement8 = Content.Load<SoundEffect>("recharge_m3_8_2");
+                        break;
+                    case "MP5":
+                        rechargement = Content.Load<SoundEffect>("recharge_mp5_2");
+                        reload_time = (int)rechargement.Duration.TotalMilliseconds;
+                        break;
+                    case "AK47":
+                        rechargement = Content.Load<SoundEffect>("recharge_ak47_2");
+                        reload_time = (int)rechargement.Duration.TotalMilliseconds;
+                        break;
+                }
+            }
+
+            if (level == 6) //dmg
+            {
+                switch (name)
+                {
+                    case "USP":
+                        dmg = 35;
+                        break;
+                    case "ShotGun":
+                        dmg = 150;
+                        break;
+                    case "MP5":
+                        dmg = 25;
+                        break;
+                    case "AK47":
+                        dmg = 50;
+                        break;
+                }
+            }
         }
     }
 }

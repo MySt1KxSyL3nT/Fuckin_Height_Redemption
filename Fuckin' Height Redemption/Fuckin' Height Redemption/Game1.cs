@@ -25,6 +25,7 @@ namespace Fuckin__Height_Redemption
      * animation mort zombie
      * améliorations des armes
      * TRADUIRE TEXTE PRITEFONT SUR SET_NOM ET RESET
+     * REFAIRE TOUTES AMELIORATIONS ARMES
 
     */
 
@@ -111,10 +112,13 @@ namespace Fuckin__Height_Redemption
         string level2 = "";
         string level3 = "";
         string level4 = "";
+        string level5 = "";
+        string level6 = "";
 
-        string prix_amélio_m3 = "";
-        string prix_amélio_mp5 = "";
-        string prix_amélio_ak47 = "";
+        string prix_amelio_usp = "";
+        string prix_amelio_m3 = "";
+        string prix_amelio_mp5 = "";
+        string prix_amelio_ak47 = "";
         #endregion
 
         ////////////////////////////////////// BOUTONS ! ////////////////////////////////////////////////////////
@@ -318,51 +322,6 @@ namespace Fuckin__Height_Redemption
 
             sonprincipal = Content.Load<Song>("sonprincipal");
 
-            prix_amélio_m3 = "1500 $";
-            prix_amélio_mp5 = "2500 $";
-            prix_amélio_ak47 = "3000 $";
-
-
-            switch (lang)
-            {
-                case 1:
-                    {
-                        level1 = "Niveau1 : Chargeur";
-                        level2 = "Niveau2 : Dégâts";
-                        level3 = "Niveau3 : Cadence";
-                        level4 = "Niveau4 : Temps de rechargement";
-                        break;
-                    }
-
-
-                case 2:
-                    {
-                        level1 = "Level1: Magazine";
-                        level2 = "Level2: Damages";
-                        level3 = "Level3: Rhythm";
-                        level4 = "Level4: Reload time";
-                        break;
-                    }
-
-
-                case 3:
-                    {
-                        level1 = "Livello1: Caricatore";
-                        level2 = "Livello2: Danni";
-                        level3 = "Livello3: Cadenza";
-                        level4 = "Livello4: Tempo di ricarica";
-                        break;
-                    }
-                case 4:
-                    {
-                        level1 = "Höhe1: Magazin";
-                        level2 = "Höhe2: Schaden";
-                        level3 = "Höhe3: Rhythmus";
-                        level4 = "Höhe4: Ladezeit";
-                        break;
-                    }
-
-            }
             #endregion
 
             ////////////////////////////////////// BOUTONS & IMAGES! ////////////////////////////////////////////////
@@ -533,6 +492,98 @@ namespace Fuckin__Height_Redemption
             //////////////////////////////////////////////////// RECUP DE LA SAVE ///////////////////////////////////////////////////////////////
             #region save
             joueur = new Joueur("solo.save", usp, ak47, mp5, m3, Content, Window.ClientBounds.Height, Window.ClientBounds.Width);
+
+            switch (joueur.GetWeapons("usp").GetLevel())
+            {
+                case 1:
+                    prix_amelio_usp = "1000 $";
+                    break;
+                case 2:
+                    prix_amelio_usp = "2000 $";
+                    break;
+                case 3:
+                    prix_amelio_usp = "3000 $";
+                    break;
+                case 4:
+                    prix_amelio_usp = "4000 $";
+                    break;
+                case 5:
+                    prix_amelio_usp = "5000 $";
+                    break;
+                default:
+                    prix_amelio_usp = "Max !";
+                    break;
+            }
+
+            switch (joueur.GetWeapons("m3").GetLevel())
+            {
+                case 1:
+                    prix_amelio_m3 = "1500 $";
+                    break;
+                case 2:
+                    prix_amelio_m3 = "2000 $";
+                    break;
+                case 3:
+                    prix_amelio_m3 = "4000 $";
+                    break;
+                case 4:
+                    prix_amelio_m3 = "8000 $";
+                    break;
+                case 5:
+                    prix_amelio_m3 = "10000 $";
+                    break;
+                default:
+                    prix_amelio_m3 = "Max !";
+                    break;
+            }
+
+            switch (joueur.GetWeapons("mp5").GetLevel())
+            {
+                case 1:
+                    prix_amelio_mp5 = "2000 $";
+                    break;
+                case 2:
+                    prix_amelio_mp5 = "3000 $";
+                    break;
+                case 3:
+                    prix_amelio_mp5 = "5000 $";
+                    break;
+                case 4:
+                    prix_amelio_mp5 = "10000 $";
+                    break;
+                case 5:
+                    prix_amelio_mp5 = "15000 $";
+                    break;
+                default:
+                    prix_amelio_mp5 = "Max !";
+                    break;
+            }
+
+            switch (joueur.GetWeapons("ak47").GetLevel())
+            {
+                case 1:
+                    prix_amelio_ak47 = "3000 $";
+                    break;
+                case 2:
+                    prix_amelio_ak47 = "5000 $";
+                    break;
+                case 3:
+                    prix_amelio_ak47 = "10000 $";
+                    break;
+                case 4:
+                    prix_amelio_ak47 = "15000 $";
+                    break;
+                case 5:
+                    prix_amelio_ak47 = "20000 $";
+                    break;
+                default:
+                    prix_amelio_ak47 = "Max !";
+                    break;
+            }
+
+            prix_amelio_m3 = "1500 $";
+            prix_amelio_mp5 = "2500 $";
+            prix_amelio_ak47 = "3000 $";
             #endregion
 
 
@@ -706,9 +757,10 @@ namespace Fuckin__Height_Redemption
             {
                 this.IsMouseVisible = true;
                 Bquitter.SetPosition(new Vector2(Window.ClientBounds.Width - 2 * Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height - 3 * Bcontinuer.GetTexturefr().Height));
-                Bm3.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 3 * Bcontinuer.GetTexturefr().Height));
-                Bmp5.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 4 * Bcontinuer.GetTexturefr().Height));
-                Bak47.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 5 * Bcontinuer.GetTexturefr().Height));
+                Busp.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 3 * Bcontinuer.GetTexturefr().Height));
+                Bm3.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 4 * Bcontinuer.GetTexturefr().Height));
+                Bmp5.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 5 * Bcontinuer.GetTexturefr().Height));
+                Bak47.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 6 * Bcontinuer.GetTexturefr().Height));
                 Bshit.SetPosition(new Vector2((5 / 2) * Bcontinuer.GetTexturefr().Width + 2 * Bak47.GetTexturefr().Width, 3 * Bcontinuer.GetTexturefr().Height));
                 Bcoke.SetPosition(new Vector2((5 / 2) * Bcontinuer.GetTexturefr().Width + 2 * Bak47.GetTexturefr().Width, 4 * Bcontinuer.GetTexturefr().Height));
                 Bseringue.SetPosition(new Vector2((5 / 2) * Bcontinuer.GetTexturefr().Width + 2 * Bak47.GetTexturefr().Width, 5 * Bcontinuer.GetTexturefr().Height));
@@ -720,12 +772,20 @@ namespace Fuckin__Height_Redemption
 
 
                 //ARMES
+                if (souris.GetRectangle().Intersects(Busp.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    status = "USP UNLOCKED";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
                 if (souris.GetRectangle().Intersects(Bm3.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
                 {
                     if (joueur.GetWeapons("m3").unlocked == false)
                         status = "M3";
                     else
                         status = "M3 UNLOCKED";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
                 }
                 if (souris.GetRectangle().Intersects(Bmp5.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
                 {
@@ -733,6 +793,8 @@ namespace Fuckin__Height_Redemption
                         status = "MP5";
                     else
                         status = "MP5 UNLOCKED";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
                 }
                 if (souris.GetRectangle().Intersects(Bak47.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
                 {
@@ -740,6 +802,8 @@ namespace Fuckin__Height_Redemption
                         status = "AK47";
                     else
                         status = "AK47 UNLOCKED";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
                 }
 
 
@@ -770,6 +834,73 @@ namespace Fuckin__Height_Redemption
                     }
                 }
             }
+
+            //USP UNLOCKED
+            #region usp
+
+            if (status == "USP UNLOCKED")
+            {
+                this.IsMouseVisible = true;
+
+                Bm3.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height));
+                Bameliorer.SetPosition(new Vector2(Window.ClientBounds.Width / 2 + Bcontinuer.GetTexturefr().Width / 3, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                Bmunitions.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                Bretour.SetPosition(new Vector2(Window.ClientBounds.Width - 2 * Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height - 3 * Bcontinuer.GetTexturefr().Height));
+
+                if (souris.GetRectangle().Intersects(Bameliorer.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    if (joueur.GetWeapons("usp").GetLevel() == 1 && joueur.GetMoney() >= 1000)
+                    {
+                        joueur.GetWeapons("usp").AddLevel();
+                        joueur.SetMoney(-1000);
+                        prix_amelio_usp = "2000 $";
+
+                        joueur.Save("solo.save");
+                    }
+                    else
+                        if (joueur.GetWeapons("usp").GetLevel() == 2 && joueur.GetMoney() >= 2000)
+                        {
+                            joueur.GetWeapons("usp").AddLevel();
+                            joueur.SetMoney(-2000);
+                            prix_amelio_usp = "3000 $";
+
+                            joueur.Save("solo.save");
+                        }
+                        else
+                            if (joueur.GetWeapons("usp").GetLevel() == 3 && joueur.GetMoney() >= 3000)
+                            {
+                                joueur.GetWeapons("usp").AddLevel();
+                                joueur.SetMoney(-3000);
+                                prix_amelio_usp = "4000 $";
+
+                                joueur.Save("solo.save");
+                            }
+                            else
+                                if (joueur.GetWeapons("usp").GetLevel() == 4 && joueur.GetMoney() >= 4000)
+                                {
+                                    joueur.GetWeapons("usp").AddLevel();
+                                    joueur.SetMoney(-4000);
+                                    prix_amelio_usp = "5000 $";
+
+                                    joueur.Save("solo.save");
+                                }
+                                else
+                                    if (joueur.GetWeapons("usp").GetLevel() == 5 && joueur.GetMoney() >= 5000)
+                                    {
+                                        joueur.GetWeapons("usp").AddLevel();
+                                        joueur.SetMoney(-5000);
+                                        prix_amelio_usp = "";
+
+                                        joueur.Save("solo.save");
+                                    }
+                }
+
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                {
+                    status = "Magasin";
+                }
+            }
+
             #endregion
 
 
@@ -782,18 +913,24 @@ namespace Fuckin__Height_Redemption
                 Bacheter.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
                 Bretour.SetPosition(new Vector2(Window.ClientBounds.Width - 2 * Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height - 3 * Bcontinuer.GetTexturefr().Height));
 
-                if (souris.GetRectangle().Intersects(Bjouer.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                if (souris.GetRectangle().Intersects(Bacheter.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
                 {
                     if (joueur.GetMoney() >= 5000)
                     {
                         status = "M3 UNLOCKED";
                         joueur.GetWeapons("m3").unlocked = true;
                         joueur.Debloque_Weapon(joueur.GetWeapons("m3"));
+                        souris_old = new MouseEvent();
+                        clavier_old = new KeyboardEvent();
+
+                        joueur.Save("solo.save");
                     }
                 }
                 if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
                 {
                     status = "Magasin";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
                 }
             }
             #endregion
@@ -814,33 +951,55 @@ namespace Fuckin__Height_Redemption
                 {
                     if (joueur.GetWeapons("m3").GetLevel() == 1 && joueur.GetMoney() >= 1500)
                     {
-                        joueur.Refill_clip(3);
-                        joueur.GetWeapons("m3").SetLevel(2);
-                        prix_amélio_m3 = "2000 $";
+                        joueur.GetWeapons("m3").AddLevel();
+                        joueur.SetMoney(-1500);
+                        prix_amelio_m3 = "2000 $";
+
+                        joueur.Save("solo.save");
                     }
-                    if (joueur.GetWeapons("m3").GetLevel() == 2 && joueur.GetMoney() >= 2000)
-                    {
-                        joueur.Refill_dmg(3);
-                        joueur.GetWeapons("m3").SetLevel(3);
-                        prix_amélio_m3 = "4000 $";
-                    }
-                    if (joueur.GetWeapons("m3").GetLevel() == 3 && joueur.GetMoney() >= 4000)
-                    {
-                        joueur.Refill_cooldown(3);
-                        joueur.GetWeapons("m3").SetLevel(4);
-                        prix_amélio_m3 = "8000 $";
-                    }
-                    if (joueur.GetWeapons("m3").GetLevel() == 4 && joueur.GetMoney() >= 8000)
-                    {
-                        joueur.Refill_reloadtime(3);
-                    }
+                    else
+                        if (joueur.GetWeapons("m3").GetLevel() == 2 && joueur.GetMoney() >= 2000)
+                        {
+                            joueur.GetWeapons("m3").AddLevel();
+                            joueur.SetMoney(-2000);
+                            prix_amelio_m3 = "4000 $";
+
+                            joueur.Save("solo.save");
+                        }
+                        else
+                            if (joueur.GetWeapons("m3").GetLevel() == 3 && joueur.GetMoney() >= 4000)
+                            {
+                                joueur.GetWeapons("m3").AddLevel();
+                                joueur.SetMoney(-4000);
+                                prix_amelio_m3 = "8000 $";
+
+                                joueur.Save("solo.save");
+                            }
+                            else
+                                if (joueur.GetWeapons("m3").GetLevel() == 4 && joueur.GetMoney() >= 8000)
+                                {
+                                    joueur.GetWeapons("m3").AddLevel();
+                                    joueur.SetMoney(-8000);
+                                    prix_amelio_m3 = "10000 $";
+
+                                    joueur.Save("solo.save");
+                                }
+                                else
+                                    if (joueur.GetWeapons("m3").GetLevel() == 5 && joueur.GetMoney() >= 10000)
+                                    {
+                                        joueur.GetWeapons("m3").AddLevel();
+                                        joueur.SetMoney(-10000);
+                                        prix_amelio_m3 = "";
+
+                                        joueur.Save("solo.save");
+                                    }
                 }
 
-                if (souris.GetRectangle().Intersects(Bmunitions.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                if (souris.GetRectangle().Intersects(Bmunitions.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() && joueur.GetWeapons("m3").ammo <= joueur.GetWeapons("m3").ammo_max)
                 {
                     if (joueur.GetMoney() >= 500)
                     {
-                        joueur.Refill_ammo(3);
+                        joueur.GetWeapons("m3").ammo = joueur.GetWeapons("m3").ammo_max;
                     }
                 }
 
@@ -861,12 +1020,18 @@ namespace Fuckin__Height_Redemption
                 Bacheter.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
                 Bretour.SetPosition(new Vector2(Window.ClientBounds.Width - 2 * Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height - 3 * Bcontinuer.GetTexturefr().Height));
 
-                if (joueur.GetMoney() >= 10000)
+                if (souris.GetRectangle().Intersects(Bacheter.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
                 {
-                    status = "MP5 UNLOCKED";
-                    joueur.GetWeapons("mp5").unlocked = true;
-                    joueur.Debloque_Weapon(joueur.GetWeapons("mp5"));
+                    if (joueur.GetMoney() >= 10000)
+                    {
+                        status = "MP5 UNLOCKED";
+                        joueur.GetWeapons("mp5").unlocked = true;
+                        joueur.Debloque_Weapon(joueur.GetWeapons("mp5"));
+
+                        joueur.Save("solo.save");
+                    }
                 }
+
                 if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
                 {
                     status = "Magasin";
@@ -887,37 +1052,58 @@ namespace Fuckin__Height_Redemption
 
                 if (souris.GetRectangle().Intersects(Bameliorer.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
                 {
-                    if (joueur.GetWeapons("mp5").GetLevel() == 1 && joueur.GetMoney() >= 2500)
+                    if (joueur.GetWeapons("mp5").GetLevel() == 1 && joueur.GetMoney() >= 2000)
                     {
-                        joueur.Refill_clip(2);
-                        joueur.GetWeapons("mp5").SetLevel(2);
-                        prix_amélio_mp5 = "3000 $";
+                        joueur.GetWeapons("mp5").AddLevel();
+                        joueur.SetMoney(-2000);
+                        prix_amelio_mp5 = "3000 $";
+
+                        joueur.Save("solo.save");
                     }
-                    if (joueur.GetWeapons("mp5").GetLevel() == 2 && joueur.GetMoney() >= 3000)
-                    {
-                        joueur.Refill_dmg(2);
-                        joueur.GetWeapons("mp5").SetLevel(3);
-                        prix_amélio_mp5 = "7000 $";
-                    }
-                    if (joueur.GetWeapons("mp5").GetLevel() == 3 && joueur.GetMoney() >= 7000)
-                    {
-                        joueur.Refill_cooldown(2);
-                        joueur.GetWeapons("mp5").SetLevel(4);
-                        prix_amélio_mp5 = "15000 $";
-                    }
-                    if (joueur.GetWeapons("mp5").GetLevel() == 4 && joueur.GetMoney() >= 15000)
-                    {
-                        joueur.Refill_reloadtime(2);
-                    }
+                    else
+                        if (joueur.GetWeapons("mp5").GetLevel() == 2 && joueur.GetMoney() >= 3000)
+                        {
+                            joueur.GetWeapons("mp5").AddLevel();
+                            joueur.SetMoney(-3000);
+                            prix_amelio_mp5 = "5000 $";
+
+                            joueur.Save("solo.save");
+                        }
+                        else
+                            if (joueur.GetWeapons("mp5").GetLevel() == 3 && joueur.GetMoney() >= 5000)
+                            {
+                                joueur.GetWeapons("mp5").AddLevel();
+                                joueur.SetMoney(-5000);
+                                prix_amelio_mp5 = "10000 $";
+
+                                joueur.Save("solo.save");
+                            }
+                            else
+                                if (joueur.GetWeapons("mp5").GetLevel() == 4 && joueur.GetMoney() >= 10000)
+                                {
+                                    joueur.GetWeapons("mp5").AddLevel();
+                                    joueur.SetMoney(-10000);
+                                    prix_amelio_mp5 = "15000 $";
+
+
+                                    joueur.Save("solo.save");
+                                }
+                                else
+                                    if (joueur.GetWeapons("mp5").GetLevel() == 5 && joueur.GetMoney() >= 15000)
+                                    {
+                                        joueur.GetWeapons("mp5").AddLevel();
+                                        joueur.SetMoney(-15000);
+                                        prix_amelio_mp5 = "";
+
+                                        joueur.Save("solo.save");
+                                    }
                 }
 
-
-                if (souris.GetRectangle().Intersects(Bmunitions.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                if (souris.GetRectangle().Intersects(Bmunitions.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() && joueur.GetWeapons("mp5").ammo <= joueur.GetWeapons("mp5").ammo_max)
                 {
-                    if (joueur.GetMoney() >= 1000)
+                    if (joueur.GetMoney() >= 500)
                     {
-                        joueur.Refill_ammo(2);
-                        prix_amélio_mp5 = "1000 $";
+                        joueur.GetWeapons("mp5").ammo = joueur.GetWeapons("mp5").ammo_max;
                     }
                 }
 
@@ -940,11 +1126,16 @@ namespace Fuckin__Height_Redemption
                 Bacheter.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
                 Bretour.SetPosition(new Vector2(Window.ClientBounds.Width - 2 * Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height - 3 * Bcontinuer.GetTexturefr().Height));
 
-                if (joueur.GetMoney() >= 50000)
+                if (souris.GetRectangle().Intersects(Bacheter.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
                 {
-                    status = "AK47 UNLOCKED";
-                    joueur.GetWeapons("ak47").unlocked = true;
-                    joueur.Debloque_Weapon(joueur.GetWeapons("ak47"));
+                    if (joueur.GetMoney() >= 50000)
+                    {
+                        status = "AK47 UNLOCKED";
+                        joueur.GetWeapons("ak47").unlocked = true;
+                        joueur.Debloque_Weapon(joueur.GetWeapons("ak47"));
+
+                        joueur.Save("solo.save");
+                    }
                 }
                 if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
                 {
@@ -969,34 +1160,55 @@ namespace Fuckin__Height_Redemption
                 {
                     if (joueur.GetWeapons("ak47").GetLevel() == 1 && joueur.GetMoney() >= 3000)
                     {
-                        joueur.Refill_clip(1);
-                        joueur.GetWeapons("ak47").SetLevel(2);
-                        prix_amélio_ak47 = "5000 $";
+                        joueur.GetWeapons("ak47").AddLevel();
+                        joueur.SetMoney(-3000);
+                        prix_amelio_ak47 = "5000 $";
+
+                        joueur.Save("solo.save");
                     }
-                    if (joueur.GetWeapons("ak47").GetLevel() == 2 && joueur.GetMoney() >= 5000)
-                    {
-                        joueur.Refill_dmg(1);
-                        joueur.GetWeapons("ak47").SetLevel(3);
-                        prix_amélio_ak47 = "10000 $";
-                    }
-                    if (joueur.GetWeapons("ak47").GetLevel() == 3 && joueur.GetMoney() >= 10000)
-                    {
-                        joueur.Refill_cooldown(1);
-                        joueur.GetWeapons("ak47").SetLevel(4);
-                        prix_amélio_ak47 = "20000 $";
-                    }
-                    if (joueur.GetWeapons("ak47").GetLevel() == 4 && joueur.GetMoney() >= 20000)
-                    {
-                        joueur.Refill_reloadtime(1);
-                    }
+                    else
+                        if (joueur.GetWeapons("ak47").GetLevel() == 2 && joueur.GetMoney() >= 5000)
+                        {
+                            joueur.GetWeapons("ak47").AddLevel();
+                            joueur.SetMoney(-5000);
+                            prix_amelio_ak47 = "10000 $";
+
+                            joueur.Save("solo.save");
+                        }
+                        else
+                            if (joueur.GetWeapons("ak47").GetLevel() == 3 && joueur.GetMoney() >= 10000)
+                            {
+                                joueur.GetWeapons("ak47").AddLevel();
+                                joueur.SetMoney(-10000);
+                                prix_amelio_ak47 = "15000 $";
+
+                                joueur.Save("solo.save");
+                            }
+                            else
+                                if (joueur.GetWeapons("ak47").GetLevel() == 4 && joueur.GetMoney() >= 15000)
+                                {
+                                    joueur.GetWeapons("ak47").AddLevel();
+                                    joueur.SetMoney(-15000);
+                                    prix_amelio_ak47 = "20000 $";
+
+                                    joueur.Save("solo.save");
+                                }
+                                else
+                                    if (joueur.GetWeapons("ak47").GetLevel() == 5 && joueur.GetMoney() >= 20000)
+                                    {
+                                        joueur.GetWeapons("ak47").AddLevel();
+                                        joueur.SetMoney(-20000);
+                                        prix_amelio_ak47 = "";
+
+                                        joueur.Save("solo.save");
+                                    }
                 }
 
-
-                if (souris.GetRectangle().Intersects(Bmunitions.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
+                if (souris.GetRectangle().Intersects(Bmunitions.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() && joueur.GetWeapons("ak47").ammo <= joueur.GetWeapons("ak47").ammo_max)
                 {
-                    if (joueur.GetMoney() >= 2000)
+                    if (joueur.GetMoney() >= 500)
                     {
-                        joueur.Refill_ammo(1);
+                        joueur.GetWeapons("ak47").ammo = joueur.GetWeapons("ak47").ammo_max;
                     }
                 }
 
@@ -1007,6 +1219,9 @@ namespace Fuckin__Height_Redemption
                 }
             }
             #endregion
+
+            #endregion
+
 
 
             // MENU PRINCIPAL
@@ -2123,7 +2338,7 @@ namespace Fuckin__Height_Redemption
 
             // JEU + PAUSE + FIN + MAGASIN + ARMES
             #region jeu
-            if (status == "Jeu" || status == "Pause" || status == "Fin_mort" || status == "Fin_victoire" || status == "Magasin" || status == "M3" || status == "MP5" || status == "AK47" || status == "M3 UNLOCKED" || status == "MP5 UNLOCKED" || status == "AK47 UNLOCKED")
+            if (status == "Jeu" || status == "Pause" || status == "Fin_mort" || status == "Fin_victoire" || status == "Magasin" || status == "M3" || status == "MP5" || status == "AK47" || status == "USP UNLOCKED" || status == "M3 UNLOCKED" || status == "MP5 UNLOCKED" || status == "AK47 UNLOCKED")
             {
 
                 zombiesloins = new List<Zombie>();
@@ -2321,11 +2536,12 @@ namespace Fuckin__Height_Redemption
 
 
                 Bquitter.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bquitter.GetRectangle()));
+                Busp.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Busp.GetRectangle()));
                 Bak47.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bak47.GetRectangle()));
                 Bm3.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bm3.GetRectangle()));
                 Bmp5.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmp5.GetRectangle()));
 
-
+                string _usp = "USP";
                 string _m3 = "M3";
                 string _mp5 = "MP5";
                 string _ak47 = "AK47";
@@ -2378,6 +2594,7 @@ namespace Fuckin__Height_Redemption
                 spriteBatch.DrawString(hud_font, prix_m3, new Vector2(Bcontinuer.GetTexturefr().Width + Bak47.GetTexturefr().Width, 4 * Bcontinuer.GetTexturefr().Height), Color.Black, 0, Vector2.One, 1.0f, SpriteEffects.None, 0.5f);
                 spriteBatch.DrawString(hud_font, prix_mp5, new Vector2(Bcontinuer.GetTexturefr().Width + Bak47.GetTexturefr().Width, 5 * Bcontinuer.GetTexturefr().Height), Color.Black, 0, Vector2.One, 1.0f, SpriteEffects.None, 0.5f);*/
 
+                spriteBatch.DrawString(hud_font, _usp, new Vector2(Busp.GetPosition().X + Busp.GetTexturefr().Width + 10, Busp.GetPosition().Y), Color.Black);
                 spriteBatch.DrawString(hud_font, _m3, new Vector2(Bm3.GetPosition().X + Bm3.GetTexturefr().Width + 10, Bm3.GetPosition().Y), Color.Black);
                 spriteBatch.DrawString(hud_font, _mp5, new Vector2(Bmp5.GetPosition().X + Bmp5.GetTexturefr().Width + 10, Bmp5.GetPosition().Y), Color.Black);
                 spriteBatch.DrawString(hud_font, _ak47, new Vector2(Bak47.GetPosition().X + Bak47.GetTexturefr().Width + 10, Bak47.GetPosition().Y), Color.Black);
@@ -2393,8 +2610,63 @@ namespace Fuckin__Height_Redemption
                 spriteBatch.DrawString(hud_font, les_drogues, new Vector2((5 / 2) * Bcontinuer.GetTexturefr().Width + 2 * Bak47.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height), Color.Black, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0.5f);
 
             }
-            #endregion
 
+
+            //USP UNLOCKED
+            #region m3 unlocked
+            if (status == "USP UNLOCKED")
+            {
+                if (lang == 1)
+                {
+                    spriteBatch.Draw(magasin, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                }
+                else
+                {
+                    if (lang == 2)
+                    {
+                        spriteBatch.Draw(shop, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                    }
+                    else
+                    {
+                        if (lang == 3)
+                        {
+                            spriteBatch.Draw(negozio, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        }
+                        else
+                        {
+                            spriteBatch.Draw(magasinde, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                        }
+                    }
+                }
+                Busp.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Busp.GetRectangle()));
+                Bameliorer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bameliorer.GetRectangle()));/////// "AMELIORER"
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()));
+
+                string _usp = "USP";
+                spriteBatch.DrawString(hud_font, _usp, new Vector2(Bm3.GetPosition().X + Bm3.GetTexturefr().Width + 10, Bm3.GetPosition().Y), Color.Black);
+
+
+                if (joueur.GetWeapons("usp").GetLevel() == 1)
+                    spriteBatch.DrawString(hud_font, level1, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                if (joueur.GetWeapons("usp").GetLevel() == 2)
+                    spriteBatch.DrawString(hud_font, level2, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                if (joueur.GetWeapons("usp").GetLevel() == 3)
+                    spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                if (joueur.GetWeapons("usp").GetLevel() == 4)
+                    spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
+                //lvl 5 et 6
+                //
+                //
+                //
+                //
+
+
+
+
+
+                spriteBatch.DrawString(hud_font, prix_amelio_usp, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.Black);
+            }
+            #endregion
 
             //M3
             #region m3
@@ -2480,7 +2752,7 @@ namespace Fuckin__Height_Redemption
                 if (joueur.GetWeapons("m3").GetLevel() == 4)
                     spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
 
-                spriteBatch.DrawString(hud_font, prix_amélio_m3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.Black);
+                spriteBatch.DrawString(hud_font, prix_amelio_m3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.Black);
                 spriteBatch.DrawString(hud_font, "500 $", new Vector2(Bmunitions.GetPosition().X, Bmunitions.GetPosition().Y + Bmunitions.GetTexturefr().Height), Color.Black);
             }
             #endregion
@@ -2568,7 +2840,7 @@ namespace Fuckin__Height_Redemption
                 if (joueur.GetWeapons("mp5").GetLevel() == 4)
                     spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
 
-                spriteBatch.DrawString(hud_font, prix_amélio_mp5, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.Black);
+                spriteBatch.DrawString(hud_font, prix_amelio_mp5, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.Black);
                 spriteBatch.DrawString(hud_font, "1000 $", new Vector2(Bmunitions.GetPosition().X, Bmunitions.GetPosition().Y + Bmunitions.GetTexturefr().Height), Color.Black);
             }
             #endregion
@@ -2655,9 +2927,11 @@ namespace Fuckin__Height_Redemption
                 if (joueur.GetWeapons("ak47").GetLevel() == 4)
                     spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.Black);
 
-                spriteBatch.DrawString(hud_font, prix_amélio_ak47, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.Black);
+                spriteBatch.DrawString(hud_font, prix_amelio_ak47, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.Black);
                 spriteBatch.DrawString(hud_font, "2000 $", new Vector2(Bmunitions.GetPosition().X, Bmunitions.GetPosition().Y + Bmunitions.GetTexturefr().Height), Color.Black);
             }
+            #endregion
+
             #endregion
 
 

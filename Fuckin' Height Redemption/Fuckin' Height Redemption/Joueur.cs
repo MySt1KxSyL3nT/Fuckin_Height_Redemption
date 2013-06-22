@@ -44,6 +44,13 @@ namespace Fuckin__Height_Redemption
             SetRectangle();
         }
 
+
+
+        /// <summary>
+        /// charge la save "path"
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="Content"></param>
         public void Load(string path, ContentManager Content)
         {
             string[] data_saved;
@@ -58,10 +65,10 @@ namespace Fuckin__Height_Redemption
                     file.WriteLine("0");
                     file.WriteLine("0");
                     file.WriteLine("0");
-                    file.WriteLine("0");
-                    file.WriteLine("0");
-                    file.WriteLine("0");
-                    file.WriteLine("0");
+                    file.WriteLine("1");
+                    file.WriteLine("1");
+                    file.WriteLine("1");
+                    file.WriteLine("1");
                     file.Close();
                 }
                 catch
@@ -78,6 +85,17 @@ namespace Fuckin__Height_Redemption
             weapons[2] = new Weapon("MP5", Int32.Parse(data_saved[3]), Int32.Parse(data_saved[6]), Content);
             weapons[3] = new Weapon("ShotGun", Int32.Parse(data_saved[2]), Int32.Parse(data_saved[8]), Content);
         }
+
+        public void Save(string path)
+        {
+            string[] temp = new string[9] { name, Convert.ToString(money), weapons[3].unlocked ? "1" : "0", weapons[2].unlocked ? "1" : "0", weapons[1].unlocked ? "1" : "0", Convert.ToString(weapons[0].GetLevel()), Convert.ToString(weapons[2].GetLevel()), Convert.ToString(weapons[1].GetLevel()), Convert.ToString(weapons[3].GetLevel()) };
+            StreamWriter file = new StreamWriter(path);
+            foreach (string s in temp)
+                file.WriteLine(s);
+            file.Close();
+        }
+
+
 
         public void Update(int height, int width, GameTime gameTime)
         {
@@ -574,16 +592,6 @@ namespace Fuckin__Height_Redemption
         }
 
 
-        public void Save(string path)
-        {
-            string[] temp = new string[9] { name, Convert.ToString(money), weapons[3].unlocked ? "1" : "0", weapons[2].unlocked ? "1" : "0", weapons[1].unlocked ? "1" : "0", Convert.ToString(weapons[0].GetLevel()), Convert.ToString(weapons[2].GetLevel()), Convert.ToString(weapons[1].GetLevel()), Convert.ToString(weapons[3].GetLevel()) };
-            StreamWriter file = new StreamWriter(path);
-            foreach (string s in temp)
-                file.WriteLine(s);
-            file.Close();
-        }
-
-
 
         public void Hurt(int dmg)
         {
@@ -850,104 +858,6 @@ namespace Fuckin__Height_Redemption
             {
                 this.health = 100;
                 this.money -= 1000;
-            }
-        }
-
-
-        public void Refill_ammo(int n)
-        {
-            if (n == 1)
-            {
-                this.money -= 2000;
-                this.weapons[1].ammo += 10;
-            }
-            if (n == 2)
-            {
-                this.money -= 1000;
-                this.weapons[2].ammo += 20;
-            }
-            if (n == 3)
-            {
-                this.money -= 500;
-                this.weapons[3].ammo += 30;
-            }
-
-            weapons[n].ammo = weapons[n].ammo_max;
-        }
-        /////////////////////////////////
-        public void Refill_clip(int n)
-        {
-            if (n == 1)
-            {
-                this.money -= 3000;
-                this.weapons[1].clip_max += 50;
-            }
-            if (n == 2)
-            {
-                this.money -= 2500;
-                this.weapons[2].clip_max += 50;
-            }
-            if (n == 3)
-            {
-                this.money -= 1500;
-                this.weapons[3].clip_max += 50;
-            }
-        }
-        /////////////////////////////////
-        public void Refill_dmg(int n)
-        {
-            if (n == 1)
-            {
-                this.money -= 5000;
-                this.weapons[1].dmg += 50;
-            }
-            if (n == 2)
-            {
-                this.money -= 3000;
-                this.weapons[2].dmg += 50;
-            }
-            if (n == 3)
-            {
-                this.money -= 2000;
-                this.weapons[3].dmg += 50;
-            }
-        }
-        ////////////////////////////////
-        public void Refill_reloadtime(int n)
-        {
-            if (n == 1)
-            {
-                this.money -= 10000;
-                this.weapons[1].reload_time += 50;
-            }
-            if (n == 2)
-            {
-                this.money -= 7000;
-                this.weapons[2].reload_time += 50;
-            }
-            if (n == 3)
-            {
-                this.money -= 4000;
-                this.weapons[3].reload_time += 50;
-            }
-        }
-        /////////////////////////////////
-        public void Refill_cooldown(int n)
-        {
-            if (n == 1)
-            {
-                this.money -= 20000;
-                this.weapons[1].cooldown += 50;
-            }
-            if (n == 2)
-            {
-                this.money -= 15000;
-                this.weapons[2].cooldown += 50;
-            }
-            if (n == 3)
-            {
-                this.money -= 8000;
-                this.weapons[3].cooldown += 50;
             }
         }
 
