@@ -1807,3 +1807,9 @@ H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 4\Fuckin_Height_Red
 H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 4\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\hud_shit.xnb
 H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 4\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\sonmagasin.xnb
 H:\Users\Mystik\Desktop\Fuckin' Height Redemption\Soutenance 4\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\sonmagasin.wma
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\fumer.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\piquer.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\sniffer.xnb
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\fumer.wma
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\piquer.wma
+C:\Users\Ashley\Documents\GitHub\Fuckin_Height_Redemption\Fuckin' Height Redemption\Fuckin' Height Redemption\bin\x86\Debug\Content\sniffer.wma

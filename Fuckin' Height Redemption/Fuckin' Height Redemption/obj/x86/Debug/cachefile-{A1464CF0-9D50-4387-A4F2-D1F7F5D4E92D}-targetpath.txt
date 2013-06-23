@@ -344,3 +344,9 @@ Content\recharge_m3_8_2.xnb
 Content\recharge_mp5_2.xnb
 Content\recharge_usp_2.xnb
 Content\tir_m3_2.xnb
+Content\fumer.xnb
+Content\fumer.wma
+Content\piquer.xnb
+Content\piquer.wma
+Content\sniffer.xnb
+Content\sniffer.wma

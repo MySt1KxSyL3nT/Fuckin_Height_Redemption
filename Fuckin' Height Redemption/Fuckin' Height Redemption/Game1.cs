@@ -107,6 +107,9 @@ namespace Fuckin__Height_Redemption
 
         public static Song sonprincipal;
         public static Song sonmagasin;
+        public static Song fumer;
+        public static Song sniffer;
+        public static Song piquer;
 
         //magasin
         string level1 = "";
@@ -323,6 +326,9 @@ namespace Fuckin__Height_Redemption
 
             sonprincipal = Content.Load<Song>("sonprincipal");
             sonmagasin = Content.Load<Song>("sonmagasin");
+            fumer = Content.Load<Song>("fumer");
+            sniffer = Content.Load<Song>("sniffer");
+            piquer = Content.Load<Song>("piquer");
 
             #endregion
 
@@ -819,6 +825,7 @@ namespace Fuckin__Height_Redemption
                     if (joueur.GetMoney() >= 200 && joueur.GetHealth() < 100)
                     {
                         joueur.ChangeHealth("shit");
+                        MediaPlayer.Play(fumer);
                     }
                 }
 
@@ -828,6 +835,7 @@ namespace Fuckin__Height_Redemption
                     if (joueur.GetMoney() >= 500 && joueur.GetHealth() < 100)
                     {
                         joueur.ChangeHealth("coke");
+                        MediaPlayer.Play(sniffer);
                     }
                 }
 
@@ -837,6 +845,7 @@ namespace Fuckin__Height_Redemption
                     if (joueur.GetMoney() >= 1000 && joueur.GetHealth() < 100)
                     {
                         joueur.ChangeHealth("seringue");
+                        MediaPlayer.Play(piquer);
                     }
                 }
             }
@@ -919,11 +928,11 @@ namespace Fuckin__Height_Redemption
                         break;
 
                     case 3:
-                        level1 = "";
-                        level2 = "";
-                        level3 = "";
-                        level4 = "";
-                        level5 = "";
+                        level1 = "Caricatore migliorato";
+                        level2 = "Caricatore migliorato 2";
+                        level3 = "Cadenza di tiro";
+                        level4 = "Ricarica";
+                        level5 = "Danni";
                         break;
 
                     default:
