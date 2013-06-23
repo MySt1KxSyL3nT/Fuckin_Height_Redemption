@@ -114,7 +114,7 @@ namespace Fuckin__Height_Redemption
         string level3 = "";
         string level4 = "";
         string level5 = "";
-        string level6 = "";
+
 
         string prix_amelio_usp = "";
         string prix_amelio_m3 = "";
@@ -582,10 +582,6 @@ namespace Fuckin__Height_Redemption
                     prix_amelio_ak47 = "Max !";
                     break;
             }
-
-            prix_amelio_m3 = "1500 $";
-            prix_amelio_mp5 = "2000 $";
-            prix_amelio_ak47 = "3000 $";
             #endregion
 
 
@@ -655,7 +651,7 @@ namespace Fuckin__Height_Redemption
 
             // MUSIQUE
             #region musique menu
-            if (status == "Principal" || status == "Choix_Niveau" || status == "Cinematiques" || status == "Jouer" || status == "Multi" || status == "Options" || status == "Video" || status == "Audio" || status == "Commandes" || status == "Langues" || status == "Pause" || status == "Pause Options" || status == "Pause Langues" || status == "Pause Audio")
+            if (status == "Principal" || status == "Choix_Niveau" || status == "Cinematiques" || status == "Jouer" || status == "Multi" || status == "Options" || status == "Video" || status == "Audio" || status == "Commandes" || status == "Langues" /*|| status == "Pause" || status == "Pause Options" || status == "Pause Langues" || status == "Pause Audio"*/)
             {
                 if (MediaPlayer.State == MediaState.Stopped)
                 {
@@ -853,8 +849,7 @@ namespace Fuckin__Height_Redemption
                 this.IsMouseVisible = true;
 
                 Busp.SetPosition(new Vector2(Bcontinuer.GetTexturefr().Width, 2 * Bcontinuer.GetTexturefr().Height));
-                Bameliorer.SetPosition(new Vector2(Window.ClientBounds.Width / 2 + Bcontinuer.GetTexturefr().Width / 3, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
-                Bmunitions.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
+                Bameliorer.SetPosition(new Vector2(Window.ClientBounds.Width / 2 - Bameliorer.GetTexturefr().Width / 2, Window.ClientBounds.Height / 2 - Bcontinuer.GetTexturefr().Height / 2));
                 Bretour.SetPosition(new Vector2(Window.ClientBounds.Width - 2 * Bcontinuer.GetTexturefr().Width, Window.ClientBounds.Height - 3 * Bcontinuer.GetTexturefr().Height));
 
                 if (souris.GetRectangle().Intersects(Bameliorer.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick())
@@ -903,6 +898,41 @@ namespace Fuckin__Height_Redemption
 
                                         joueur.Save("solo.save");
                                     }
+                }
+
+                switch (lang)
+                {
+                    case 1:
+                        level1 = "Chargeur amélioré";
+                        level2 = "Chargeur amélioré 2";
+                        level3 = "Cadence de tir";
+                        level4 = "Rechargement";
+                        level5 = "Dommages";
+                        break;
+
+                    case 2:
+                        level1 = "Bigger clip";
+                        level2 = "Bigger ckip 2";
+                        level3 = "Fire rate";
+                        level4 = "Reload";
+                        level5 = "Damages";
+                        break;
+
+                    case 3:
+                        level1 = "";
+                        level2 = "";
+                        level3 = "";
+                        level4 = "";
+                        level5 = "";
+                        break;
+
+                    default:
+                        level1 = "Magazin verbessert";
+                        level2 = "Magazin verbessert 2";
+                        level3 = "Dreharbeiten kadenz";
+                        level4 = "Laden";
+                        level5 = "Personenshaden";
+                        break;
                 }
 
                 if ((souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()) || (souris.GetRectangle().Intersects(Busp.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()))
@@ -1014,6 +1044,41 @@ namespace Fuckin__Height_Redemption
                     }
                 }
 
+                switch (lang)
+                {
+                    case 1:
+                        level1 = "Plus de munitions";
+                        level2 = "Plus de munitions 2";
+                        level3 = "Cadence de tir";
+                        level4 = "Rechargement";
+                        level5 = "Dommages";
+                        break;
+
+                    case 2:
+                        level1 = "More ammo";
+                        level2 = "More ammo 2";
+                        level3 = "Fire rate";
+                        level4 = "Reload";
+                        level5 = "Damages";
+                        break;
+
+                    case 3:
+                        level1 = "";
+                        level2 = "";
+                        level3 = "";
+                        level4 = "";
+                        level5 = "";
+                        break;
+
+                    default:
+                        level1 = "Keine munition";
+                        level2 = "Keine munition 2";
+                        level3 = "Dreharbeiten kadenz";
+                        level4 = "Laden";
+                        level5 = "Personenshaden";
+                        break;
+                }
+
                 if ((souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()) || (souris.GetRectangle().Intersects(Bm3.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick()))
                 {
                     status = "Magasin";
@@ -1117,6 +1182,41 @@ namespace Fuckin__Height_Redemption
                         joueur.GetWeapons("mp5").ammo = joueur.GetWeapons("mp5").ammo_max;
                         joueur.SetMoney(-1000);
                     }
+                }
+
+                switch (lang)
+                {
+                    case 1:
+                        level1 = "Plus de munitions";
+                        level2 = "Chargeur amélioré";
+                        level3 = "Cadence de tir";
+                        level4 = "Rechargement";
+                        level5 = "Dommages";
+                        break;
+
+                    case 2:
+                        level1 = "More ammo";
+                        level2 = "Bigger clip";
+                        level3 = "Fire rate";
+                        level4 = "Reload";
+                        level5 = "Damages";
+                        break;
+
+                    case 3:
+                        level1 = "";
+                        level2 = "";
+                        level3 = "";
+                        level4 = "";
+                        level5 = "";
+                        break;
+
+                    default:
+                        level1 = "Keine munition";
+                        level2 = "Magazin verbessert";
+                        level3 = "Dreharbeiten kadenz";
+                        level4 = "Laden";
+                        level5 = "Personenshaden";
+                        break;
                 }
 
 
@@ -1223,6 +1323,42 @@ namespace Fuckin__Height_Redemption
                         joueur.GetWeapons("ak47").ammo = joueur.GetWeapons("ak47").ammo_max;
                         joueur.SetMoney(-2000);
                     }
+                }
+
+
+                switch (lang)
+                {
+                    case 1:
+                        level1 = "Plus de munitions";
+                        level2 = "Chargeur amélioré";
+                        level3 = "Cadence de tir";
+                        level4 = "Rechargement";
+                        level5 = "Dommages";
+                        break;
+
+                    case 2:
+                        level1 = "More ammo";
+                        level2 = "Bigger clip";
+                        level3 = "Fire rate";
+                        level4 = "Reload";
+                        level5 = "Damages";
+                        break;
+
+                    case 3:
+                        level1 = "";
+                        level2 = "";
+                        level3 = "";
+                        level4 = "";
+                        level5 = "";
+                        break;
+
+                    default:
+                        level1 = "Keine munition";
+                        level2 = "Magazin verbessert";
+                        level3 = "Dreharbeiten kadenz";
+                        level4 = "Laden";
+                        level5 = "Personenshaden";
+                        break;
                 }
 
 
@@ -3116,11 +3252,8 @@ namespace Fuckin__Height_Redemption
                     spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("usp").GetLevel() == 4)
                     spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
-                //lvl 5 et 6
-                //
-                //
-                //
-                //
+                if (joueur.GetWeapons("usp").GetLevel() == 5)
+                    spriteBatch.DrawString(hud_font, level5, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
 
 
 
@@ -3212,7 +3345,9 @@ namespace Fuckin__Height_Redemption
                 if (joueur.GetWeapons("m3").GetLevel() == 3)
                     spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("m3").GetLevel() == 4)
-                    spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
+                    spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White); 
+                if (joueur.GetWeapons("m3").GetLevel() == 5)
+                    spriteBatch.DrawString(hud_font, level5, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
 
                 spriteBatch.DrawString(hud_font, prix_amelio_m3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.White);
                 spriteBatch.DrawString(hud_font, "500 $", new Vector2(Bmunitions.GetPosition().X, Bmunitions.GetPosition().Y + Bmunitions.GetTexturefr().Height), Color.White);
@@ -3301,6 +3436,8 @@ namespace Fuckin__Height_Redemption
                     spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("mp5").GetLevel() == 4)
                     spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
+                if (joueur.GetWeapons("mp5").GetLevel() == 5)
+                    spriteBatch.DrawString(hud_font, level5, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
 
                 spriteBatch.DrawString(hud_font, prix_amelio_mp5, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.White);
                 spriteBatch.DrawString(hud_font, "1000 $", new Vector2(Bmunitions.GetPosition().X, Bmunitions.GetPosition().Y + Bmunitions.GetTexturefr().Height), Color.White);
@@ -3388,6 +3525,8 @@ namespace Fuckin__Height_Redemption
                     spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("ak47").GetLevel() == 4)
                     spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
+                if (joueur.GetWeapons("ak47").GetLevel() == 5)
+                    spriteBatch.DrawString(hud_font, level5, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
 
                 spriteBatch.DrawString(hud_font, prix_amelio_ak47, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y + Bameliorer.GetTexturefr().Height), Color.White);
                 spriteBatch.DrawString(hud_font, "2000 $", new Vector2(Bmunitions.GetPosition().X, Bmunitions.GetPosition().Y + Bmunitions.GetTexturefr().Height), Color.White);

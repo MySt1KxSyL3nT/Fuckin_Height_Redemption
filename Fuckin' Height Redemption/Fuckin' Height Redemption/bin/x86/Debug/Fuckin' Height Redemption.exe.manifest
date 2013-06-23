@@ -93,14 +93,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Fuckin' Height Redemption.exe" size="115712">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Fuckin' Height Redemption.exe" size="117248">
       <assemblyIdentity name="Fuckin' Height Redemption" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>OVBlveOEdH3d3qVYx3vSNrHJyMc=</dsig:DigestValue>
+        <dsig:DigestValue>emHGhBR50A0vQjvybMf1EjdcLfQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -2810,7 +2810,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>tCNPHJFSa6hjSDBxBZj+LvEzeRQ=</dsig:DigestValue>
+      <dsig:DigestValue>SWRw/Nsx/HxAhsU6YIswYEqikf8=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\sonmagasin.xnb" size="128">
@@ -2828,7 +2828,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>TNgX+5+tbtTxxEbLNm7cwBOL5/M=</dsig:DigestValue>
+      <dsig:DigestValue>CTDoh+dIB5aT3TLnsu0AUKC8AWI=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\sonprincipal.xnb" size="130">

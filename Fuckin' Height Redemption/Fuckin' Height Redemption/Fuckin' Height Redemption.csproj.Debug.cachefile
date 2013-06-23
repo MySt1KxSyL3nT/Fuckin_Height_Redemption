@@ -307,7 +307,13 @@ Content\améliorerIT.xnb
 Content\munitionsIT.xnb
 Content\resetDE.xnb
 Content\saveDE.xnb
+Content\allemandFR.xnb
+Content\allemandEN.xnb
+Content\allemandIT.xnb
+Content\hud_coke.xnb
+Content\hud_shit.xnb
 Content\sonprincipal.xnb
+Content\sonmagasin.xnb
 Content\SpriteFont1.xnb
 Content\recharge_ak47.xnb
 Content\recharge_m3_1.xnb
@@ -336,11 +342,5 @@ Content\recharge_m3_8_2.xnb
 Content\recharge_mp5_2.xnb
 Content\recharge_usp_2.xnb
 Content\tir_m3_2.xnb
-Content\allemandFR.xnb
-Content\allemandEN.xnb
-Content\allemandIT.xnb
-Content\sonmagasin.xnb
-Content\hud_coke.xnb
-Content\hud_shit.xnb
 Content\sonprincipal.wma
 Content\sonmagasin.wma

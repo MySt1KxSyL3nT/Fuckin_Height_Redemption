@@ -52,23 +52,23 @@ namespace Fuckin__Height_Redemption
             vitesse = joueur.GetSpeed();
 
             // bord droit
-            if (position.X <= -2 * width - width / 2 + 20 && direction.X < 0)
+            if (position.X <= -2 * width - width / 2 + 130 && direction.X < 0)
             {
                 direction.X = 0;                
             }
 
             //bord gauche
-            if (position.X >= 0 + width / 2 - 20 && direction.X > 0)
+            if (position.X >= 0 + width / 2 - 130 && direction.X > 0)
             {
                 direction.X = 0;
             }
             //bas
-            if (position.Y <= -2 * height - height / 2 + 53 && direction.Y < 0)
+            if (position.Y <= -2 * height - height / 2 + 160 && direction.Y < 0)
             {
                 direction.Y = 0;
             }
             //haut
-            if (position.Y >= 0 + height / 2 - 20 && direction.Y > 0)
+            if (position.Y >= 0 + height / 2 - 60 && direction.Y > 0)
             {
                 direction.Y = 0;
             }

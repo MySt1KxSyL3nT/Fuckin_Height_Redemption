@@ -345,7 +345,9 @@ namespace Fuckin__Height_Redemption
 
             //SetPosition(position + (direction * speed));
 
-            if (position.Y + rectangle.Height >= height)
+            Game1.map.Update(this);
+
+            /*if (position.Y + rectangle.Height >= height)
                 position.Y = height - rectangle.Height;
             else
                 if (position.Y <= 0)
@@ -355,7 +357,7 @@ namespace Fuckin__Height_Redemption
                 position.X = width - rectangle.Width;
             else
                 if (position.X <= 0)
-                    position.X = 0;
+                    position.X = 0;*/
             SetRectangle();
             SetTarget();
         }
