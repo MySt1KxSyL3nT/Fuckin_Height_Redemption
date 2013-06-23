@@ -608,7 +608,6 @@ namespace Fuckin__Height_Redemption
             return health;
         }
 
-
         public void SetLastShoot(bool last)
         {
             last_shoot = last;

@@ -584,7 +584,7 @@ namespace Fuckin__Height_Redemption
             }
 
             prix_amelio_m3 = "1500 $";
-            prix_amelio_mp5 = "2500 $";
+            prix_amelio_mp5 = "2000 $";
             prix_amelio_ak47 = "3000 $";
             #endregion
 
@@ -999,7 +999,7 @@ namespace Fuckin__Height_Redemption
                                     {
                                         joueur.GetWeapons("m3").AddLevel();
                                         joueur.SetMoney(-10000);
-                                        prix_amelio_m3 = "";
+                                        prix_amelio_m3 = "Max !";
 
                                         joueur.Save("solo.save");
                                     }
@@ -1010,6 +1010,7 @@ namespace Fuckin__Height_Redemption
                     if (joueur.GetMoney() >= 500)
                     {
                         joueur.GetWeapons("m3").ammo = joueur.GetWeapons("m3").ammo_max;
+                        joueur.SetMoney(-500);
                     }
                 }
 
@@ -1103,7 +1104,7 @@ namespace Fuckin__Height_Redemption
                                     {
                                         joueur.GetWeapons("mp5").AddLevel();
                                         joueur.SetMoney(-15000);
-                                        prix_amelio_mp5 = "";
+                                        prix_amelio_mp5 = "Max !";
 
                                         joueur.Save("solo.save");
                                     }
@@ -1111,9 +1112,10 @@ namespace Fuckin__Height_Redemption
 
                 if (souris.GetRectangle().Intersects(Bmunitions.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() && joueur.GetWeapons("mp5").ammo <= joueur.GetWeapons("mp5").ammo_max)
                 {
-                    if (joueur.GetMoney() >= 500)
+                    if (joueur.GetMoney() >= 1000)
                     {
                         joueur.GetWeapons("mp5").ammo = joueur.GetWeapons("mp5").ammo_max;
+                        joueur.SetMoney(-1000);
                     }
                 }
 
@@ -1208,7 +1210,7 @@ namespace Fuckin__Height_Redemption
                                     {
                                         joueur.GetWeapons("ak47").AddLevel();
                                         joueur.SetMoney(-20000);
-                                        prix_amelio_ak47 = "";
+                                        prix_amelio_ak47 = "Max !";
 
                                         joueur.Save("solo.save");
                                     }
@@ -1216,9 +1218,10 @@ namespace Fuckin__Height_Redemption
 
                 if (souris.GetRectangle().Intersects(Bmunitions.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() && joueur.GetWeapons("ak47").ammo <= joueur.GetWeapons("ak47").ammo_max)
                 {
-                    if (joueur.GetMoney() >= 500)
+                    if (joueur.GetMoney() >= 2000)
                     {
                         joueur.GetWeapons("ak47").ammo = joueur.GetWeapons("ak47").ammo_max;
+                        joueur.SetMoney(-2000);
                     }
                 }
 
@@ -1497,7 +1500,7 @@ namespace Fuckin__Height_Redemption
                         gestionclavier = 2;
                 }
 
-                if (souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) || souris.GetRectangle().Intersects(Bquitter.GetRectangle()) || souris.GetRectangle().Intersects(Boptions.GetRectangle()))
+                if (souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) || souris.GetRectangle().Intersects(Boptions.GetRectangle()) || souris.GetRectangle().Intersects(Bquitter.GetRectangle()))
                     gestionclavier = -1;
 
             }
@@ -2293,7 +2296,6 @@ namespace Fuckin__Height_Redemption
             #region video
             if (status == "Video")
             {
-
                 Blangue.SetPosition(positionBoutton1);
                 Bfullscreen.SetPosition(positionBoutton2);
                 Bfenetre.SetPosition(positionBoutton2);
@@ -2357,6 +2359,27 @@ namespace Fuckin__Height_Redemption
                     Blangueit.SetPosition(positionBoutton2);
                     Blanguede.SetPosition(positionBoutton3);
                     Bretour.SetPosition(positionBoutton4);
+                    if (souris.GetRectangle().Intersects(Blangueen.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                    {
+                        gestionclavier = -1;
+                        lang = 2;
+                        souris_old = new MouseEvent();
+                        clavier_old = new KeyboardEvent();
+                    }
+                    if (souris.GetRectangle().Intersects(Blangueit.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                    {
+                        gestionclavier = -1;
+                        lang = 3;
+                        souris_old = new MouseEvent();
+                        clavier_old = new KeyboardEvent();
+                    }
+                    if (souris.GetRectangle().Intersects(Blanguede.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                    {
+                        gestionclavier = -1;
+                        lang = 4;
+                        souris_old = new MouseEvent();
+                        clavier_old = new KeyboardEvent();
+                    }
                 }
                 if (lang == 2) //anglais
                 {
@@ -2364,6 +2387,27 @@ namespace Fuckin__Height_Redemption
                     Blangueit.SetPosition(positionBoutton2);
                     Blanguede.SetPosition(positionBoutton3);
                     Bretour.SetPosition(positionBoutton4);
+                    if (souris.GetRectangle().Intersects(Blanguefr.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                    {
+                        gestionclavier = -1;
+                        lang = 1;
+                        souris_old = new MouseEvent();
+                        clavier_old = new KeyboardEvent();
+                    }
+                    if (souris.GetRectangle().Intersects(Blangueit.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                    {
+                        gestionclavier = -1;
+                        lang = 3;
+                        souris_old = new MouseEvent();
+                        clavier_old = new KeyboardEvent();
+                    }
+                    if (souris.GetRectangle().Intersects(Blanguede.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                    {
+                        gestionclavier = -1;
+                        lang = 4;
+                        souris_old = new MouseEvent();
+                        clavier_old = new KeyboardEvent();
+                    }
                 }
                 if (lang == 3) //italien
                 {
@@ -2371,6 +2415,28 @@ namespace Fuckin__Height_Redemption
                     Blangueen.SetPosition(positionBoutton2);
                     Blanguede.SetPosition(positionBoutton3);
                     Bretour.SetPosition(positionBoutton4);
+                    if (souris.GetRectangle().Intersects(Blanguefr.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                    {
+                        gestionclavier = -1;
+                        lang = 1;
+                        souris_old = new MouseEvent();
+                        clavier_old = new KeyboardEvent();
+                    }
+                    if (souris.GetRectangle().Intersects(Blangueen.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                    {
+                        gestionclavier = -1;
+                        lang = 2;
+                        souris_old = new MouseEvent();
+                        clavier_old = new KeyboardEvent();
+                    }
+
+                    if (souris.GetRectangle().Intersects(Blanguede.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                    {
+                        gestionclavier = -1;
+                        lang = 4;
+                        souris_old = new MouseEvent();
+                        clavier_old = new KeyboardEvent();
+                    }
                 }
                 if (lang == 4) //allemand
                 {
@@ -2378,29 +2444,28 @@ namespace Fuckin__Height_Redemption
                     Blangueen.SetPosition(positionBoutton2);
                     Blangueit.SetPosition(positionBoutton3);
                     Bretour.SetPosition(positionBoutton4);
+                    if (souris.GetRectangle().Intersects(Blanguefr.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                    {
+                        gestionclavier = -1;
+                        lang = 1;
+                        souris_old = new MouseEvent();
+                        clavier_old = new KeyboardEvent();
+                    }
+                    if (souris.GetRectangle().Intersects(Blangueen.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                    {
+                        gestionclavier = -1;
+                        lang = 2;
+                        souris_old = new MouseEvent();
+                        clavier_old = new KeyboardEvent();
+                    }
+                    if (souris.GetRectangle().Intersects(Blangueit.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                    {
+                        gestionclavier = -1;
+                        lang = 3;
+                        souris_old = new MouseEvent();
+                        clavier_old = new KeyboardEvent();
+                    }
                 }
-
-                if (souris.GetRectangle().Intersects(Blanguefr.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
-                {
-                    gestionclavier = -1;
-                    lang = 1;
-                }
-                if (souris.GetRectangle().Intersects(Blangueen.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
-                {
-                    gestionclavier = -1;
-                    lang = 2;
-                }
-                if (souris.GetRectangle().Intersects(Blangueit.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
-                {
-                    gestionclavier = -1;
-                    lang = 3;
-                }
-                if (souris.GetRectangle().Intersects(Blanguede.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
-                {
-                    gestionclavier = -1;
-                    lang = 4;
-                }
-
 
                 if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 3 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)) || (clique_back && !clavier.KeyPressed(Keys.Escape)))
                 {
@@ -2426,7 +2491,7 @@ namespace Fuckin__Height_Redemption
                         gestionclavier = 3;
                 }
 
-                if (souris.GetRectangle().Intersects(Bnouveaujeu.GetRectangle()) || souris.GetRectangle().Intersects(Bcontinuer.GetRectangle()) || souris.GetRectangle().Intersects(Bretour.GetRectangle()))
+                if (souris.GetRectangle().Intersects(Blanguefr.GetRectangle()) || souris.GetRectangle().Intersects(Blangueen.GetRectangle()) || souris.GetRectangle().Intersects(Blangueit.GetRectangle()) || souris.GetRectangle().Intersects(Blanguede.GetRectangle()) || souris.GetRectangle().Intersects(Bretour.GetRectangle()))
                     gestionclavier = -1;
 
             }
