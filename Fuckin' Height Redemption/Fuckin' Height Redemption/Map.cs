@@ -54,7 +54,7 @@ namespace Fuckin__Height_Redemption
             // bord droit
             if (position.X <= -2 * width - width / 2 + 130 && direction.X < 0)
             {
-                direction.X = 0;                
+                direction.X = 0;
             }
 
             //bord gauche
@@ -72,6 +72,20 @@ namespace Fuckin__Height_Redemption
             {
                 direction.Y = 0;
             }
+
+            position += (direction * vitesse);
+
+            UpdateRectangle(height, width);
+        }
+
+        public void Update(Joueur j1, Joueur j2, int winX, int winY)
+        {
+            direction.X = -j1.GetDirection().X - j2.GetDirection().X;
+            direction.Y = -j1.GetDirection().Y - j2.GetDirection().Y;
+            vitesse = (j1.GetSpeed() + j2.GetSpeed()) / 4;
+
+            if (j1.GetPosition().X >= position.X + rec.Width && direction.X < 0 || j1.GetPosition().X >= winX && direction.X < 0)
+                direction.X = 0;
 
             position += (direction * vitesse);
 
@@ -105,6 +119,11 @@ namespace Fuckin__Height_Redemption
         public int GetSpeed()
         {
             return vitesse;
+        }
+
+        public Vector2 GetPosition()
+        {
+            return position;
         }
     }
 }

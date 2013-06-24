@@ -17,11 +17,12 @@ namespace Fuckin__Height_Redemption
 {
     public class Joueur
     {
-        public Joueur(string path, Texture2D[,] texture_usp, Texture2D[,] texture_ak47, Texture2D[,] texture_mp5, Texture2D[,] texture_m3, ContentManager Content, int height, int width)
+        public Joueur(string path, Texture2D[,] texture_usp, Texture2D[,] texture_ak47, Texture2D[,] texture_mp5, Texture2D[,] texture_m3, Texture2D mort, int pos, ContentManager Content, int height, int width)
         {
             Load(path, Content);
             this.height = height;
             this.width = width;
+            this.mort = mort;
 
 
             this.texture_usp = texture_usp;
@@ -29,8 +30,13 @@ namespace Fuckin__Height_Redemption
             this.texture_mp5 = texture_mp5;
             this.texture_m3 = texture_m3;
 
-            this.position = new Vector2(width / 2  - texture_ak47[1,1].Width / 6, height / 2 - texture_ak47[1,1].Height / 6 );
-            this.init_position = this.position;
+            if (pos == 0)
+                this.position = new Vector2(width / 2 - texture_ak47[1, 1].Width / 6, height / 2 - texture_ak47[1, 1].Height / 6);
+            if (pos == 1)
+                this.position = new Vector2(width / 3 - texture_ak47[1, 1].Width / 6, height / 2 - texture_ak47[1, 1].Height / 6);
+            else
+                this.position = new Vector2((2 * width) / 3 - texture_ak47[1, 1].Width / 6, height / 2 - texture_ak47[1, 1].Height / 6);
+
 
             this.health = 100;
 
@@ -55,12 +61,17 @@ namespace Fuckin__Height_Redemption
         {
             string[] data_saved;
             // 0 = name, 1 = argent, 2 = m3 unlocked, 3 = mp5 unlocked, 4 = ak unlocked, 5 = usp level, 6 = mp5 level, 7 = ak level, 8 = m3 level
-            if (!File.Exists("solo.save"))
+            if (!File.Exists(path))
             {
                 try
                 {
                     StreamWriter file = new StreamWriter(path);
-                    file.WriteLine("Joueur");
+                    if(path == "solo.save")
+                        file.WriteLine("Joueur");
+                    if(path == "j1.save")
+                        file.WriteLine("J1");
+                    if(path == "j2.save")
+                        file.WriteLine("J2");
                     file.WriteLine("0");
                     file.WriteLine("0");
                     file.WriteLine("0");
@@ -76,7 +87,7 @@ namespace Fuckin__Height_Redemption
                     Console.WriteLine("Erreur: pas de save creee");
                 }
             }
-            data_saved = File.ReadAllLines("solo.save");
+            data_saved = File.ReadAllLines(path);
             this.name = data_saved[0];
             this.money = Int32.Parse(data_saved[1]);
             this.weapons = new Weapon[4];
@@ -101,7 +112,7 @@ namespace Fuckin__Height_Redemption
         {
             if (Game1.jeu_manette && Game1.manette.Connected())
             {
-                MoveGamePad(Game1.manette, height, width, Game1.zombie);
+                MoveGamePad(Game1.manette, height, width, Game1.zombie, false);
                 if (Game1.manette.GetRightStick() != Vector2.Zero)
                     SetAngleVisee(Game1.manette);
 
@@ -135,7 +146,7 @@ namespace Fuckin__Height_Redemption
             }
             else
             {
-                MoveKeyboard(Game1.clavier, height, width, Game1.zombie);
+                MoveKeyboard(Game1.clavier, height, width, Game1.zombie, false);
                 SetAngleVisee(Game1.souris.GetPosition()); // defini l'angle de la visee (vers la souris)
 
                 if (!Game1.clavier.KeyPressed(Keys.Escape) && Game1.clavier_old.KeyPressed(Keys.Escape))
@@ -181,6 +192,168 @@ namespace Fuckin__Height_Redemption
             SetMarche(); // pour les animations
         }
 
+        public void UpdateMulti(int height, int width, GameTime gameTime)
+        {
+            if (Game1.deux_manettes)
+            {
+                if (this.name == "J1")
+                {
+                    //manette1
+                    MoveGamePad(Game1.manette, height, width, Game1.zombie, true);
+
+                    if (Game1.manette.GetRightStick() != Vector2.Zero)
+                        SetAngleVisee(Game1.manette);
+
+                    if (!Game1.manette.IsPressed(Buttons.Start) && Game1.manette_old.IsPressed(Buttons.Start))
+                    {
+                        Game1.status = "Pause";
+                        Game1.manette_old = new GamePadEvent(PlayerIndex.One);
+                    }
+
+                    if (!Game1.manette.IsPressed(Buttons.Back) && Game1.manette_old.IsPressed(Buttons.Back))
+                    {
+                        Game1.status = "Magasin";
+                        Game1.manette_old = new GamePadEvent(PlayerIndex.One);
+                    }
+
+                    if (Game1.manette.IsPressed(Buttons.RightTrigger))
+                        Fire(Game1.zombie, height, width);
+
+                    if (Game1.manette.IsPressed(Buttons.X))
+                        Reload();
+
+                    if (Game1.manette_old.IsPressed(Buttons.Y) && !Game1.manette.IsPressed(Buttons.Y))
+                        Game1.joueur.Switch_Weapon(1);
+
+                    UpdateShootCooldown(gameTime.ElapsedGameTime.Milliseconds);
+                    UpdateReloadCooldowm(gameTime.ElapsedGameTime.Milliseconds);
+
+                    // update le bool pour le tir semi auto 
+                    SetLastShoot(Game1.manette.IsPressed(Buttons.RightTrigger));
+                }
+                else
+                {
+                    //manette2
+                    MoveGamePad(Game1.manette2, height, width, Game1.zombie, true);
+
+                    if (Game1.manette2.GetRightStick() != Vector2.Zero)
+                        SetAngleVisee(Game1.manette);
+
+                    if (!Game1.manette2.IsPressed(Buttons.Start) && Game1.manette2_old.IsPressed(Buttons.Start))
+                    {
+                        Game1.status = "Pause multi";
+                        Game1.manette2_old = new GamePadEvent(PlayerIndex.Two);
+                    }
+
+                    if (!Game1.manette2.IsPressed(Buttons.Back) && Game1.manette2_old.IsPressed(Buttons.Back))
+                    {
+                        Game1.status = "Magasin multi";
+                        Game1.manette2_old = new GamePadEvent(PlayerIndex.Two);
+                    }
+
+                    if (Game1.manette2.IsPressed(Buttons.RightTrigger))
+                        Fire(Game1.zombie, height, width);
+
+                    if (Game1.manette2.IsPressed(Buttons.X))
+                        Reload();
+
+                    if (Game1.manette2_old.IsPressed(Buttons.Y) && !Game1.manette2.IsPressed(Buttons.Y))
+                        Game1.joueur.Switch_Weapon(1);
+
+                    UpdateShootCooldown(gameTime.ElapsedGameTime.Milliseconds);
+                    UpdateReloadCooldowm(gameTime.ElapsedGameTime.Milliseconds);
+
+                    // update le bool pour le tir semi auto 
+                    SetLastShoot(Game1.manette2.IsPressed(Buttons.RightTrigger));
+                }
+
+            }
+            else
+            {
+                if (this.name == "J1")
+                {
+                    MoveKeyboard(Game1.clavier, height, width, Game1.zombie, true);
+                    SetAngleVisee(Game1.souris.GetPosition()); // defini l'angle de la visee (vers la souris)
+
+                    if (!Game1.clavier.KeyPressed(Keys.Escape) && Game1.clavier_old.KeyPressed(Keys.Escape))
+                    {
+                        Game1.status = "Pause";
+                        Game1.souris_old = new MouseEvent();
+                        Game1.clavier_old = new KeyboardEvent();
+                    }
+
+
+                    if (!Game1.clavier.KeyPressed(Keys.X) && Game1.clavier_old.KeyPressed(Keys.X))
+                    {
+                        Game1.status = "Magasin";
+                        Game1.souris_old = new MouseEvent();
+                        Game1.clavier_old = new KeyboardEvent();
+                    }
+
+
+                    if (!Game1.clavier.KeyPressed(Keys.M) && Game1.clavier_old.KeyPressed(Keys.M))
+                        SetMoney(10000);
+
+
+                    if (Game1.souris.LeftClick())
+                        Fire(Game1.zombie, height, width);
+
+                    if (Game1.clavier.KeyPressed(Keys.E) && !Game1.joueur.IsReloading())
+                        Reload();
+
+                    if (Game1.souris.ScrollUp() != Game1.last_molette)
+                    {
+                        Switch_Weapon((Game1.souris.ScrollUp() - Game1.last_molette) / 120);
+                        Game1.last_molette = Game1.souris.ScrollUp();
+                    }
+
+                    UpdateShootCooldown(gameTime.ElapsedGameTime.Milliseconds);
+                    UpdateReloadCooldowm(gameTime.ElapsedGameTime.Milliseconds);
+
+                    // update le bool pour le tir semi auto 
+                    SetLastShoot(Game1.souris.LeftClick());
+                }
+                else
+                {
+                    //manette1
+                    MoveGamePad(Game1.manette, height, width, Game1.zombie, true);
+
+                    if (Game1.manette.GetRightStick() != Vector2.Zero)
+                        SetAngleVisee(Game1.manette);
+
+                    if (!Game1.manette.IsPressed(Buttons.Start) && Game1.manette_old.IsPressed(Buttons.Start))
+                    {
+                        Game1.status = "Pause";
+                        Game1.manette_old = new GamePadEvent(PlayerIndex.One);
+                    }
+
+                    if (!Game1.manette.IsPressed(Buttons.Back) && Game1.manette_old.IsPressed(Buttons.Back))
+                    {
+                        Game1.status = "Magasin";
+                        Game1.manette_old = new GamePadEvent(PlayerIndex.One);
+                    }
+
+                    if (Game1.manette.IsPressed(Buttons.RightTrigger))
+                        Fire(Game1.zombie, height, width);
+
+                    if (Game1.manette.IsPressed(Buttons.X))
+                        Reload();
+
+                    if (Game1.manette_old.IsPressed(Buttons.Y) && !Game1.manette.IsPressed(Buttons.Y))
+                        Game1.joueur.Switch_Weapon(1);
+
+                    UpdateShootCooldown(gameTime.ElapsedGameTime.Milliseconds);
+                    UpdateReloadCooldowm(gameTime.ElapsedGameTime.Milliseconds);
+
+                    // update le bool pour le tir semi auto 
+                    SetLastShoot(Game1.manette.IsPressed(Buttons.RightTrigger));
+                }
+            }
+            SetVisee(); // Creer un vecteur de visee avec l'angle
+            SetMarche(); // pour les animations
+
+        }
+
 
         public string name;
         private int height, width;
@@ -192,7 +365,6 @@ namespace Fuckin__Height_Redemption
         private int health;
         private int money;
 
-        private Vector2 init_position;
         private Vector2 position;
         private Vector2 direction;
         private Vector2 visee;
@@ -206,6 +378,7 @@ namespace Fuckin__Height_Redemption
         private Texture2D[,] texture_ak47;
         private Texture2D[,] texture_mp5;
         private Texture2D[,] texture_m3;
+        private Texture2D mort;
 
 
 
@@ -224,7 +397,7 @@ namespace Fuckin__Height_Redemption
 
 
 
-        public void MoveKeyboard(KeyboardEvent clavier, int height, int width, List<Zombie> zombies)
+        public void MoveKeyboard(KeyboardEvent clavier, int height, int width, List<Zombie> zombies, bool multi)
         {
             if (clavier.KeyPressed(Keys.Z))
                 direction.Y = -1;
@@ -278,21 +451,92 @@ namespace Fuckin__Height_Redemption
             }
 
 
-
-            Game1.map.Update(this);
-            //SetPosition(position + (direction * speed) + Game1.map.GetDirection());
-
-            /*if (position.Y + rectangle.Height >= height)
-                position.Y = height - rectangle.Height;
+            if (!multi)
+                Game1.map.Update(this);
             else
-                if (position.Y <= 0)
-                    position.Y = 0;
+            {
+                if (name == "J1")
+                {
+                    if (target.Intersects(Game1.joueur2.GetTarget()))
+                    {
+                        //a gauche
+                        if (target.X >= (Game1.joueur2.GetTarget().X - target.Width) && target.X <= (Game1.joueur2.GetTarget().X - target.Width + 5) && direction.X > 0 || direction.X > 0 && position.X >= Game1.map.GetPosition().X + Game1.map.GetRectangle().Width || direction.X > 0 && position.X >= width)
+                        {
+                            direction.X = 0;
+                        }
+                        //a droite
+                        if (target.X <= Game1.joueur2.GetTarget().X + Game1.joueur2.GetTarget().Width && target.X >= Game1.joueur2.GetTarget().X + Game1.joueur2.GetTarget().Width - 5 && direction.X < 0 || direction.X < 0 && position.X <= Game1.map.GetPosition().X || direction.X < 0 && position.X <= 0)
+                        {
+                            direction.X = 0;
+                        }
+                        //en haut
+                        if (target.Y >= (Game1.joueur2.GetTarget().Y - target.Height) && target.Y <= (Game1.joueur2.GetTarget().Y - target.Height + 5) && direction.Y > 0 || direction.Y > 0 && position.Y >= Game1.map.GetPosition().Y + Game1.map.GetRectangle().Height || direction.Y > 0 && position.Y >= height)
+                        {
+                            direction.Y = 0;
+                        }
+                        //en bas
+                        if (target.Y <= Game1.joueur2.GetTarget().Y + Game1.joueur2.GetTarget().Height && target.Y >= Game1.joueur2.GetTarget().Y + Game1.joueur2.GetTarget().Height - 5 && direction.Y < 0 || direction.Y < 0 && position.Y <= Game1.map.GetPosition().Y || direction.Y < 0 && position.Y <= 0)
+                        {
+                            direction.Y = 0;
+                        }
+                    }
+                }
+                else
+                {
+                    if (target.Intersects(Game1.joueur1.GetTarget()))
+                    {
+                        //a gauche
+                        if (target.X >= (Game1.joueur1.GetTarget().X - target.Width) && target.X <= (Game1.joueur1.GetTarget().X - target.Width + 5) && direction.X > 0 || direction.X > 0 && position.X >= Game1.map.GetPosition().X + Game1.map.GetRectangle().Width || direction.X > 0 && position.X >= width)
+                        {
+                            direction.X = 0;
+                        }
+                        //a droite
+                        if (target.X <= Game1.joueur1.GetTarget().X + Game1.joueur1.GetTarget().Width && target.X >= Game1.joueur1.GetTarget().X + Game1.joueur1.GetTarget().Width - 5 && direction.X < 0 || direction.X < 0 && position.X <= Game1.map.GetPosition().X || direction.X < 0 && position.X <= 0)
+                        {
+                            direction.X = 0;
+                        }
+                        //en haut
+                        if (target.Y >= (Game1.joueur1.GetTarget().Y - target.Height) && target.Y <= (Game1.joueur1.GetTarget().Y - target.Height + 5) && direction.Y > 0 || direction.Y > 0 && position.Y >= Game1.map.GetPosition().Y + Game1.map.GetRectangle().Height || direction.Y > 0 && position.Y >= height)
+                        {
+                            direction.Y = 0;
+                        }
+                        //en bas
+                        if (target.Y <= Game1.joueur1.GetTarget().Y + Game1.joueur1.GetTarget().Height && target.Y >= Game1.joueur1.GetTarget().Y + Game1.joueur1.GetTarget().Height - 5 && direction.Y < 0 || direction.Y < 0 && position.Y <= Game1.map.GetPosition().Y || direction.Y < 0 && position.Y <= 0)
+                        {
+                            direction.Y = 0;
+                        }
+                    }
+                }
 
-            if (position.X + rectangle.Width >= width)
-                position.X = width - rectangle.Width;
-            else
-                if (position.X <= 0)
-                    position.X = 0;*/
+
+
+                if (direction.X > 0 && position.X >= Game1.map.GetPosition().X + Game1.map.GetRectangle().Width - 180 || direction.X > 0 && position.X + 70 >= width)
+                {
+                    Console.WriteLine("a");
+                    direction.X = 0;
+                }
+                //a droite
+                if (direction.X < 0 && position.X <= Game1.map.GetPosition().X + 90 || direction.X < 0 && position.X + 20 <= 0)
+                {
+                    Console.WriteLine("b");
+                    direction.X = 0;
+                }
+                //en haut
+                if (direction.Y > 0 && position.Y >= Game1.map.GetPosition().Y + Game1.map.GetRectangle().Height - 220 || direction.Y > 0 && position.Y + 120>= height)
+                {
+                    Console.WriteLine("c");
+                    direction.Y = 0;
+                }
+                //en bas
+                if (direction.Y < 0 && position.Y <= Game1.map.GetPosition().Y || direction.Y < 0 && position.Y <= 0)
+                {
+                    Console.WriteLine("d");
+                    direction.Y = 0;
+                }
+
+                position += (direction * speed) + (Game1.map.GetDirection() * Game1.map.GetSpeed());
+            }
+
 
 
             SetRectangle();
@@ -301,7 +545,7 @@ namespace Fuckin__Height_Redemption
 
 
 
-        public void MoveGamePad(GamePadEvent manette, int height, int width, List<Zombie> zombies)
+        public void MoveGamePad(GamePadEvent manette, int height, int width, List<Zombie> zombies, bool multi)
         {
             direction.X = manette.GetLeftStick().X;
             direction.Y = -manette.GetLeftStick().Y;
@@ -343,21 +587,92 @@ namespace Fuckin__Height_Redemption
                 }
             }
 
-            //SetPosition(position + (direction * speed));
 
-            Game1.map.Update(this);
 
-            /*if (position.Y + rectangle.Height >= height)
-                position.Y = height - rectangle.Height;
+            if (!multi)
+                Game1.map.Update(this);
             else
-                if (position.Y <= 0)
-                    position.Y = 0;
+            {
+                if (name == "J1")
+                {
+                    if (target.Intersects(Game1.joueur2.GetTarget()))
+                    {
+                        //a gauche
+                        if (target.X >= (Game1.joueur2.GetTarget().X - target.Width) && target.X <= (Game1.joueur2.GetTarget().X - target.Width + 5) && direction.X > 0 || direction.X > 0 && position.X >= Game1.map.GetPosition().X + Game1.map.GetRectangle().Width || direction.X > 0 && position.X >= width)
+                        {
+                            direction.X = 0;
+                        }
+                        //a droite
+                        if (target.X <= Game1.joueur2.GetTarget().X + Game1.joueur2.GetTarget().Width && target.X >= Game1.joueur2.GetTarget().X + Game1.joueur2.GetTarget().Width - 5 && direction.X < 0 || direction.X < 0 && position.X <= Game1.map.GetPosition().X || direction.X < 0 && position.X <= 0)
+                        {
+                            direction.X = 0;
+                        }
+                        //en haut
+                        if (target.Y >= (Game1.joueur2.GetTarget().Y - target.Height) && target.Y <= (Game1.joueur2.GetTarget().Y - target.Height + 5) && direction.Y > 0 || direction.Y > 0 && position.Y >= Game1.map.GetPosition().Y + Game1.map.GetRectangle().Height || direction.Y > 0 && position.Y >= height)
+                        {
+                            direction.Y = 0;
+                        }
+                        //en bas
+                        if (target.Y <= Game1.joueur2.GetTarget().Y + Game1.joueur2.GetTarget().Height && target.Y >= Game1.joueur2.GetTarget().Y + Game1.joueur2.GetTarget().Height - 5 && direction.Y < 0 || direction.Y < 0 && position.Y <= Game1.map.GetPosition().Y || direction.Y < 0 && position.Y <= 0)
+                        {
+                            direction.Y = 0;
+                        }
+                    }
+                }
+                else
+                {
+                    if (target.Intersects(Game1.joueur1.GetTarget()))
+                    {
+                        //a gauche
+                        if (target.X >= (Game1.joueur1.GetTarget().X - target.Width) && target.X <= (Game1.joueur1.GetTarget().X - target.Width + 5) && direction.X > 0 || direction.X > 0 && position.X >= Game1.map.GetPosition().X + Game1.map.GetRectangle().Width || direction.X > 0 && position.X >= width)
+                        {
+                            direction.X = 0;
+                        }
+                        //a droite
+                        if (target.X <= Game1.joueur1.GetTarget().X + Game1.joueur1.GetTarget().Width && target.X >= Game1.joueur1.GetTarget().X + Game1.joueur1.GetTarget().Width - 5 && direction.X < 0 || direction.X < 0 && position.X <= Game1.map.GetPosition().X || direction.X < 0 && position.X <= 0)
+                        {
+                            direction.X = 0;
+                        }
+                        //en haut
+                        if (target.Y >= (Game1.joueur1.GetTarget().Y - target.Height) && target.Y <= (Game1.joueur1.GetTarget().Y - target.Height + 5) && direction.Y > 0 || direction.Y > 0 && position.Y >= Game1.map.GetPosition().Y + Game1.map.GetRectangle().Height || direction.Y > 0 && position.Y >= height)
+                        {
+                            direction.Y = 0;
+                        }
+                        //en bas
+                        if (target.Y <= Game1.joueur1.GetTarget().Y + Game1.joueur1.GetTarget().Height && target.Y >= Game1.joueur1.GetTarget().Y + Game1.joueur1.GetTarget().Height - 5 && direction.Y < 0 || direction.Y < 0 && position.Y <= Game1.map.GetPosition().Y || direction.Y <0 && position.Y <= 0)
+                        {
+                            direction.Y = 0;
+                        }
+                    }
+                }
 
-            if (position.X + rectangle.Width >= width)
-                position.X = width - rectangle.Width;
-            else
-                if (position.X <= 0)
-                    position.X = 0;*/
+                if (direction.X > 0 && position.X >= Game1.map.GetPosition().X + Game1.map.GetRectangle().Width - 180 || direction.X > 0 && position.X + 70 >= width)
+                {
+                    Console.WriteLine("a");
+                    direction.X = 0;
+                }
+                //a droite
+                if (direction.X < 0 && position.X <= Game1.map.GetPosition().X + 90 || direction.X < 0 && position.X + 20 <= 0)
+                {
+                    Console.WriteLine("b");
+                    direction.X = 0;
+                }
+                //en haut
+                if (direction.Y > 0 && position.Y >= Game1.map.GetPosition().Y + Game1.map.GetRectangle().Height - 220 || direction.Y > 0 && position.Y + 120 >= height)
+                {
+                    Console.WriteLine("c");
+                    direction.Y = 0;
+                }
+                //en bas
+                if (direction.Y < 0 && position.Y <= Game1.map.GetPosition().Y || direction.Y < 0 && position.Y <= 0)
+                {
+                    Console.WriteLine("d");
+                    direction.Y = 0;
+                }
+
+                position += (direction * speed) + (Game1.map.GetDirection() * Game1.map.GetSpeed());
+            }
+
             SetRectangle();
             SetTarget();
         }
@@ -372,25 +687,25 @@ namespace Fuckin__Height_Redemption
                 {
                     case 0:
                         {
-                            spriteBatch.Draw(texture_usp[0,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_usp[0, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 1:
                         {
-                            spriteBatch.Draw(texture_ak47[0,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_ak47[0, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 2:
                         {
-                            spriteBatch.Draw(texture_mp5[0,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_mp5[0, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 3:
                         {
-                            spriteBatch.Draw(texture_m3[0,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_m3[0, pas], rectangle, Color.White);
                             break;
                         }
                 }
@@ -401,25 +716,25 @@ namespace Fuckin__Height_Redemption
                 {
                     case 0:
                         {
-                            spriteBatch.Draw(texture_usp[1,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_usp[1, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 1:
                         {
-                            spriteBatch.Draw(texture_ak47[1,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_ak47[1, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 2:
                         {
-                            spriteBatch.Draw(texture_mp5[1,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_mp5[1, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 3:
                         {
-                            spriteBatch.Draw(texture_m3[1,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_m3[1, pas], rectangle, Color.White);
                             break;
                         }
                 }
@@ -429,25 +744,25 @@ namespace Fuckin__Height_Redemption
                 {
                     case 0:
                         {
-                            spriteBatch.Draw(texture_usp[2,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_usp[2, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 1:
                         {
-                            spriteBatch.Draw(texture_ak47[2,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_ak47[2, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 2:
                         {
-                            spriteBatch.Draw(texture_mp5[2,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_mp5[2, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 3:
                         {
-                            spriteBatch.Draw(texture_m3[2,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_m3[2, pas], rectangle, Color.White);
                             break;
                         }
                 }
@@ -457,25 +772,25 @@ namespace Fuckin__Height_Redemption
                 {
                     case 0:
                         {
-                            spriteBatch.Draw(texture_usp[3,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_usp[3, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 1:
                         {
-                            spriteBatch.Draw(texture_ak47[3,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_ak47[3, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 2:
                         {
-                            spriteBatch.Draw(texture_mp5[3,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_mp5[3, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 3:
                         {
-                            spriteBatch.Draw(texture_m3[3,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_m3[3, pas], rectangle, Color.White);
                             break;
                         }
                 }
@@ -485,25 +800,25 @@ namespace Fuckin__Height_Redemption
                 {
                     case 0:
                         {
-                            spriteBatch.Draw(texture_usp[4,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_usp[4, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 1:
                         {
-                            spriteBatch.Draw(texture_ak47[4,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_ak47[4, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 2:
                         {
-                            spriteBatch.Draw(texture_mp5[4,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_mp5[4, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 3:
                         {
-                            spriteBatch.Draw(texture_m3[4,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_m3[4, pas], rectangle, Color.White);
                             break;
                         }
                 }
@@ -513,25 +828,25 @@ namespace Fuckin__Height_Redemption
                 {
                     case 0:
                         {
-                            spriteBatch.Draw(texture_usp[5,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_usp[5, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 1:
                         {
-                            spriteBatch.Draw(texture_ak47[5,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_ak47[5, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 2:
                         {
-                            spriteBatch.Draw(texture_mp5[5,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_mp5[5, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 3:
                         {
-                            spriteBatch.Draw(texture_m3[5,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_m3[5, pas], rectangle, Color.White);
                             break;
                         }
                 }
@@ -541,25 +856,25 @@ namespace Fuckin__Height_Redemption
                 {
                     case 0:
                         {
-                            spriteBatch.Draw(texture_usp[6,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_usp[6, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 1:
                         {
-                            spriteBatch.Draw(texture_ak47[6,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_ak47[6, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 2:
                         {
-                            spriteBatch.Draw(texture_mp5[6,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_mp5[6, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 3:
                         {
-                            spriteBatch.Draw(texture_m3[6,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_m3[6, pas], rectangle, Color.White);
                             break;
                         }
                 }
@@ -569,25 +884,25 @@ namespace Fuckin__Height_Redemption
                 {
                     case 0:
                         {
-                            spriteBatch.Draw(texture_usp[7,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_usp[7, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 1:
                         {
-                            spriteBatch.Draw(texture_ak47[7,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_ak47[7, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 2:
                         {
-                            spriteBatch.Draw(texture_mp5[7,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_mp5[7, pas], rectangle, Color.White);
                             break;
                         }
 
                     case 3:
                         {
-                            spriteBatch.Draw(texture_m3[7,pas], rectangle, Color.White);
+                            spriteBatch.Draw(texture_m3[7, pas], rectangle, Color.White);
                             break;
                         }
                 }
@@ -649,7 +964,7 @@ namespace Fuckin__Height_Redemption
                     elapsed_time_since_last_shoot = 0;
                     weapons[current_weapon].tir.Play();
                 }
-                
+
             }
             else
             {
@@ -898,7 +1213,7 @@ namespace Fuckin__Height_Redemption
         {
             if (direction != Vector2.Zero)
             {
-               dist_marche += 1;
+                dist_marche += 1;
             }
             if (dist_marche >= 10)
             {
@@ -972,10 +1287,6 @@ namespace Fuckin__Height_Redemption
             this.speed = speed;
         }
 
-        public Vector2 GetInitPosition()
-        {
-            return init_position;
-        }
 
         public Vector2 GetPosition()
         {
@@ -1011,7 +1322,7 @@ namespace Fuckin__Height_Redemption
 
         public Vector2 GetRectangleCenter()
         {
-            return new Vector2(rectangle.X + rectangle.Width/2 + 20, rectangle.Y + rectangle.Height/2);
+            return new Vector2(rectangle.X + rectangle.Width / 2 + 20, rectangle.Y + rectangle.Height / 2);
         }
 
 

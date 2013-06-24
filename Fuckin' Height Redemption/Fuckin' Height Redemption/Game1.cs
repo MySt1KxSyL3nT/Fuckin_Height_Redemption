@@ -59,6 +59,13 @@ namespace Fuckin__Height_Redemption
         public static Map map;
 
 
+
+        public static Video Teaser;
+        public static VideoPlayer teaserPlayer;
+
+        public static bool deux_manettes;
+
+
         public static int elapsedtime;
         public static int lang; // 1 = francais, 2 = anglais, 3 = italien, 4 = allemand
         public static int entiermanette;
@@ -93,10 +100,12 @@ namespace Fuckin__Height_Redemption
         public static MouseEvent souris;
         public static KeyboardEvent clavier;
         public static GamePadEvent manette;
+        public static GamePadEvent manette2;
 
         public static MouseEvent souris_old;
         public static KeyboardEvent clavier_old;
         public static GamePadEvent manette_old;
+        public static GamePadEvent manette2_old;
 
         //menu
         public static int gestionclavier;
@@ -136,6 +145,11 @@ namespace Fuckin__Height_Redemption
         public static Texture2D barreson;
         public static Texture2D contourson;
         public static Texture2D viseur;
+
+
+        public static Texture2D zombie_mort;
+        public static Texture2D joueur_mort;
+        public static Texture2D sang;
 
 
         public static Texture2D magasin;
@@ -205,6 +219,10 @@ namespace Fuckin__Height_Redemption
 
         public static MenuButton Bcreer;
         public static MenuButton Brejoindre;
+        public static MenuButton Breseau;
+        public static MenuButton Bsplitted;
+        public static MenuButton B2manettes;
+        public static MenuButton Bmanetteclavier;
 
         public static MenuButton Bvideo;
         public static MenuButton Baudio;
@@ -291,9 +309,14 @@ namespace Fuckin__Height_Redemption
         {
             ////////////////////////////////////// VARIABLES ! //////////////////////////////////////////////////////
             #region variables
-            status = "Principal";
+            status = "Teaser";
             fullscreen = true;
             jeu_manette = true;
+
+            elapsedtime = 0;
+
+            Teaser = Content.Load<Video>("teaser");
+            teaserPlayer = new VideoPlayer();
 
             nombre_zombie = 0;
 
@@ -317,10 +340,12 @@ namespace Fuckin__Height_Redemption
             souris = new MouseEvent();
             clavier = new KeyboardEvent();
             manette = new GamePadEvent(PlayerIndex.One);
+            manette2 = new GamePadEvent(PlayerIndex.Two);
 
             souris_old = new MouseEvent();
             clavier_old = new KeyboardEvent();
             manette_old = new GamePadEvent(PlayerIndex.One);
+            manette2_old = new GamePadEvent(PlayerIndex.Two);
 
             gestionclavier = -1;
 
@@ -349,6 +374,12 @@ namespace Fuckin__Height_Redemption
             negozio = Content.Load<Texture2D>("negozio");
             shop = Content.Load<Texture2D>("shop");
             magasinde = Content.Load<Texture2D>("magasin-allemand");
+
+
+            joueur_mort = Content.Load<Texture2D>("joueur_mort");
+            zombie_mort = Content.Load<Texture2D>("zombie_mort");
+            sang = Content.Load<Texture2D>("projection_sang");
+
 
             mortFR = Content.Load<Texture2D>("mortFR");
             mortEN = Content.Load<Texture2D>("mortEN");
@@ -417,8 +448,12 @@ namespace Fuckin__Height_Redemption
             Bimpossible = new MenuButton(Vector2.One, Content.Load<Texture2D>("impossible"), Content.Load<Texture2D>("impossible"), Content.Load<Texture2D>("impossibile"), Content.Load<Texture2D>("impossible-allemand"), false);
 
             // Multi
+            Bsplitted = new MenuButton(Vector2.One, Content.Load<Texture2D>("2joueursFR"), Content.Load<Texture2D>("2joueursEN"), Content.Load<Texture2D>("2joueursIT"), Content.Load<Texture2D>("2joueursDE"), false);
+            Breseau = new MenuButton(Vector2.One, Content.Load<Texture2D>("reseaulocalFR"), Content.Load<Texture2D>("reseaulocalEN"), Content.Load<Texture2D>("reseaulocalIT"), Content.Load<Texture2D>("reseaulocalDE"), false);
             Bcreer = new MenuButton(Vector2.One, Content.Load<Texture2D>("créer"), Content.Load<Texture2D>("create"), Content.Load<Texture2D>("creerit"), Content.Load<Texture2D>("creer-allemand"), false);
             Brejoindre = new MenuButton(Vector2.One, Content.Load<Texture2D>("rejoindre"), Content.Load<Texture2D>("join"), Content.Load<Texture2D>("rejoindreit"), Content.Load<Texture2D>("rejoindre-allemand"), false);
+            B2manettes = new MenuButton(Vector2.One, Content.Load<Texture2D>("2manettes"), Content.Load<Texture2D>("2manettesEN"), Content.Load<Texture2D>("2manettesIT"), Content.Load<Texture2D>("2manettesDE"), false);
+            Bmanetteclavier = new MenuButton(Vector2.One, Content.Load<Texture2D>("manetteclavier"), Content.Load<Texture2D>("manetteclavierEN"), Content.Load<Texture2D>("manetteclavierIT"), Content.Load<Texture2D>("manetteclavierDE"), false);
 
             //Options
             Bvideo = new MenuButton(Vector2.One, Content.Load<Texture2D>("vidéo"), Content.Load<Texture2D>("video"), Content.Load<Texture2D>("video"), Content.Load<Texture2D>("video-allemand"), false);
@@ -499,7 +534,9 @@ namespace Fuckin__Height_Redemption
 
             //////////////////////////////////////////////////// RECUP DE LA SAVE ///////////////////////////////////////////////////////////////
             #region save
-            joueur = new Joueur("solo.save", usp, ak47, mp5, m3, Content, Window.ClientBounds.Height, Window.ClientBounds.Width);
+            joueur = new Joueur("solo.save", usp, ak47, mp5, m3, joueur_mort, 0, Content, Window.ClientBounds.Height, Window.ClientBounds.Width);
+            joueur1 = new Joueur("j1.save", usp, ak47, mp5, m3, joueur_mort, 1, Content, Window.ClientBounds.Height, Window.ClientBounds.Width);
+            joueur2 = new Joueur("j2.save", usp, ak47, mp5, m3, joueur_mort, 2, Content, Window.ClientBounds.Height, Window.ClientBounds.Width);
 
             switch (joueur.GetWeapons("usp").GetLevel())
             {
@@ -653,7 +690,28 @@ namespace Fuckin__Height_Redemption
             souris.UpdateMouse();
             clavier.UpdateKeyboard();
             manette.UpdateGamepad();
+            manette2.UpdateGamepad();
 
+
+            // TEASER
+            #region teaser
+
+            if (status == "Teaser")
+            {
+                teaserPlayer.Play(Teaser);
+                status = "Watching teaser";
+            }
+
+            if (status == "Watching teaser")
+            {
+                if (teaserPlayer.State == MediaState.Stopped || clavier_old.KeyPressed(Keys.Enter) && !clavier.KeyPressed(Keys.Enter))
+                {
+                    status = "Principal";
+                    teaserPlayer.Stop();
+                }
+            }
+
+            #endregion
 
             // MUSIQUE
             #region musique menu
@@ -702,7 +760,9 @@ namespace Fuckin__Height_Redemption
                 }
 
                 foreach (Zombie z in todelete)
+                {
                     zombie.Remove(z);
+                }
 
 
 
@@ -1588,7 +1648,7 @@ namespace Fuckin__Height_Redemption
             {
                 this.IsMouseVisible = false;
                 MediaPlayer.Stop();
-                joueur = new Joueur("solo.save", usp, ak47, mp5, m3, Content, Window.ClientBounds.Height, Window.ClientBounds.Width);
+                joueur = new Joueur("solo.save", usp, ak47, mp5, m3, joueur_mort, 0, Content, Window.ClientBounds.Height, Window.ClientBounds.Width);
                 zombie = new List<Zombie>();
                 nombre_zombie = 0;
                 elapsedtime = 1;
@@ -1889,21 +1949,21 @@ namespace Fuckin__Height_Redemption
             #region multi
             if (status == "Multi")
             {
-                Bcreer.SetPosition(positionBoutton1);
-                Brejoindre.SetPosition(positionBoutton2);
+                Bsplitted.SetPosition(positionBoutton1);
+                Breseau.SetPosition(positionBoutton2);
                 // vide
                 Bretour.SetPosition(positionBoutton4);
 
 
-                if (souris.GetRectangle().Intersects(Bcreer.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                if (souris.GetRectangle().Intersects(Bsplitted.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
                 {
-                    //status = "Creer";
+                    status = "Multi local";
                     souris_old = new MouseEvent();
                     clavier_old = new KeyboardEvent();
                 }
-                if (souris.GetRectangle().Intersects(Brejoindre.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                if (souris.GetRectangle().Intersects(Breseau.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
                 {
-                    //status = "Rejoindre";
+                    status = "Multi réseau";
                     souris_old = new MouseEvent();
                     clavier_old = new KeyboardEvent();
                 }
@@ -1935,6 +1995,148 @@ namespace Fuckin__Height_Redemption
 
 
 
+            }
+            #endregion
+
+
+            // MULTI LOCAL
+            #region multi
+            if (status == "Multi local")
+            {
+                Bmanetteclavier.SetPosition(positionBoutton1);
+                B2manettes.SetPosition(positionBoutton2);
+                // vide
+                Bretour.SetPosition(positionBoutton4);
+
+
+                if (souris.GetRectangle().Intersects(Bmanetteclavier.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                {
+                    deux_manettes = false;
+                    status = "Nouveau jeu multi";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+                if (souris.GetRectangle().Intersects(B2manettes.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                {
+                    deux_manettes = true;
+                    status = "Nouveau jeu multi";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)) || (clavier_old.KeyPressed(Keys.Escape) && !clavier.KeyPressed(Keys.Escape)))
+                {
+                    gestionclavier = -1;
+                    status = "Multi";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+
+                if (!clavier.KeyPressed(Keys.Down) && clavier_old.KeyPressed(Keys.Down))
+                {
+                    if (gestionclavier < 2)
+                        gestionclavier += 1;
+                    else
+                        gestionclavier = 0;
+                }
+                if (!clavier.KeyPressed(Keys.Up) && clavier_old.KeyPressed(Keys.Up))
+                {
+                    if (gestionclavier > 0)
+                        gestionclavier -= 1;
+                    else
+                        gestionclavier = 2;
+                }
+
+                if (souris.GetRectangle().Intersects(Bcreer.GetRectangle()) || souris.GetRectangle().Intersects(Brejoindre.GetRectangle()) || souris.GetRectangle().Intersects(Bretour.GetRectangle()))
+                    gestionclavier = -1;
+            }
+            #endregion
+
+            // JEU MULTI
+            #region jeu multi
+
+            // NOUVEAU JEU MULTI
+            #region new
+            if (status == "Nouveau jeu multi")
+            {
+                this.IsMouseVisible = false;
+                MediaPlayer.Stop();
+                joueur1 = new Joueur("j1.save", usp, ak47, mp5, m3, joueur_mort, 1, Content, Window.ClientBounds.Height, Window.ClientBounds.Width);
+                joueur2 = new Joueur("j2.save", usp, ak47, mp5, m3, joueur_mort, 2, Content, Window.ClientBounds.Height, Window.ClientBounds.Width);
+                zombie = new List<Zombie>();
+                nombre_zombie = 0;
+                elapsedtime = 1;
+                
+                map = new Map(1, Window.ClientBounds.Height, Window.ClientBounds.Width, Content);
+                status = "Jeu multi";
+            }
+
+            #endregion
+            // JEU MULTI
+            #region jeu multi
+
+            if (status == "Jeu multi")
+            {
+                this.IsMouseVisible = false;
+                MediaPlayer.Stop();
+
+                joueur1.UpdateMulti(Window.ClientBounds.Height, Window.ClientBounds.Width, gameTime);
+                joueur2.UpdateMulti(Window.ClientBounds.Height, Window.ClientBounds.Width, gameTime);
+                map.Update(joueur1, joueur2, Window.ClientBounds.Width, Window.ClientBounds.Height);
+
+            }
+
+            #endregion
+
+
+            #endregion
+
+            // MULTI RESEAU
+            #region multi
+            if (status == "Multi réseau")
+            {
+                Bcreer.SetPosition(positionBoutton1);
+                Brejoindre.SetPosition(positionBoutton2);
+                // vide
+                Bretour.SetPosition(positionBoutton4);
+
+
+                if (souris.GetRectangle().Intersects(Bcreer.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 0 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                {
+                    //status = "Creer";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+                if (souris.GetRectangle().Intersects(Brejoindre.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 1 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)))
+                {
+                    //status = "Rejoindre";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+                if (souris.GetRectangle().Intersects(Bretour.GetRectangle()) && !souris.LeftClick() && souris_old.LeftClick() || (gestionclavier == 2 && !clavier.KeyPressed(Keys.Enter) && clavier_old.KeyPressed(Keys.Enter)) || (clavier_old.KeyPressed(Keys.Escape) && !clavier.KeyPressed(Keys.Escape)))
+                {
+                    gestionclavier = -1;
+                    status = "Multi";
+                    souris_old = new MouseEvent();
+                    clavier_old = new KeyboardEvent();
+                }
+
+                if (!clavier.KeyPressed(Keys.Down) && clavier_old.KeyPressed(Keys.Down))
+                {
+                    if (gestionclavier < 2)
+                        gestionclavier += 1;
+                    else
+                        gestionclavier = 0;
+                }
+                if (!clavier.KeyPressed(Keys.Up) && clavier_old.KeyPressed(Keys.Up))
+                {
+                    if (gestionclavier > 0)
+                        gestionclavier -= 1;
+                    else
+                        gestionclavier = 2;
+                }
+
+                if (souris.GetRectangle().Intersects(Bcreer.GetRectangle()) || souris.GetRectangle().Intersects(Brejoindre.GetRectangle()) || souris.GetRectangle().Intersects(Bretour.GetRectangle()))
+                    gestionclavier = -1;
             }
             #endregion
 
@@ -2073,6 +2275,7 @@ namespace Fuckin__Height_Redemption
             {
                 try
                 {
+                    joueur.Load("solo.save", Content);
                     set_nom = joueur.name;
                 }
                 catch
@@ -2274,7 +2477,7 @@ namespace Fuckin__Height_Redemption
                     try
                     {
                         StreamWriter file = new StreamWriter("j1.save");
-                        file.WriteLine("Joueur");
+                        file.WriteLine("J1");
                         file.WriteLine("0");
                         file.WriteLine("0");
                         file.WriteLine("0");
@@ -2286,7 +2489,7 @@ namespace Fuckin__Height_Redemption
                         file.Close();
 
                         StreamWriter file2 = new StreamWriter("j2.save");
-                        file2.WriteLine("Joueur");
+                        file2.WriteLine("J2");
                         file2.WriteLine("0");
                         file2.WriteLine("0");
                         file2.WriteLine("0");
@@ -2696,6 +2899,7 @@ namespace Fuckin__Height_Redemption
             souris_old.UpdateMouse();
             clavier_old.UpdateKeyboard();
             manette_old.UpdateGamepad();
+            manette2_old.UpdateGamepad();
 
             base.Update(gameTime);
         }// End Update
@@ -2731,6 +2935,17 @@ namespace Fuckin__Height_Redemption
             GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
+
+            // TEASER
+            #region teaser
+
+            if (status == "Watching teaser")
+            {
+                if (teaserPlayer.State == MediaState.Playing)
+                    spriteBatch.Draw(teaserPlayer.GetTexture(), new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White); 
+            }
+
+            #endregion
 
             // CINEMATIQUES
             #region cinematiques
@@ -3354,7 +3569,7 @@ namespace Fuckin__Height_Redemption
                 if (joueur.GetWeapons("m3").GetLevel() == 3)
                     spriteBatch.DrawString(hud_font, level3, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("m3").GetLevel() == 4)
-                    spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White); 
+                    spriteBatch.DrawString(hud_font, level4, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
                 if (joueur.GetWeapons("m3").GetLevel() == 5)
                     spriteBatch.DrawString(hud_font, level5, new Vector2(Bameliorer.GetPosition().X, Bameliorer.GetPosition().Y - Bameliorer.GetTexturefr().Height / 2), Color.White);
 
@@ -3589,6 +3804,62 @@ namespace Fuckin__Height_Redemption
             if (status == "Multi")
             {
                 spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                Bsplitted.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bsplitted.GetRectangle()) || gestionclavier == 0);
+                Breseau.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Breseau.GetRectangle()) || gestionclavier == 1);
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()) || gestionclavier == 2);
+            }
+            #endregion
+
+
+            // MULTI LOCAL
+            #region multi
+            if (status == "Multi local")
+            {
+                spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
+                Bmanetteclavier.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bmanetteclavier.GetRectangle()) || gestionclavier == 0);
+                B2manettes.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(B2manettes.GetRectangle()) || gestionclavier == 1);
+                Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()) || gestionclavier == 2);
+            }
+            #endregion
+
+            // JEU MULTI
+            #region jeu multi
+
+            if (status == "Jeu multi")
+            {
+                map.Draw(spriteBatch);
+
+                if (joueur1.GetPosition().Y < joueur2.GetPosition().Y)
+                {
+                    joueur1.DrawJoueur(spriteBatch);
+                    joueur2.DrawJoueur(spriteBatch);
+                }
+                else
+                {
+                    joueur2.DrawJoueur(spriteBatch);
+                    joueur1.DrawJoueur(spriteBatch);
+                }
+
+                if (deux_manettes)
+                {
+                    spriteBatch.Draw(viseur, new Rectangle((int)(joueur1.GetRectangleCenter().X + 100 * joueur1.GetVisee().X - viseur.Width / 2), (int)(joueur1.GetRectangleCenter().Y + 100 * joueur1.GetVisee().Y - viseur.Height / 2), viseur.Width / 2, viseur.Height / 2), Color.White);
+                    spriteBatch.Draw(viseur, new Rectangle((int)(joueur2.GetRectangleCenter().X + 100 * joueur2.GetVisee().X - viseur.Width / 2), (int)(joueur2.GetRectangleCenter().Y + 100 * joueur2.GetVisee().Y - viseur.Height / 2), viseur.Width / 2, viseur.Height / 2), Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(viseur, new Rectangle((int)(souris.GetPosition().X - viseur.Width / 4), (int)(souris.GetPosition().Y - viseur.Height / 4), viseur.Width / 2, viseur.Height / 2), Color.White);
+                    spriteBatch.Draw(viseur, new Rectangle((int)(joueur2.GetRectangleCenter().X + 100 * joueur2.GetVisee().X - viseur.Width / 2), (int)(joueur2.GetRectangleCenter().Y + 100 * joueur2.GetVisee().Y - viseur.Height / 2), viseur.Width / 2, viseur.Height / 2), Color.White);
+                }
+            }
+
+            #endregion
+
+
+            // MULTI RESEAU
+            #region multi
+            if (status == "Multi réseau")
+            {
+                spriteBatch.Draw(backgroundmenu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                 Bcreer.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bcreer.GetRectangle()) || gestionclavier == 0);
                 Brejoindre.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Brejoindre.GetRectangle()) || gestionclavier == 1);
                 Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()) || gestionclavier == 2);
@@ -3620,6 +3891,7 @@ namespace Fuckin__Height_Redemption
                 Bretour.DrawButton(spriteBatch, lang, souris.GetRectangle().Intersects(Bretour.GetRectangle()) || gestionclavier == 3);
             }
             #endregion
+
 
             // SET_NOM
             #region set_nom

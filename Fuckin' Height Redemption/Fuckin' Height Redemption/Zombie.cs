@@ -16,8 +16,9 @@ namespace Fuckin__Height_Redemption
 {
     public class Zombie : IComparable
     {
-        public Zombie(Vector2 position, float speed, Texture2D[,] textures)
+        public Zombie(Vector2 position, float speed, Texture2D[,] textures, Texture2D mort)
         {
+            this.mort = mort;
             this.textures = textures;
             this.position = position;
             this.speed = speed;
@@ -25,9 +26,12 @@ namespace Fuckin__Height_Redemption
             this.dead = false;
             SetRectangle();
             SetTarget();
+            time_since_dead = 0;
         }
 
         int attack_cooldown;
+
+        private int time_since_dead;
 
         private float speed;
         private float anglevisee;
@@ -43,6 +47,7 @@ namespace Fuckin__Height_Redemption
         private Rectangle target; // pour la colision
 
         private Texture2D[,] textures;
+        private Texture2D mort;
 
         private int dist_marche;// pour l'animation
         private int pas;// pour la texture a afficher
@@ -79,7 +84,7 @@ namespace Fuckin__Height_Redemption
 
         public void Move(Joueur joueur, List<Zombie> zombies, int elapsed_time, int height, int width)
         {
-            direction = (new Vector2(joueur.GetRectangle().X, joueur.GetRectangle().Y) - position) / ((new Vector2(joueur.GetRectangle().X, joueur.GetRectangle().Y) - position).Length()) + (Game1.map.GetDirection() * Game1.map.GetSpeed());
+            direction = (new Vector2(joueur.GetRectangle().X, joueur.GetRectangle().Y) - position) / ((new Vector2(joueur.GetRectangle().X, joueur.GetRectangle().Y) - position).Length()) ; //+ (Game1.map.GetDirection() * Game1.map.GetSpeed());
 
              //colission avec zombies
             foreach (Zombie z in zombies)
@@ -123,7 +128,12 @@ namespace Fuckin__Height_Redemption
                     Attack(joueur);
                     attack_cooldown = 0;
                 }
+                else
+                {
+                    SetPosition(position);
+                }
             }
+            SetPosition(position + (Game1.map.GetDirection() * Game1.map.GetSpeed()));
             attack_cooldown += elapsed_time;
 
 
@@ -137,7 +147,6 @@ namespace Fuckin__Height_Redemption
         {
             joueur.Hurt(10);
             attack_cooldown = 0;
-            Console.WriteLine("attack");
         }
 
 
@@ -206,7 +215,7 @@ namespace Fuckin__Height_Redemption
                 pop_position.Y = random.Next(0, height);
             }
 
-            return new Zombie(pop_position, zombiespeed, Game1.textures_zombies);
+            return new Zombie(pop_position, zombiespeed, Game1.textures_zombies, Game1.zombie_mort);
 
         }
 
